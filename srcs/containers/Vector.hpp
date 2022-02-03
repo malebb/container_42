@@ -73,24 +73,40 @@ namespace ft
 			vector() : _size(0)
 			{
 			}
-			
-			void			push_back(const value_type& val)
+
+			~vector()
 			{
-				allocator_type		alloc;
-				pointer				new_array;
-
-				new_array = alloc.allocate(sizeof(T) * (this->_size + 1));
-
 				for (size_type i = 0; i < this->_size; i++)
 				{
-					alloc.construct(&new_array[i], this->_array[i]);
+					this->_alloc.destroy(this->_array + i);
 				}
-				alloc.construct(new_array + this->_size, val);
-				this->_size++;
+				if (this->_size)
+					this->_alloc.deallocate(this->_array, sizeof(T) * this->_size);
+			}
+
+			void			push_back(const value_type& val)
+			{
+				pointer				new_array;
+
+				new_array = this->_alloc.allocate(sizeof(T) * (this->_size + 1));
+				for (size_type i = 0; i < this->_size; i++)
+				{
+					_alloc.construct(&new_array[i], this->_array[i]);
+				}
+
+				_alloc.construct(new_array + this->_size, val);
+				for (size_type i = 0; i < this->_size; i++)
+				{
+					_alloc.destroy(this->_array + i);
+				}
+				if (this->_size)
+					_alloc.deallocate(this->_array, sizeof(T) * this->_size);
 				this->_array = new_array;
+				this->_size++;
 			}
 
 		private :
+			allocator_type		_alloc;
 			pointer				_array;
 			size_type			_size;
 	};
