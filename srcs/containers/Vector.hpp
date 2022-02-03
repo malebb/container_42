@@ -105,6 +105,13 @@ namespace ft
 				this->_size++;
 			}
 
+			//Capacity funcition
+
+			size_type		size() const
+			{
+				return (this->_size);
+			}
+
 		private :
 			allocator_type		_alloc;
 			pointer				_array;

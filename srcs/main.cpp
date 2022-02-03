@@ -6,15 +6,22 @@
 
 int	main(void)
 {
-	std::cout << "ft container main" << std::endl;
-	ft::vector<int>					test;
+	std::cout << "------------ TEST VECTOR CONTAINER ------------"
+	<< std::endl;
 
-	test.push_back(12);
-	test.push_back(33);
-	test.push_back(90);
-	for (ft::vector<int>::iterator it = test.begin(); it != test.end(); it++)
-	{
-		std::cout << "it = " << *it << std::endl;
-	}
+	ft::vector<int>		nbrs;
+
+	std::cout << std::endl;
+	std::cout << "------------ Test Capacity member function ------------"
+	<< std::endl;
+	std::cout << "Test size function" << std::endl;
+	std::cout << std::endl;
+
+	std::cout << "Size = " << nbrs.size() << std::endl;
+	nbrs.push_back(1);
+	nbrs.push_back(2);
+	nbrs.push_back(3);
+	nbrs.push_back(4);
+	std::cout << "Size = " << nbrs.size() << std::endl;
 	return (0);
 }
