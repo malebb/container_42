@@ -10,8 +10,8 @@ int	main(void)
 	ft::vector<int>					test;
 
 	test.push_back(12);
-//	test.push_back(33);
-//	test.push_back(90);
+	test.push_back(33);
+	test.push_back(90);
 	for (ft::vector<int>::iterator it = test.begin(); it != test.end(); it++)
 	{
 		std::cout << "it = " << *it << std::endl;

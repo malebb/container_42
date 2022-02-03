@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <iterator>
+#include <iostream>
 
 namespace ft
 {
@@ -61,12 +62,12 @@ namespace ft
 
 			iterator		begin(void)
 			{
-					return (iterator(&(_array[0])));
+					return (iterator(this->_array));
 			}
 
 			iterator		end(void)
 			{
-					return (iterator(&(_array[this->_size])));
+					return (iterator(this->_array + this->_size));
 			}
 
 			vector() : _size(0)
@@ -76,17 +77,17 @@ namespace ft
 			void			push_back(const value_type& val)
 			{
 				allocator_type		alloc;
+				pointer				new_array;
 
-				this->new_array = alloc.allocator(sizeof(T) * (this->_size));
+				new_array = alloc.allocate(sizeof(T) * (this->_size + 1));
 
 				for (size_type i = 0; i < this->_size; i++)
 				{
-					alloc.construct(this->_new_array[i], this->_array[i]);
+					alloc.construct(&new_array[i], this->_array[i]);
 				}
+				alloc.construct(new_array + this->_size, val);
 				this->_size++;
-				alloc.construct(this->_new_array[this->_size], val);
-
-				//this->_size++;
+				this->_array = new_array;
 			}
 
 		private :
