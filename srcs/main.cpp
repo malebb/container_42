@@ -52,26 +52,35 @@ int	main(void)
 	std::cout << "Max size (char) = " << letters.max_size() << std::endl;
 
 	std::cout << std::endl;
-	std::cout << "Test capacity function" << std::endl;
-	std::cout << std::endl;
-
-	std::cout << "Capacity = " << nbrs.capacity() << std::endl;
-	nbrs.reserve(2);
-	std::cout << "Capacity = " << nbrs.capacity() << std::endl;
-	nbrs.reserve(5);
-	std::cout << "Capacity = " << nbrs.capacity() << std::endl;
-
-	std::cout << std::endl;
 	std::cout << "Test resize function" << std::endl;
 	std::cout << std::endl;
 
 	std::cout << "Size = " << nbrs.size() << " Capacity = " <<
 		nbrs.capacity() << " | ";
 	display_tab(nbrs);
-	nbrs.resize(4, 99);
+	nbrs.resize(6, 99);
 	std::cout << "Size = " << nbrs.size() << " Capacity = " <<
 		nbrs.capacity() << " | ";
 	display_tab(nbrs);
 
+	std::cout << std::endl;
+	std::cout << "Test capacity function" << std::endl;
+	std::cout << std::endl;
+
+	std::cout << "Capacity = " << nbrs.capacity() << std::endl;
+	nbrs.reserve(2);
+	std::cout << "Capacity = " << nbrs.capacity() << std::endl;
+	nbrs.reserve(9);
+	std::cout << "Capacity = " << nbrs.capacity() << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Test empty function" << std::endl;
+	std::cout << std::endl;
+
+	display_tab(nbrs);
+	if (nbrs.empty())
+		std::cout << "vector is empty" << std::endl;
+	else
+		std::cout << "vector is not empty" << std::endl;
 	return (0);
 }

@@ -139,6 +139,11 @@ namespace ft
 				return (this->_capacity);
 			}
 
+			bool			empty() const
+			{
+					return (this->size() ? false : true);
+			}
+
 			void			reserve(size_type n)
 			{
 				pointer		new_array;
