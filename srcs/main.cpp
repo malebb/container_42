@@ -31,7 +31,7 @@ int	main(void)
 	ft::vector<char>	letters;
 
 	std::cout << std::endl;
-	std::cout << "------------ Test Capacity member function ------------"
+	std::cout << "------------ Test Capacity ------------"
 	<< std::endl;
 	 
 	std::cout << "Test size function" << std::endl;
@@ -82,5 +82,16 @@ int	main(void)
 		std::cout << "vector is empty" << std::endl;
 	else
 		std::cout << "vector is not empty" << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "------------ Test Acces element ------------"
+	<< std::endl;
+
+	for (ft::vector<int>::size_type i = 0; i < nbrs.size(); i++)
+	{
+		std::cout << "[" << i << "] = " << nbrs[i];
+		if (i + 1 != nbrs.size())
+			std::cout << " ";
+	}
 	return (0);
 }

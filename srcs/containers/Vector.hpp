@@ -64,17 +64,7 @@ namespace ft
 			typedef size_t										size_type;
 
 			typedef vector_iterator<T>					iterator;
-
-			iterator		begin(void)
-			{
-					return (iterator(this->_array));
-			}
-
-			iterator		end(void)
-			{
-					return (iterator(this->_array + this->_size));
-			}
-
+			
 			vector() : _size(0), _capacity(0)
 			{
 			}
@@ -89,14 +79,19 @@ namespace ft
 					this->_alloc.deallocate(this->_array, sizeof(T) * this->_size);
 			}
 
-			void			push_back(const value_type& val)
+			//iterators
+
+			iterator		begin(void)
 			{
-				this->reserve(this->_size + 1);
-				_alloc.construct(this->_array + this->_size, val);
-				this->_size++;
+					return (iterator(this->_array));
 			}
 
-			//Capacity funcition
+			iterator		end(void)
+			{
+					return (iterator(this->_array + this->_size));
+			}
+
+			//Capacity
 
 			size_type		size() const
 			{
@@ -165,8 +160,22 @@ namespace ft
 					this->_capacity = n;
 				}
 			}
-			
 
+			//Element access
+
+			reference			operator[](size_type n)
+			{
+				return (this->_array[n]);
+			}
+
+			//Modifiers
+
+			void			push_back(const value_type& val)
+			{
+				this->reserve(this->_size + 1);
+				_alloc.construct(this->_array + this->_size, val);
+				this->_size++;
+			}
 		private :
 			allocator_type		_alloc;
 			pointer				_array;
