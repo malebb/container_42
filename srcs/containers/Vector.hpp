@@ -41,6 +41,11 @@ namespace ft
 				return (true);
 			}
 
+			vector_iterator		operator+(int val) const
+			{
+				return (vector_iterator(this->_ptr + val));
+			}
+
 		private :
 			T		*_ptr;
 
@@ -70,7 +75,7 @@ namespace ft
 					return (iterator(this->_array + this->_size));
 			}
 
-			vector() : _size(0)
+			vector() : _size(0), _capacity(0)
 			{
 			}
 
@@ -86,22 +91,8 @@ namespace ft
 
 			void			push_back(const value_type& val)
 			{
-				pointer				new_array;
-
-				new_array = this->_alloc.allocate(sizeof(T) * (this->_size + 1));
-				for (size_type i = 0; i < this->_size; i++)
-				{
-					_alloc.construct(&new_array[i], this->_array[i]);
-				}
-
-				_alloc.construct(new_array + this->_size, val);
-				for (size_type i = 0; i < this->_size; i++)
-				{
-					_alloc.destroy(this->_array + i);
-				}
-				if (this->_size)
-					_alloc.deallocate(this->_array, sizeof(T) * this->_size);
-				this->_array = new_array;
+				this->reserve(this->_size + 1);
+				_alloc.construct(this->_array + this->_size, val);
 				this->_size++;
 			}
 
@@ -112,10 +103,70 @@ namespace ft
 				return (this->_size);
 			}
 
+			size_type		max_size() const
+			{
+				return (this->_alloc.max_size());
+			}
+
+			void			resize(size_type n, value_type val = value_type())
+			{
+				if (n < this->_size)
+				{
+					for (size_type i = n; i < this->_size; i++)
+					{
+						this->_alloc.destroy(this->_array + i);
+					}
+				}
+				else
+				{
+					if (n > this->capacity())
+					{
+						if (n <= this->_size * 2)
+							this->reserve(this->_size * 2);
+						else
+							this->reserve(n);
+					}
+					for (size_type i = this->_size; i < n; i++)
+					{
+						this->_alloc.construct(this->_array + i, val);
+					}
+				}	
+				this->_size = n;
+			}
+
+			size_type		capacity() const
+			{
+				return (this->_capacity);
+			}
+
+			void			reserve(size_type n)
+			{
+				pointer		new_array;
+
+				if (n > this->_capacity)
+				{
+					new_array = this->_alloc.allocate(sizeof(T) * n);
+					for (size_type i = 0; i < this->_size; i++)
+					{
+						_alloc.construct(new_array + i, this->_array[i]);
+					}
+					for (size_type i = 0; i < this->_size; i++)
+					{
+						_alloc.destroy(this->_array + i);
+					}
+					if (this->_size)
+						_alloc.deallocate(this->_array, sizeof(T) * n);
+					this->_array = new_array;
+					this->_capacity = n;
+				}
+			}
+			
+
 		private :
 			allocator_type		_alloc;
 			pointer				_array;
 			size_type			_size;
+			size_type			_capacity;
 	};
 }
 
