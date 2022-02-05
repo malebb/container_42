@@ -5,6 +5,7 @@
 #include <iterator>
 #include <iostream>
 #include <stdexcept>
+#include <sstream>
 
 namespace ft
 {
@@ -166,14 +167,39 @@ namespace ft
 
 			reference			operator[](size_type n)
 			{
-				if (n >= this->size())
-					throw(std::out_of_range("out of range"));
 				return (this->_array[n]);
 			}
+
 			const_reference			operator[](size_type n) const
 			{
+				return (this->_array[n]);
+			}
+
+			reference				at(size_type n)
+			{
+				std::stringstream			ss;
+
+				ss << "vector::_M_range_check: __n (which is ";
+				ss << this->size();
+				ss << ") >= this->size() (which is ";
+				ss << this->size();
+				ss <<")";
 				if (n >= this->size())
-					throw(std::out_of_range("out of range"));
+					throw(std::out_of_range(ss.str()));
+				return (this->_array[n]);
+			}
+
+			const_reference			at(size_type n) const
+			{
+				std::stringstream			ss;
+
+				ss << "vector::_M_range_check: __n (which is ";
+				ss << this->size();
+				ss << ") >= this->size() (which is ";
+				ss << this->size();
+				ss <<")";
+				if (n >= this->size())
+					throw(std::out_of_range(ss.str()));
 				return (this->_array[n]);
 			}
 

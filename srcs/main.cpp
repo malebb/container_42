@@ -27,14 +27,15 @@ int	main(void)
 	std::cout << "------------ TEST VECTOR CONTAINER ------------"
 	<< std::endl;
 
-	ft::vector<int>		nbrs;
-	ft::vector<char>	letters;
+	ft::vector<int>				nbrs;
+	ft::vector<char>			letters;
+	const ft::vector<int>		const_nbrs;
 
 	std::cout << std::endl;
 	std::cout << "------------ Test Capacity ------------"
 	<< std::endl;
 	 
-	std::cout << "Test size function" << std::endl;
+	std::cout << ">> Test size function" << std::endl;
 	std::cout << std::endl;
 
 	std::cout << "Size = " << nbrs.size() << std::endl;
@@ -45,14 +46,14 @@ int	main(void)
 	std::cout << "Size = " << nbrs.size() << std::endl;
 
 	std::cout << std::endl;
-	std::cout << "Test size function" << std::endl;
+	std::cout << ">> Test size function" << std::endl;
 	std::cout << std::endl;
 
 	std::cout << "Max size (int) = " << nbrs.max_size() << std::endl;
 	std::cout << "Max size (char) = " << letters.max_size() << std::endl;
 
 	std::cout << std::endl;
-	std::cout << "Test resize function" << std::endl;
+	std::cout << ">> Test resize function" << std::endl;
 	std::cout << std::endl;
 
 	std::cout << "Size = " << nbrs.size() << " Capacity = " <<
@@ -64,7 +65,7 @@ int	main(void)
 	display_tab(nbrs);
 
 	std::cout << std::endl;
-	std::cout << "Test capacity function" << std::endl;
+	std::cout << ">> Test capacity function" << std::endl;
 	std::cout << std::endl;
 
 	std::cout << "Capacity = " << nbrs.capacity() << std::endl;
@@ -74,7 +75,7 @@ int	main(void)
 	std::cout << "Capacity = " << nbrs.capacity() << std::endl;
 
 	std::cout << std::endl;
-	std::cout << "Test empty function" << std::endl;
+	std::cout << ">> Test empty function" << std::endl;
 	std::cout << std::endl;
 
 	display_tab(nbrs);
@@ -88,26 +89,63 @@ int	main(void)
 	<< std::endl;
 
 	std::cout << std::endl;
-	std::cout << "Test operator[]" << std::endl;
+	std::cout << ">> Test operator[]" << std::endl;
 	std::cout << std::endl;
 
+	for (ft::vector<int>::size_type i = 0; i < nbrs.size(); i++)
+	{
+		std::cout << "[" << i << "] = " << nbrs[i];
+		if (i + 1 != nbrs.size())
+			std::cout << " ";
+		else
+			std::cout << std::endl;
+	}
+	std::cout << std::endl;
+	std::cout << ">> Test at function" << std::endl;
+	std::cout << std::endl;
 	try
 	{
 		for (ft::vector<int>::size_type i = 0; i < nbrs.size(); i++)
 		{
-			std::cout << "[" << i << "] = " << nbrs[i];
+			std::cout << "[" << i << "] = " << nbrs.at(i);
 			if (i + 1 != nbrs.size())
 				std::cout << " ";
+			else
+				std::cout << std::endl;
 		}
 	}
 	catch(std::exception const & e)
 	{
-		std::cout << e.what();
+		std::cout << e.what() << std::endl;
 	}
-	std::cout << std::endl;
 	try
 	{
-		nbrs[nbrs.size() - 1];
+		nbrs.at(nbrs.size());
+	}
+	catch(std::exception const & e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	std::cout << std::endl;
+	std::cout << "const version : " << std::endl;
+	try
+	{
+		for (ft::vector<int>::size_type i = 0; i < const_nbrs.size(); i++)
+		{
+			std::cout << "[" << i << "] = " << const_nbrs.at(i);
+			if (i + 1 != nbrs.size())
+				std::cout << " ";
+			else
+				std::cout << std::endl;
+		}
+	}
+	catch(std::exception const & e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	try
+	{
+		const_nbrs.at(nbrs.size());
 	}
 	catch(std::exception const & e)
 	{
