@@ -9,17 +9,29 @@
 
 namespace ft
 {
+	struct input_iterator_tag {};
+
 	template<
-			class T, class pointer = T*,
-			class reference = T&
+			class Category,
+			class T,
+			class Distance = std::ptrdiff_t,
+			class Pointer = T*,
+			class Reference = T&
 			>
-	class vector_iterator
+	struct iterator
+	{
+		typedef T			value_type;
+		typedef Distance	difference_type;
+		typedef Pointer		pointer;
+		typedef Reference	reference;
+		typedef Category	iterator_category;
+	};
+
+	template <typename T>
+	class vector_iterator : public ft::iterator<ft::input_iterator_tag, T>
 	{
 		public :
-			typedef T									value_type;
-			typedef std::random_access_iterator_tag		Categorie;
-
-			vector_iterator(T * ptr) : _ptr(ptr)
+			vector_iterator(typename iterator<ft::input_iterator_tag, T>::pointer ptr) : _ptr(ptr)
 			{
 			}
 
@@ -49,10 +61,9 @@ namespace ft
 			}
 
 		private :
-			T		*_ptr;
-
+			typename iterator<ft::input_iterator_tag, T>::pointer		_ptr;
 	};
-
+/*
 	template<class Iterator>
 	class reverse_iterator
 	{
@@ -96,7 +107,7 @@ namespace ft
 		private :
 			pointer		_ptr;
 	};
-
+*/
 	template <class T, class Alloc = std::allocator<T> >
 	class vector
 	{
@@ -110,7 +121,7 @@ namespace ft
 			typedef size_t										size_type;
 
 			typedef vector_iterator<T>					iterator;
-			typedef reverse_iterator<value_type>		reverse_iterator;
+//			typedef reverse_iterator<value_type>		reverse_iterator;
 			
 			vector() : _size(0), _capacity(0)
 			{
@@ -146,7 +157,7 @@ namespace ft
 					return (iterator(this->_array + this->_size));
 			}
 
-			reverse_iterator		rbegin(void)
+/*			reverse_iterator		rbegin(void)
 			{
 					return (reverse_iterator(this->_array));
 			}
@@ -155,7 +166,7 @@ namespace ft
 			{
 					return (reverse_iterator(this->_array + this->_size));
 			}
-
+*/
 			//Capacity
 
 			size_type		size() const

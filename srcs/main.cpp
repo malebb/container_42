@@ -190,9 +190,11 @@ int	main(void)
 	strs.push_back(1);
 	strs.push_back(2);
 	strs.push_back(3);
+	/*
 	for (ft::vector<std::string>::reverse_iterator it = strs.rbegin(); it != strs.rend(); it++)
 	{
 		std::cout << *it;
 	}
+	*/
 	return (0);
 }
