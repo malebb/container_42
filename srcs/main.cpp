@@ -29,7 +29,7 @@ int	main(void)
 
 	ft::vector<int>				nbrs;
 	ft::vector<char>			letters;
-	const ft::vector<int>		const_nbrs;
+	const ft::vector<int>		const_nbrs(2, 88);
 
 	std::cout << std::endl;
 	std::cout << "------------ Test Capacity ------------"
@@ -39,7 +39,7 @@ int	main(void)
 	std::cout << std::endl;
 
 	std::cout << "Size = " << nbrs.size() << std::endl;
-	nbrs.push_back(1);
+	nbrs.push_back(19);
 	nbrs.push_back(2);
 	nbrs.push_back(3);
 	nbrs.push_back(4);
@@ -100,6 +100,18 @@ int	main(void)
 		else
 			std::cout << std::endl;
 	}
+
+	std::cout << std::endl;
+	std::cout << "const version : " << std::endl;
+	for (ft::vector<int>::size_type i = 0; i < const_nbrs.size(); i++)
+	{
+		std::cout << "[" << i << "] = " << const_nbrs[i];
+		if (i + 1 != const_nbrs.size())
+			std::cout << " ";
+		else
+			std::cout << std::endl;
+	}
+
 	std::cout << std::endl;
 	std::cout << ">> Test at function" << std::endl;
 	std::cout << std::endl;
@@ -133,7 +145,7 @@ int	main(void)
 		for (ft::vector<int>::size_type i = 0; i < const_nbrs.size(); i++)
 		{
 			std::cout << "[" << i << "] = " << const_nbrs.at(i);
-			if (i + 1 != nbrs.size())
+			if (i + 1 != const_nbrs.size())
 				std::cout << " ";
 			else
 				std::cout << std::endl;
@@ -143,6 +155,7 @@ int	main(void)
 	{
 		std::cout << e.what() << std::endl;
 	}
+	std::cout << std::endl;
 	try
 	{
 		const_nbrs.at(nbrs.size());
@@ -151,5 +164,25 @@ int	main(void)
 	{
 		std::cout << e.what() << std::endl;
 	}
+
+	std::cout << std::endl;
+	std::cout << ">> Test front function" << std::endl;
+	std::cout << std::endl;
+
+	display_tab(nbrs);
+	std::cout << std::endl;
+	std::cout << "first elem = " << nbrs.front() << std::endl;
+
+	std::cout << "const version : " << std::endl;
+	std::cout << "first elem = " << const_nbrs.front() << std::endl;
+
+	std::cout << std::endl;
+	std::cout << ">> Test back function" << std::endl;
+	std::cout << std::endl;
+
+	std::cout << "last elem = " << nbrs.back() << std::endl;
+
+	std::cout << "const version : " << std::endl;
+	std::cout << "last elem = " << const_nbrs.back() << std::endl;
 	return (0);
 }

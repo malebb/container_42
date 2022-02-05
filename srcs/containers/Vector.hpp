@@ -71,6 +71,14 @@ namespace ft
 			{
 			}
 
+			explicit vector(size_type n, const value_type& val = value_type(),
+						const allocator_type& alloc = allocator_type())
+						: _alloc(alloc), _size(0), _capacity(0)
+			{
+				this->_alloc = alloc;
+				this->resize(n, val);
+			}
+
 			~vector()
 			{
 				for (size_type i = 0; i < this->_size; i++)
@@ -201,6 +209,26 @@ namespace ft
 				if (n >= this->size())
 					throw(std::out_of_range(ss.str()));
 				return (this->_array[n]);
+			}
+
+			reference				front()
+			{
+				return (this->_array[0]);
+			}
+
+			const_reference			front() const
+			{
+				return (this->_array[0]);
+			}
+
+			reference				back()
+			{
+				return (this->_array[this->size() - 1]);
+			}
+
+			const_reference			back() const
+			{
+				return (this->_array[this->size() - 1]);
 			}
 
 			//Modifiers
