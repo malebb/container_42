@@ -84,14 +84,34 @@ int	main(void)
 		std::cout << "vector is not empty" << std::endl;
 
 	std::cout << std::endl;
-	std::cout << "------------ Test Acces element ------------"
+	std::cout << "------------ Test Access element ------------"
 	<< std::endl;
 
-	for (ft::vector<int>::size_type i = 0; i < nbrs.size(); i++)
+	std::cout << std::endl;
+	std::cout << "Test operator[]" << std::endl;
+	std::cout << std::endl;
+
+	try
 	{
-		std::cout << "[" << i << "] = " << nbrs[i];
-		if (i + 1 != nbrs.size())
-			std::cout << " ";
+		for (ft::vector<int>::size_type i = 0; i < nbrs.size(); i++)
+		{
+			std::cout << "[" << i << "] = " << nbrs[i];
+			if (i + 1 != nbrs.size())
+				std::cout << " ";
+		}
+	}
+	catch(std::exception const & e)
+	{
+		std::cout << e.what();
+	}
+	std::cout << std::endl;
+	try
+	{
+		nbrs[nbrs.size() - 1];
+	}
+	catch(std::exception const & e)
+	{
+		std::cout << e.what() << std::endl;
 	}
 	return (0);
 }

@@ -4,6 +4,7 @@
 #include <memory>
 #include <iterator>
 #include <iostream>
+#include <stdexcept>
 
 namespace ft
 {
@@ -165,6 +166,14 @@ namespace ft
 
 			reference			operator[](size_type n)
 			{
+				if (n >= this->size())
+					throw(std::out_of_range("out of range"));
+				return (this->_array[n]);
+			}
+			const_reference			operator[](size_type n) const
+			{
+				if (n >= this->size())
+					throw(std::out_of_range("out of range"));
 				return (this->_array[n]);
 			}
 
