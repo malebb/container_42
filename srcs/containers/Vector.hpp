@@ -53,6 +53,50 @@ namespace ft
 
 	};
 
+	template<class Iterator>
+	class reverse_iterator
+	{
+		public :
+			typedef Iterator													iterator_type;
+			typedef typename std::iterator_traits<iterator_type>::iterator_category		iterator_category;
+			typedef typename std::iterator_traits<iterator_type>::value_type				value_type;
+			typedef typename std::iterator_traits<iterator_type>::difference_type		difference_type;
+			typedef typename std::iterator_traits<iterator_type>::pointer				pointer;
+			typedef typename std::iterator_traits<iterator_type>::reference				reference;
+
+			reverse_iterator(iterator_type * ptr) : _ptr(ptr)
+			{
+			}
+
+			reverse_iterator		operator++(int)
+			{
+				reverse_iterator		tmp(*this);
+
+				this->_ptr--;
+				return (tmp);
+			}
+
+			iterator_type			operator*() const
+			{
+				return (*(this->_ptr));
+			}
+
+			bool	operator!=(reverse_iterator const & rhs) const
+			{
+				if (this->_ptr == rhs._ptr)
+					return (false);
+				return (true);
+			}
+
+			reverse_iterator	operator+(int val) const
+			{
+				return (reverse_iterator(this->_ptr - val));
+			}
+
+		private :
+			pointer		_ptr;
+	};
+
 	template <class T, class Alloc = std::allocator<T> >
 	class vector
 	{
@@ -66,6 +110,7 @@ namespace ft
 			typedef size_t										size_type;
 
 			typedef vector_iterator<T>					iterator;
+			typedef reverse_iterator<value_type>		reverse_iterator;
 			
 			vector() : _size(0), _capacity(0)
 			{
@@ -99,6 +144,16 @@ namespace ft
 			iterator		end(void)
 			{
 					return (iterator(this->_array + this->_size));
+			}
+
+			reverse_iterator		rbegin(void)
+			{
+					return (reverse_iterator(this->_array));
+			}
+
+			reverse_iterator		rend(void)
+			{
+					return (reverse_iterator(this->_array + this->_size));
 			}
 
 			//Capacity
