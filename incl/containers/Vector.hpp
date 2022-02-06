@@ -11,7 +11,7 @@
 namespace ft
 {
 	template <typename T>
-	class vector_iterator : public ft::iterator<ft::input_iterator_tag, T>
+	class vector_iterator : public ft::iterator<ft::random_access_iterator_tag, T>
 	{
 		public :
 
@@ -19,7 +19,7 @@ namespace ft
 			typedef T*			pointer;
 			typedef T&			reference;
 
-			vector_iterator(ointer ptr) : _ptr(ptr)
+			vector_iterator(pointer ptr) : _ptr(ptr)
 			{
 			}
 
