@@ -80,6 +80,11 @@ namespace ft
 				return (*(this->_ptr));
 			}
 
+			pointer		operator->()
+			{
+				return (this->_ptr);
+			}
+
 			bool	operator!=(vector_iterator const & rhs) const
 			{
 				if (this->_ptr == rhs._ptr)

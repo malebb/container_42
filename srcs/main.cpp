@@ -26,6 +26,13 @@ template<typename T> void	display_tab(ft::vector<T> & cont)
 
 }
 
+class	Nb
+{
+	public :
+		static const int nb = 5;
+		static const int nb2 = 22;
+};
+
 int	main(void)
 {
 	std::cout << std::endl;
@@ -193,36 +200,97 @@ int	main(void)
 	std::cout << "const version : " << std::endl;
 	std::cout << "last elem = " << const_nbrs.back() << std::endl;
 
-	std::cout <<"TEST ZONE" << std::endl;
+	std::cout << std::endl;
+	std::cout << "------------ Test Iterator ------------"
+	<< std::endl;
 
-	ft::vector<int>				nbr;
-	ft::vector<int>::iterator		it;
-	ft::vector<int>::iterator		it2;
+	ft::vector<std::string>				strs;
 
-	nbr.push_back(1);
-	nbr.push_back(90);
-	nbr.push_back(91);
-	nbr.push_back(92);
+	strs.push_back("one");
+	strs.push_back("two");
+	strs.push_back("three");
+	strs.push_back("four");
+	strs.push_back("five");
 
-	it = nbr.begin();
-	it2 = nbr.begin() + 2;
-	std::cout << it2 - it << std::endl;
+	std::cout << std::endl;
+	std::cout << ">> Test iterate" << std::endl;
+	std::cout << std::endl;
 
-/*
-	ft::vector<int>				nbr;
-	ft::vector<int>::iterator		it;
+	for (ft::vector<std::string>::iterator it = strs.begin();
+			it != strs.end(); it++)
+	{
+		std::cout << "strs = " << *it << std::endl;
+	}
 
-	nbr.push_back(89);
-	nbr.push_back(90);
-	nbr.push_back(91);
-	nbr.push_back(92);
+	std::cout << std::endl;
+	std::cout << ">> Test iterator operator" << std::endl;
+	std::cout << std::endl;
 
-	it = nbr.begin();
+	ft::vector<std::string>::iterator		it;
+	ft::vector<std::string>::iterator		ite;
 
-	it += 3;
-	std::cout << *it;
+	std::cout << std::endl;
+	std::cout << "it = strs.begin()" << std::endl;
+	std::cout << std::endl;
+
+	it = strs.begin();
+
+	std::cout << "*it = " << *it << std::endl;
+
+	std::cout << "it++" << std::endl;
+	it++;
+	std::cout << "*it = " << *it << std::endl;
+
+	std::cout << "it--" << std::endl;
+	it--;
+	std::cout << "*it = " << *it << std::endl;
+
+	std::cout << "*++it = " << *++it << std::endl;
+
+	std::cout << "*--it = " << *--it << std::endl;
+
+	std::cout << "*it++" << std::endl;
+	*it++;
+	std::cout << "*it = " << *it << std::endl;
+
+	std::cout << "*it--" << std::endl;
+	*it--;
+	std::cout << "*it = " << *it << std::endl;
+
+	std::cout << "it += 2" << std::endl;
+	it += 2;
+	std::cout << "*it = " << *it << std::endl;
+
+	std::cout << "it -= 2" << std::endl;
 	it -= 2;
-	std::cout << *it;
-	*/
+	std::cout << "*it = " << *it << std::endl;
+	
+	std::cout << "it[3] = " << it[3] << std::endl;
+
+	std::cout << "ite = it + 2 " << std::endl;
+	ite = it + 2;
+	std::cout << "*ite = " << *ite << std::endl;
+
+	std::cout << "ite = 3 + it " << std::endl;
+	ite = 3 + it;
+	std::cout << "*ite = " << *ite << std::endl;
+
+	std::cout << "*++it = " << *++it << std::endl;
+	std::cout << "ite = it - 1 " << std::endl;
+	ite = it - 1;
+	std::cout << "*ite = " << *ite << std::endl;
+
+	std::cout << "it - ite = " << it - ite << std::endl;
+
+
+
+	std::cout << "TEST ZONE " << std::endl;
+	ft::vector<Nb>					nbr;
+	ft::vector<Nb>::iterator		it2;
+	Nb				class_test;
+
+	nbr.push_back(class_test);
+	it2 = nbr.begin();
+	std::cout << it2->nb << std::endl;
 	return (0);
 }
