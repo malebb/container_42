@@ -3,6 +3,14 @@
 #include "Stack.hpp"
 
 #include <iostream>
+#include <iterator>
+#include <vector>
+
+void	iterate(ft::vector<int>::iterator ite)
+{
+	std::iterator_traits<ft::vector<int>::iterator>::reference  ref = *ite;
+	std::cout << ref << std::endl;
+}
 
 template<typename T> void	display_tab(ft::vector<T> & cont)
 {
@@ -190,11 +198,14 @@ int	main(void)
 	strs.push_back(1);
 	strs.push_back(2);
 	strs.push_back(3);
-	/*
-	for (ft::vector<std::string>::reverse_iterator it = strs.rbegin(); it != strs.rend(); it++)
+	
+	for (ft::vector<int>::reverse_iterator ite = strs.rbegin(); ite != strs.rend(); ite++)
 	{
-		std::cout << *it;
+		std::cout << *ite << std::endl;
 	}
-	*/
+	
+//	ft::vector<int>::iterator ite = strs.begin();
+//	iterate(ite);
+	
 	return (0);
 }

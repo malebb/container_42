@@ -30,8 +30,14 @@ namespace ft
 	template <typename T>
 	class vector_iterator : public ft::iterator<ft::input_iterator_tag, T>
 	{
+
 		public :
-			vector_iterator(typename iterator<ft::input_iterator_tag, T>::pointer ptr) : _ptr(ptr)
+
+			typedef T			value_type;
+			typedef T*			pointer;
+			typedef T&			reference;
+
+			vector_iterator(pointer ptr) : _ptr(ptr)
 			{
 			}
 
@@ -43,7 +49,15 @@ namespace ft
 				return (tmp);
 			}
 
-			T		operator*() const
+			vector_iterator		operator--(int)
+			{
+				vector_iterator		tmp(*this);
+
+				this->_ptr--;
+				return (tmp);
+			}
+
+			reference	operator*() const
 			{
 				return (*(this->_ptr));
 			}
@@ -55,59 +69,96 @@ namespace ft
 				return (true);
 			}
 
+			bool	operator==(vector_iterator const & rhs) const
+			{
+				if (*this != rhs)
+					return (false);
+				return (true);
+			}
+
 			vector_iterator		operator+(int val) const
 			{
 				return (vector_iterator(this->_ptr + val));
 			}
 
 		private :
-			typename iterator<ft::input_iterator_tag, T>::pointer		_ptr;
+			pointer		_ptr;
 	};
-/*
+
 	template<class Iterator>
 	class reverse_iterator
 	{
 		public :
-			typedef Iterator													iterator_type;
-			typedef typename std::iterator_traits<iterator_type>::iterator_category		iterator_category;
-			typedef typename std::iterator_traits<iterator_type>::value_type				value_type;
-			typedef typename std::iterator_traits<iterator_type>::difference_type		difference_type;
-			typedef typename std::iterator_traits<iterator_type>::pointer				pointer;
-			typedef typename std::iterator_traits<iterator_type>::reference				reference;
+			typedef Iterator															iterator_type;
+			typedef typename std::iterator_traits<Iterator>::iterator_category		iterator_category;
+			typedef typename std::iterator_traits<Iterator>::value_type				value_type;
+			typedef typename std::iterator_traits<Iterator>::difference_type		difference_type;
+			typedef typename std::iterator_traits<Iterator>::pointer				pointer;
+			typedef typename std::iterator_traits<Iterator>::reference				reference;
 
-			reverse_iterator(iterator_type * ptr) : _ptr(ptr)
+			reverse_iterator()
 			{
+
+			}
+
+			explicit reverse_iterator(iterator_type it) : _it(it)
+			{
+			}
+
+			template <class Iter>
+			reverse_iterator(const reverse_iterator<Iter>& rev_it)
+			{
+				*this = rev_it;
 			}
 
 			reverse_iterator		operator++(int)
 			{
 				reverse_iterator		tmp(*this);
 
-				this->_ptr--;
+				this->_it--;
 				return (tmp);
 			}
 
-			iterator_type			operator*() const
+			reverse_iterator		operator--(int)
 			{
-				return (*(this->_ptr));
+				reverse_iterator		tmp(*this);
+
+				this->_it++;
+				return (tmp);
 			}
 
-			bool	operator!=(reverse_iterator const & rhs) const
+			reference		operator*() const
 			{
-				if (this->_ptr == rhs._ptr)
-					return (false);
-				return (true);
+				iterator_type		tmp(this->_it);
+
+				tmp--;
+				return (*tmp);
 			}
 
 			reverse_iterator	operator+(int val) const
 			{
-				return (reverse_iterator(this->_ptr - val));
+				return (reverse_iterator(this->_it - val));
+			}
+
+			iterator_type		base() const
+			{
+				return (this->_it);
 			}
 
 		private :
-			pointer		_ptr;
+
+			iterator_type		_it;
 	};
-*/
+
+	template<class Iterator1, class Iterator2>
+	bool	operator!=(const ft::reverse_iterator<Iterator1>& lhs,
+					   	const ft::reverse_iterator<Iterator2>& rhs)
+	{
+		if (lhs.base() == rhs.base())
+			return (false);
+		return (true);
+	}
+
 	template <class T, class Alloc = std::allocator<T> >
 	class vector
 	{
@@ -120,8 +171,8 @@ namespace ft
 			typedef typename allocator_type::const_pointer		const_pointer;
 			typedef size_t										size_type;
 
-			typedef vector_iterator<T>					iterator;
-//			typedef reverse_iterator<value_type>		reverse_iterator;
+			typedef vector_iterator<value_type>				iterator;
+			typedef reverse_iterator<iterator>				reverse_iterator;
 			
 			vector() : _size(0), _capacity(0)
 			{
@@ -157,16 +208,16 @@ namespace ft
 					return (iterator(this->_array + this->_size));
 			}
 
-/*			reverse_iterator		rbegin(void)
+			reverse_iterator		rbegin(void)
 			{
-					return (reverse_iterator(this->_array));
+					return (reverse_iterator(this->end()));
 			}
 
 			reverse_iterator		rend(void)
 			{
-					return (reverse_iterator(this->_array + this->_size));
+					return (reverse_iterator(this->begin()));
 			}
-*/
+
 			//Capacity
 
 			size_type		size() const
