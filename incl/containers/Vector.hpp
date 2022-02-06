@@ -54,12 +54,24 @@ namespace ft
 				return (tmp);
 			}
 
+			vector_iterator&	operator++()
+			{
+				this->_ptr++;
+				return (*this);
+			}
+
 			vector_iterator		operator--(int)
 			{
 				vector_iterator		tmp(*this);
 
 				this->_ptr--;
 				return (tmp);
+			}
+
+			vector_iterator&	operator--()
+			{
+				this->_ptr--;
+				return (*this);
 			}
 
 			reference	operator*() const
@@ -81,9 +93,21 @@ namespace ft
 				return (true);
 			}
 
-			vector_iterator		operator+(int val) const
+			template<typename T2>
+			vector_iterator		operator+(const T2& rhs) const
 			{
-				return (vector_iterator(this->_ptr + val));
+				return (vector_iterator(this->_ptr + rhs));
+			}
+			template<typename T2>
+			friend vector_iterator		operator+(const T2& lhs, vector_iterator rhs)
+			{
+				return (vector_iterator(lhs + rhs._ptr));
+			}
+
+			template<typename T2>
+			vector_iterator		operator-(const T2& rhs) const
+			{
+				return (vector_iterator(this->_ptr - rhs));
 			}
 
 			//access operators

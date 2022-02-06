@@ -194,17 +194,18 @@ int	main(void)
 	std::cout << "last elem = " << const_nbrs.back() << std::endl;
 
 	std::cout <<"TEST ZONE" << std::endl;
-	std::vector<int>				nbr;
-	std::vector<int>::iterator		it;
+
+	ft::vector<int>				nbr;
+	ft::vector<int>::iterator		it;
+	ft::vector<int>::iterator		it2;
 	nbr.push_back(89);
 	nbr.push_back(90);
 	nbr.push_back(91);
 	nbr.push_back(92);
 
 	it = nbr.begin();
-	it ++;
-	std::cout << *it--;
-	std::cout << *it;
+	it2 = 3 + it;
+	std::cout << *it2 << std::endl;
 
 /*
 	ft::vector<int>				nbr;
