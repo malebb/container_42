@@ -6,38 +6,20 @@
 #include <iostream>
 #include <stdexcept>
 #include <sstream>
+#include "iterator.hpp"
 
 namespace ft
 {
-	struct input_iterator_tag {};
-
-	template<
-			class Category,
-			class T,
-			class Distance = std::ptrdiff_t,
-			class Pointer = T*,
-			class Reference = T&
-			>
-	struct iterator
-	{
-		typedef T			value_type;
-		typedef Distance	difference_type;
-		typedef Pointer		pointer;
-		typedef Reference	reference;
-		typedef Category	iterator_category;
-	};
-
 	template <typename T>
 	class vector_iterator : public ft::iterator<ft::input_iterator_tag, T>
 	{
-
 		public :
 
 			typedef T			value_type;
 			typedef T*			pointer;
 			typedef T&			reference;
 
-			vector_iterator(pointer ptr) : _ptr(ptr)
+			vector_iterator(ointer ptr) : _ptr(ptr)
 			{
 			}
 
@@ -86,7 +68,7 @@ namespace ft
 	};
 
 	template<class Iterator>
-	class reverse_iterator
+	class reverse_vector_iterator
 	{
 		public :
 			typedef Iterator															iterator_type;
@@ -96,38 +78,38 @@ namespace ft
 			typedef typename std::iterator_traits<Iterator>::pointer				pointer;
 			typedef typename std::iterator_traits<Iterator>::reference				reference;
 
-			reverse_iterator()
+			reverse_vector_iterator()
 			{
 
 			}
 
-			explicit reverse_iterator(iterator_type it) : _it(it)
+			explicit reverse_vector_iterator(iterator_type it) : _it(it)
 			{
 			}
 
 			template <class Iter>
-			reverse_iterator(const reverse_iterator<Iter>& rev_it)
+			reverse_vector_iterator(const reverse_vector_iterator<Iter>& rev_it)
 			{
 				*this = rev_it;
 			}
 
-			reverse_iterator		operator++(int)
+			reverse_vector_iterator		operator++(int)
 			{
-				reverse_iterator		tmp(*this);
+				reverse_vector_iterator		tmp(*this);
 
 				this->_it--;
 				return (tmp);
 			}
 
-			reverse_iterator		operator--(int)
+			reverse_vector_iterator		operator--(int)
 			{
-				reverse_iterator		tmp(*this);
+				reverse_vector_iterator		tmp(*this);
 
 				this->_it++;
 				return (tmp);
 			}
 
-			reference		operator*() const
+			reference					operator*() const
 			{
 				iterator_type		tmp(this->_it);
 
@@ -135,12 +117,12 @@ namespace ft
 				return (*tmp);
 			}
 
-			reverse_iterator	operator+(int val) const
+			reverse_vector_iterator		operator+(int val) const
 			{
-				return (reverse_iterator(this->_it - val));
+				return (reverse_vector_iterator(this->_it - val));
 			}
 
-			iterator_type		base() const
+			iterator_type				base() const
 			{
 				return (this->_it);
 			}
@@ -151,8 +133,8 @@ namespace ft
 	};
 
 	template<class Iterator1, class Iterator2>
-	bool	operator!=(const ft::reverse_iterator<Iterator1>& lhs,
-					   	const ft::reverse_iterator<Iterator2>& rhs)
+	bool	operator!=(const ft::reverse_vector_iterator<Iterator1>& lhs,
+					   	const ft::reverse_vector_iterator<Iterator2>& rhs)
 	{
 		if (lhs.base() == rhs.base())
 			return (false);
@@ -172,7 +154,7 @@ namespace ft
 			typedef size_t										size_type;
 
 			typedef vector_iterator<value_type>				iterator;
-			typedef reverse_iterator<iterator>				reverse_iterator;
+			typedef reverse_vector_iterator<iterator>		reverse_iterator;
 			
 			vector() : _size(0), _capacity(0)
 			{

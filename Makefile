@@ -10,7 +10,7 @@ DEP = ${SRCS_FT:.cpp=.d} ${SRCS_STL:.cpp=.d}
 
 CC = clang++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -I ./srcs/containers/
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -I ./incl/containers/ -I ./incl/iterator/
 
 NAME = ft_containers
 NAME2 = stl_containers
