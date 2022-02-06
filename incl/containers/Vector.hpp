@@ -15,9 +15,10 @@ namespace ft
 	{
 		public :
 
-			typedef T			value_type;
-			typedef T*			pointer;
-			typedef T&			reference;
+			typedef T					value_type;
+			typedef T*					pointer;
+			typedef T&					reference;
+			typedef std::ptrdiff_t		difference_type;
 
 			vector_iterator() {};
 
@@ -94,20 +95,26 @@ namespace ft
 			}
 
 			template<typename T2>
-			vector_iterator		operator+(const T2& rhs) const
+			vector_iterator				operator+(const T2& rhs) const
 			{
-				return (vector_iterator(this->_ptr + rhs));
-			}
-			template<typename T2>
-			friend vector_iterator		operator+(const T2& lhs, vector_iterator rhs)
-			{
-				return (vector_iterator(lhs + rhs._ptr));
+				return (vector_iterator(this->_ptr + static_cast<int>(rhs)));
 			}
 
 			template<typename T2>
-			vector_iterator		operator-(const T2& rhs) const
+			friend vector_iterator		operator+(const T2& lhs, vector_iterator rhs)
+			{
+				return (vector_iterator(static_cast<int>(lhs) + rhs._ptr));
+			}
+
+			vector_iterator		operator-(const int rhs) const
 			{
 				return (vector_iterator(this->_ptr - rhs));
+			}
+
+			template<typename T2>
+			difference_type		operator-(const T2& rhs) const
+			{
+				return (this->_ptr - rhs._ptr);
 			}
 
 			//access operators

@@ -198,14 +198,15 @@ int	main(void)
 	ft::vector<int>				nbr;
 	ft::vector<int>::iterator		it;
 	ft::vector<int>::iterator		it2;
-	nbr.push_back(89);
+
+	nbr.push_back(1);
 	nbr.push_back(90);
 	nbr.push_back(91);
 	nbr.push_back(92);
 
 	it = nbr.begin();
-	it2 = 3 + it;
-	std::cout << *it2 << std::endl;
+	it2 = nbr.begin() + 2;
+	std::cout << it2 - it << std::endl;
 
 /*
 	ft::vector<int>				nbr;
