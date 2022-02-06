@@ -19,8 +19,31 @@ namespace ft
 			typedef T*			pointer;
 			typedef T&			reference;
 
+			vector_iterator() {};
+
 			vector_iterator(pointer ptr) : _ptr(ptr)
 			{
+			}
+
+			template<typename T2>
+			vector_iterator		operator+=(const T2& rhs)
+			{
+				this->_ptr = this->_ptr + rhs;
+				return (*this);
+			}
+
+			template<typename T2>
+			vector_iterator		operator-=(const T2& rhs)
+			{
+				this->_ptr = this->_ptr - rhs;
+				return (*this);
+			}
+
+			template<typename T2>
+			vector_iterator		operator=(const T2& rhs)
+			{
+				this->_ptr = rhs._ptr;
+				return (*this);
 			}
 
 			vector_iterator		operator++(int)
@@ -63,6 +86,12 @@ namespace ft
 				return (vector_iterator(this->_ptr + val));
 			}
 
+			//access operators
+			reference			operator[](int val)
+			{
+				return (this->_ptr[val]);
+			}
+
 		private :
 			pointer		_ptr;
 	};
@@ -72,11 +101,11 @@ namespace ft
 	{
 		public :
 			typedef Iterator															iterator_type;
-			typedef typename std::iterator_traits<Iterator>::iterator_category		iterator_category;
-			typedef typename std::iterator_traits<Iterator>::value_type				value_type;
-			typedef typename std::iterator_traits<Iterator>::difference_type		difference_type;
-			typedef typename std::iterator_traits<Iterator>::pointer				pointer;
-			typedef typename std::iterator_traits<Iterator>::reference				reference;
+			typedef typename ft::iterator_traits<Iterator>::iterator_category		iterator_category;
+			typedef typename ft::iterator_traits<Iterator>::value_type				value_type;
+			typedef typename ft::iterator_traits<Iterator>::difference_type		difference_type;
+			typedef typename ft::iterator_traits<Iterator>::pointer				pointer;
+			typedef typename ft::iterator_traits<Iterator>::reference				reference;
 
 			reverse_vector_iterator()
 			{

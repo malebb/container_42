@@ -193,19 +193,34 @@ int	main(void)
 	std::cout << "const version : " << std::endl;
 	std::cout << "last elem = " << const_nbrs.back() << std::endl;
 
-	ft::vector<int>		strs;
+	std::cout <<"TEST ZONE" << std::endl;
+	std::vector<int>				nbr;
+	std::vector<int>::iterator		it;
+	nbr.push_back(89);
+	nbr.push_back(90);
+	nbr.push_back(91);
+	nbr.push_back(92);
 
-	strs.push_back(1);
-	strs.push_back(2);
-	strs.push_back(3);
-	
-	for (ft::vector<int>::reverse_iterator ite = strs.rbegin(); ite != strs.rend(); ite++)
-	{
-		std::cout << *ite << std::endl;
-	}
-	
-//	ft::vector<int>::iterator ite = strs.begin();
-//	iterate(ite);
-	
+	it = nbr.begin();
+	it ++;
+	std::cout << *it--;
+	std::cout << *it;
+
+/*
+	ft::vector<int>				nbr;
+	ft::vector<int>::iterator		it;
+
+	nbr.push_back(89);
+	nbr.push_back(90);
+	nbr.push_back(91);
+	nbr.push_back(92);
+
+	it = nbr.begin();
+
+	it += 3;
+	std::cout << *it;
+	it -= 2;
+	std::cout << *it;
+	*/
 	return (0);
 }
