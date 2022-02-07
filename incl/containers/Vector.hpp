@@ -107,8 +107,7 @@ namespace ft
 				return &(this->operator*());
 			}
 
-			template <typename T2>
-			reference			operator[](T2 const & rhs)
+			reference			operator[](difference_type rhs)
 			{
 				return (this->_it[rhs]);
 			}
