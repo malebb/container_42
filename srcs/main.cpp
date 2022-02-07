@@ -430,30 +430,29 @@ int	main(void)
 	check_comparison(rit <= rit2);
 	std::cout << "rit >= rit2 : ";
 	check_comparison(rit >= rit2);
-/*
+
 	std::cout << "nbs is a vector of class Nb" << std::endl;
 	rit3 = nbs.rbegin();
 	rit3 = nbs.rbegin();
 	std::cout << "rit3->nb = " << rit3->nb << std::endl;
 	std::cout << "rit3->nb2 = " << rit3->nb2 << std::endl;
-	*/
+
 	
 
 
 
 	std::cout << "TEST ZONE " << std::endl;
 
-	ft::vector<int>						numbers;
-	ft::vector<int>::reverse_iterator		rit5;
-	ft::vector<int>::reverse_iterator		rit6;
+	std::vector<int>						numbers(100, 100);
+	std::vector<int>::iterator				it6;
 
-	numbers.push_back(20);
-	numbers.push_back(21);
-	numbers.push_back(22);
-	rit5 = numbers.rbegin();
-	rit6 = numbers.rbegin();
+	//numbers.push_back(20);
+//	numbers.push_back(21);
+//	numbers.push_back(22);
 
-	if (rit5 > rit6)
-		std::cout << "rit5 > rit6" << std::endl;
+	it6 = numbers.begin();
+	it6 += 'v';
+	std::cout << *it6 << std::endl;
+	
 	return (0);
 }

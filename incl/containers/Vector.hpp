@@ -15,49 +15,52 @@ namespace ft
 	{
 		public :
 
-			typedef T					value_type;
-			typedef T*					pointer;
-			typedef T&					reference;
-			typedef std::ptrdiff_t		difference_type;
+			typedef T						value_type;
+			typedef T*						pointer;
+			typedef T&						reference;
+			typedef std::ptrdiff_t			difference_type;
+
+			// constructor destructor
 
 			vector_iterator() {};
 
-			vector_iterator(pointer ptr) : _ptr(ptr)
+			vector_iterator(pointer ptr) : _it(ptr)
 			{
 			}
 
-			template<typename T2>
-			vector_iterator		operator+=(const T2& rhs)
+			// assignment operators
+
+			vector_iterator		operator=(const vector_iterator& rhs)
 			{
-				this->_ptr = this->_ptr + rhs;
+				this->_it = rhs._it;
 				return (*this);
 			}
 
-			template<typename T2>
-			vector_iterator		operator-=(const T2& rhs)
+			vector_iterator		operator+=(difference_type rhs)
 			{
-				this->_ptr = this->_ptr - rhs;
+				this->_it = this->_it + rhs;
 				return (*this);
 			}
 
-			template<typename T2>
-			vector_iterator		operator=(const T2& rhs)
+			vector_iterator		operator-=(difference_type rhs)
 			{
-				this->_ptr = rhs._ptr;
+				this->_it = this->_it - rhs;
 				return (*this);
 			}
+
+			// increment decrement operators
 
 			vector_iterator		operator++(int)
 			{
 				vector_iterator		tmp(*this);
 
-				this->_ptr++;
+				this->_it++;
 				return (tmp);
 			}
 
 			vector_iterator&	operator++()
 			{
-				this->_ptr++;
+				this->_it++;
 				return (*this);
 			}
 
@@ -65,106 +68,111 @@ namespace ft
 			{
 				vector_iterator		tmp(*this);
 
-				this->_ptr--;
+				this->_it--;
 				return (tmp);
 			}
 
 			vector_iterator&	operator--()
 			{
-				this->_ptr--;
+				this->_it--;
 				return (*this);
 			}
 
+			// arithmetic operators
+
+			vector_iterator		operator+(difference_type rhs) const
+			{
+				return (vector_iterator(this->_it + rhs));
+			}
+
+			vector_iterator		operator-(difference_type rhs) const
+			{
+				return (vector_iterator(this->_it - rhs));
+			}
+
+			difference_type		operator-(vector_iterator const & rhs) const
+			{
+				return (this->_it - rhs._it);
+			}
+
+			// member access operators
+
 			reference	operator*() const
 			{
-				return (*(this->_ptr));
+				return (*this->_it);
 			}
 
 			pointer		operator->()
 			{
-				return (this->_ptr);
+				return &(this->operator*());
+			}
+
+			template <typename T2>
+			reference			operator[](T2 const & rhs)
+			{
+				return (this->_it[rhs]);
 			}
 
 			// comparison operators
 
-			bool	operator!=(vector_iterator const & rhs) const
-			{
-				if (this->_ptr == rhs._ptr)
-					return (false);
-				return (true);
-			}
-
 			bool	operator==(vector_iterator const & rhs) const
 			{
-				if (*this != rhs)
-					return (false);
-				return (true);
+				return (this->_it == rhs._it);
+			}
+
+			bool	operator!=(vector_iterator const & rhs) const
+			{
+				return (!(*this == rhs));
 			}
 
 			bool	operator<(vector_iterator const & rhs)
 			{
-				return (this->_ptr < rhs._ptr ? true : false);
+				return (this->_it < rhs._it);
 			}
 
 			bool	operator>(vector_iterator const & rhs)
 			{
-				return (this->_ptr > rhs._ptr ? true : false);
+				return (this->_it > rhs._it);
 			}
 
 			bool	operator<=(vector_iterator const & rhs)
 			{
-				return (*this > rhs ? false : true);
+				return (!(*this > rhs));
 			}
 
 			bool	operator>=(vector_iterator const & rhs)
 			{
-				return (*this < rhs ? false : true);
-			}
-
-
-			template<typename T2>
-			vector_iterator				operator+(const T2& rhs) const
-			{
-				return (vector_iterator(this->_ptr + static_cast<int>(rhs)));
-			}
-
-			template<typename T2>
-			friend vector_iterator		operator+(const T2& lhs, vector_iterator rhs)
-			{
-				return (vector_iterator(static_cast<int>(lhs) + rhs._ptr));
-			}
-
-			vector_iterator		operator-(const int rhs) const
-			{
-				return (vector_iterator(this->_ptr - rhs));
-			}
-
-			template<typename T2>
-			difference_type		operator-(const T2& rhs) const
-			{
-				return (this->_ptr - rhs._ptr);
-			}
-
-			//access operators
-			reference			operator[](int val)
-			{
-				return (this->_ptr[val]);
+				return (!(*this < rhs));
 			}
 
 		private :
-			pointer		_ptr;
+
+			pointer		_it;
 	};
+
+	//non-member function vector_iterator
+
+	template<class T>
+	vector_iterator<T>			operator+(
+				typename vector_iterator<T>::difference_type n,
+				const vector_iterator<T>& rhs)
+	{
+		return (rhs + n);
+	}
 
 	template<class Iterator>
 	class reverse_vector_iterator
 	{
 		public :
+
 			typedef Iterator													iterator_type;
 			typedef typename ft::iterator_traits<Iterator>::iterator_category	iterator_category;
 			typedef typename ft::iterator_traits<Iterator>::value_type			value_type;
 			typedef typename ft::iterator_traits<Iterator>::difference_type		difference_type;
 			typedef typename ft::iterator_traits<Iterator>::pointer				pointer;
 			typedef typename ft::iterator_traits<Iterator>::reference			reference;
+
+			// constructor destructor
 
 			reverse_vector_iterator()
 			{
@@ -180,6 +188,25 @@ namespace ft
 			{
 				*this = rev_it;
 			}
+
+
+			// assignment operators
+
+			template<typename T2>
+			reverse_vector_iterator		operator+=(const T2& rhs)
+			{
+				this->_it = this->_it - rhs;
+				return (*this);
+			}
+
+			template<typename T2>
+			reverse_vector_iterator		operator-=(const T2& rhs)
+			{
+				this->_it = this->_it + rhs;
+				return (*this);
+			}
+
+			// increment decrement operators
 
 			reverse_vector_iterator		operator++(int)
 			{
@@ -209,29 +236,9 @@ namespace ft
 				return (*this);
 			}
 
-			template<typename T2>
-			reverse_vector_iterator		operator+=(const T2& rhs)
-			{
-				this->_it = this->_it - rhs;
-				return (*this);
-			}
+			// arithmetic operators
 
-			template<typename T2>
-			reverse_vector_iterator		operator-=(const T2& rhs)
-			{
-				this->_it = this->_it + rhs;
-				return (*this);
-			}
-
-			reference					operator*() const
-			{
-				iterator_type		tmp(this->_it);
-
-				tmp--;
-				return (*tmp);
-			}
-
-			reverse_vector_iterator		operator+(int val) const
+			reverse_vector_iterator		operator+(const int val) const
 			{
 				return (reverse_vector_iterator(this->_it - val));
 			}
@@ -240,22 +247,33 @@ namespace ft
 			{
 				return (reverse_vector_iterator(this->_it + rhs));
 			}
-
+/*
 			template<typename T2>
 			difference_type		operator-(const T2& rhs) const
 			{
 				return (rhs._it - this->_it);
 			}
+*/
+			reference					operator*() const
+			{
+				iterator_type		tmp(this->_it);
+
+				tmp--;
+				return (*tmp);
+			}
+
+			// member access operators
 
 			pointer		operator->()
 			{
-				return (this->_it - 1);
+				return &(operator*());
 			}
 
 			reference			operator[](int val)
 			{
 				return (this->_it[val * -1]);
 			}
+
 
 			iterator_type				base() const
 			{
@@ -266,6 +284,10 @@ namespace ft
 
 			iterator_type		_it;
 	};
+
+	// non-member function reverse iterator 
+
+	// relational operators
 
 	template <class Iterator>
 	bool		operator==(const reverse_vector_iterator<Iterator>& lhs,
@@ -323,6 +345,13 @@ namespace ft
 		return (rev_it + n);
 	}
 
+	template<class Iterator>
+	typename reverse_vector_iterator<Iterator>::difference_type operator-(
+		const reverse_vector_iterator<Iterator>& lhs ,
+		const reverse_vector_iterator<Iterator>& rhs)
+	{
+		return (rhs.base() - lhs.base());
+	}
 
 	template <class T, class Alloc = std::allocator<T> >
 	class vector
