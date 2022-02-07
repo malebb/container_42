@@ -324,24 +324,136 @@ int	main(void)
 	it3 = nbs.begin();
 	std::cout << "it3->nb = " << it3->nb << std::endl;
 	std::cout << "it3->nb2 = " << it3->nb2 << std::endl;
+
+	it[0] = "one";
+
 	
+	std::cout << std::endl;
+	std::cout << "------------ Test reverse Iterator ------------"
+	<< std::endl;
+
+	std::cout << std::endl;
+	std::cout << ">> Test iterate" << std::endl;
+	std::cout << std::endl;
+
+	for (ft::vector<std::string>::reverse_iterator rit = strs.rbegin();
+			rit != strs.rend(); rit++)
+	{
+		std::cout << "strs = " << *rit << std::endl;
+	}
+
+	std::cout << std::endl;
+	std::cout << ">> Test iterator operator" << std::endl;
+	std::cout << std::endl;
+
+	ft::vector<std::string>::reverse_iterator		rit;
+	ft::vector<std::string>::reverse_iterator		rit2;
+	ft::vector<Nb>::reverse_iterator				rit3;
 	
+	std::cout << "strs is a vector of string" << std::endl;
+	std::cout << std::endl;
+	std::cout << "rit = strs.rbegin()" << std::endl;
+	std::cout << std::endl;
 
+	rit = strs.rbegin();
 
+	std::cout << "*rit = " << *rit << std::endl;
 
+	std::cout << "rit++" << std::endl;
+	rit++;
+	std::cout << "*rit = " << *rit << std::endl;
+
+	std::cout << "rit--" << std::endl;
+	rit--;
+	std::cout << "*rit = " << *rit << std::endl;
+
+	std::cout << "*++rit = " << *++rit << std::endl;
+
+	std::cout << "*--rit = " << *--rit << std::endl;
+
+	std::cout << "*rit++" << std::endl;
+	*rit++;
+	std::cout << "*rit = " << *rit << std::endl;
+
+	std::cout << "*rit--" << std::endl;
+	*rit--;
+	std::cout << "*rit = " << *rit << std::endl;
+
+	std::cout << "rit += 2" << std::endl;
+	rit += 2;
+	std::cout << "*rit = " << *rit << std::endl;
+
+	std::cout << "rit -= 2" << std::endl;
+	rit -= 2;
+	std::cout << "*rit = " << *rit << std::endl;
+	
+	std::cout << "rit[3] = " << rit[3] << std::endl;
+
+	std::cout << "rit2 = rit + 2 " << std::endl;
+	rit2 = rit + 2;
+	std::cout << "*rit2 = " << *rit2 << std::endl;
+
+	std::cout << "rit2 = 3 + rit " << std::endl;
+	rit2 = 3 + rit;
+	std::cout << "*rit2 = " << *rit2 << std::endl;
+	std::cout << "*++rit = " << *++rit << std::endl;
+	std::cout << "rit2 = rit - 1 " << std::endl;
+	rit2 = rit - 1;
+	std::cout << "*rit2 = " << *rit2 << std::endl;
+
+	
+	std::cout << "rit - rit2 = " << rit - rit2 << std::endl;
+	rit = strs.rbegin();
+	std::cout << "*rit = \"hello\"" << std::endl;
+	*rit = "hello";
+	std::cout << "*rit = " << *rit << std::endl;
+	std::cout << "*++rit = " << *++rit << std::endl;
+	std::cout << "*rit2 = " << *rit2 << std::endl;
+	std::cout << "rit2 = rit" << std::endl;
+	rit2 = rit;
+	std::cout << "*rit2 = " << *rit2 << std::endl;
+
+	std::cout << "rit = strs.begin() and rit2 = strs.begin() + 1" << std::endl;
+	rit =  strs.rbegin();
+	rit2 = strs.rbegin() + 1;
+	std::cout << "rit == rit2 : ";
+	check_comparison(rit == rit2);
+	std::cout << "rit != rit2 : ";
+	check_comparison(rit != rit2);
+
+	std::cout << "rit < rit2 : ";
+	check_comparison(rit < rit2);
+	std::cout << "rit > rit2 : ";
+	check_comparison(rit > rit2);
+
+	std::cout << "rit <= rit2 : ";
+	check_comparison(rit <= rit2);
+	std::cout << "rit >= rit2 : ";
+	check_comparison(rit >= rit2);
 /*
-	std::cout << "TEST ZONE " << std::endl;
+	std::cout << "nbs is a vector of class Nb" << std::endl;
+	rit3 = nbs.rbegin();
+	rit3 = nbs.rbegin();
+	std::cout << "rit3->nb = " << rit3->nb << std::endl;
+	std::cout << "rit3->nb2 = " << rit3->nb2 << std::endl;
+	*/
 	
-	std::vector<int>				numbers;
-	std::vector<int>::iterator		it4;
+
+
+
+	std::cout << "TEST ZONE " << std::endl;
+
+	ft::vector<int>						numbers;
+	ft::vector<int>::reverse_iterator		rit5;
+	ft::vector<int>::reverse_iterator		rit6;
 
 	numbers.push_back(20);
 	numbers.push_back(21);
 	numbers.push_back(22);
-	it4 = numbers.begin();
-	*it4 = 3;
-	std::cout << *++it4 << std::endl;
-	std::cout << *--it4 << std::endl;
-	*/
+	rit5 = numbers.rbegin();
+	rit6 = numbers.rbegin();
+
+	if (rit5 > rit6)
+		std::cout << "rit5 > rit6" << std::endl;
 	return (0);
 }
