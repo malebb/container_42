@@ -33,6 +33,14 @@ class	Nb
 		static const int nb2 = 22;
 };
 
+void	check_comparison(bool n)
+{
+	if (n)
+		std::cout << "true" << std::endl;
+	else
+		std::cout << "false" << std::endl;
+}
+
 int	main(void)
 {
 	std::cout << std::endl;
@@ -227,8 +235,11 @@ int	main(void)
 	std::cout << std::endl;
 
 	ft::vector<std::string>::iterator		it;
-	ft::vector<std::string>::iterator		ite;
-
+	ft::vector<std::string>::iterator		it2;
+	ft::vector<Nb>							nbs;
+	ft::vector<Nb>::iterator				it3;
+	
+	std::cout << "strs is a vector of string" << std::endl;
 	std::cout << std::endl;
 	std::cout << "it = strs.begin()" << std::endl;
 	std::cout << std::endl;
@@ -267,30 +278,70 @@ int	main(void)
 	
 	std::cout << "it[3] = " << it[3] << std::endl;
 
-	std::cout << "ite = it + 2 " << std::endl;
-	ite = it + 2;
-	std::cout << "*ite = " << *ite << std::endl;
+	std::cout << "it2 = it + 2 " << std::endl;
+	it2 = it + 2;
+	std::cout << "*it2 = " << *it2 << std::endl;
 
-	std::cout << "ite = 3 + it " << std::endl;
-	ite = 3 + it;
-	std::cout << "*ite = " << *ite << std::endl;
+	std::cout << "it2 = 3 + it " << std::endl;
+	it2 = 3 + it;
+	std::cout << "*it2 = " << *it2 << std::endl;
 
 	std::cout << "*++it = " << *++it << std::endl;
-	std::cout << "ite = it - 1 " << std::endl;
-	ite = it - 1;
-	std::cout << "*ite = " << *ite << std::endl;
+	std::cout << "it2 = it - 1 " << std::endl;
+	it2 = it - 1;
+	std::cout << "*it2 = " << *it2 << std::endl;
 
-	std::cout << "it - ite = " << it - ite << std::endl;
+	std::cout << "it - it2 = " << it - it2 << std::endl;
+	it = strs.begin();
+	std::cout << "*it = \"hello\"" << std::endl;
+	*it = "hello";
+	std::cout << "*it = " << *it << std::endl;
+	std::cout << "*++it = " << *++it << std::endl;
+	std::cout << "*it2 = " << *it2 << std::endl;
+	std::cout << "it2 = it" << std::endl;
+	it2 = it;
+	std::cout << "*it2 = " << *it2 << std::endl;
+	std::cout << "it = strs.begin() and it2 = strs.begin() + 1" << std::endl;
+	it =  strs.begin();
+	it2 = strs.begin() + 1;
+	std::cout << "it == it2 : ";
+	check_comparison(it == it2);
+	std::cout << "it != it2 : ";
+	check_comparison(it != it2);
+	std::cout << "it < it2 : ";
+	check_comparison(it < it2);
+	std::cout << "it > it2 : ";
+	check_comparison(it > it2);
+	std::cout << "it <= it2 : ";
+	check_comparison(it <= it2);
+	std::cout << "it >= it2 : ";
+	check_comparison(it >= it2);
+
+	std::cout << "nbs is a vector of class Nb" << std::endl;
+	it3 = nbs.begin();
+	Nb				nb;
+	nbs.push_back(nb);
+	it3 = nbs.begin();
+	std::cout << "it3->nb = " << it3->nb << std::endl;
+	std::cout << "it3->nb2 = " << it3->nb2 << std::endl;
+	
+	
 
 
 
+/*
 	std::cout << "TEST ZONE " << std::endl;
-	ft::vector<Nb>					nbr;
-	ft::vector<Nb>::iterator		it2;
-	Nb				class_test;
+	
+	std::vector<int>				numbers;
+	std::vector<int>::iterator		it4;
 
-	nbr.push_back(class_test);
-	it2 = nbr.begin();
-	std::cout << it2->nb << std::endl;
+	numbers.push_back(20);
+	numbers.push_back(21);
+	numbers.push_back(22);
+	it4 = numbers.begin();
+	*it4 = 3;
+	std::cout << *++it4 << std::endl;
+	std::cout << *--it4 << std::endl;
+	*/
 	return (0);
 }

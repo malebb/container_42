@@ -85,6 +85,8 @@ namespace ft
 				return (this->_ptr);
 			}
 
+			// comparison operators
+
 			bool	operator!=(vector_iterator const & rhs) const
 			{
 				if (this->_ptr == rhs._ptr)
@@ -98,6 +100,27 @@ namespace ft
 					return (false);
 				return (true);
 			}
+
+			bool	operator<(vector_iterator const & rhs)
+			{
+				return (this->_ptr < rhs._ptr ? true : false);
+			}
+
+			bool	operator>(vector_iterator const & rhs)
+			{
+				return (this->_ptr > rhs._ptr ? true : false);
+			}
+
+			bool	operator<=(vector_iterator const & rhs)
+			{
+				return (*this > rhs ? false : true);
+			}
+
+			bool	operator>=(vector_iterator const & rhs)
+			{
+				return (*this < rhs ? false : true);
+			}
+
 
 			template<typename T2>
 			vector_iterator				operator+(const T2& rhs) const
