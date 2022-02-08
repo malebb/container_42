@@ -174,6 +174,7 @@ namespace ft
 			typedef size_t										size_type;
 
 			typedef vector_iterator<value_type>				iterator;
+			typedef vector_iterator<const value_type>		const_iterator;
 			typedef reverse_iterator<iterator>				reverse_iterator;
 			
 			vector() : _size(0), _capacity(0)
@@ -200,12 +201,21 @@ namespace ft
 
 			//iterators
 
-			iterator		begin(void)
+			iterator			begin(void)
+			{
+					return (iterator(this->_array));
+			}
+			const_iterator		begin(void) const
 			{
 					return (iterator(this->_array));
 			}
 
-			iterator		end(void)
+			iterator			end(void)
+			{
+					return (iterator(this->_array + this->_size));
+			}
+
+			const_iterator		end(void) const
 			{
 					return (iterator(this->_array + this->_size));
 			}

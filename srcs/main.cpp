@@ -394,6 +394,11 @@ void	test_vector_access(void)
 	std::cout << std::endl;
 	std::cout << "strs = ";
 	display_tab(strs);
+
+	std::cout << std::endl;
+	std::cout << "const_strs = ";
+//	display_tab(const_strs);
+
 	std::cout << std::endl;
 	std::cout << ">> Test operator[]" << std::endl;
 	std::cout << std::endl;
@@ -493,5 +498,10 @@ int	main(void)
 
 //	test_vector_capacity();
 	test_vector_access();
+	const ft::vector<int>		twenty(5, 20);
+	ft::vector<int>::const_iterator	cit;
+
+	cit = twenty.begin();
+	std::cout << "cit = " << *cit << std::endl;
 	return (0);
 }
