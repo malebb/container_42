@@ -160,7 +160,6 @@ namespace ft
 		return (rhs + n);
 	}
 
-
 	template <class T, class Alloc = std::allocator<T> >
 	class vector
 	{
@@ -207,7 +206,7 @@ namespace ft
 			}
 			const_iterator		begin(void) const
 			{
-					return (iterator(this->_array));
+					return (const_iterator(this->_array));
 			}
 
 			iterator			end(void)
@@ -217,7 +216,7 @@ namespace ft
 
 			const_iterator		end(void) const
 			{
-					return (iterator(this->_array + this->_size));
+					return (const_iterator(this->_array + this->_size));
 			}
 
 			reverse_iterator		rbegin(void)

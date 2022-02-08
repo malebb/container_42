@@ -12,10 +12,10 @@ void	iterate(ft::vector<int>::iterator ite)
 	std::cout << ref << std::endl;
 }
 
-template<typename T> void	display_tab(ft::vector<T> & cont)
+template<typename T> void	display_tab(const ft::vector<T> & cont)
 {
 	std::cout << "{";
-	for (typename ft::vector<T>::iterator it = cont.begin(); it != cont.end(); it++)
+	for (typename ft::vector<T>::const_iterator it = cont.begin(); it != cont.end(); it++)
 	{
 		std::cout << *it;
 		if (it + 1 != cont.end())
@@ -305,12 +305,6 @@ void	test_vector_capacity(void)
 	nbrs.push_back(3);
 	nbrs.push_back(4);
 
-//	letters.push_back('h');
-//	letters.push_back('e');
-//	letters.push_back('l');
-//	letters.push_back('l');
-//	letters.push_back('o');
-
 	std::cout << std::endl;
 	std::cout << "------------ Test vector capacity ------------"
 	<< std::endl;
@@ -380,7 +374,6 @@ void	test_vector_access(void)
 	ft::vector<char>					letters;
 	const ft::vector<std::string>		const_strs(2, "blue");
 
-
 	strs.push_back("yellow");
 	strs.push_back("red");
 	strs.push_back("green");
@@ -397,7 +390,7 @@ void	test_vector_access(void)
 
 	std::cout << std::endl;
 	std::cout << "const_strs = ";
-//	display_tab(const_strs);
+	display_tab(const_strs);
 
 	std::cout << std::endl;
 	std::cout << ">> Test operator[]" << std::endl;
@@ -448,7 +441,7 @@ void	test_vector_access(void)
 	{
 		for (ft::vector<int>::size_type i = 0; i < const_strs.size(); i++)
 		{
-			std::cout << "const_strs[" << i << "] = " << const_strs.at(i);
+			std::cout << "const_strs.at(" << i << ") = " << const_strs.at(i);
 			std::cout << std::endl;
 		}
 	}
@@ -471,7 +464,6 @@ void	test_vector_access(void)
 	std::cout << ">> Test front function" << std::endl;
 	std::cout << std::endl;
 
-	std::cout << std::endl;
 	std::cout << "strs.front() = " << strs.front() << std::endl;
 
 	std::cout << "const_strs.front() = " << const_strs.front() << std::endl;
@@ -498,10 +490,5 @@ int	main(void)
 
 //	test_vector_capacity();
 	test_vector_access();
-	const ft::vector<int>		twenty(5, 20);
-	ft::vector<int>::const_iterator	cit;
-
-	cit = twenty.begin();
-	std::cout << "cit = " << *cit << std::endl;
 	return (0);
 }
