@@ -145,8 +145,6 @@ namespace ft
 				return (!(*this < rhs));
 			}
 
-		protected :
-
 			pointer		_it;
 	};
 
@@ -161,13 +159,164 @@ namespace ft
 	}
 
 	template <typename T>
-	class const_vector_iterator : public ft::vector_iterator<T>
+	class const_vector_iterator : public ft::iterator<ft::random_access_iterator_tag, T>
 	{
-		const_vector_iterator(const T* ptr) : _it(ptr)
-		{
-			std::cout << "ok ca passe lol" << std::endl;
-		}
+		public :
+
+			typedef const T					value_type;
+			typedef const T*				pointer;
+			typedef const T&				reference;
+			typedef std::ptrdiff_t			difference_type;
+
+			// constructor destructor
+
+			const_vector_iterator() {};
+
+			const_vector_iterator(pointer ptr) : _it(ptr)
+			{
+			}
+
+			const_vector_iterator(vector_iterator<T> rhs)
+			{
+				*this = rhs;
+			}
+
+			// assignment operators
+
+			const_vector_iterator		operator=(const vector_iterator<T>& rhs)
+			{
+				this->_it = rhs._it;
+				return (*this);
+			}
+
+			const_vector_iterator		operator=(const const_vector_iterator& rhs)
+			{
+				this->_it = rhs._it;
+				return (*this);
+			}
+
+			const_vector_iterator		operator+=(difference_type rhs)
+			{
+				this->_it = this->_it + rhs;
+				return (*this);
+			}
+
+			const_vector_iterator		operator-=(difference_type rhs)
+			{
+				this->_it = this->_it - rhs;
+				return (*this);
+			}
+
+			// increment decrement operators
+
+			const_vector_iterator		operator++(int)
+			{
+				const_vector_iterator		tmp(*this);
+
+				this->_it++;
+				return (tmp);
+			}
+
+			const_vector_iterator&	operator++()
+			{
+				this->_it++;
+				return (*this);
+			}
+
+			const_vector_iterator		operator--(int)
+			{
+				const_vector_iterator		tmp(*this);
+
+				this->_it--;
+				return (tmp);
+			}
+
+			const_vector_iterator&	operator--()
+			{
+				this->_it--;
+				return (*this);
+			}
+
+			// arithmetic operators
+
+			const_vector_iterator		operator+(difference_type rhs) const
+			{
+				return (const_vector_iterator(this->_it + rhs));
+			}
+
+			const_vector_iterator		operator-(difference_type rhs) const
+			{
+				return (const_vector_iterator(this->_it - rhs));
+			}
+
+			difference_type		operator-(const_vector_iterator const & rhs) const
+			{
+				return (this->_it - rhs._it);
+			}
+
+			// member access operators
+
+			reference	operator*() const
+			{
+				return (*this->_it);
+			}
+
+			pointer		operator->() const
+			{
+				return &(this->operator*());
+			}
+
+			reference			operator[](difference_type rhs) const
+			{
+				return (this->_it[rhs]);
+			}
+
+			// comparison operators
+
+			bool	operator==(const_vector_iterator const & rhs) const
+			{
+				return (this->_it == rhs._it);
+			}
+
+			bool	operator!=(const_vector_iterator const & rhs) const
+			{
+				return (!(*this == rhs));
+			}
+
+			bool	operator<(const_vector_iterator const & rhs)
+			{
+				return (this->_it < rhs._it);
+			}
+
+			bool	operator>(const_vector_iterator const & rhs)
+			{
+				return (this->_it > rhs._it);
+			}
+
+			bool	operator<=(const_vector_iterator const & rhs)
+			{
+				return (!(*this > rhs));
+			}
+
+			bool	operator>=(const_vector_iterator const & rhs)
+			{
+				return (!(*this < rhs));
+			}
+
+		protected :
+
+			pointer		_it;
 	};
+
+	//non-member function const_vector_iterator
+
+	template<class T>
+	const_vector_iterator<T>			operator+(
+				typename const_vector_iterator<T>::difference_type n,
+				const const_vector_iterator<T>& rhs)
+	{
+		return (rhs + n);
+	}
 
 	template <class T, class Alloc = std::allocator<T> >
 	class vector
@@ -183,7 +332,7 @@ namespace ft
 			typedef typename allocator_type::const_pointer		const_pointer;
 
 			typedef ft::vector_iterator<value_type>				iterator;
-			typedef ft::const_vector_iterator<const value_type>		const_iterator;
+			typedef ft::const_vector_iterator<value_type>		const_iterator;
 
 			typedef ft::reverse_iterator<iterator>				reverse_iterator;
 			typedef ft::reverse_iterator<const_iterator>		const_reverse_iterator;
@@ -219,6 +368,7 @@ namespace ft
 			{
 					return (iterator(this->_array));
 			}
+
 			const_iterator		begin(void) const
 			{
 					return (const_iterator(this->_array));

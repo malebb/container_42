@@ -294,7 +294,7 @@ void	test_vector_iterator()
 	std::cout << "it3->nb2 = " << it3->nb2 << std::endl;
 
 }
-/*
+
 void	test_const_vector_iterator()
 {
 	ft::vector<std::string>::const_iterator		it;
@@ -370,6 +370,9 @@ void	test_const_vector_iterator()
 	
 	std::cout << "it[3] = " << it[3] << std::endl;
 
+	std::cout << "it[3] = \"hello\" ==> impossible because const" << it[3] << std::endl;
+//	it[3] = "hello";
+
 	std::cout << "it2 = it + 2 " << std::endl;
 	it2 = it + 2;
 	std::cout << "*it2 = " << *it2 << std::endl;
@@ -385,8 +388,8 @@ void	test_const_vector_iterator()
 
 	std::cout << "it - it2 = " << it - it2 << std::endl;
 	it = strs.begin();
-	std::cout << "*it = \"hello\"" << std::endl;
-	*it = "hello";
+	std::cout << "*it = \"hello\" ==> impossible because const" << std::endl;
+//	*it = "hello"; // impossible
 
 	std::cout << "*it = " << *it << std::endl;
 	std::cout << "*++it = " << *++it << std::endl;
@@ -424,7 +427,7 @@ void	test_const_vector_iterator()
 	std::cout << "it3->nb2 = " << it3->nb2 << std::endl;
 
 }
-*/
+
 
 void	test_vector_capacity(void)
 {
@@ -614,16 +617,15 @@ int	main(void)
 	std::cout << "[------------ TEST FT CONTAINER ------------]" << std::endl;
 	std::cout << std::endl;
 
-	test_reverse_iterator();
+	//test_reverse_iterator();
 
 	std::cout << "------------ TEST VECTOR CONTAINER ------------"
 	<< std::endl;
 
-//	test_vector_capacity();
-	test_vector_access();
-	ft::vector<int>					nbrs;
-	ft::vector<int>::const_iterator		it;
+	test_const_vector_iterator();
 
-	it = nbrs.begin();
+//	test_vector_capacity();
+//	test_vector_access();
+
 	return (0);
 }
