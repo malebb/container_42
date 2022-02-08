@@ -183,7 +183,7 @@ void	test_vector_iterator()
 	nbs.push_back(nb);
 
 	std::cout << std::endl;
-	std::cout << "------------ Test Iterator ------------"
+	std::cout << "------------ Test vector iterator ------------"
 	<< std::endl;
 
 	std::cout << std::endl;
@@ -313,7 +313,7 @@ void	test_const_vector_iterator()
 	nbs.push_back(nb);
 
 	std::cout << std::endl;
-	std::cout << "------------ Test Iterator ------------"
+	std::cout << "------------ Test const vector iterator ------------"
 	<< std::endl;
 
 	std::cout << std::endl;
@@ -370,7 +370,7 @@ void	test_const_vector_iterator()
 	
 	std::cout << "it[3] = " << it[3] << std::endl;
 
-	std::cout << "it[3] = \"hello\" ==> impossible because const" << it[3] << std::endl;
+	std::cout << "it[3] = \"hello\" ==> impossible because const" << std::endl;
 //	it[3] = "hello";
 
 	std::cout << "it2 = it + 2 " << std::endl;
@@ -515,7 +515,7 @@ void	test_vector_access(void)
 	strs.push_back("orange");
 
 	std::cout << std::endl;
-	std::cout << "------------ Test Access element ------------"
+	std::cout << "------------ Test vector access element ------------"
 	<< std::endl;
 
 	std::cout << std::endl;
@@ -617,15 +617,16 @@ int	main(void)
 	std::cout << "[------------ TEST FT CONTAINER ------------]" << std::endl;
 	std::cout << std::endl;
 
-	//test_reverse_iterator();
+	test_reverse_iterator();
 
+	std::cout << std::endl;
 	std::cout << "------------ TEST VECTOR CONTAINER ------------"
 	<< std::endl;
 
 	test_const_vector_iterator();
-
-//	test_vector_capacity();
-//	test_vector_access();
+	test_vector_iterator();
+	test_vector_capacity();
+	test_vector_access();
 
 	return (0);
 }
