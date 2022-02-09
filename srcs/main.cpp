@@ -611,22 +611,44 @@ void	test_vector_access(void)
 
 }
 
+
 int	main(void)
 {
 	std::cout << std::endl;
 	std::cout << "[------------ TEST FT CONTAINER ------------]" << std::endl;
 	std::cout << std::endl;
 
-	test_reverse_iterator();
+//	test_reverse_iterator();
 
 	std::cout << std::endl;
 	std::cout << "------------ TEST VECTOR CONTAINER ------------"
 	<< std::endl;
 
-	test_const_vector_iterator();
-	test_vector_iterator();
-	test_vector_capacity();
-	test_vector_access();
+//	test_const_vector_iterator();
+//	test_vector_iterator();
+//	test_vector_capacity();
+//	test_vector_access();
+//	ft::vector<int>		nbrs(200, 200);
 
+//	ft::vector<int>		nbrs2(1);
+/*
+	for (std::vector<int>::iterator it = nbrs2.begin(); it != nbrs2.end(); it++)
+	{
+		std::cout << *it << std::endl;
+	}
+	*/
+	/*
+	for (ft::vector<int>::iterator it = nbrs.begin(); it != nbrs.end(); it++)
+	{
+		std::cout << *it << std::endl;
+	}
+	std::cout << "nbrs.size() = " << nbrs.size() << std::endl;
+*/	
+	ft::vector<int>					nbrs;
+	ft::vector<int>::iterator		it;
+
+	nbrs.push_back(2);
+	nbrs.push_back(3);
+	it = nbrs.begin();
 	return (0);
 }

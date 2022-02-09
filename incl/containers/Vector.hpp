@@ -6,6 +6,8 @@
 #include <iostream>
 #include <stdexcept>
 #include <sstream>
+#include <type_traits>
+
 #include "iterator.hpp"
 #include "reverse_iterator.hpp"
 
@@ -27,6 +29,12 @@ namespace ft
 
 			vector_iterator(pointer ptr) : _it(ptr)
 			{
+			}
+
+			vector_iterator(vector_iterator const & rhs)
+			{
+				std::cout << "aie" << std::endl;
+				*this = rhs;
 			}
 
 			// assignment operators
@@ -177,6 +185,11 @@ namespace ft
 			}
 
 			const_vector_iterator(vector_iterator<T> rhs)
+			{
+				*this = rhs;
+			}
+
+			const_vector_iterator(const_vector_iterator const & rhs)
 			{
 				*this = rhs;
 			}
@@ -340,16 +353,43 @@ namespace ft
 			typedef std::ptrdiff_t								difference_type;
 			typedef size_t										size_type;
 
-			vector() : _size(0), _capacity(0)
+			explicit vector(const allocator_type& alloc = allocator_type())
+				: _size(0), _capacity(0)
 			{
+				this->_alloc = alloc;
 			}
 
 			explicit vector(size_type n, const value_type& val = value_type(),
 						const allocator_type& alloc = allocator_type())
 						: _alloc(alloc), _size(0), _capacity(0)
 			{
+				std::cout << "AH OUI" << std::endl;
 				this->_alloc = alloc;
 				this->resize(n, val);
+			}
+
+			vector (const vector& x)
+			{
+				*this = x;
+			}
+
+			vector&		operator =(const vector & x)
+			{
+				this->_alloc = x._alloc;
+				this->pointer = x._array;
+				this->_size = x._size;
+				this->_capacity = x._capacity;
+				
+			}
+
+
+
+			template <class InputIterator>
+			vector (InputIterator first, InputIterator last,
+				const allocator_type& alloc = allocator_type(), typename std::enable_if<!std::is_integral<InputIterator>::value>::type * = nullptr)
+			{
+				std::cout << "SIZE = " << last - first << std::endl;
+				this->_alloc = alloc;
 			}
 
 			~vector()
