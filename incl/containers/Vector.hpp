@@ -33,25 +33,24 @@ namespace ft
 
 			vector_iterator(vector_iterator const & rhs)
 			{
-				std::cout << "aie" << std::endl;
 				*this = rhs;
 			}
 
 			// assignment operators
 
-			vector_iterator		operator=(const vector_iterator& rhs)
+			vector_iterator&	operator=(vector_iterator const & rhs)
 			{
 				this->_it = rhs._it;
 				return (*this);
 			}
 
-			vector_iterator		operator+=(difference_type rhs)
+			vector_iterator&	operator+=(difference_type rhs)
 			{
 				this->_it = this->_it + rhs;
 				return (*this);
 			}
 
-			vector_iterator		operator-=(difference_type rhs)
+			vector_iterator&	operator-=(difference_type rhs)
 			{
 				this->_it = this->_it - rhs;
 				return (*this);
@@ -196,25 +195,25 @@ namespace ft
 
 			// assignment operators
 
-			const_vector_iterator		operator=(const vector_iterator<T>& rhs)
+			const_vector_iterator&		operator=(const vector_iterator<T>& rhs)
 			{
 				this->_it = rhs._it;
 				return (*this);
 			}
 
-			const_vector_iterator		operator=(const const_vector_iterator& rhs)
+			const_vector_iterator&		operator=(const const_vector_iterator& rhs)
 			{
 				this->_it = rhs._it;
 				return (*this);
 			}
 
-			const_vector_iterator		operator+=(difference_type rhs)
+			const_vector_iterator&		operator+=(difference_type rhs)
 			{
 				this->_it = this->_it + rhs;
 				return (*this);
 			}
 
-			const_vector_iterator		operator-=(difference_type rhs)
+			const_vector_iterator&		operator-=(difference_type rhs)
 			{
 				this->_it = this->_it - rhs;
 				return (*this);

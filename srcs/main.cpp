@@ -433,7 +433,6 @@ void	test_vector_capacity(void)
 {
 	ft::vector<int>				nbrs;
 	ft::vector<char>			letters;
-
 	nbrs.push_back(19);
 	nbrs.push_back(2);
 	nbrs.push_back(3);
@@ -624,8 +623,8 @@ int	main(void)
 	std::cout << "------------ TEST VECTOR CONTAINER ------------"
 	<< std::endl;
 
-//	test_const_vector_iterator();
-//	test_vector_iterator();
+///	test_const_vector_iterator();
+	test_vector_iterator();
 //	test_vector_capacity();
 //	test_vector_access();
 //	ft::vector<int>		nbrs(200, 200);
@@ -643,12 +642,13 @@ int	main(void)
 		std::cout << *it << std::endl;
 	}
 	std::cout << "nbrs.size() = " << nbrs.size() << std::endl;
-*/	
+
 	ft::vector<int>					nbrs;
 	ft::vector<int>::iterator		it;
 
 	nbrs.push_back(2);
 	nbrs.push_back(3);
 	it = nbrs.begin();
+*/	
 	return (0);
 }
