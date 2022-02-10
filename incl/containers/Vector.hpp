@@ -362,7 +362,6 @@ namespace ft
 						const allocator_type& alloc = allocator_type())
 						: _alloc(alloc), _size(0), _capacity(0)
 			{
-				std::cout << "AH OUI" << std::endl;
 				this->_alloc = alloc;
 				this->resize(n, val);
 			}
@@ -381,14 +380,18 @@ namespace ft
 				
 			}
 
-
-
 			template <class InputIterator>
 			vector (InputIterator first, InputIterator last,
 				const allocator_type& alloc = allocator_type(), typename std::enable_if<!std::is_integral<InputIterator>::value>::type * = nullptr)
+				: _size(0), _capacity(0)
 			{
-				std::cout << "SIZE = " << last - first << std::endl;
 				this->_alloc = alloc;
+				reserve(last - first);
+				this->_size = last - first;
+				for (size_type i = 0; i < this->_size; i++)
+				{
+					this->_alloc.construct(this->_array + i, *(first + i));
+				}
 			}
 
 			~vector()
@@ -488,16 +491,18 @@ namespace ft
 				if (n > this->_capacity)
 				{
 					new_array = this->_alloc.allocate(sizeof(T) * n);
-					for (size_type i = 0; i < this->_size; i++)
-					{
-						_alloc.construct(new_array + i, this->_array[i]);
-					}
-					for (size_type i = 0; i < this->_size; i++)
-					{
-						_alloc.destroy(this->_array + i);
-					}
 					if (this->_size)
+					{
+						for (size_type i = 0; i < this->_size; i++)
+						{
+							_alloc.construct(new_array + i, this->_array[i]);
+						}
+						for (size_type i = 0; i < this->_size; i++)
+						{
+							_alloc.destroy(this->_array + i);
+						}
 						_alloc.deallocate(this->_array, sizeof(T) * n);
+					}
 					this->_array = new_array;
 					this->_capacity = n;
 				}
