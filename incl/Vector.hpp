@@ -382,7 +382,8 @@ namespace ft
 
 			template <class InputIterator>
 			vector (InputIterator first, InputIterator last,
-				const allocator_type& alloc = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type * = NULL)
+				const allocator_type& alloc = allocator_type(),
+				typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type * = NULL)
 				: _size(0), _capacity(0)
 			{
 				this->_alloc = alloc;
@@ -487,7 +488,8 @@ namespace ft
 			void			reserve(size_type n)
 			{
 				pointer		new_array;
-
+				if (n > this->max_size())
+					throw(std::length_error("vector::reserve"));
 				if (n > this->_capacity)
 				{
 					new_array = this->_alloc.allocate(sizeof(T) * n);

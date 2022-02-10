@@ -10,11 +10,17 @@
 #include <iterator>
 #include <vector>
 
+
+//test functions
+
 void	test_vector_iterator(void);
 void	test_const_vector_iterator(void);
+void	test_vector_capacity(void);
+void	test_vector_access(void);
 
 
 //utils
+
 template<typename T>
 void	display_tab(const ft::vector<T> & cont);
 
