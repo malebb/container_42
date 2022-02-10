@@ -6,10 +6,10 @@
 #include <iostream>
 #include <stdexcept>
 #include <sstream>
-#include <type_traits>
 
 #include "iterator.hpp"
 #include "reverse_iterator.hpp"
+#include "type_traits.hpp" 
 
 namespace ft
 {
@@ -379,7 +379,7 @@ namespace ft
 				this->_capacity = x._capacity;
 				
 			}
-
+/*
 			template <class InputIterator>
 			vector (InputIterator first, InputIterator last,
 				const allocator_type& alloc = allocator_type(), typename std::enable_if<!std::is_integral<InputIterator>::value>::type * = nullptr)
@@ -393,7 +393,7 @@ namespace ft
 					this->_alloc.construct(this->_array + i, *(first + i));
 				}
 			}
-
+*/
 			~vector()
 			{
 				for (size_type i = 0; i < this->_size; i++)

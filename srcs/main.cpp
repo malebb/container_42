@@ -610,7 +610,6 @@ void	test_vector_access(void)
 
 }
 
-
 int	main(void)
 {
 	std::cout << std::endl;
@@ -623,24 +622,10 @@ int	main(void)
 	std::cout << "------------ TEST VECTOR CONTAINER ------------"
 	<< std::endl;
 
-	test_const_vector_iterator();
-	test_vector_iterator();
-	test_vector_capacity();
-	test_vector_access();
-/*
-	ft::vector<int>		nbrs;
-
-	nbrs.push_back(71);
-	nbrs.push_back(72);
-	nbrs.push_back(73);
-	nbrs.push_back(74);
-
-	ft::vector<int>		nbrs2(nbrs.begin(), nbrs.begin());
-
-	for (ft::vector<int>::iterator it = nbrs2.begin(); it != nbrs2.end(); it++)
-	{
-		std::cout << "*it = " << *it << std::endl;
-	}
-*/
+//	test_const_vector_iterator();
+//	test_vector_iterator();
+//	test_vector_capacity();
+//	test_vector_access();
+	
 	return (0);
 }
