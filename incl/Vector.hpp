@@ -567,6 +567,35 @@ namespace ft
 
 			//Modifiers
 
+			template <class InputIterator>
+			void			assign(InputIterator first, InputIterator last)
+			{
+				difference_type		range_size;
+
+				range_size = last - first;
+				if (this->_capacity < static_cast<size_type>(range_size))
+					reserve(last - first);
+				erase(this->begin(), this->begin() + range_size);
+
+				for (typename ft::vector<value_type>::iterator it = first; it != last; it++)
+					this->_alloc.construct(this->_array, *it);
+				this->_size = range_size;
+			}
+
+			iterator erase(iterator first, iterator last)
+			{
+				difference_type		range_size;
+
+				range_size = last - first;
+				for (difference_type i = 0; i < range_size; i++)
+				{
+					this->_alloc.destroy(this->_array + i);
+				}
+				this->_alloc.destroy(this->_array + range_size);
+				return (this->_array);
+
+			}
+
 			void			push_back(const value_type& val)
 			{
 				this->reserve(this->_size + 1);
