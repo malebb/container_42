@@ -138,8 +138,9 @@ int	main(void)
 
 //	test_const_vector_iterator();
 //	test_vector_iterator();
-	test_vector_capacity();
+//	test_vector_capacity();
 //	test_vector_access();
+	test_vector_modifiers();
 /*
 	std::vector<int>	nbrs;
 

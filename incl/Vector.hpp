@@ -353,16 +353,14 @@ namespace ft
 			typedef size_t										size_type;
 
 			explicit vector(const allocator_type& alloc = allocator_type())
-				: _size(0), _capacity(0)
+				: _alloc(alloc), _array(NULL), _size(0), _capacity(0)
 			{
-				this->_alloc = alloc;
 			}
 
 			explicit vector(size_type n, const value_type& val = value_type(),
 						const allocator_type& alloc = allocator_type())
-						: _alloc(alloc), _size(0), _capacity(0)
+						: _alloc(alloc), _array(NULL), _size(0), _capacity(0)
 			{
-				this->_alloc = alloc;
 				this->resize(n, val);
 			}
 
@@ -384,9 +382,8 @@ namespace ft
 			vector (InputIterator first, InputIterator last,
 				const allocator_type& alloc = allocator_type(),
 				typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type * = NULL)
-				: _size(0), _capacity(0)
+				: _array(NULL), _alloc(alloc), _size(0), _capacity(0)
 			{
-				this->_alloc = alloc;
 				reserve(last - first);
 				this->_size = last - first;
 				for (size_type i = 0; i < this->_size; i++)
@@ -402,7 +399,7 @@ namespace ft
 					this->_alloc.destroy(this->_array + i);
 				}
 				if (this->_size)
-					this->_alloc.deallocate(this->_array, sizeof(T) * this->_size);
+					this->_alloc.deallocate(this->_array, this->_size);
 			}
 
 			//iterators
@@ -488,22 +485,20 @@ namespace ft
 			void			reserve(size_type n)
 			{
 				pointer		new_array;
+
 				if (n > this->max_size())
 					throw(std::length_error("vector::reserve"));
 				if (n > this->_capacity)
 				{
-					new_array = this->_alloc.allocate(sizeof(T) * n);
+					new_array = this->_alloc.allocate(n);
 					if (this->_size)
 					{
 						for (size_type i = 0; i < this->_size; i++)
 						{
 							_alloc.construct(new_array + i, this->_array[i]);
-						}
-						for (size_type i = 0; i < this->_size; i++)
-						{
 							_alloc.destroy(this->_array + i);
 						}
-						_alloc.deallocate(this->_array, sizeof(T) * n);
+						_alloc.deallocate(this->_array, this->_capacity);
 					}
 					this->_array = new_array;
 					this->_capacity = n;
@@ -577,6 +572,12 @@ namespace ft
 				this->reserve(this->_size + 1);
 				_alloc.construct(this->_array + this->_size, val);
 				this->_size++;
+			}
+
+			void			pop_back()
+			{
+				_alloc.destroy(this->_array + this->_size - 1);
+				this->_size--;
 			}
 
 		private :

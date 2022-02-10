@@ -11,7 +11,7 @@ DEP = ${SRCS_FT:.cpp=.d} ${SRCS_STL:.cpp=.d}
 
 CC = clang++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -I ./incl/
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -I ./incl/ -g3
 
 NAME = ft_containers
 NAME2 = stl_containers

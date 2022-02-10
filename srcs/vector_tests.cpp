@@ -4,6 +4,7 @@ void	test_vector_capacity(void)
 {
 	ft::vector<int>				nbrs;
 	ft::vector<char>			letters;
+
 	nbrs.push_back(19);
 	nbrs.push_back(2);
 	nbrs.push_back(3);
@@ -198,4 +199,43 @@ void	test_vector_access(void)
 	std::cout << "strs.back() = " << strs.back() << std::endl;
 	std::cout << "const_strs_back() = " << const_strs.back() << std::endl;
 
+}
+
+void	test_vector_modifiers(void)
+{
+	std::cout << std::endl;
+	std::cout << "------------ Test vector modifiers ------------"
+	<< std::endl;
+
+	std::cout << std::endl;
+	std::cout << ">> Test push_back function" << std::endl;
+
+	ft::vector<std::string>	seasons;
+
+	std::cout << "seasons = ";
+	display_tab(seasons);
+	std::cout << std::endl;
+
+	std::cout << "seasons.push_back(\"spring\")" << std::endl;
+	seasons.push_back("spring");
+	std::cout << "seasons = ";
+	display_tab(seasons);
+	std::cout << std::endl;
+
+	std::cout << "seasons.push_back(\"summer\")" << std::endl;
+	seasons.push_back("summer");
+	std::cout << "seasons.push_back(\"autumn\")" << std::endl;
+	seasons.push_back("autumn");
+	std::cout << "seasons.push_back(\"winter\")" << std::endl;
+	seasons.push_back("winter");
+	std::cout << "seasons = ";
+	display_tab(seasons);
+
+	std::cout << std::endl;
+	std::cout << ">> Test pop_back function" << std::endl;
+
+	std::cout << "seasons.pop_back()" << std::endl;
+	seasons.pop_back();
+	std::cout << "seasons = ";
+	display_tab(seasons);
 }
