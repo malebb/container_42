@@ -3,6 +3,8 @@
 
 namespace ft
 {
+	// is_integral
+
 	template <class T>
 	struct is_integral
 	{
@@ -100,6 +102,17 @@ namespace ft
 	{
 		typedef bool		value_type;
 		static const value_type value = true;
+	};
+	
+	//enable_if
+
+	template <bool Cond, class T = void>
+	struct enable_if {};
+
+	template <class T>
+	struct enable_if <true, T>
+	{
+		typedef T type;
 	};
 };
 

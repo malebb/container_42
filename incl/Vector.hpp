@@ -379,10 +379,10 @@ namespace ft
 				this->_capacity = x._capacity;
 				
 			}
-/*
+
 			template <class InputIterator>
 			vector (InputIterator first, InputIterator last,
-				const allocator_type& alloc = allocator_type(), typename std::enable_if<!std::is_integral<InputIterator>::value>::type * = nullptr)
+				const allocator_type& alloc = allocator_type(), typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type * = NULL)
 				: _size(0), _capacity(0)
 			{
 				this->_alloc = alloc;
@@ -393,7 +393,7 @@ namespace ft
 					this->_alloc.construct(this->_array + i, *(first + i));
 				}
 			}
-*/
+
 			~vector()
 			{
 				for (size_type i = 0; i < this->_size; i++)

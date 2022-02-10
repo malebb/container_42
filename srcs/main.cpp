@@ -616,16 +616,16 @@ int	main(void)
 	std::cout << "[------------ TEST FT CONTAINER ------------]" << std::endl;
 	std::cout << std::endl;
 
-//	test_reverse_iterator();
+	test_reverse_iterator();
 
 	std::cout << std::endl;
 	std::cout << "------------ TEST VECTOR CONTAINER ------------"
 	<< std::endl;
 
-//	test_const_vector_iterator();
-//	test_vector_iterator();
-//	test_vector_capacity();
-//	test_vector_access();
-	
+	test_const_vector_iterator();
+	test_vector_iterator();
+	test_vector_capacity();
+	test_vector_access();
+
 	return (0);
 }
