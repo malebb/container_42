@@ -590,7 +590,7 @@ namespace ft
 				this->_size = range_size;
 			}
 
-			iterator erase(iterator first, iterator last)
+			iterator		erase(iterator first, iterator last)
 			{
 				for (typename ft::vector<value_type>::iterator it = first; it != last; it++)
 				{
@@ -619,6 +619,7 @@ namespace ft
 			}
 
 		private :
+
 			allocator_type		_alloc;
 			pointer				_array;
 			size_type			_size;

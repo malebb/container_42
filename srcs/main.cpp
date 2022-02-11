@@ -141,8 +141,8 @@ int	main(void)
 	test_vector_capacity();
 //	test_vector_access();
 //	test_vector_modifiers();
-/*	
-	std::vector<int>	nbrs2;
+	
+	ft::vector<int>	nbrs2;
 
 	nbrs2.push_back(11);
 	nbrs2.push_back(22);
@@ -150,25 +150,26 @@ int	main(void)
 	nbrs2.push_back(44);
 	nbrs2.push_back(55);
 
-	std::vector<int>	nbrs;
+	ft::vector<int>	nbrs;
 
 	nbrs.push_back(1);
 	nbrs.push_back(2);
 	nbrs.push_back(3);
 	nbrs.push_back(3);
-	for (std::vector<int>::iterator it = nbrs.begin(); it != nbrs.end(); it++)
+
+	std::cout << std::endl;
+	std::cout << "capacity = " << nbrs.capacity() << std::endl;
+	for (ft::vector<int>::iterator it = nbrs.begin(); it != nbrs.end(); it++)
 	{
 		std::cout << "*it = " << *it << std::endl;
 	}
-	std::cout << std::endl;
-	std::cout << "capacity = " << nbrs.capacity() << std::endl;
 	nbrs.assign(nbrs2.begin(), nbrs2.end());
 
 	std::cout << "capacity = " << nbrs.capacity() << std::endl;
-	for (std::vector<int>::iterator it = nbrs.begin(); it != nbrs.end(); it++)
+	for (ft::vector<int>::iterator it = nbrs.begin(); it != nbrs.end(); it++)
 	{
 		std::cout << "*it = " << *it << std::endl;
 	}
-*/
+
 	return (0);
 }
