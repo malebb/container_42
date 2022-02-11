@@ -449,12 +449,7 @@ namespace ft
 			void			resize(size_type n, value_type val = value_type())
 			{
 				if (n < this->_size)
-				{
-					for (size_type i = n; i < this->_size; i++)
-					{
-						this->_alloc.destroy(this->_array + i);
-					}
-				}
+					this->erase(this->begin() + n, this->begin() + this->size());
 				else
 				{
 					if (n > this->capacity())
@@ -468,8 +463,8 @@ namespace ft
 					{
 						this->_alloc.construct(this->_array + i, val);
 					}
-				}	
 				this->_size = n;
+				}	
 			}
 
 			size_type		capacity() const
@@ -567,16 +562,27 @@ namespace ft
 
 			//Modifiers
 
+			void			assign(size_type n, const value_type& val)
+			{
+				if (this->capacity() < n)
+					reserve(n);
+				erase(this->begin(), this->begin() + (n - 1));
+				for (size_type i = 0; i < n; i++)
+				{
+					this->_alloc.construct(this->_array + i, val);
+				}
+				this->_size = n;
+			}
+
 			template <class InputIterator>
 			void			assign(InputIterator first, InputIterator last)
 			{
 				difference_type		range_size;
 
 				range_size = last - first;
-				if (this->_capacity < static_cast<size_type>(range_size))
+				if (this->capacity() < static_cast<size_type>(range_size))
 					reserve(last - first);
-				erase(this->begin(), this->begin() + range_size);
-
+				erase(this->begin(), this->begin() + (range_size - 1));
 				for (difference_type i = 0; i < range_size; i++)
 				{
 					this->_alloc.construct(this->_array + i, *(first + i));
@@ -592,12 +598,16 @@ namespace ft
 				}
 				this->_size -= last - first;
 				return (this->_array);
-
 			}
 
 			void			push_back(const value_type& val)
 			{
-				this->reserve(this->_size + 1);
+				if (this->capacity() < this->_size + 1)
+				{
+					if (!this->_size)
+						this->reserve(1);
+					this->reserve(this->_size * 2);
+				}
 				_alloc.construct(this->_array + this->_size, val);
 				this->_size++;
 			}

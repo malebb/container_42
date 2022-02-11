@@ -260,8 +260,8 @@ void	test_vector_modifiers(void)
 	display_tab(colors);
 	std::cout << std::endl;
 
-	std::cout << "colors.assign(blue.begin(), blue.end())" << std::endl;
-	colors.assign(blue.begin(), blue.end());
+	std::cout << "colors.assign(6, \"yellow\")" << std::endl;
+	colors.assign(6, "yellow");
 	std::cout << "colors = ";
 	display_tab(colors);
 
