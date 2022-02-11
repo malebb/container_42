@@ -238,4 +238,33 @@ void	test_vector_modifiers(void)
 	seasons.pop_back();
 	std::cout << "seasons = ";
 	display_tab(seasons);
+
+	std::cout << std::endl;
+	std::cout << ">> Test assign function" << std::endl;
+
+	ft::vector<std::string>		colors(6, "empty");
+	ft::vector<std::string>		green(6, "green");
+	ft::vector<std::string>		blue(6, "blue");
+
+	std::cout << "colors = ";
+	display_tab(colors);
+	std::cout << "green = ";
+	display_tab(green);
+	std::cout << "blue = ";
+	display_tab(blue);
+	std::cout << std::endl;
+
+	std::cout << "colors.assign(green.begin(), green.end() - 3)" << std::endl;
+	colors.assign(green.begin(), green.end() - 3);
+	std::cout << "colors = ";
+	display_tab(colors);
+	std::cout << std::endl;
+
+	std::cout << "colors.assign(blue.begin(), blue.end())" << std::endl;
+	colors.assign(blue.begin(), blue.end());
+	std::cout << "colors = ";
+	display_tab(colors);
+
+	std::cout << std::endl;
+	std::cout << ">> Test erase function" << std::endl;
 }

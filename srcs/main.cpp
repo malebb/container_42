@@ -130,7 +130,7 @@ int	main(void)
 	std::cout << "[------------ TEST FT CONTAINER ------------]" << std::endl;
 	std::cout << std::endl;
 
-	test_reverse_iterator();
+//	test_reverse_iterator();
 
 	std::cout << std::endl;
 	std::cout << "------------ TEST VECTOR CONTAINER ------------"
@@ -140,7 +140,8 @@ int	main(void)
 //	test_vector_iterator();
 //	test_vector_capacity();
 //	test_vector_access();
-//	test_vector_modifiers();
+	test_vector_modifiers();
+	/*
 	ft::vector<int>	nbrs2;
 
 	nbrs2.push_back(11);
@@ -169,5 +170,6 @@ int	main(void)
 	{
 		std::cout << "*it = " << *it << std::endl;
 	}
+	*/
 	return (0);
 }

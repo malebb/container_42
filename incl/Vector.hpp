@@ -577,21 +577,20 @@ namespace ft
 					reserve(last - first);
 				erase(this->begin(), this->begin() + range_size);
 
-				for (typename ft::vector<value_type>::iterator it = first; it != last; it++)
-					this->_alloc.construct(this->_array, *it);
+				for (difference_type i = 0; i < range_size; i++)
+				{
+					this->_alloc.construct(this->_array + i, *(first + i));
+				}
 				this->_size = range_size;
 			}
 
 			iterator erase(iterator first, iterator last)
 			{
-				difference_type		range_size;
-
-				range_size = last - first;
-				for (difference_type i = 0; i < range_size; i++)
+				for (typename ft::vector<value_type>::iterator it = first; it != last; it++)
 				{
-					this->_alloc.destroy(this->_array + i);
+					this->_alloc.destroy(&(*it));
 				}
-				this->_alloc.destroy(this->_array + range_size);
+				this->_size -= last - first;
 				return (this->_array);
 
 			}
