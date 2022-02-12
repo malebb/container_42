@@ -590,6 +590,33 @@ namespace ft
 				this->_size = range_size;
 			}
 
+			void			push_back(const value_type& val)
+			{
+				if (this->capacity() < this->_size + 1)
+				{
+					if (!this->_size)
+						this->reserve(1);
+					this->reserve(this->_size * 2);
+				}
+				_alloc.construct(this->_array + this->_size, val);
+				this->_size++;
+			}
+
+			void			pop_back()
+			{
+				this->erase(this->end() - 1);
+			}
+
+			iterator		insert(iterator position, const value_type& val)
+			{
+				(void)position;
+				(void)val;
+				std::cout << "&(*position) = " << &(*position) << std::endl;
+				std::cout << "this->_array = " << this->_array << std::endl;
+//				this->_alloc.construct(&(*it));
+				return (position);
+			}
+
 			iterator		erase(iterator first, iterator last)
 			{
 				for (typename ft::vector<value_type>::iterator it = first; it != last; it++)
@@ -610,23 +637,6 @@ namespace ft
 				}
 				this->_size--;
 				return (position);
-			}
-
-			void			push_back(const value_type& val)
-			{
-				if (this->capacity() < this->_size + 1)
-				{
-					if (!this->_size)
-						this->reserve(1);
-					this->reserve(this->_size * 2);
-				}
-				_alloc.construct(this->_array + this->_size, val);
-				this->_size++;
-			}
-
-			void			pop_back()
-			{
-				this->erase(this->end() - 1);
 			}
 
 		private :

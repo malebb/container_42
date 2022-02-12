@@ -267,4 +267,5 @@ void	test_vector_modifiers(void)
 
 	std::cout << std::endl;
 	std::cout << ">> Test erase function" << std::endl;
+
 }

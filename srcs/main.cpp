@@ -178,7 +178,7 @@ int	main(void)
 
 	std::cout << std::endl;
 	std::cout << "SIZE = " << nbrs.size() << "CAPACITY = " << nbrs.capacity() << std::endl;
-	std::cout << "iterator = " << *(nbrs.erase(nbrs.begin() + 3)) << std::endl;
+	std::cout << "iterator = " << *(nbrs.insert(nbrs.begin(), 99)) << std::endl;
 	std::cout << "SIZE = " << nbrs.size() << "CAPACITY = " << nbrs.capacity() << std::endl;
 	for (ft::vector<int>::iterator it = nbrs.begin(); it != nbrs.end(); it++)
 	{
