@@ -582,7 +582,7 @@ namespace ft
 				range_size = last - first;
 				if (this->capacity() < static_cast<size_type>(range_size))
 					reserve(last - first);
-				erase(this->begin(), this->begin() + (range_size - 1));
+				this->erase(this->begin(), this->begin() + (range_size - 1));
 				for (difference_type i = 0; i < range_size; i++)
 				{
 					this->_alloc.construct(this->_array + i, *(first + i));
@@ -597,7 +597,20 @@ namespace ft
 					this->_alloc.destroy(&(*it));
 				}
 				this->_size -= last - first;
-				return (this->_array);
+				return (first);
+			}
+
+			iterator		erase(iterator position)
+			{
+
+				for (iterator it = position; it != this->end() - 1; it++)
+				{
+					this->_alloc.destroy(&(*it));
+					this->_alloc.construct(&(*it), *(it + 1));
+				}
+				this->_alloc.destroy(&(*(this->end() - 1)));
+				this->_size--;
+				return (position);
 			}
 
 			void			push_back(const value_type& val)

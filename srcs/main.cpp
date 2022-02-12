@@ -1,5 +1,23 @@
 #include "main.hpp"
 
+class	A
+{
+	public :
+
+		A(int nb) : _nb(nb)
+		{
+			std::cout << "A constructor called" << std::endl;
+		}
+		~A()
+		{
+			std::cout << "A destructor called nb = " << this->_nb << std::endl;
+		};
+	
+	private :
+		int		_nb;
+
+};
+
 void	test_reverse_iterator(void)
 {
 	ft::vector<std::string>::reverse_iterator		rit;
@@ -138,10 +156,10 @@ int	main(void)
 
 //	test_const_vector_iterator();
 //	test_vector_iterator();
-	test_vector_capacity();
+//	test_vector_capacity();
 //	test_vector_access();
 //	test_vector_modifiers();
-	
+/*
 	ft::vector<int>	nbrs2;
 
 	nbrs2.push_back(11);
@@ -149,27 +167,29 @@ int	main(void)
 	nbrs2.push_back(33);
 	nbrs2.push_back(44);
 	nbrs2.push_back(55);
+*/
 
-	ft::vector<int>	nbrs;
+	std::vector<int>	nbrs;
 
 	nbrs.push_back(1);
 	nbrs.push_back(2);
 	nbrs.push_back(3);
-	nbrs.push_back(3);
+	nbrs.push_back(4);
 
 	std::cout << std::endl;
+	std::cout << "SIZE = " << nbrs.size() << "CAPACITY = " << nbrs.capacity() << std::endl;
+	std::cout << "iterator = " << *(nbrs.erase(nbrs.begin() + 1)) << std::endl;
+	std::cout << "SIZE = " << nbrs.size() << "CAPACITY = " << nbrs.capacity() << std::endl;
+	for (std::vector<int>::iterator it = nbrs.begin(); it != nbrs.end(); it++)
+	{
+		std::cout << "*it = " << *it << std::endl;
+	}
+/*
 	std::cout << "capacity = " << nbrs.capacity() << std::endl;
 	for (ft::vector<int>::iterator it = nbrs.begin(); it != nbrs.end(); it++)
 	{
 		std::cout << "*it = " << *it << std::endl;
 	}
-	nbrs.assign(nbrs2.begin(), nbrs2.end());
-
-	std::cout << "capacity = " << nbrs.capacity() << std::endl;
-	for (ft::vector<int>::iterator it = nbrs.begin(); it != nbrs.end(); it++)
-	{
-		std::cout << "*it = " << *it << std::endl;
-	}
-
+*/
 	return (0);
 }
