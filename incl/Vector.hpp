@@ -627,8 +627,7 @@ namespace ft
 
 			void			pop_back()
 			{
-				_alloc.destroy(this->_array + this->_size - 1);
-				this->_size--;
+				this->erase(this->end() - 1);
 			}
 
 		private :
