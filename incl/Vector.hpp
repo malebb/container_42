@@ -603,12 +603,11 @@ namespace ft
 			iterator		erase(iterator position)
 			{
 
+				this->_alloc.destroy(&(*position));
 				for (iterator it = position; it != this->end() - 1; it++)
 				{
-					this->_alloc.destroy(&(*it));
-					this->_alloc.construct(&(*it), *(it + 1));
+					*it = *(it + 1);
 				}
-				this->_alloc.destroy(&(*(this->end() - 1)));
 				this->_size--;
 				return (position);
 			}

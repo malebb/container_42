@@ -169,7 +169,7 @@ int	main(void)
 	nbrs2.push_back(55);
 */
 
-	std::vector<int>	nbrs;
+	ft::vector<int>	nbrs;
 
 	nbrs.push_back(1);
 	nbrs.push_back(2);
@@ -178,9 +178,9 @@ int	main(void)
 
 	std::cout << std::endl;
 	std::cout << "SIZE = " << nbrs.size() << "CAPACITY = " << nbrs.capacity() << std::endl;
-	std::cout << "iterator = " << *(nbrs.erase(nbrs.begin() + 1)) << std::endl;
+	std::cout << "iterator = " << *(nbrs.erase(nbrs.begin() + 3)) << std::endl;
 	std::cout << "SIZE = " << nbrs.size() << "CAPACITY = " << nbrs.capacity() << std::endl;
-	for (std::vector<int>::iterator it = nbrs.begin(); it != nbrs.end(); it++)
+	for (ft::vector<int>::iterator it = nbrs.begin(); it != nbrs.end(); it++)
 	{
 		std::cout << "*it = " << *it << std::endl;
 	}
