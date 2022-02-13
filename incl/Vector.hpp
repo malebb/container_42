@@ -596,7 +596,8 @@ namespace ft
 				{
 					if (!this->_size)
 						this->reserve(1);
-					this->reserve(this->_size * 2);
+					else
+						this->reserve(this->_size * 2);
 				}
 				_alloc.construct(this->_array + this->_size, val);
 				this->_size++;
@@ -609,11 +610,28 @@ namespace ft
 
 			iterator		insert(iterator position, const value_type& val)
 			{
-				(void)position;
-				(void)val;
-				std::cout << "&(*position) = " << &(*position) << std::endl;
-				std::cout << "this->_array = " << this->_array << std::endl;
-//				this->_alloc.construct(&(*it));
+				size_type		offset;
+				value_type		prev;
+				value_type		current;
+
+				offset = position - this->begin();
+				if (this->size() + 1 > this->capacity())
+				{
+					if (!this->capacity())
+						this->reserve(1);
+					else
+						this->reserve(this->capacity() * 2);
+				}
+				for (size_type i = offset; i <= this->size(); i++)
+				{
+					current = *(this->_array + i);
+					if (i == offset)
+						this->_alloc.construct(this->_array + i, val);
+					else
+						*(this->_array + i) = prev;
+					prev = current;
+				}
+				this->_size++;
 				return (position);
 			}
 
