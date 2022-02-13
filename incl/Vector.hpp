@@ -592,15 +592,7 @@ namespace ft
 
 			void			push_back(const value_type& val)
 			{
-				if (this->capacity() < this->_size + 1)
-				{
-					if (!this->_size)
-						this->reserve(1);
-					else
-						this->reserve(this->_size * 2);
-				}
-				_alloc.construct(this->_array + this->_size, val);
-				this->_size++;
+				this->insert(this->end(), val);
 			}
 
 			void			pop_back()
