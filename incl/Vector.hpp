@@ -372,7 +372,7 @@ namespace ft
 			vector&		operator =(const vector & x)
 			{
 				this->_alloc = x._alloc;
-				this->pointer = x._array;
+				this->_array = x._array;
 				this->_size = x._size;
 				this->_capacity = x._capacity;
 				
@@ -627,6 +627,32 @@ namespace ft
 				return (position);
 			}
 
+			iterator		insert(iterator position, size_type n,
+					const value_type& val)
+			{
+				long int	offset;
+
+				offset = position - this->begin();
+				if (this->size() + n > this->capacity())
+				{
+					if (this->size() + n <= this->capacity() * 2)
+						reserve(this->capacity() * 2);
+					else
+						reserve(this->size() + n);
+				}
+				for (long int i = this->size() - 1; i >= offset; i--)
+				{
+					this->_alloc.construct(this->_array + i + n, *(this->_array + i));
+					this->_alloc.destroy(this->_array + i);
+				}
+				for (size_type i = offset; i < offset + n; i++)
+				{
+					this->_alloc.construct(this->_array + i, val);
+				}
+				this->_size += n;
+				return (position);
+			}
+
 			iterator		erase(iterator first, iterator last)
 			{
 				for (typename ft::vector<value_type>::iterator it = first; it != last; it++)
@@ -639,7 +665,6 @@ namespace ft
 
 			iterator		erase(iterator position)
 			{
-
 				this->_alloc.destroy(&(*position));
 				for (iterator it = position; it != this->end() - 1; it++)
 				{
