@@ -264,8 +264,20 @@ void	test_vector_modifiers(void)
 	colors.assign(6, "yellow");
 	std::cout << "colors = ";
 	display_tab(colors);
+	std::cout << std::endl;
+
+	std::cout << "colors.insert(colors.begin() + 1, \"orange\")" << std::endl;
+	colors.insert(colors.begin() + 1, "orange");
+	std::cout << "colors = ";
+	display_tab(colors);
+	std::cout << std::endl;
+
+	std::cout << "colors.insert(colors.begin() + 3, 2, \"red\")" << std::endl;
+	colors.insert(colors.begin() + 3, 2, "red");
+	std::cout << "colors = ";
+	display_tab(colors);
+	std::cout << std::endl;
 
 	std::cout << std::endl;
 	std::cout << ">> Test erase function" << std::endl;
-
 }

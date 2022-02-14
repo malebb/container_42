@@ -140,7 +140,7 @@ int	main(void)
 //	test_vector_iterator();
 //	test_vector_capacity();
 //	test_vector_access();
-//	test_vector_modifiers();
+	test_vector_modifiers();
 
 	ft::vector<std::string>					strs(4, "strs");
 	ft::vector<std::string>					strs2(4, "insert");
