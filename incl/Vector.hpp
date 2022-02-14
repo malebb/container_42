@@ -652,6 +652,36 @@ namespace ft
 				return (position);
 			}
 
+			template <class InputIterator>
+			void		insert(iterator position, InputIterator first, InputIterator last)
+			{
+				size_type		offset;
+				size_type		range_size;
+
+				range_size = last - first;
+				offset = position - this->begin();
+				if (this->size() + range_size > this->capacity())
+				{
+					if (this->size() + range_size <= this->capacity() * 2)
+						reserve(this->capacity() * 2);
+					else
+						reserve(this->size() + range_size);
+				}
+
+				for (long long int i = this->size() + range_size; i >= static_cast<long long int>(offset); i--)
+				{
+					std::cout << "i = " << i << " offset = " << offset << std::endl;
+					if (i < static_cast<long long int>(offset + range_size))
+						this->_alloc.construct(this->_array + i - 1 , *(first + i - offset));
+					else
+					{
+						this->_alloc.construct(this->_array + i + range_size, *(this->_array + i));
+						this->_alloc.destroy(this->_array + i);
+					}
+				}
+				this->_size += range_size;
+			}
+
 			iterator		erase(iterator first, iterator last)
 			{
 				for (typename ft::vector<value_type>::iterator it = first; it != last; it++)
