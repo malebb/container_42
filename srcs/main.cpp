@@ -140,21 +140,21 @@ int	main(void)
 //	test_vector_iterator();
 //	test_vector_capacity();
 //	test_vector_access();
-	test_vector_modifiers();
 
+	test_vector_modifiers();
+/*
 	ft::vector<std::string>					strs(4, "strs");
 	ft::vector<std::string>					strs2(4, "insert");
 	ft::vector<std::string>::iterator		it;
 
-	it = strs.begin() + 2;
+	it = strs.end();
 	std::cout << "*it" << " cap = " << strs.capacity() << std::endl;
-	strs.insert(it, 5, "insert");
+	strs.insert(it, "insert");
 	std::cout << "*it" << " cap = " << strs.capacity() << std::endl;
-	
 	for (ft::vector<std::string>::iterator it = strs.begin(); it != strs.end(); it ++)
 	{
 		std::cout << "it = " << *it << std::endl;
 	}
-	
+	*/
 	return (0);
 }

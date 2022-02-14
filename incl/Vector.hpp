@@ -602,9 +602,7 @@ namespace ft
 
 			iterator		insert(iterator position, const value_type& val)
 			{
-				size_type		offset;
-				value_type		prev;
-				value_type		current;
+				size_type	offset;
 
 				offset = position - this->begin();
 				if (this->size() + 1 > this->capacity())
@@ -614,14 +612,15 @@ namespace ft
 					else
 						this->reserve(this->capacity() * 2);
 				}
-				for (size_type i = offset; i <= this->size(); i++)
+				for (long long int i = this->size(); i >= static_cast<long long int>(offset); i--)
 				{
-					current = *(this->_array + i);
-					if (i == offset)
+					if (i == static_cast<long long int>(offset))
 						this->_alloc.construct(this->_array + i, val);
 					else
-						*(this->_array + i) = prev;
-					prev = current;
+					{
+						this->_alloc.construct(this->_array + i, *(this->_array + i - 1));
+						this->_alloc.destroy(this->_array + i - 1);
+					}
 				}
 				this->_size++;
 				return (position);
@@ -630,7 +629,7 @@ namespace ft
 			iterator		insert(iterator position, size_type n,
 					const value_type& val)
 			{
-				long int	offset;
+				size_type		offset;
 
 				offset = position - this->begin();
 				if (this->size() + n > this->capacity())
@@ -640,7 +639,7 @@ namespace ft
 					else
 						reserve(this->size() + n);
 				}
-				for (long int i = this->size() - 1; i >= offset; i--)
+				for (long long int i = this->size() - 1; i >= static_cast<long long int>(offset); i--)
 				{
 					this->_alloc.construct(this->_array + i + n, *(this->_array + i));
 					this->_alloc.destroy(this->_array + i);
