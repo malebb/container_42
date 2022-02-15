@@ -356,6 +356,34 @@ void	test_erase(void)
 	std::cout << std::endl;
 }
 
+void	test_swap(void)
+{
+	std::cout << std::endl;
+	std::cout << ">> Test swap function" << std::endl;
+	std::cout << std::endl;
+
+	ft::vector<std::string>		tomato(6, "tomato");
+	ft::vector<std::string>		cucumber(6, "cucumber");
+
+	std::cout << "tomato = ";
+	display_tab(tomato);
+
+	std::cout << "cucumber = ";
+	display_tab(cucumber);
+	std::cout << std::endl;
+	std::cout << "tomato.swap(cucumber)" << std::endl;
+
+	tomato.swap(cucumber);
+	std::cout << std::endl;
+
+	std::cout << "tomato = ";
+	display_tab(tomato);
+
+	std::cout << "cucumber = ";
+	display_tab(cucumber);
+	std::cout << std::endl;
+}
+
 void	test_vector_modifiers(void)
 {
 	std::cout << std::endl;
@@ -373,5 +401,7 @@ void	test_vector_modifiers(void)
 	test_insert();
 	std::cout << "********************************************" << std::endl;
 	test_erase();
+	std::cout << "********************************************" << std::endl;
+	test_swap();
 	std::cout << "********************************************" << std::endl;
 }

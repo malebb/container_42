@@ -375,7 +375,7 @@ namespace ft
 				this->_array = x._array;
 				this->_size = x._size;
 				this->_capacity = x._capacity;
-				
+				return (*this);
 			}
 
 			template <class InputIterator>
@@ -699,6 +699,21 @@ namespace ft
 				}
 				this->_size--;
 				return (position);
+			}
+
+			void			swap(vector & x)
+			{
+				const allocator_type		alloc_tmp = this->_alloc;
+				const pointer				array_tmp = this->_array;
+				const size_type				size_tmp = this->_size;
+				const size_type				capacity_tmp = this->_capacity;
+
+
+				*this = x;
+				x._alloc = alloc_tmp;
+				x._array = array_tmp;
+				x._size = size_tmp;
+				x._capacity = capacity_tmp;
 			}
 
 		private :
