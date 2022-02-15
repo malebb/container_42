@@ -142,7 +142,7 @@ int	main(void)
 //	test_vector_access();
 
 	test_vector_modifiers();
-
+/*
 	ft::vector<std::string>					strs;
 	ft::vector<std::string>					strs2;
 	ft::vector<std::string>::iterator		it;
@@ -162,5 +162,6 @@ int	main(void)
 	{
 		std::cout << "it = " << *it << std::endl;
 	}
+	*/
 	return (0);
 }

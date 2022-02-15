@@ -269,7 +269,7 @@ void	test_assign(void)
 	display_tab(colors);
 	std::cout << "green = ";
 	display_tab(green);
-	std::cout << "blue = ";
+	std::cout << std::endl;
 
 	std::cout << "colors.assign(green.begin(), green.end() - 3)" << std::endl;
 	colors.assign(green.begin(), green.end() - 3);
@@ -284,35 +284,76 @@ void	test_assign(void)
 	std::cout << std::endl;
 }
 
-void	test_insert()
+void	test_insert(void)
 {
+	std::cout << std::endl;
+	std::cout << ">> Test insert function" << std::endl;
+	std::cout << std::endl;
+
 	ft::vector<std::string>		white(6, "white");
+	ft::vector<std::string>		black(6, "black");
 	ft::vector<std::string>		red(6, "red");
+	ft::vector<std::string>		yellow(6, "yellow");
 
 	std::cout << "white = ";
 	display_tab(white);
 	std::cout << "red = ";
 	display_tab(red);
+	std::cout << "black = ";
+	display_tab(black);
 	std::cout << std::endl;
 
-	std::cout << "colors.insert(white.begin() + 1, \"orange\")" << std::endl;
+	std::cout << "while.insert(white.begin() + 1, \"orange\")" << std::endl;
 	white.insert(white.begin() + 1, "orange");
-	std::cout << "colors = ";
+	std::cout << "white = ";
 	display_tab(white);
 	std::cout << std::endl;
 
-	std::cout << "colors.insert(colors.begin() + 3, 2, \"blue\")" << std::endl;
-	white.insert(white.begin() + 3, 2, "blue");
-	std::cout << "colors = ";
-	display_tab(white);
+	std::cout << "black.insert(colors.begin() + 3, 2, \"blue\")" << std::endl;
+	black.insert(black.begin() + 3, 2, "blue");
+	std::cout << "black = ";
+	display_tab(black);
 	std::cout << std::endl;
-/*
-	std::cout << "colors.insert(colors.begin() + 3, 2, \"red\")" << std::endl;
-	colors.insert(colors.begin() + 3, 2, "red");
-	std::cout << "colors = ";
-	display_tab(colors);
+
+	std::cout << "yellow.insert(colors.begin() + 1, red.begin(), red.begin() + 3 " << std::endl;
+	yellow.insert(yellow.begin() + 1, red.begin(), red.begin() + 3);
+	std::cout << "yellow = ";
+	display_tab(yellow);
 	std::cout << std::endl;
-	*/
+
+}
+
+void	test_erase(void)
+{
+	std::cout << std::endl;
+	std::cout << ">> Test erase function" << std::endl;
+	std::cout << std::endl;
+
+	ft::vector<std::string>		trees(6, "TREE");
+
+	trees.insert(trees.begin() + 2, "flower");
+	std::cout << "trees = ";
+	display_tab(trees);
+	std::cout << std::endl;
+
+
+	std::cout << "trees.erase(trees.begin() + 2)" << std::endl;
+	std::cout << std::endl;
+
+	trees.erase(trees.begin() + 2);
+
+	std::cout << "trees = ";
+	display_tab(trees);
+	std::cout << std::endl;
+
+	std::cout << "trees.erase(trees.begin() + 2, trees.end())" << std::endl;
+
+	trees.erase(trees.begin() + 2, trees.end());
+
+	std::cout << std::endl;
+	std::cout << "trees = ";
+	display_tab(trees);
+	std::cout << std::endl;
 }
 
 void	test_vector_modifiers(void)
@@ -330,6 +371,7 @@ void	test_vector_modifiers(void)
 	test_assign();
 	std::cout << "********************************************" << std::endl;
 	test_insert();
-	std::cout << std::endl;
-	std::cout << ">> Test erase function" << std::endl;
+	std::cout << "********************************************" << std::endl;
+	test_erase();
+	std::cout << "********************************************" << std::endl;
 }
