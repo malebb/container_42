@@ -658,7 +658,7 @@ namespace ft
 				size_type		offset;
 				size_type		range_size;
 
-				range_size = last - first;
+				range_size = (last - first);
 				offset = position - this->begin();
 				if (this->size() + range_size > this->capacity())
 				{
@@ -668,16 +668,14 @@ namespace ft
 						reserve(this->size() + range_size);
 				}
 
-				for (long long int i = this->size() + range_size; i >= static_cast<long long int>(offset); i--)
+				for (long long int i = this->size(); i >= static_cast<long long int>(offset); i--)
 				{
-					std::cout << "i = " << i << " offset = " << offset << std::endl;
-					if (i < static_cast<long long int>(offset + range_size))
-						this->_alloc.construct(this->_array + i - 1 , *(first + i - offset));
-					else
-					{
-						this->_alloc.construct(this->_array + i + range_size, *(this->_array + i));
-						this->_alloc.destroy(this->_array + i);
-					}
+					this->_alloc.construct(this->_array + i + range_size, *(this->_array + i));
+					this->_alloc.destroy(this->_array + i);
+				}
+				for (size_type i = offset; i <= (offset + range_size) - 1; i++)
+				{
+					this->_alloc.construct(this->_array + i, *(first + i - offset));
 				}
 				this->_size += range_size;
 			}

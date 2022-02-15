@@ -143,17 +143,24 @@ int	main(void)
 
 	test_vector_modifiers();
 
-	ft::vector<std::string>					strs(4, "strs");
-	ft::vector<std::string>					strs2(4, "insert");
+	ft::vector<std::string>					strs;
+	ft::vector<std::string>					strs2;
 	ft::vector<std::string>::iterator		it;
 
+	strs.push_back("strs1");
+	strs.push_back("strs2");
+	strs.push_back("strs3");
+	strs.push_back("strs4");
+
+	strs2.push_back("insert1");
+	strs2.push_back("insert2");
+	strs2.push_back("insert3");
 	std::cout << "*it" << " cap = " << strs.capacity() << std::endl;
-	strs.insert(strs.end(), strs2.begin(), strs2.begin() + 2);
+	strs.insert(strs.end(), strs2.begin(), strs2.begin() + 1);
 	std::cout << "*it" << " cap = " << strs.capacity() << std::endl;
 	for (ft::vector<std::string>::iterator it = strs.begin(); it != strs.end(); it ++)
 	{
 		std::cout << "it = " << *it << std::endl;
 	}
-	
 	return (0);
 }
