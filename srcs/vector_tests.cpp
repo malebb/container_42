@@ -201,14 +201,11 @@ void	test_vector_access(void)
 
 }
 
-void	test_vector_modifiers(void)
+void	test_push_back(void)
 {
 	std::cout << std::endl;
-	std::cout << "------------ Test vector modifiers ------------"
-	<< std::endl;
-
-	std::cout << std::endl;
 	std::cout << ">> Test push_back function" << std::endl;
+	std::cout << std::endl;
 
 	ft::vector<std::string>	seasons;
 
@@ -217,42 +214,62 @@ void	test_vector_modifiers(void)
 	std::cout << std::endl;
 
 	std::cout << "seasons.push_back(\"spring\")" << std::endl;
+	std::cout << "seasons.push_back(\"summer\")" << std::endl;
+	std::cout << "seasons.push_back(\"autumn\")" << std::endl;
+	std::cout << "seasons.push_back(\"winter\")" << std::endl;
+	std::cout << std::endl;
+
 	seasons.push_back("spring");
+	seasons.push_back("summer");
+	seasons.push_back("autumn");
+	seasons.push_back("winter");
+
 	std::cout << "seasons = ";
 	display_tab(seasons);
 	std::cout << std::endl;
+}
 
-	std::cout << "seasons.push_back(\"summer\")" << std::endl;
-	seasons.push_back("summer");
-	std::cout << "seasons.push_back(\"autumn\")" << std::endl;
-	seasons.push_back("autumn");
-	std::cout << "seasons.push_back(\"winter\")" << std::endl;
-	seasons.push_back("winter");
-	std::cout << "seasons = ";
-	display_tab(seasons);
-
+void	test_pop_back(void)
+{
 	std::cout << std::endl;
 	std::cout << ">> Test pop_back function" << std::endl;
+	std::cout << std::endl;
 
-	std::cout << "seasons.pop_back()" << std::endl;
-	seasons.pop_back();
+	ft::vector<std::string>	seasons;
+
+	seasons.push_back("spring");
+	seasons.push_back("summer");
+	seasons.push_back("autumn");
+	seasons.push_back("winter");
+
 	std::cout << "seasons = ";
 	display_tab(seasons);
+	std::cout << std::endl;
 
+	std::cout << "seasons.pop_back()" << std::endl;
+	std::cout << std::endl;
+
+	seasons.pop_back();
+
+	std::cout << "seasons = ";
+	display_tab(seasons);
+	std::cout << std::endl;
+}
+
+void	test_assign(void)
+{
 	std::cout << std::endl;
 	std::cout << ">> Test assign function" << std::endl;
+	std::cout << std::endl;
 
 	ft::vector<std::string>		colors(6, "empty");
 	ft::vector<std::string>		green(6, "green");
-	ft::vector<std::string>		blue(6, "blue");
 
 	std::cout << "colors = ";
 	display_tab(colors);
 	std::cout << "green = ";
 	display_tab(green);
 	std::cout << "blue = ";
-	display_tab(blue);
-	std::cout << std::endl;
 
 	std::cout << "colors.assign(green.begin(), green.end() - 3)" << std::endl;
 	colors.assign(green.begin(), green.end() - 3);
@@ -265,19 +282,54 @@ void	test_vector_modifiers(void)
 	std::cout << "colors = ";
 	display_tab(colors);
 	std::cout << std::endl;
+}
 
-	std::cout << "colors.insert(colors.begin() + 1, \"orange\")" << std::endl;
-	colors.insert(colors.begin() + 1, "orange");
-	std::cout << "colors = ";
-	display_tab(colors);
+void	test_insert()
+{
+	ft::vector<std::string>		white(6, "white");
+	ft::vector<std::string>		red(6, "red");
+
+	std::cout << "white = ";
+	display_tab(white);
+	std::cout << "red = ";
+	display_tab(red);
 	std::cout << std::endl;
 
+	std::cout << "colors.insert(white.begin() + 1, \"orange\")" << std::endl;
+	white.insert(white.begin() + 1, "orange");
+	std::cout << "colors = ";
+	display_tab(white);
+	std::cout << std::endl;
+
+	std::cout << "colors.insert(colors.begin() + 3, 2, \"blue\")" << std::endl;
+	white.insert(white.begin() + 3, 2, "blue");
+	std::cout << "colors = ";
+	display_tab(white);
+	std::cout << std::endl;
+/*
 	std::cout << "colors.insert(colors.begin() + 3, 2, \"red\")" << std::endl;
 	colors.insert(colors.begin() + 3, 2, "red");
 	std::cout << "colors = ";
 	display_tab(colors);
 	std::cout << std::endl;
+	*/
+}
 
+void	test_vector_modifiers(void)
+{
+	std::cout << std::endl;
+	std::cout << "------------ Test modifiers ------------"
+	<< std::endl;
+	std::cout << std::endl;
+
+	std::cout << "********************************************" << std::endl;
+	test_push_back();
+	std::cout << "********************************************" << std::endl;
+	test_pop_back();
+	std::cout << "********************************************" << std::endl;
+	test_assign();
+	std::cout << "********************************************" << std::endl;
+	test_insert();
 	std::cout << std::endl;
 	std::cout << ">> Test erase function" << std::endl;
 }
