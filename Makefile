@@ -1,6 +1,7 @@
 SRCS_FT = ./srcs/main.cpp ./srcs/main_utils.cpp \
 		  ./srcs/vector_tests.cpp ./srcs/vector_iterator_tests.cpp \
-		  ./srcs/test_vector_capacity.cpp ./srcs/test_vector_modifiers.cpp
+		  ./srcs/test_vector_capacity.cpp ./srcs/test_vector_modifiers.cpp \
+		  ./srcs/test_vector_element_access.cpp
 
 OBJS_FT = ${SRCS_FT:.cpp=.o}
 
