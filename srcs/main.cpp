@@ -143,17 +143,29 @@ int	main(void)
 
 	test_vector_modifiers();
 /*
-	std::vector<std::string>					strs(4, "SALUT");
-	std::vector<std::string>					strs2(4, "TOP");
-	std::vector<std::string>::iterator		it;
+	ft::vector<std::string>					strs(4, "SALUT");
+	ft::vector<std::string>					strs2(4, "TOP");
+	ft::vector<std::string>::iterator		it;
 
+
+	it = strs.begin() + 2;
 	strs.swap(strs2);
-	for (std::vector<std::string>::iterator it = strs.begin(); it != strs.end(); it ++)
+	for (ft::vector<std::string>::iterator it = strs.begin(); it != strs.end(); it ++)
 	{
 		std::cout << "it = " << *it << std::endl;
 	}
 
-	for (std::vector<std::string>::iterator it = strs2.begin(); it != strs2.end(); it ++)
+	std::cout << std::endl;
+
+	for (ft::vector<std::string>::iterator it = strs2.begin(); it != strs2.end(); it ++)
+	{
+		std::cout << "it = " << *it << std::endl;
+	}
+	*it = "BRIQUE";
+
+	std::cout << std::endl;
+
+	for (ft::vector<std::string>::iterator it = strs2.begin(); it != strs2.end(); it ++)
 	{
 		std::cout << "it = " << *it << std::endl;
 	}

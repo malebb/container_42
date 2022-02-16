@@ -25,7 +25,7 @@ namespace ft
 
 			// constructor destructor
 
-			vector_iterator() {};
+			vector_iterator() : _it(NULL) {};
 
 			vector_iterator(pointer ptr) : _it(ptr)
 			{
@@ -394,12 +394,11 @@ namespace ft
 
 			~vector()
 			{
-				for (size_type i = 0; i < this->_size; i++)
+				this->clear();
+				if (this->capacity())
 				{
-					this->_alloc.destroy(this->_array + i);
+					this->_alloc.deallocate(this->_array, this->capacity());
 				}
-				if (this->_size)
-					this->_alloc.deallocate(this->_array, this->_size);
 			}
 
 			//iterators
@@ -668,7 +667,7 @@ namespace ft
 						reserve(this->size() + range_size);
 				}
 
-				for (long long int i = this->size(); i >= static_cast<long long int>(offset); i--)
+				for (long long int i = this->size() - 1; i >= static_cast<long long int>(offset); i--)
 				{
 					this->_alloc.construct(this->_array + i + range_size, *(this->_array + i));
 					this->_alloc.destroy(this->_array + i);
@@ -714,6 +713,11 @@ namespace ft
 				x._array = array_tmp;
 				x._size = size_tmp;
 				x._capacity = capacity_tmp;
+			}
+
+			void			clear()
+			{
+				erase(this->begin(), this->end());
 			}
 
 		private :

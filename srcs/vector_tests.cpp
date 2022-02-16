@@ -315,7 +315,7 @@ void	test_insert(void)
 	display_tab(black);
 	std::cout << std::endl;
 
-	std::cout << "yellow.insert(colors.begin() + 1, red.begin(), red.begin() + 3 " << std::endl;
+	std::cout << "yellow.insert(yellow.begin() + 1, red.begin(), red.begin() + 3 " << std::endl;
 	yellow.insert(yellow.begin() + 1, red.begin(), red.begin() + 3);
 	std::cout << "yellow = ";
 	display_tab(yellow);
@@ -384,6 +384,28 @@ void	test_swap(void)
 	std::cout << std::endl;
 }
 
+void	test_clear(void)
+{
+	std::cout << std::endl;
+	std::cout << ">> Test swap function" << std::endl;
+	std::cout << std::endl;
+	
+	ft::vector<std::string>		content(6, "content");
+
+	std::cout << "content = ";
+	display_tab(content);
+	std::cout << std::endl;
+
+	std::cout << "content.clear()" << std::endl;
+	std::cout << std::endl;
+
+	content.clear();
+
+	std::cout << "content = ";
+	display_tab(content);
+	std::cout << std::endl;
+}
+
 void	test_vector_modifiers(void)
 {
 	std::cout << std::endl;
@@ -399,9 +421,13 @@ void	test_vector_modifiers(void)
 	test_assign();
 	std::cout << "********************************************" << std::endl;
 	test_insert();
+	/*
 	std::cout << "********************************************" << std::endl;
 	test_erase();
 	std::cout << "********************************************" << std::endl;
 	test_swap();
+	std::cout << "********************************************" << std::endl;
+	test_clear();
+	*/
 	std::cout << "********************************************" << std::endl;
 }
