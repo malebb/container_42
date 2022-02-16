@@ -473,7 +473,7 @@ namespace ft
 
 			bool			empty() const
 			{
-					return (this->size() ? false : true);
+					return (this->size());
 			}
 
 			void			reserve(size_type n)
@@ -561,18 +561,6 @@ namespace ft
 
 			//Modifiers
 
-			void			assign(size_type n, const value_type& val)
-			{
-				if (this->capacity() < n)
-					reserve(n);
-				erase(this->begin(), this->begin() + (n - 1));
-				for (size_type i = 0; i < n; i++)
-				{
-					this->_alloc.construct(this->_array + i, val);
-				}
-				this->_size = n;
-			}
-
 			template <class InputIterator>
 			void			assign(InputIterator first, InputIterator last)
 			{
@@ -587,6 +575,18 @@ namespace ft
 					this->_alloc.construct(this->_array + i, *(first + i));
 				}
 				this->_size = range_size;
+			}
+
+			void			assign(size_type n, const value_type& val)
+			{
+				if (this->capacity() < n)
+					reserve(n);
+				erase(this->begin(), this->begin() + (n - 1));
+				for (size_type i = 0; i < n; i++)
+				{
+					this->_alloc.construct(this->_array + i, val);
+				}
+				this->_size = n;
 			}
 
 			void			push_back(const value_type& val)
@@ -679,16 +679,6 @@ namespace ft
 				this->_size += range_size;
 			}
 
-			iterator		erase(iterator first, iterator last)
-			{
-				for (typename ft::vector<value_type>::iterator it = first; it != last; it++)
-				{
-					this->_alloc.destroy(&(*it));
-				}
-				this->_size -= last - first;
-				return (first);
-			}
-
 			iterator		erase(iterator position)
 			{
 				this->_alloc.destroy(&(*position));
@@ -698,6 +688,16 @@ namespace ft
 				}
 				this->_size--;
 				return (position);
+			}
+
+			iterator		erase(iterator first, iterator last)
+			{
+				for (typename ft::vector<value_type>::iterator it = first; it != last; it++)
+				{
+					this->_alloc.destroy(&(*it));
+				}
+				this->_size -= last - first;
+				return (first);
 			}
 
 			void			swap(vector & x)
