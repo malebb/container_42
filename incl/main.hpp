@@ -19,6 +19,7 @@ void	test_const_vector_iterator(void);
 void	test_vector_capacity(void);
 void	test_vector_element_access(void);
 void	test_vector_modifiers(void);
+void	test_vector_allocator(void);
 
 
 //utils
