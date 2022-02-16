@@ -130,8 +130,19 @@ int	main(void)
 	std::cout << "[------------ TEST FT CONTAINER ------------]" << std::endl;
 	std::cout << std::endl;
 
-	test_vector();
-
 //	test_reverse_iterator();
+//	test_vector();
+
+	ft::vector<int>		nbrs;
+	ft::vector<int>		nbrs2(5, 33);
+
+//	nbrs.push_back(3);
+//	nbrs.push_back(4);
+//	nbrs.push_back(5);
+//	nbrs.push_back(6);
+
+	nbrs2 = nbrs;
+
+//	display_tab(nbrs);
 	return (0);
 }

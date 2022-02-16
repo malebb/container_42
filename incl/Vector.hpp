@@ -372,9 +372,7 @@ namespace ft
 			vector&		operator =(const vector & x)
 			{
 				this->_alloc = x._alloc;
-				this->_array = x._array;
-				this->_size = x._size;
-				this->_capacity = x._capacity;
+				this->assign(x.begin(), x.end());
 				return (*this);
 			}
 
