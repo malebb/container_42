@@ -707,6 +707,7 @@ namespace ft
 
 
 				*this = x;
+
 				x._alloc = alloc_tmp;
 				x._array = array_tmp;
 				x._size = size_tmp;
@@ -716,6 +717,13 @@ namespace ft
 			void			clear()
 			{
 				erase(this->begin(), this->end());
+			}
+
+			//Allocator
+			
+			allocator_type		get_allocator() const
+			{
+				return (this->_alloc);
 			}
 
 		private :
