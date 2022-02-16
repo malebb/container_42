@@ -130,45 +130,8 @@ int	main(void)
 	std::cout << "[------------ TEST FT CONTAINER ------------]" << std::endl;
 	std::cout << std::endl;
 
+	test_vector();
+
 //	test_reverse_iterator();
-
-	std::cout << std::endl;
-	std::cout << "------------ TEST VECTOR CONTAINER ------------"
-	<< std::endl;
-
-//	test_const_vector_iterator();
-//	test_vector_iterator();
-	test_vector_capacity();
-//	test_vector_access();
-
-//	test_vector_modifiers();
-/*
-	ft::vector<std::string>					strs(4, "SALUT");
-	ft::vector<std::string>					strs2(4, "TOP");
-	ft::vector<std::string>::iterator		it;
-
-
-	it = strs.begin() + 2;
-	strs.swap(strs2);
-	for (ft::vector<std::string>::iterator it = strs.begin(); it != strs.end(); it ++)
-	{
-		std::cout << "it = " << *it << std::endl;
-	}
-
-	std::cout << std::endl;
-
-	for (ft::vector<std::string>::iterator it = strs2.begin(); it != strs2.end(); it ++)
-	{
-		std::cout << "it = " << *it << std::endl;
-	}
-	*it = "BRIQUE";
-
-	std::cout << std::endl;
-
-	for (ft::vector<std::string>::iterator it = strs2.begin(); it != strs2.end(); it ++)
-	{
-		std::cout << "it = " << *it << std::endl;
-	}
-	*/
 	return (0);
 }

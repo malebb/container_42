@@ -13,6 +13,7 @@
 
 //test functions
 
+void	test_vector(void);
 void	test_vector_iterator(void);
 void	test_const_vector_iterator(void);
 void	test_vector_capacity(void);

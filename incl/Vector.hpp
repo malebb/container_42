@@ -473,7 +473,7 @@ namespace ft
 
 			bool			empty() const
 			{
-					return (this->size());
+					return (!this->size());
 			}
 
 			void			reserve(size_type n)
@@ -485,15 +485,13 @@ namespace ft
 				if (n > this->_capacity)
 				{
 					new_array = this->_alloc.allocate(n);
-					if (this->_size)
+					for (size_type i = 0; i < this->_size; i++)
 					{
-						for (size_type i = 0; i < this->_size; i++)
-						{
-							_alloc.construct(new_array + i, this->_array[i]);
-							_alloc.destroy(this->_array + i);
-						}
-						_alloc.deallocate(this->_array, this->_capacity);
+						_alloc.construct(new_array + i, this->_array[i]);
+						_alloc.destroy(this->_array + i);
 					}
+					if (this->capacity())
+						_alloc.deallocate(this->_array, this->_capacity);
 					this->_array = new_array;
 					this->_capacity = n;
 				}
