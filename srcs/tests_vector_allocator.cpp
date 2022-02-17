@@ -50,7 +50,7 @@ void	test_get_allocator(void)
 void	test_vector_allocator(void)
 {
 	std::cout << std::endl;
-	std::cout << "[------------ Test vector allocator ------------" << std::endl;
+	std::cout << "[------------ Test vector allocator ------------]" << std::endl;
 	std::cout << std::endl;
 
 	std::cout << "********************************************" << std::endl;

@@ -558,14 +558,19 @@ namespace ft
 			//Modifiers
 
 			template <class InputIterator>
-			void			assign(InputIterator first, InputIterator last)
+			void			assign(InputIterator first, InputIterator last,
+					typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type * = NULL)
 			{
 				difference_type		range_size;
 
 				range_size = last - first;
 				if (this->capacity() < static_cast<size_type>(range_size))
 					reserve(last - first);
-				this->erase(this->begin(), this->begin() + (range_size - 1));
+				if (range_size)
+					this->erase(this->begin(), this->begin() + (range_size - 1));
+				else
+					this->erase(this->begin(), this->begin() + (range_size));
+
 				for (difference_type i = 0; i < range_size; i++)
 				{
 					this->_alloc.construct(this->_array + i, *(first + i));
@@ -577,7 +582,10 @@ namespace ft
 			{
 				if (this->capacity() < n)
 					reserve(n);
-				erase(this->begin(), this->begin() + (n - 1));
+				if (n)
+					erase(this->begin(), this->begin() + (n - 1));
+				else
+					erase(this->begin(), this->begin() + n);
 				for (size_type i = 0; i < n; i++)
 				{
 					this->_alloc.construct(this->_array + i, val);
@@ -703,8 +711,10 @@ namespace ft
 				const size_type				size_tmp = this->_size;
 				const size_type				capacity_tmp = this->_capacity;
 
-
-				*this = x;
+				this->_alloc = x._alloc;
+				this->_array = x._array;
+				this->_size = x._size;
+				this->_capacity = x._capacity;
 
 				x._alloc = alloc_tmp;
 				x._array = array_tmp;
