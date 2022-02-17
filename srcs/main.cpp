@@ -1,4 +1,5 @@
 #include "main.hpp"
+#include "compare.hpp"
 
 void	test_reverse_iterator(void)
 {
@@ -130,8 +131,18 @@ int	main(void)
 	std::cout << "[------------ TEST FT CONTAINER ------------]" << std::endl;
 	std::cout << std::endl;
 
-	test_reverse_iterator();
-	test_vector();
+//	test_reverse_iterator();
+//	test_vector();
 
+	char	str1[] = "salut";
+	char	str2[] = "salutt";
+
+	if (ft::lexicographical_compare(str1, str1 + 6, str2, str2 + 7))
+		std::cout << "str1 < str2" << std::endl;
+	else
+		std::cout << "str1 >= str2" << std::endl;
+
+	std::cout << str1 << std::endl;
+	std::cout << str2 << std::endl;
 	return (0);
 }
