@@ -1,5 +1,6 @@
 #include "main.hpp"
 #include "compare.hpp"
+#include <string.h>
 
 void	test_reverse_iterator(void)
 {
@@ -134,15 +135,15 @@ int	main(void)
 //	test_reverse_iterator();
 //	test_vector();
 
-	char	str1[] = "salut";
-	char	str2[] = "salutt";
+	char	str1[] = "a";
+	char	str2[] = "a";
 
-	if (ft::lexicographical_compare(str1, str1 + 6, str2, str2 + 7))
+	if (ft::lexicographical_compare(str1, str1 + strlen(str1), str2, str2 + strlen(str2)))
 		std::cout << "str1 < str2" << std::endl;
 	else
 		std::cout << "str1 >= str2" << std::endl;
 
-	std::cout << str1 << std::endl;
-	std::cout << str2 << std::endl;
+//	std::cout << str1 << std::endl;
+//	std::cout << str2 << std::endl;
 	return (0);
 }
