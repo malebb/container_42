@@ -20,7 +20,7 @@ void	test_vector_capacity(void);
 void	test_vector_element_access(void);
 void	test_vector_modifiers(void);
 void	test_vector_allocator(void);
-
+void	test_vector_relational_operators(void);
 
 //utils
 

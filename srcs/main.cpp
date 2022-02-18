@@ -1,6 +1,7 @@
 #include "main.hpp"
 #include "compare.hpp"
 #include <string.h>
+#include <algorithm>
 
 void	test_reverse_iterator(void)
 {
@@ -126,6 +127,16 @@ void	test_reverse_iterator(void)
 	std::cout << "rit3->nb2 = " << rit3->nb2 << std::endl;
 }
 
+bool	check(std::string str1, std::string str2)
+{
+	std::cout << "str1 = " << str1 << " str2 = " << str2 << std::endl;
+	if (str1 != str2)
+	{
+		return (true);
+	}
+	return (false);
+}
+
 int	main(void)
 {
 	std::cout << std::endl;
@@ -133,17 +144,50 @@ int	main(void)
 	std::cout << std::endl;
 
 //	test_reverse_iterator();
-//	test_vector();
+	test_vector();
 
-	char	str1[] = "a";
-	char	str2[] = "a";
+/*
+	ft::vector<std::string>				strs;
+	ft::vector<std::string>				strs2;
 
-	if (ft::lexicographical_compare(str1, str1 + strlen(str1), str2, str2 + strlen(str2)))
-		std::cout << "str1 < str2" << std::endl;
+	strs.push_back("aaa");
+	strs.push_back("aaa");
+
+	strs2.push_back("aaa");
+	strs2.push_back("aaa");
+
+	if (strs != strs2)
+		std::cout << "Not equal" << std::endl;
 	else
-		std::cout << "str1 >= str2" << std::endl;
+		std::cout << "equal" << std::endl;
+*/
+/*
+	ft::vector<std::string>				strs;
+	ft::vector<std::string>				strs2;
+	ft::vector<std::string>::iterator		it;
+	ft::vector<std::string>::iterator		it2;
+	ft::vector<std::string>::iterator		it3;
 
-//	std::cout << str1 << std::endl;
+	strs.push_back("aaa");
+	strs.push_back("aaa");
+
+	strs2.push_back("aaa");
+	strs2.push_back("aaa");
+
+	it = strs.begin();
+	it2 = strs.end();
+
+	it3 = strs2.begin();
+
+	if (ft::equal(it, it2, it3))
+		std::cout << "equal" << std::endl;
+	else
+		std::cout << "not equal" << std::endl;
+	if (std::equal(it, it2, it3))
+		std::cout << "EQUAL" << std::endl;
+	else
+		std::cout << "NOT EQUAL" << std::endl;
+*/
 //	std::cout << str2 << std::endl;
 	return (0);
 }

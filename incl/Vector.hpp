@@ -9,7 +9,8 @@
 
 #include "iterator.hpp"
 #include "reverse_iterator.hpp"
-#include "type_traits.hpp" 
+#include "type_traits.hpp"
+#include "compare.hpp"
 
 namespace ft
 {
@@ -566,11 +567,7 @@ namespace ft
 				range_size = last - first;
 				if (this->capacity() < static_cast<size_type>(range_size))
 					reserve(last - first);
-				if (range_size)
-					this->erase(this->begin(), this->begin() + (range_size - 1));
-				else
-					this->erase(this->begin(), this->begin() + (range_size));
-
+				this->clear();
 				for (difference_type i = 0; i < range_size; i++)
 				{
 					this->_alloc.construct(this->_array + i, *(first + i));
@@ -582,10 +579,7 @@ namespace ft
 			{
 				if (this->capacity() < n)
 					reserve(n);
-				if (n)
-					erase(this->begin(), this->begin() + (n - 1));
-				else
-					erase(this->begin(), this->begin() + n);
+				this->clear();
 				for (size_type i = 0; i < n; i++)
 				{
 					this->_alloc.construct(this->_array + i, val);
@@ -741,6 +735,23 @@ namespace ft
 			size_type			_size;
 			size_type			_capacity;
 	};
+
+	//relational operator
+
+	template <class T, class Alloc>
+	bool	operator==(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs)
+	{
+		if (lhs.size() != rhs.size()
+			|| !ft::equal(lhs.begin(), lhs.end(), rhs.begin()))
+			return (false);
+		return (true);
+	}
+
+	template <class T, class Alloc>
+	bool	operator!=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs)
+	{
+		return (!(lhs == rhs));
+	}
 }
 
 #endif
