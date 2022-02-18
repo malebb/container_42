@@ -6,32 +6,32 @@ static void		test_equal_to(void)
 	std::cout << ">> Test == operator" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<std::string>		strs;
-	ft::vector<std::string>		strs2;
+	ft::vector<int>		nbrs;
+	ft::vector<int>		nbrs2;
 
-	strs.push_back("aaa");
-	strs.push_back("aaa");
-	strs2.assign(strs.begin(), strs.end());
+	nbrs.push_back(0);
+	nbrs.push_back(0);
+	nbrs2.assign(nbrs.begin(), nbrs.end());
 	
-	std::cout << "strs = ";
-	display_tab(strs);
-	std::cout << "strs2 = ";
-	display_tab(strs2);
+	std::cout << "nbrs = ";
+	display_tab(nbrs);
+	std::cout << "nbrs2 = ";
+	display_tab(nbrs2);
 	std::cout << std::endl;
 
-	std::cout << "(strs == strs2) = " << (strs == strs2) << std::endl;
+	std::cout << "(nbrs == nbrs2) = " << (nbrs == nbrs2) << std::endl;
 	std::cout << std::endl;
 
-	strs.pop_back();
-	strs.push_back("bbb");
+	nbrs.pop_back();
+	nbrs.push_back(1);
 
-	std::cout << "strs = ";
-	display_tab(strs);
-	std::cout << "strs2 = ";
-	display_tab(strs2);
+	std::cout << "nbrs = ";
+	display_tab(nbrs);
+	std::cout << "nbrs2 = ";
+	display_tab(nbrs2);
 	std::cout << std::endl;
 
-	std::cout << "(strs == strs2) = " << (strs == strs2) << std::endl;
+	std::cout << "(nbrs == nbrs2) = " << (nbrs == nbrs2) << std::endl;
 	std::cout << std::endl;
 }
 
@@ -41,34 +41,203 @@ static void		test_not_equal_to(void)
 	std::cout << ">> Test != operator" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<std::string>		strs;
-	ft::vector<std::string>		strs2;
+	ft::vector<int>		nbrs;
+	ft::vector<int>		nbrs2;
 
-	strs.push_back("desert");
-	strs.push_back("desert");
-	strs2.assign(strs.begin(), strs.end());
+	nbrs.push_back(0);
+	nbrs.push_back(0);
+	nbrs2.assign(nbrs.begin(), nbrs.end());
 	
-	std::cout << "strs = ";
-	display_tab(strs);
-	std::cout << "strs2 = ";
-	display_tab(strs2);
+	std::cout << "nbrs = ";
+	display_tab(nbrs);
+	std::cout << "nbrs2 = ";
+	display_tab(nbrs2);
 	std::cout << std::endl;
 
-	std::cout << "(strs != strs2) = " << (strs != strs2) << std::endl;
+	std::cout << "(nbrs != nbrs2) = " << (nbrs != nbrs2) << std::endl;
 	std::cout << std::endl;
 
-	strs.pop_back();
-	strs.push_back("dessert");
+	nbrs.pop_back();
+	nbrs.push_back(1);
 
-	std::cout << "strs = ";
-	display_tab(strs);
-	std::cout << "strs2 = ";
-	display_tab(strs2);
+	std::cout << "nbrs = ";
+	display_tab(nbrs);
+	std::cout << "nbrs2 = ";
+	display_tab(nbrs2);
 	std::cout << std::endl;
 
-	std::cout << "(strs != strs2) = " << (strs != strs2) << std::endl;
+	std::cout << "(nbrs != nbrs2) = " << (nbrs != nbrs2) << std::endl;
 	std::cout << std::endl;
 }
+
+static void		test_less_than(void)
+{
+	std::cout << std::endl;
+	std::cout << ">> Test < operator" << std::endl;
+	std::cout << std::endl;
+
+	ft::vector<int>		nbrs;
+	ft::vector<int>		nbrs2;
+
+	nbrs.push_back(1);
+	nbrs.push_back(1);
+	nbrs2.assign(nbrs.begin(), nbrs.end());
+	
+	std::cout << "nbrs = ";
+	display_tab(nbrs);
+	std::cout << "nbrs2 = ";
+	display_tab(nbrs2);
+	std::cout << std::endl;
+
+	std::cout << "(nbrs < nbrs2) = " << (nbrs < nbrs2) << std::endl;
+	std::cout << std::endl;
+
+	nbrs.pop_back();
+	nbrs.push_back(0);
+
+	std::cout << "nbrs = ";
+	display_tab(nbrs);
+	std::cout << "nbrs2 = ";
+	display_tab(nbrs2);
+	std::cout << std::endl;
+
+	std::cout << "(nbrs < nbrs2) = " << (nbrs < nbrs2) << std::endl;
+	std::cout << std::endl;
+}
+
+static void		test_greater_than(void)
+{
+	std::cout << std::endl;
+	std::cout << ">> Test > operator" << std::endl;
+	std::cout << std::endl;
+
+	ft::vector<int>		nbrs;
+	ft::vector<int>		nbrs2;
+
+	nbrs.push_back(0);
+	nbrs.push_back(0);
+	nbrs2.assign(nbrs.begin(), nbrs.end());
+	
+	std::cout << "nbrs = ";
+	display_tab(nbrs);
+	std::cout << "nbrs2 = ";
+	display_tab(nbrs2);
+	std::cout << std::endl;
+
+	std::cout << "(nbrs > nbrs2) = " << (nbrs > nbrs2) << std::endl;
+	std::cout << std::endl;
+
+	nbrs.pop_back();
+	nbrs.push_back(1);
+
+	std::cout << "nbrs = ";
+	display_tab(nbrs);
+	std::cout << "nbrs2 = ";
+	display_tab(nbrs2);
+	std::cout << std::endl;
+
+	std::cout << "(nbrs > nbrs2) = " << (nbrs > nbrs2) << std::endl;
+	std::cout << std::endl;
+}
+
+static void		test_less_than_or_equal_to(void)
+{
+	std::cout << std::endl;
+	std::cout << ">> Test <= operator" << std::endl;
+	std::cout << std::endl;
+
+	ft::vector<int>		nbrs;
+	ft::vector<int>		nbrs2;
+
+	nbrs.push_back(1);
+	nbrs.push_back(1);
+	nbrs2.assign(nbrs.begin(), nbrs.end());
+	
+	std::cout << "nbrs = ";
+	display_tab(nbrs);
+	std::cout << "nbrs2 = ";
+	display_tab(nbrs2);
+	std::cout << std::endl;
+
+	std::cout << "(nbrs <= nbrs2) = " << (nbrs <= nbrs2) << std::endl;
+	std::cout << std::endl;
+
+	nbrs.pop_back();
+	nbrs.push_back(0);
+
+	std::cout << "nbrs = ";
+	display_tab(nbrs);
+	std::cout << "nbrs2 = ";
+	display_tab(nbrs2);
+	std::cout << std::endl;
+
+	std::cout << "(nbrs <= nbrs2) = " << (nbrs <= nbrs2) << std::endl;
+	std::cout << std::endl;
+
+	nbrs.pop_back();
+	nbrs.push_back(1);
+	nbrs2.pop_back();
+	nbrs2.push_back(0);
+
+	std::cout << "nbrs = ";
+	display_tab(nbrs);
+	std::cout << "nbrs2 = ";
+	display_tab(nbrs2);
+	std::cout << std::endl;
+
+	std::cout << "(nbrs <= nbrs2) = " << (nbrs <= nbrs2) << std::endl;
+	std::cout << std::endl;
+}
+
+static void		test_greater_than_or_equal_to()
+{
+	std::cout << std::endl;
+	std::cout << ">> Test >= operator" << std::endl;
+	std::cout << std::endl;
+
+	ft::vector<int>		nbrs;
+	ft::vector<int>		nbrs2;
+
+	nbrs.push_back(1);
+	nbrs.push_back(1);
+	nbrs2.assign(nbrs.begin(), nbrs.end());
+	
+	std::cout << "nbrs = ";
+	display_tab(nbrs);
+	std::cout << "nbrs2 = ";
+	display_tab(nbrs2);
+	std::cout << std::endl;
+
+	std::cout << "(nbrs >= nbrs2) = " << (nbrs >= nbrs2) << std::endl;
+	std::cout << std::endl;
+
+	nbrs.pop_back();
+	nbrs.push_back(0);
+
+	std::cout << "nbrs = ";
+	display_tab(nbrs);
+	std::cout << "nbrs2 = ";
+	display_tab(nbrs2);
+	std::cout << std::endl;
+
+	std::cout << "(nbrs >= nbrs2) = " << (nbrs >= nbrs2) << std::endl;
+	std::cout << std::endl;
+
+	nbrs.pop_back();
+	nbrs.push_back(1);
+	nbrs2.pop_back();
+	nbrs2.push_back(0);
+
+	std::cout << "nbrs = ";
+	display_tab(nbrs);
+	std::cout << "nbrs2 = ";
+	display_tab(nbrs2);
+	std::cout << std::endl;
+
+	std::cout << "(nbrs >= nbrs2) = " << (nbrs >= nbrs2) << std::endl;
+	std::cout << std::endl;
+}
+
 void	test_vector_relational_operators(void)
 {
 	std::cout << std::endl;
@@ -81,9 +250,12 @@ void	test_vector_relational_operators(void)
 	std::cout << "********************************************" << std::endl;
 	test_not_equal_to();
 	std::cout << "********************************************" << std::endl;
+	test_less_than();
 	std::cout << "********************************************" << std::endl;
+	test_greater_than();
 	std::cout << "********************************************" << std::endl;
+	test_less_than_or_equal_to();
 	std::cout << "********************************************" << std::endl;
-	std::cout << "********************************************" << std::endl;
+	test_greater_than_or_equal_to();
 	std::cout << "********************************************" << std::endl;
 }
