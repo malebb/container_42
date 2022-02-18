@@ -777,6 +777,14 @@ namespace ft
 	{
 		return (!(lhs < rhs));
 	}
+
+	//swap overload
+	
+	template <class T, class Alloc>
+	void	swap(vector<T, Alloc>& x, vector<T, Alloc>& y)
+	{
+		x.swap(y);
+	}
 }
 
 #endif

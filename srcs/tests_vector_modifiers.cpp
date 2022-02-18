@@ -183,10 +183,36 @@ void	test_swap(void)
 	std::cout << std::endl;
 }
 
+void	test_swap_overload(void)
+{
+	std::cout << std::endl;
+	std::cout << ">> Test swap overload function" << std::endl;
+	std::cout << std::endl;
+
+	ft::vector<std::string>		pasta(6, "pasta");
+	ft::vector<std::string>		rice(6, "rice");
+
+	std::cout << "pasta = ";
+	display_tab(pasta);
+	std::cout << "rice = ";
+	display_tab(rice);
+	std::cout << std::endl;
+
+	std::cout << "swap(pasta, rice)" << std::endl;
+	swap(rice, pasta);
+	std::cout << std::endl;
+
+	std::cout << "pasta = ";
+	display_tab(pasta);
+	std::cout << "rice = ";
+	display_tab(rice);
+	std::cout << std::endl;
+}
+
 void	test_clear(void)
 {
 	std::cout << std::endl;
-	std::cout << ">> Test swap function" << std::endl;
+	std::cout << ">> Test clear function" << std::endl;
 	std::cout << std::endl;
 	
 	ft::vector<std::string>		content(6, "content");
@@ -224,6 +250,8 @@ void	test_vector_modifiers(void)
 	test_erase();
 	std::cout << "********************************************" << std::endl;
 	test_swap();
+	std::cout << "********************************************" << std::endl;
+	test_swap_overload();
 	std::cout << "********************************************" << std::endl;
 	test_clear();
 	std::cout << "********************************************" << std::endl;
