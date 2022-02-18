@@ -2,6 +2,7 @@
 #include "compare.hpp"
 #include <string.h>
 #include <algorithm>
+#include <stack>
 
 void	test_reverse_iterator(void)
 {
@@ -144,50 +145,25 @@ int	main(void)
 	std::cout << std::endl;
 
 //	test_reverse_iterator();
-	test_vector();
+//	test_vector();
+	ft::stack<int>			nbrs;
+	ft::stack<int>			nbrs2;
 
-/*
-	ft::vector<std::string>				strs;
-	ft::vector<std::string>				strs2;
+	std::cout << "size = " << nbrs.size() << std::endl;
+	nbrs.push(90);
+	nbrs.push(100);
+	nbrs.push(110);
+	nbrs.push(120);
 
-	strs.push_back("aaa");
-	strs.push_back("aaa");
+	nbrs2.push(90);
+	nbrs2.push(100);
+	nbrs2.push(110);
+	nbrs2.push(122);
 
-	strs2.push_back("aaa");
-	strs2.push_back("aaa");
-
-	if (strs != strs2)
-		std::cout << "Not equal" << std::endl;
-	else
-		std::cout << "equal" << std::endl;
-*/
-/*
-	ft::vector<std::string>				strs;
-	ft::vector<std::string>				strs2;
-	ft::vector<std::string>::iterator		it;
-	ft::vector<std::string>::iterator		it2;
-	ft::vector<std::string>::iterator		it3;
-
-	strs.push_back("aaa");
-	strs.push_back("aaa");
-
-	strs2.push_back("aaa");
-	strs2.push_back("aaa");
-
-	it = strs.begin();
-	it2 = strs.end();
-
-	it3 = strs2.begin();
-
-	if (ft::equal(it, it2, it3))
+	if (nbrs == nbrs2)
 		std::cout << "equal" << std::endl;
 	else
 		std::cout << "not equal" << std::endl;
-	if (std::equal(it, it2, it3))
-		std::cout << "EQUAL" << std::endl;
-	else
-		std::cout << "NOT EQUAL" << std::endl;
-*/
-//	std::cout << str2 << std::endl;
+
 	return (0);
 }
