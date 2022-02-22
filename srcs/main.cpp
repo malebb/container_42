@@ -138,38 +138,20 @@ bool	check(std::string str1, std::string str2)
 	return (false);
 }
 
-void	say_hi(void)
-{
-	std::cout << "ok" << std::endl;
-}
-
 int	main(void)
 {
 	std::cout << std::endl;
 	std::cout << "[------------ TEST FT CONTAINER ------------]" << std::endl;
 	std::cout << std::endl;
 
-	say_hi();
 //	test_reverse_iterator();
 //	test_vector();
-	ft::stack<int>			nbrs;
-	ft::stack<int>			nbrs2;
-
-	std::cout << "size = " << nbrs.size() << std::endl;
-	nbrs.push(90);
-	nbrs.push(100);
-	nbrs.push(110);
-	nbrs.push(120);
-
-	nbrs2.push(90);
-	nbrs2.push(100);
-	nbrs2.push(110);
-	nbrs2.push(122);
-
-	if (nbrs == nbrs2)
-		std::cout << "equal" << std::endl;
-	else
-		std::cout << "not equal" << std::endl;
-
+//	ft::map<std::string, int>		animal_size;
+	ft::pair<std::string, int>		animal2;
+	animal2.first = "cat";
+	animal2.second = 24;
+	ft::pair<std::string, int>		animal(animal2);
+	std::cout << animal.first << std::endl;
+	std::cout << animal.second << std::endl;
 	return (0);
 }

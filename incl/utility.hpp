@@ -33,16 +33,11 @@ namespace ft
 		}
 
 		template <class U1, class U2>
-  		friend bool operator==(const pair<U1,U2>& lhs, const pair<U1,U2>& rhs)
+  		friend bool operator!=(const pair<U1,U2>& lhs, const pair<U1,U2>& rhs)
 		{ 
 			return (!(lhs == rhs));
 		}
 
-		template <class U1, class U2>
-  		friend bool operator==(const pair<U1,U2>& lhs, const pair<U1,U2>& rhs)
-		{ 
-			return (!(lhs == rhs));
-		}
 		template <class U1, class U2>
   		friend bool operator<(const pair<U1,U2>& lhs, const pair<U1,U2>& rhs)
 		{
