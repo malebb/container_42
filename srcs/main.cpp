@@ -138,12 +138,18 @@ bool	check(std::string str1, std::string str2)
 	return (false);
 }
 
+void	say_hi(void)
+{
+	std::cout << "ok" << std::endl;
+}
+
 int	main(void)
 {
 	std::cout << std::endl;
 	std::cout << "[------------ TEST FT CONTAINER ------------]" << std::endl;
 	std::cout << std::endl;
 
+	say_hi();
 //	test_reverse_iterator();
 //	test_vector();
 	ft::stack<int>			nbrs;
