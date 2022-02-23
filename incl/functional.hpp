@@ -26,7 +26,6 @@ namespace ft
 			return (x < y);
 		}
 	};
-
 }
 
 #endif
