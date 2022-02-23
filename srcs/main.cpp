@@ -147,11 +147,9 @@ int	main(void)
 //	test_reverse_iterator();
 //	test_vector();
 //	ft::map<std::string, int>		animal_size;
-	ft::pair<std::string, int>		animal2;
-	animal2.first = "cat";
-	animal2.second = 24;
-	ft::pair<std::string, int>		animal(animal2);
-	std::cout << animal.first << std::endl;
-	std::cout << animal.second << std::endl;
+	std::string		cat("cat");
+	ft::pair<std::string, int>		animal(cat, 24);
+	ft::pair<std::string, int>		animal2 = animal;
+
 	return (0);
 }

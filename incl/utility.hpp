@@ -20,10 +20,15 @@ namespace ft
 			*this = pr;
 		}
 
+		pair(const first_type& a, const second_type& b) : first(a), second(b)
+		{
+		}
+
 		pair	&operator=(const pair& pr)
 		{
 			this->first = pr.first;
 			this->second = pr.second;
+			return (*this);
 		}
 
 		template <class U1, class U2>
@@ -63,6 +68,12 @@ namespace ft
 			return (!(rhs < lhs));
 		}
 	};
+
+	template <class T1, class T2>
+	pair<T1, T2>	make_pair(T1 x, T2 y)
+	{
+		return (pair<T1, T2>(x, y));
+	}
 }
 
 #endif
