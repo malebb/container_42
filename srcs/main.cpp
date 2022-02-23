@@ -3,6 +3,7 @@
 #include <string.h>
 #include <algorithm>
 #include <stack>
+#include <map>
 
 void	test_reverse_iterator(void)
 {
@@ -146,5 +147,7 @@ int	main(void)
 
 //	test_reverse_iterator();
 //	test_vector();
+	std::vector<int>	nbrs;
+
 	return (0);
 }

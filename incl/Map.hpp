@@ -6,6 +6,8 @@
 #include "functional.hpp"
 #include "utility.hpp"
 
+#include <iostream>
+
 namespace ft
 {
 	template <class Key,
@@ -17,14 +19,23 @@ namespace ft
 	{
 		public :
 
-			typedef Key										key_type;
-			typedef T										mapped_type;
-			typedef pair<const key_type, mapped_type>		value_type;
-			typedef Compare									key_compare;
+			typedef Key											key_type;
+			typedef T											mapped_type;
+			typedef pair<const key_type, mapped_type>			value_type;
+			typedef Compare										key_compare;
+			typedef Alloc										allocator_type;
+			typedef typename allocator_type::reference			reference;
+			typedef typename allocator_type::const_reference	const_reference;
+			typedef typename allocator_type::pointer			pointer;
+			typedef typename allocator_type::const_pointer		const_pointer;
+
+			// ...
+
+			typedef std::ptrdiff_t								difference_type;
+			typedef size_t										size_type;
 
 			class value_compare : public ft::binary_function<value_type, value_type, bool>
 			{
-
 				public:
 
 					typedef typename ft::binary_function<value_type,
@@ -41,12 +52,64 @@ namespace ft
 						return comp(x.first, y.first);
 					}
 
-				protected:
 
+				protected:
 					Compare comp;
-					value_compare(Compare c) : comp(c) {}  // constructed with map's comparison object
+					value_compare(Compare c) : comp(c) {}
 		};
+
+		explicit map(const key_compare& comp = key_compare(),
+				const allocator_type& alloc = allocator_type())
+				: _compare(comp), _alloc(alloc), _size(0)
+		{
+		}
+
+		map(const map& x)
+		{
+			*this = x;
+		}
+
+		~map()
+		{
+
+		}
+
+		map&	operator=(const map& x)
+		{
+			this->_compare = x._compare;
+			this->_alloc = x._alloc;
+			this->_size = x._size;
+			return (*this);
+		}
+
+		// capacity
+
+		bool			empty() const
+		{
+			return (!(this->_size));
+		}
+
+		size_type		size() const
+		{
+			return (this->_size);
+		}
+/*
+		size_type		max_size() const
+		{
+
+		}
+*/
+		// modifiers
+
+	private :
+
+		key_compare			_compare;
+		allocator_type		_alloc;
+		size_type			_size;
+
 	};
+
+		
 }
 
 #endif
