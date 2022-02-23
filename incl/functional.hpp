@@ -12,14 +12,16 @@ namespace ft
 	};
 
 	template <class T>
-	struct less : ft::binary_function <T, T, bool>
+	struct less : public ft::binary_function <T, T, bool>
 	{
-		typedef T			first_argument_type;
-		typedef T			second_argument_type;
-		typedef bool		result_type;
+		typedef typename	ft::binary_function<T, T, bool>::
+								first_argument_type first_argument_type;
+		typedef typename	ft::binary_function<T, T, bool>::
+								second_argument_type second_argument_type;
+		typedef typename	ft::binary_function<T, T, bool>::
+								result_type result_type;
 
-		result_type		operator()(const first_argument_type& x,
-									const second_argument_type& y) const
+		result_type			operator()(const T& x, const T& y) const
 		{
 			return (x < y);
 		}
