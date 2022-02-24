@@ -139,6 +139,19 @@ bool	check(std::string str1, std::string str2)
 	return (false);
 }
 
+class A
+{
+	public :
+		A(int nb): _nb(nb) {}
+
+	friend bool	operator<(const A& lhs, const A & rhs)
+	{
+		return (lhs._nb < rhs._nb);
+	}
+
+	int		_nb;
+};
+
 int	main(void)
 {
 	std::cout << std::endl;
@@ -147,7 +160,13 @@ int	main(void)
 
 //	test_reverse_iterator();
 //	test_vector();
-	std::vector<int>	nbrs;
+//	int nb = 4;	
+//	std::vector<int>::iterator		it(&nb);
+
+//	std::cout << *it << std::endl;
+
+
+	ft::rbt<int, int>		*tree = NULL;
 
 	return (0);
 }
