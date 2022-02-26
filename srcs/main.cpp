@@ -165,8 +165,13 @@ int	main(void)
 
 //	std::cout << *it << std::endl;
 
+	ft::map<int, int>		nbrs;
 
-	ft::rbt<int, int>		*tree = NULL;
 
+	nbrs.insert();
+//	make_
+	ft::pair<int, int>		p;
+
+	p = ft::make_pair(3, 6);
 	return (0);
 }

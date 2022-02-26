@@ -1,7 +1,7 @@
 #ifndef MAP_HPP
 #define MAP_HPP
 
-#include "memory"
+#include <memory>
 
 #include "functional.hpp"
 #include "utility.hpp"
@@ -11,17 +11,17 @@
 
 namespace ft
 {
-
-	template <class Key, class T>
-	struct rbt
+	template <class T>
+	class rbt
 	{
-		rbt() : _root(NULL)
-		{
+		public :
 
-		}
-		typedef ft::pair<const Key, T>		value_type;
+			rbt() : _right(NULL), _left(NULL) {}
+			rbt(T value) : _value(value), _right(NULL), _left(NULL) {};
 
-		value_type		_root;
+			T			_value;
+			rbt			*_right;
+			rbt			*_left;
 	};
 
 	struct bidirectional_iterator_tag {};
@@ -68,6 +68,9 @@ namespace ft
 
 			typedef std::ptrdiff_t								difference_type;
 			typedef size_t										size_type;
+//			typedef std::allocator<rbt<value_type> >			alloc_rbt;
+			typedef typename allocator_type::template 
+									rebind<rbt<value_type> >::other			alloc_rbt;
 
 			class value_compare : public ft::binary_function<value_type, value_type, bool>
 			{
@@ -95,7 +98,7 @@ namespace ft
 
 		explicit map(const key_compare& comp = key_compare(),
 				const allocator_type& alloc = allocator_type())
-				: _compare(comp), _alloc(alloc), _size(0)
+				: _compare(comp), _alloc(alloc), _size(0), _tree(NULL)
 		{
 		}
 
@@ -134,16 +137,37 @@ namespace ft
 
 		}
 */
+		void		insert()
+		{
+			this->add_node();
+		}
+
 		// modifiers
 		
 
 
 	private :
 
-		key_compare			_compare;
-		allocator_type		_alloc;
-		size_type			_size;
 
+		key_compare										_compare;
+		allocator_type									_alloc;
+		size_type										_size;
+		rbt<value_type>									*_tree;
+		alloc_rbt										_alloc_rbt;
+
+
+
+		// binary tree function
+
+		void		add_node(void)
+		{
+			if (!this->_tree)
+			{
+				this->_tree = this->_alloc_rbt.allocate(1);
+				this->_alloc_rbt.construct(this->_tree, ft::make_pair(1, 3));
+			}
+//			ft::make_pair(1, 4);
+		}
 	};
 
 		
