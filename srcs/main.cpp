@@ -165,13 +165,37 @@ int	main(void)
 
 //	std::cout << *it << std::endl;
 
-	ft::map<int, int>		nbrs;
+	ft::map<int, int>						nbrs;
+	ft::rbt<ft::pair<const int, int> >		*rbt;
 
+	nbrs.insert(ft::pair<int, int>(10, 4));
+	nbrs.insert(ft::pair<int, int>(-5, 4));
+	nbrs.insert(ft::pair<int, int>(13, 4));
+	nbrs.insert(ft::pair<int, int>(-8, 4));
+	nbrs.insert(ft::pair<int, int>(25, 4));
+	nbrs.insert(ft::pair<int, int>(4, 6));
+	nbrs.insert(ft::pair<int, int>(5, 4));
 
-	nbrs.insert();
+	rbt = nbrs.get_tree();
+	nbrs.print_sorted(nbrs.get_tree());
+	
+	ft::map<int, int>::iterator		it;
+
+	it = nbrs.begin();
+
+	std::cout << "*it = " << it->first << std::endl;
+/*
+	while (rbt)
+	{
+		std::cout << "value = " << rbt->value->first << std::endl;
+		rbt = rbt->left;
+	}
+	*/
+
 //	make_
-	ft::pair<int, int>		p;
+//	ft::rbt<ft::pair<int, int> > tree(ft::make_pair(6, 5));
 
-	p = ft::make_pair(3, 6);
+//	std::cout << "first = " << tree._value.first << "second = "
+//		<< tree._value.second << std::endl;
 	return (0);
 }

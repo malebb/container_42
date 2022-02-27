@@ -16,12 +16,23 @@ namespace ft
 	{
 		public :
 
-			rbt() : _right(NULL), _left(NULL) {}
-			rbt(T value) : _value(value), _right(NULL), _left(NULL) {};
+			rbt() : right(NULL), left(NULL) {}
+			rbt(T* value) : value(value), right(NULL), left(NULL)
+			{
+			}
 
-			T			_value;
-			rbt			*_right;
-			rbt			*_left;
+			rbt&		operator=(const rbt& rhs)
+			{
+				this->value = rhs.value;
+				this->right = rhs.right;
+				this->left = rhs.left;
+				return (*this);
+			}
+
+
+			T			*value;
+			rbt			*right;
+			rbt			*left;
 	};
 
 	struct bidirectional_iterator_tag {};
@@ -38,10 +49,29 @@ namespace ft
 
 		public :
 
-			value_type			_it;
+			value_type			*_it;
 
 			map_iterator() : _it(NULL) {}
 
+			map_iterator(const map_iterator& src)
+			{
+				*this = src;
+			}
+
+			map_iterator&		operator=(const map_iterator& rhs)
+			{
+				this->_it = rhs._it;
+				return (*this);
+			}
+
+			value_type			*operator->()
+			{
+				return (this->_it);
+			}
+
+			map_iterator(value_type *ptr) : _it(ptr)
+			{
+			}
 	};
 
 	template <class Key,
@@ -120,6 +150,12 @@ namespace ft
 			return (*this);
 		}
 
+		// iterator
+		iterator		begin()
+		{
+			return (iterator(this->_tree->value));
+		}
+
 		// capacity
 
 		bool			empty() const
@@ -137,15 +173,27 @@ namespace ft
 
 		}
 */
-		void		insert()
+		void		insert(value_type value)
 		{
-			this->add_node();
+			this->add_node(&this->_tree, value);
 		}
 
 		// modifiers
+		rbt<value_type>		*get_tree(void) const
+		{
+			return (this->_tree);
+		}
+
+		void		print_sorted(rbt<value_type> *tree)
+		{
+			if (!tree)
+				return ;
 		
+			print_sorted(tree->left);
+			std::cout << "value = " << tree->value->first << std::endl;
+			print_sorted(tree->right);
 
-
+		}
 	private :
 
 
@@ -157,17 +205,30 @@ namespace ft
 
 
 
-		// binary tree function
+		// inary tree function
 
-		void		add_node(void)
+		void		add_node(rbt<value_type> **tree, value_type new_node)
 		{
-			if (!this->_tree)
+			if (!(*tree))
 			{
-				this->_tree = this->_alloc_rbt.allocate(1);
-				this->_alloc_rbt.construct(this->_tree, ft::make_pair(1, 3));
+				ft::pair<const int, int>		value(new_node);
+				ft::pair<const int, int>		*node_ptr;
+
+				node_ptr = this->_alloc.allocate(1);
+				this->_alloc.construct(node_ptr, value);
+				(*tree) = this->_alloc_rbt.allocate(1);
+				this->_alloc_rbt.construct(*tree, node_ptr);
 			}
-//			ft::make_pair(1, 4);
+			else if (!this->_compare((*tree)->value->first, new_node.first))
+			{
+				this->add_node(&(*tree)->left, new_node);
+			}
+			else
+			{
+				this->add_node(&(*tree)->right, new_node);
+			}
 		}
+
 	};
 
 		
