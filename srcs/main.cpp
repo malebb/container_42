@@ -171,22 +171,33 @@ int	main(void)
 
 	nbrs.insert(ft::pair<int, int>(10, 4));
 	nbrs.insert(ft::pair<int, int>(-5, 4));
-//	nbrs.insert(ft::pair<int, int>(13, 4));
-//	nbrs.insert(ft::pair<int, int>(-8, 4));
-//	nbrs.insert(ft::pair<int, int>(25, 4));
-//	nbrs.insert(ft::pair<int, int>(4, 6));
-//	nbrs.insert(ft::pair<int, int>(5, 4));
+	nbrs.insert(ft::pair<int, int>(13, 4));
+	nbrs.insert(ft::pair<int, int>(-8, 4));
+	nbrs.insert(ft::pair<int, int>(25, 4));
+	nbrs.insert(ft::pair<int, int>(4, 6));
+	nbrs.insert(ft::pair<int, int>(5, 4));
 
 	rbt = nbrs.get_tree();
-	nbrs.print_sorted(nbrs.get_tree());
+//	nbrs.print_sorted(nbrs.get_tree());
 	
 	ft::map<int, int>::iterator		it;
-
 	it = nbrs.begin();
+
 
 	std::cout << "*it = " << it->first << std::endl;
 	++it;
 	std::cout << "*it = " << it->first << std::endl;
+	++it;
+	std::cout << "*it = " << it->first << std::endl;
+	++it;
+	std::cout << "*it = " << it->first << std::endl;
+	++it;
+	std::cout << "*it = " << it->first << std::endl;
+	++it;
+	std::cout << "*it = " << it->first << std::endl;
+	++it;
+	std::cout << "*it = " << it->first << std::endl;
+	
 /*
 	while (rbt)
 	{

@@ -33,6 +33,7 @@ namespace ft
 			T			*value;
 			rbt			*right;
 			rbt			*left;
+			rbt			*parent;
 	};
 
 	struct bidirectional_iterator_tag {};
@@ -71,9 +72,10 @@ namespace ft
 
 			map_iterator&		operator++()
 			{
-				map_iterator		new_node;
-
-				this->_node = find_next(this->_node);
+				if (this->_node->right)
+					this->_node = this->_node->right;
+				else
+					this->_node = this->_node->parent;
 				return (*this);
 			}
 
@@ -85,12 +87,6 @@ namespace ft
 
 		private :
 
-			tree_type		*find_next(tree_type *node)
-			{
-				if (!node->right)
-					return (node);
-				return(find_next(node->right));
-			}
 
 	};
 
@@ -177,7 +173,9 @@ namespace ft
 
 			first_node = this->_tree;
 			while (first_node->left != NULL)
-				first_node = this->_tree->left;
+			{
+				first_node = first_node->left;
+			}
 			return (iterator(first_node));
 		}
 
@@ -200,7 +198,7 @@ namespace ft
 */
 		void		insert(value_type value)
 		{
-			this->add_node(&this->_tree, value);
+			this->add_node(&this->_tree, value, NULL);
 		}
 
 		// modifiers
@@ -229,7 +227,7 @@ namespace ft
 
 		// binary tree function
 
-		void		add_node(rbt<value_type> **tree, value_type new_node)
+		void		add_node(rbt<value_type> **tree, value_type new_node, rbt<value_type> *parent)
 		{
 			if (!(*tree))
 			{
@@ -240,14 +238,15 @@ namespace ft
 				this->_alloc.construct(node_ptr, value);
 				(*tree) = this->_alloc_rbt.allocate(1);
 				this->_alloc_rbt.construct(*tree, node_ptr);
+				(*tree)->parent = parent;
 			}
 			else if (!this->_compare((*tree)->value->first, new_node.first))
 			{
-				this->add_node(&(*tree)->left, new_node);
+				this->add_node(&(*tree)->left, new_node, *tree);
 			}
 			else
 			{
-				this->add_node(&(*tree)->right, new_node);
+				this->add_node(&(*tree)->right, new_node, *tree);
 			}
 		}
 	};
