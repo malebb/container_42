@@ -40,18 +40,18 @@ namespace ft
 	template <class Key, class T>
 	class map_iterator : public ft::iterator<ft::bidirectional_iterator_tag, T>
 	{
-		typedef Key											key_type;
-		typedef T											mapped_type;
-		typedef T*											pointer;
-		typedef T&											reference;
-		typedef std::ptrdiff_t								difference_type;
-		typedef ft::pair<const key_type, mapped_type>		value_type;
+		typedef Key												key_type;
+		typedef T												mapped_type;
+		typedef T*												pointer;
+		typedef T&												reference;
+		typedef std::ptrdiff_t									difference_type;
+		typedef rbt<ft::pair<const key_type, mapped_type> >		tree_type;
+		typedef ft::pair<const key_type, mapped_type>			value_type;
+
 
 		public :
 
-			value_type			*_it;
-
-			map_iterator() : _it(NULL) {}
+			map_iterator() {}
 
 			map_iterator(const map_iterator& src)
 			{
@@ -60,18 +60,38 @@ namespace ft
 
 			map_iterator&		operator=(const map_iterator& rhs)
 			{
-				this->_it = rhs._it;
+				this->_node = rhs._node;
 				return (*this);
 			}
 
 			value_type			*operator->()
 			{
-				return (this->_it);
+				return (this->_node->value);
 			}
 
-			map_iterator(value_type *ptr) : _it(ptr)
+			map_iterator&		operator++()
+			{
+				map_iterator		new_node;
+
+				this->_node = find_next(this->_node);
+				return (*this);
+			}
+
+			map_iterator(tree_type *node) : _node(node)
 			{
 			}
+
+			tree_type		*_node;
+
+		private :
+
+			tree_type		*find_next(tree_type *node)
+			{
+				if (!node->right)
+					return (node);
+				return(find_next(node->right));
+			}
+
 	};
 
 	template <class Key,
@@ -153,7 +173,12 @@ namespace ft
 		// iterator
 		iterator		begin()
 		{
-			return (iterator(this->_tree->value));
+			rbt<value_type>			*first_node;
+
+			first_node = this->_tree;
+			while (first_node->left != NULL)
+				first_node = this->_tree->left;
+			return (iterator(first_node));
 		}
 
 		// capacity
@@ -192,10 +217,9 @@ namespace ft
 			print_sorted(tree->left);
 			std::cout << "value = " << tree->value->first << std::endl;
 			print_sorted(tree->right);
-
 		}
-	private :
 
+	private :
 
 		key_compare										_compare;
 		allocator_type									_alloc;
@@ -203,9 +227,7 @@ namespace ft
 		rbt<value_type>									*_tree;
 		alloc_rbt										_alloc_rbt;
 
-
-
-		// inary tree function
+		// binary tree function
 
 		void		add_node(rbt<value_type> **tree, value_type new_node)
 		{
@@ -228,10 +250,7 @@ namespace ft
 				this->add_node(&(*tree)->right, new_node);
 			}
 		}
-
 	};
-
-		
 }
 
 #endif
