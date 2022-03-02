@@ -20,12 +20,17 @@ namespace ft
 			rbt(T* value) : value(value), right(NULL), left(NULL), end(false)
 			{
 			}
+			rbt(const rbt& src)
+			{
+				*this = src;
+			}
 
 			rbt&		operator=(const rbt& rhs)
 			{
 				this->value = rhs.value;
 				this->right = rhs.right;
 				this->left = rhs.left;
+				this->parent = rhs.parent;
 				return (*this);
 			}
 
@@ -74,11 +79,34 @@ namespace ft
 			{
 				const Key		origin_value = this->_node->value->first;
 
-				while (this->_node->value->first <= origin_value)
+				if (this->_node->end)
+					this->operator--();
+				else
 				{
-					std::cout << "endl" << std::endl;
-					if (this->_node->right && this->_node->right->value->first > origin_value)
-						this->_node = this->_node->right;
+					while (this->_node->value->first <= origin_value)
+					{
+						if (this->_node->right &&
+							(this->_node->right->value->first > origin_value
+							 || this->_node->right->end))
+							this->_node = this->_node->right;
+						else
+							this->_node = this->_node->parent;
+					}
+				}
+				return (*this);
+			}
+
+			map_iterator&		operator--()
+			{
+				tree_type		origin_node(*(this->_node));
+//				const Key		origin_value = this->_node->value->first;
+//				const bool		original_end = this->node->value->;
+
+				while (!(this->_node->end && !origin_node.end) && (!this->_node->end || (this->_node->value->first >= origin_node.value->first)))
+				{
+					if (this->_node->left &&
+						(this->_node->left->value->first < origin_node.value->first))
+						this->_node = this->_node->left;
 					else
 						this->_node = this->_node->parent;
 				}
@@ -87,6 +115,12 @@ namespace ft
 
 			map_iterator(tree_type *node) : _node(node)
 			{
+			}
+
+			template <class T2>
+			bool			operator!=(const T2& rhs)
+			{
+				return (this->_node != rhs._node);
 			}
 
 			tree_type		*_node;
@@ -120,7 +154,6 @@ namespace ft
 
 			typedef std::ptrdiff_t								difference_type;
 			typedef size_t										size_type;
-//			typedef std::allocator<rbt<value_type> >			alloc_rbt;
 			typedef typename allocator_type::template 
 									rebind<rbt<value_type> >::other			alloc_rbt;
 
@@ -155,6 +188,7 @@ namespace ft
 			value_type		end_node_value;
 
 			this->add_node(&this->_tree, end_node_value, NULL);
+			this->_end_node = this->_tree;
 			this->_tree->end = 1;
 		}
 
@@ -192,14 +226,7 @@ namespace ft
 
 		iterator		end()
 		{
-			rbt<value_type>			*first_node;
-
-			first_node = this->_tree;
-			while (first_node->right != NULL)
-			{
-				first_node = first_node->right;
-			}
-			return (iterator(first_node));
+			return (iterator(this->_end_node));
 		}
 
 		// capacity
@@ -247,22 +274,32 @@ namespace ft
 		allocator_type									_alloc;
 		size_type										_size;
 		rbt<value_type>									*_tree;
-		rbt<value_type>									_end_node;
+		rbt<value_type>									*_end_node;
 		alloc_rbt										_alloc_rbt;
 
 		// binary tree function
 
 		void		add_node(rbt<value_type> **tree, value_type new_node, rbt<value_type> *parent)
 		{
-			if (!(*tree) || (*tree && tree->value == this->_alloc_rbt)
+			if (!(*tree) || (*tree && *tree == this->_end_node))
 			{
 				ft::pair<const int, int>		*node_ptr;
+				bool							end_node;
 
+				if (*tree == this->_end_node)
+					end_node = true;
+				else
+					end_node = false;
 				node_ptr = this->_alloc.allocate(1);
 				this->_alloc.construct(node_ptr, new_node);
 				(*tree) = this->_alloc_rbt.allocate(1);
 				this->_alloc_rbt.construct(*tree, node_ptr);
 				(*tree)->parent = parent;
+				if (end_node)
+				{
+					(*tree)->right = this->_end_node;
+					this->_end_node->parent = *tree;
+				}
 			}
 			else if (!this->_compare((*tree)->value->first, new_node.first))
 			{

@@ -180,7 +180,7 @@ int	main(void)
 
 
 //	ft::rbt<ft::pair<const int, int> >		*rbt;
-/*
+
 	ft::map<int, int>						nbrs;
 //	nbrs["a"] = 4;
 //	nbrs["b"] = 4;
@@ -195,30 +195,62 @@ int	main(void)
 	nbrs.insert(ft::pair<int, int>(4, 6));
 	nbrs.insert(ft::pair<int, int>(5, 4));
 
+	// -8, -5, 4, 5, 10, 13, 25 
+
 //	rbt = nbrs.get_tree();
 //	nbrs.print_sorted(nbrs.get_tree());
 	
-	ft::map<int, int>::iterator		it;
-	
 //			std::cout << "END: first = " << it->first << " second = " << it->second<< std::endl;
-	it = nbrs.begin();
-
-
-	for (ft::map<std::string, int>::size_type i = 0; i < nbrs.size(); i++)
+	ft::map<int, int>::iterator it = nbrs.end();
+/*
+	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
+	++it;
+	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
+	--it;
+	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
+	++it;
+	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
+	++it;
+	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
+	++it;
+	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
+	++it;
+	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
+	++it;
+	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
+	++it;
+	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
+	++it;
+	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
+	++it;
+	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
+	*/
+	--it;
+	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
+	--it;
+	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
+	
+/*
+	for (ft::map<int, int>::iterator it = nbrs.begin(); it != nbrs.end(); ++it)
 	{
 		std::cout << "first = " << it->first << " second = " << it->second  << " size = " << nbrs.size() << std::endl;
-		std::cout << "i = " << i << std::endl;
-		++it;
-		std::cout << "i = " << i << std::endl;
 	}
-*/
+
 
 	std::map<int, int>					nbrs2;
 	std::map<int, int>::iterator		it2;
 
 	nbrs2[4] = 6;
 	it2 = nbrs2.end();
+
+	std::cout << "first = " << it2->first << std::endl;
+	++it2;
+	std::cout << "first = " << it2->first << std::endl;
+	++it2;
+	std::cout << "first = " << it2->first << std::endl;
 //	std::cout << "nbrs2.end() = " << &it2 << std::endl;
+	*/
+	/*
 	for (std::map<int, int>::iterator it = nbrs2.begin(); it != it2; it++)
 	{
 		std::cout << "first = " << it->first << std::endl;
@@ -232,7 +264,7 @@ int	main(void)
 	{
 		std::cout << "first = " << it->first << std::endl;
 	}
-
+	*/
 
 
 	
