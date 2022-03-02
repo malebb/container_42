@@ -16,8 +16,8 @@ namespace ft
 	{
 		public :
 
-			rbt() : right(NULL), left(NULL) {}
-			rbt(T* value) : value(value), right(NULL), left(NULL)
+			rbt() : right(NULL), left(NULL), end(false) {}
+			rbt(T* value) : value(value), right(NULL), left(NULL), end(false)
 			{
 			}
 
@@ -29,11 +29,11 @@ namespace ft
 				return (*this);
 			}
 
-
 			T			*value;
 			rbt			*right;
 			rbt			*left;
 			rbt			*parent;
+			bool		end;
 	};
 
 	struct bidirectional_iterator_tag {};
@@ -72,10 +72,16 @@ namespace ft
 
 			map_iterator&		operator++()
 			{
-				if (this->_node->right)
-					this->_node = this->_node->right;
-				else
-					this->_node = this->_node->parent;
+				const Key		origin_value = this->_node->value->first;
+
+				while (this->_node->value->first <= origin_value)
+				{
+					std::cout << "endl" << std::endl;
+					if (this->_node->right && this->_node->right->value->first > origin_value)
+						this->_node = this->_node->right;
+					else
+						this->_node = this->_node->parent;
+				}
 				return (*this);
 			}
 
@@ -146,6 +152,10 @@ namespace ft
 				const allocator_type& alloc = allocator_type())
 				: _compare(comp), _alloc(alloc), _size(0), _tree(NULL)
 		{
+			value_type		end_node_value;
+
+			this->add_node(&this->_tree, end_node_value, NULL);
+			this->_tree->end = 1;
 		}
 
 		map(const map& x)
@@ -167,6 +177,7 @@ namespace ft
 		}
 
 		// iterator
+
 		iterator		begin()
 		{
 			rbt<value_type>			*first_node;
@@ -175,6 +186,18 @@ namespace ft
 			while (first_node->left != NULL)
 			{
 				first_node = first_node->left;
+			}
+			return (iterator(first_node));
+		}
+
+		iterator		end()
+		{
+			rbt<value_type>			*first_node;
+
+			first_node = this->_tree;
+			while (first_node->right != NULL)
+			{
+				first_node = first_node->right;
 			}
 			return (iterator(first_node));
 		}
@@ -199,6 +222,7 @@ namespace ft
 		void		insert(value_type value)
 		{
 			this->add_node(&this->_tree, value, NULL);
+			this->_size++;
 		}
 
 		// modifiers
@@ -223,19 +247,19 @@ namespace ft
 		allocator_type									_alloc;
 		size_type										_size;
 		rbt<value_type>									*_tree;
+		rbt<value_type>									_end_node;
 		alloc_rbt										_alloc_rbt;
 
 		// binary tree function
 
 		void		add_node(rbt<value_type> **tree, value_type new_node, rbt<value_type> *parent)
 		{
-			if (!(*tree))
+			if (!(*tree) || (*tree && tree->value == this->_alloc_rbt)
 			{
-				ft::pair<const int, int>		value(new_node);
 				ft::pair<const int, int>		*node_ptr;
 
 				node_ptr = this->_alloc.allocate(1);
-				this->_alloc.construct(node_ptr, value);
+				this->_alloc.construct(node_ptr, new_node);
 				(*tree) = this->_alloc_rbt.allocate(1);
 				this->_alloc_rbt.construct(*tree, node_ptr);
 				(*tree)->parent = parent;
