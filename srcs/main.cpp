@@ -4,7 +4,6 @@
 #include <algorithm>
 #include <stack>
 #include <map>
-#include <time.h>
 
 void	test_reverse_iterator(void)
 {
@@ -162,16 +161,15 @@ int	main(void)
 //	test_reverse_iterator();
 //	test_vector();
 
-	srand(time(NULL));
 	ft::map<int, int>		nbrs;
 
+//	nbrs[4] = 20;
+//	nbrs[10] = 20;
 	nbrs.insert(ft::make_pair(4, 20));
 	nbrs.insert(ft::make_pair(10, 20));
 
 	ft::map<int, int>::iterator it = nbrs.begin();
-	it++;
-	std::cout << "it = " << (it--)->first << std::endl;
-	std::cout << "it = " << (it)->first << std::endl;
+	std::cout << "it = " << (*it).first << std::endl;
 	/*
 	for (ft::map<int, int>::iterator it = nbrs.begin(); it != nbrs.end(); ++it)
 	{

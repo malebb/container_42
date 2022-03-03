@@ -93,6 +93,11 @@ namespace ft
 				return (this->_node->value);
 			}
 
+			value_type			&operator*()
+			{
+				return (*(this->_node->value));
+			}
+
 			// Increment / decrement operators
 
 			map_iterator&		operator++()
