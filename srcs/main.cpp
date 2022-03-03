@@ -225,10 +225,11 @@ int	main(void)
 	++it;
 	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
 	*/
-	--it;
-	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
-	--it;
-	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
+	for (int i = 0; i < 10 ; i++)
+	{
+		--it;
+		std::cout << "first = " << it->first << " second = " << it->second << std::endl;
+	}
 	
 /*
 	for (ft::map<int, int>::iterator it = nbrs.begin(); it != nbrs.end(); ++it)
@@ -236,20 +237,21 @@ int	main(void)
 		std::cout << "first = " << it->first << " second = " << it->second  << " size = " << nbrs.size() << std::endl;
 	}
 
-
 	std::map<int, int>					nbrs2;
 	std::map<int, int>::iterator		it2;
 
 	nbrs2[4] = 6;
+	nbrs2[8] = 6;
 	it2 = nbrs2.end();
 
 	std::cout << "first = " << it2->first << std::endl;
-	++it2;
+	--it2;
 	std::cout << "first = " << it2->first << std::endl;
-	++it2;
+	--it2;
 	std::cout << "first = " << it2->first << std::endl;
 //	std::cout << "nbrs2.end() = " << &it2 << std::endl;
-	*/
+	
+*/
 	/*
 	for (std::map<int, int>::iterator it = nbrs2.begin(); it != it2; it++)
 	{

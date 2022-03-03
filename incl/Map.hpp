@@ -99,16 +99,21 @@ namespace ft
 			map_iterator&		operator--()
 			{
 				tree_type		origin_node(*(this->_node));
-//				const Key		origin_value = this->_node->value->first;
-//				const bool		original_end = this->node->value->;
 
-				while (!(this->_node->end && !origin_node.end) && (!this->_node->end || (this->_node->value->first >= origin_node.value->first)))
+				if (get_first_value()->first == origin_node.value->first)
+					return (*this);
+				else if (this->_node->end)
+					this->_node = this->_node->parent;
+				else
 				{
-					if (this->_node->left &&
-						(this->_node->left->value->first < origin_node.value->first))
-						this->_node = this->_node->left;
-					else
-						this->_node = this->_node->parent;
+					while (this->_node->value->first >= origin_node.value->first)
+					{
+						if (this->_node->left &&
+							(this->_node->left->value->first < origin_node.value->first))
+							this->_node = this->_node->left;
+						else
+							this->_node = this->_node->parent;
+					}
 				}
 				return (*this);
 			}
@@ -127,7 +132,21 @@ namespace ft
 
 		private :
 
+			value_type		*get_first_value()
+			{
+				tree_type		*origin_node;
 
+				origin_node = this->_node;
+				while (origin_node->parent)
+				{
+					origin_node = origin_node->parent;
+				}
+				while (origin_node->left != NULL)
+				{
+					origin_node = origin_node->left;
+				}
+				return (origin_node->value);
+			}
 	};
 
 	template <class Key,
