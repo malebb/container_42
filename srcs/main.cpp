@@ -167,9 +167,12 @@ int	main(void)
 //	nbrs[10] = 20;
 	nbrs.insert(ft::make_pair(4, 20));
 	nbrs.insert(ft::make_pair(10, 20));
-
 	ft::map<int, int>::iterator it = nbrs.begin();
-	std::cout << "it = " << (*it).first << std::endl;
+	ft::map<int, int>::iterator it2 = nbrs.begin();
+
+	if (it != it2)
+		std::cout << "it != it2" << std::endl;
+
 	/*
 	for (ft::map<int, int>::iterator it = nbrs.begin(); it != nbrs.end(); ++it)
 	{

@@ -81,9 +81,15 @@ namespace ft
 			// comparison operators
 
 			template <class T2>
+			bool			operator==(const T2& rhs)
+			{
+				return (this->_node == rhs._node);
+			}
+
+			template <class T2>
 			bool			operator!=(const T2& rhs)
 			{
-				return (this->_node != rhs._node);
+				return (!(*this == rhs));
 			}
 
 			// member access operators
