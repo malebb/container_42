@@ -57,6 +57,8 @@ namespace ft
 
 		public :
 
+			// Constructors / destructor
+
 			map_iterator() {}
 
 			map_iterator(const map_iterator& src)
@@ -70,10 +72,28 @@ namespace ft
 				return (*this);
 			}
 
+			map_iterator(tree_type *node) : _node(node)
+			{
+			}
+
+			virtual ~map_iterator() {}
+
+			// comparison operators
+
+			template <class T2>
+			bool			operator!=(const T2& rhs)
+			{
+				return (this->_node != rhs._node);
+			}
+
+			// member access operators
+
 			value_type			*operator->()
 			{
 				return (this->_node->value);
 			}
+
+			// Increment / decrement operators
 
 			map_iterator&		operator++()
 			{
@@ -98,6 +118,14 @@ namespace ft
 					}
 				}
 				return (*this);
+			}
+
+			map_iterator		operator++(int)
+			{
+				map_iterator		tmp(*this);
+
+				this->operator++();
+				return (tmp);
 			}
 
 			map_iterator&		operator--()
@@ -128,15 +156,14 @@ namespace ft
 				return (*this);
 			}
 
-			map_iterator(tree_type *node) : _node(node)
+			map_iterator		operator--(int)
 			{
+				map_iterator		tmp(*this);
+
+				this->operator--();
+				return (tmp);
 			}
 
-			template <class T2>
-			bool			operator!=(const T2& rhs)
-			{
-				return (this->_node != rhs._node);
-			}
 
 			tree_type		*_node;
 
