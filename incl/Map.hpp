@@ -297,14 +297,14 @@ namespace ft
 
 		iterator		begin()
 		{
-			rbt<value_type>			*first_node;
+			rbt<value_type>			*node;
 
-			first_node = this->_tree;
-			while (first_node->left != NULL)
+			node = this->_tree;
+			while (node->left != NULL)
 			{
-				first_node = first_node->left;
+				node = node->left;
 			}
-			return (iterator(first_node));
+			return (iterator(node));
 		}
 
 		iterator		end()
@@ -340,7 +340,18 @@ namespace ft
 		
 		iterator	insert(iterator position, const value_type& val)
 		{
+			iterator			next_to_position;
 
+			next_to_position = position;
+			next_to_position++;
+			if (position->first < val.first && next_to_position->first < val.first)
+			{
+				position
+				std::cout << "FIRST = " << node->value->first << std::endl;
+			}
+		//	else
+				insert(val);
+			return (position);
 		}
 
 	private :

@@ -161,17 +161,19 @@ int	main(void)
 //	test_reverse_iterator();
 //	test_vector();
 
-	std::map<int, int>		nbrs;
-	std::map<int, int>::iterator		it;
+	ft::map<int, int>		nbrs;
+	ft::map<int, int>::iterator		it;
 
 //	nbrs[4] = 20;
 //	nbrs[10] = 20;
-	nbrs.insert(std::make_pair(50, 20));
-	nbrs.insert(std::make_pair(30, 20));
-	nbrs.insert(std::make_pair(10, 20));
+	nbrs.insert(ft::make_pair(50, 20));
+	nbrs.insert(ft::make_pair(30, 20));
+	nbrs.insert(ft::make_pair(12, 20));
+	nbrs.insert(ft::make_pair(33, 20));
 	it = nbrs.begin();
-	nbrs.insert(it, std::make_pair(5, 50));
-	for (std::map<int, int>::iterator it = nbrs.begin(); it != nbrs.end(); it++)
+	it++;
+	nbrs.insert(it, ft::make_pair(34, 50));
+	for (ft::map<int, int>::iterator it = nbrs.begin(); it != nbrs.end(); it++)
 	{
 		std::cout << "first = " << it->first << " second = " << it->second << std::endl;
 	}
