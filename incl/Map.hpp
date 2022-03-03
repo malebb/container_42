@@ -83,7 +83,7 @@ namespace ft
 					this->operator--();
 				else
 				{
-					while (this->_node->value->first <= origin_value)
+					while (this->_node->value->first <= origin_value && !this->_node->end)
 					{
 						if (this->_node->right &&
 							(this->_node->right->value->first > origin_value
@@ -91,6 +91,10 @@ namespace ft
 							this->_node = this->_node->right;
 						else
 							this->_node = this->_node->parent;
+					}
+					while (this->_node->left && (this->_node->left->value->first > origin_value))
+					{
+						this->_node = this->_node->left;
 					}
 				}
 				return (*this);
@@ -113,6 +117,10 @@ namespace ft
 							this->_node = this->_node->left;
 						else
 							this->_node = this->_node->parent;
+					}
+					while (this->_node->right && (this->_node->right->value->first < origin_node.value->first))
+					{
+						this->_node = this->_node->right;
 					}
 				}
 				return (*this);

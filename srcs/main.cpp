@@ -186,14 +186,23 @@ int	main(void)
 //	nbrs["b"] = 4;
 //	nbrs["c"] = 6;
 //	nbrs["d"] = 4;
+	
+//	nbrs[10] = 4;
+//	nbrs[-5] = 4;
+//	nbrs[13] = 4;
+//	nbrs[-8] = 4;
+//	nbrs[25] = 4;
+//	nbrs[4] = 6;
+//	nbrs[5] = 4;
 
 	nbrs.insert(ft::pair<int, int>(10, 4));
 	nbrs.insert(ft::pair<int, int>(-5, 4));
 	nbrs.insert(ft::pair<int, int>(13, 4));
 	nbrs.insert(ft::pair<int, int>(-8, 4));
-	nbrs.insert(ft::pair<int, int>(25, 4));
-	nbrs.insert(ft::pair<int, int>(4, 6));
-	nbrs.insert(ft::pair<int, int>(5, 4));
+	nbrs.insert(ft::pair<int, int>(8, 4));
+	nbrs.insert(ft::pair<int, int>(6, 4));
+	nbrs.insert(ft::pair<int, int>(7, 4));
+
 
 	// -8, -5, 4, 5, 10, 13, 25 
 
@@ -201,7 +210,7 @@ int	main(void)
 //	nbrs.print_sorted(nbrs.get_tree());
 	
 //			std::cout << "END: first = " << it->first << " second = " << it->second<< std::endl;
-	ft::map<int, int>::iterator it = nbrs.end();
+	ft::map<int, int>::iterator it = nbrs.begin();
 /*
 	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
 	++it;
@@ -227,8 +236,8 @@ int	main(void)
 	*/
 	for (int i = 0; i < 10 ; i++)
 	{
-		--it;
 		std::cout << "first = " << it->first << " second = " << it->second << std::endl;
+		++it;
 	}
 	
 /*
