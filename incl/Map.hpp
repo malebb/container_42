@@ -329,26 +329,18 @@ namespace ft
 
 		}
 */
-		void		insert(value_type value)
-		{
-			this->add_node(&this->_tree, value, NULL);
-			this->_size++;
-		}
 
 		// modifiers
-		rbt<value_type>		*get_tree(void) const
-		{
-			return (this->_tree);
-		}
 
-		void		print_sorted(rbt<value_type> *tree)
+		void		insert(const value_type& val)
 		{
-			if (!tree)
-				return ;
+			this->add_node(&this->_tree, val, NULL);
+			this->_size++;
+		}
 		
-			print_sorted(tree->left);
-			std::cout << "value = " << tree->value->first << std::endl;
-			print_sorted(tree->right);
+		iterator	insert(iterator position, const value_type& val)
+		{
+
 		}
 
 	private :
@@ -385,13 +377,9 @@ namespace ft
 				}
 			}
 			else if (!this->_compare((*tree)->value->first, new_node.first))
-			{
 				this->add_node(&(*tree)->left, new_node, *tree);
-			}
 			else
-			{
 				this->add_node(&(*tree)->right, new_node, *tree);
-			}
 		}
 	};
 }
