@@ -105,7 +105,9 @@ namespace ft
 				tree_type		origin_node(*(this->_node));
 
 				if (get_first_value()->first == origin_node.value->first)
-					return (*this);
+				{
+					this->_node = get_last();
+				}
 				else if (this->_node->end)
 					this->_node = this->_node->parent;
 				else
@@ -154,6 +156,22 @@ namespace ft
 					origin_node = origin_node->left;
 				}
 				return (origin_node->value);
+			}
+
+			tree_type		*get_last()
+			{
+				tree_type		*origin_node;
+
+				origin_node = this->_node;
+				while (origin_node->parent)
+				{
+					origin_node = origin_node->parent;
+				}
+				while (origin_node->right != NULL)
+				{
+					origin_node = origin_node->right;
+				}
+				return (origin_node);
 			}
 	};
 

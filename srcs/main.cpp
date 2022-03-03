@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <stack>
 #include <map>
+#include <time.h>
 
 void	test_reverse_iterator(void)
 {
@@ -160,137 +161,14 @@ int	main(void)
 
 //	test_reverse_iterator();
 //	test_vector();
-//	int nb = 4;	
-//	std::vector<int>::iterator		it(&nb);
 
-//	std::cout << *it << std::endl;
-/*
-	std::vector<int>				nbs;
-	std::vector<int>::iterator		it_v;
+	srand(time(NULL));
+	ft::map<int, int>		nbrs;
 
-	it_v = nbs.begin();
-
-	for (std::vector<int>::size_type i = 0; i < nbs.size(); i++)
-	{
-		std::cout << "*it = " << *it_v << std::endl;
-		++it_v;
-	}
-	std::cout << "---------------------------" << std::endl;
-	*/
-
-
-//	ft::rbt<ft::pair<const int, int> >		*rbt;
-
-	ft::map<int, int>						nbrs;
-//	nbrs["a"] = 4;
-//	nbrs["b"] = 4;
-//	nbrs["c"] = 6;
-//	nbrs["d"] = 4;
-	
-//	nbrs[10] = 4;
-//	nbrs[-5] = 4;
-//	nbrs[13] = 4;
-//	nbrs[-8] = 4;
-//	nbrs[25] = 4;
-//	nbrs[4] = 6;
-//	nbrs[5] = 4;
-
-	nbrs.insert(ft::pair<int, int>(10, 4));
-	nbrs.insert(ft::pair<int, int>(-5, 4));
-	nbrs.insert(ft::pair<int, int>(13, 4));
-	nbrs.insert(ft::pair<int, int>(-8, 4));
-	nbrs.insert(ft::pair<int, int>(8, 4));
-	nbrs.insert(ft::pair<int, int>(6, 4));
-	nbrs.insert(ft::pair<int, int>(7, 4));
-
-
-	// -8, -5, 4, 5, 10, 13, 25 
-
-//	rbt = nbrs.get_tree();
-//	nbrs.print_sorted(nbrs.get_tree());
-	
-//			std::cout << "END: first = " << it->first << " second = " << it->second<< std::endl;
-	ft::map<int, int>::iterator it = nbrs.begin();
-/*
-	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
-	++it;
-	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
-	--it;
-	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
-	++it;
-	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
-	++it;
-	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
-	++it;
-	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
-	++it;
-	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
-	++it;
-	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
-	++it;
-	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
-	++it;
-	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
-	++it;
-	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
-	*/
-	for (int i = 0; i < 10 ; i++)
-	{
-		std::cout << "first = " << it->first << " second = " << it->second << std::endl;
-		++it;
-	}
-	
-/*
+	nbrs.insert(ft::make_pair(10, 20));
 	for (ft::map<int, int>::iterator it = nbrs.begin(); it != nbrs.end(); ++it)
 	{
-		std::cout << "first = " << it->first << " second = " << it->second  << " size = " << nbrs.size() << std::endl;
+		std::cout << "it = " << it->first << std::endl;
 	}
-
-	std::map<int, int>					nbrs2;
-	std::map<int, int>::iterator		it2;
-
-	nbrs2[4] = 6;
-	nbrs2[8] = 6;
-	it2 = nbrs2.end();
-
-	std::cout << "first = " << it2->first << std::endl;
-	--it2;
-	std::cout << "first = " << it2->first << std::endl;
-	--it2;
-	std::cout << "first = " << it2->first << std::endl;
-//	std::cout << "nbrs2.end() = " << &it2 << std::endl;
-	
-*/
-	/*
-	for (std::map<int, int>::iterator it = nbrs2.begin(); it != it2; it++)
-	{
-		std::cout << "first = " << it->first << std::endl;
-	}
-	std::cout << "======================================" << std::endl;
-	nbrs2[5] = 6;
-	nbrs2[6] = 6;
-	nbrs2[7] = 6;
-	nbrs2[8] = 6;
-	for (std::map<int, int>::iterator it = nbrs2.begin(); it != it2; it++)
-	{
-		std::cout << "first = " << it->first << std::endl;
-	}
-	*/
-
-
-	
-/*
-	while (rbt)
-	{
-		std::cout << "value = " << rbt->value->first << std::endl;
-		rbt = rbt->left;
-	}
-	*/
-
-//	make_
-//	ft::rbt<ft::pair<int, int> > tree(ft::make_pair(6, 5));
-
-//	std::cout << "first = " << tree._value.first << "second = "
-//		<< tree._value.second << std::endl;
 	return (0);
 }
