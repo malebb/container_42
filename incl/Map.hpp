@@ -332,10 +332,14 @@ namespace ft
 
 		// modifiers
 
-		void		insert(const value_type& val)
+		ft::pair<iterator, bool>		insert(const value_type& val)
 		{
-			this->add_node(&this->_tree, val, NULL);
-			this->_size++;
+			ft::pair<iterator, bool>	ret;
+
+			ret = this->add_node(&this->_tree, val, NULL);
+			if (ret.second)
+				this->_size++;
+			return (ret);
 		}
 		
 		iterator	insert(iterator position, const value_type& val)
@@ -357,11 +361,10 @@ namespace ft
 				new_node->parent = position.node;
 				new_node->right = old_node;
 				this->_size++;
-				std::cout << "OPTIMISED" << std::endl;
+				return (new_node);
 			}
 			else
-				insert(val);
-			return (position);
+				return (insert(val).first);
 		}
 
 	private :
@@ -389,9 +392,10 @@ namespace ft
 			return (new_node);
 		}
 
-		void		add_node(rbt<value_type> **tree, value_type node_value, rbt<value_type> *parent)
+		ft::pair<iterator, bool>		add_node(rbt<value_type> **tree, value_type node_value, rbt<value_type> *parent)
 		{
-			bool					end_node;
+			bool							end_node;
+			ft::pair<iterator, bool>		ret;
 
 			if (!(*tree) || (*tree && *tree == this->_end_node))
 			{
@@ -406,11 +410,20 @@ namespace ft
 					(*tree)->right = this->_end_node;
 					this->_end_node->parent = *tree;
 				}
+				ret.first = iterator(*tree);
+				ret.second = true;
+				return (ret);
+			}
+			else if ((*tree)->value->first == node_value.first)
+			{
+				ret.first = iterator(*tree);
+				ret.second = false;
+				return (ret);
 			}
 			else if (!this->_compare((*tree)->value->first, node_value.first))
-				this->add_node(&(*tree)->left, node_value, *tree);
+				return (this->add_node(&(*tree)->left, node_value, *tree));
 			else
-				this->add_node(&(*tree)->right, node_value, *tree);
+				return (this->add_node(&(*tree)->right, node_value, *tree));
 		}
 	};
 }
