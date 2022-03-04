@@ -166,13 +166,22 @@ int	main(void)
 
 //	nbrs[4] = 20;
 //	nbrs[10] = 20;
+
+	nbrs.insert(ft::make_pair(9, 20));
+	nbrs.insert(ft::make_pair(11, 20));
+	nbrs.insert(ft::make_pair(10, 20));
+	nbrs.insert(ft::make_pair(26, 20));
+	nbrs.insert(ft::make_pair(16, 20));
 	nbrs.insert(ft::make_pair(50, 20));
 	nbrs.insert(ft::make_pair(30, 20));
-	nbrs.insert(ft::make_pair(12, 20));
-	nbrs.insert(ft::make_pair(33, 20));
-	it = nbrs.begin();
-	it++;
-	nbrs.insert(it, ft::make_pair(34, 50));
+	nbrs.insert(ft::make_pair(28, 20));
+	nbrs.insert(ft::make_pair(43, 20));
+	it = nbrs.end();
+	it--;
+	it--;
+	it--;
+	std::cout << "IT = " << it->first << std::endl;
+	nbrs.insert(it, ft::make_pair(44, 50));
 	for (ft::map<int, int>::iterator it = nbrs.begin(); it != nbrs.end(); it++)
 	{
 		std::cout << "first = " << it->first << " second = " << it->second << std::endl;

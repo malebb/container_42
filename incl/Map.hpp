@@ -68,11 +68,11 @@ namespace ft
 
 			map_iterator&		operator=(const map_iterator& rhs)
 			{
-				this->_node = rhs._node;
+				this->node = rhs.node;
 				return (*this);
 			}
 
-			map_iterator(tree_type *node) : _node(node)
+			map_iterator(tree_type *node) : node(node)
 			{
 			}
 
@@ -83,7 +83,7 @@ namespace ft
 			template <class T2>
 			bool			operator==(const T2& rhs)
 			{
-				return (this->_node == rhs._node);
+				return (this->node == rhs.node);
 			}
 
 			template <class T2>
@@ -96,36 +96,36 @@ namespace ft
 
 			value_type			*operator->()
 			{
-				return (this->_node->value);
+				return (this->node->value);
 			}
 
 			value_type			&operator*()
 			{
-				return (*(this->_node->value));
+				return (*(this->node->value));
 			}
 
 			// Increment / decrement operators
 
 			map_iterator&		operator++()
 			{
-				const Key		origin_value = this->_node->value->first;
+				const Key		origin_value = this->node->value->first;
 
-				if (this->_node->end)
+				if (this->node->end)
 					this->operator--();
 				else
 				{
-					while (this->_node->value->first <= origin_value && !this->_node->end)
+					while (this->node->value->first <= origin_value && !this->node->end)
 					{
-						if (this->_node->right &&
-							(this->_node->right->value->first > origin_value
-							 || this->_node->right->end))
-							this->_node = this->_node->right;
+						if (this->node->right &&
+							(this->node->right->value->first > origin_value
+							 || this->node->right->end))
+							this->node = this->node->right;
 						else
-							this->_node = this->_node->parent;
+							this->node = this->node->parent;
 					}
-					while (this->_node->left && (this->_node->left->value->first > origin_value))
+					while (this->node->left && (this->node->left->value->first > origin_value))
 					{
-						this->_node = this->_node->left;
+						this->node = this->node->left;
 					}
 				}
 				return (*this);
@@ -141,27 +141,27 @@ namespace ft
 
 			map_iterator&		operator--()
 			{
-				tree_type		origin_node(*(this->_node));
+				tree_type		origin_node(*(this->node));
 
 				if (get_first_value()->first == origin_node.value->first)
 				{
-					this->_node = get_last();
+					this->node = get_last();
 				}
-				else if (this->_node->end)
-					this->_node = this->_node->parent;
+				else if (this->node->end)
+					this->node = this->node->parent;
 				else
 				{
-					while (this->_node->value->first >= origin_node.value->first)
+					while (this->node->value->first >= origin_node.value->first)
 					{
-						if (this->_node->left &&
-							(this->_node->left->value->first < origin_node.value->first))
-							this->_node = this->_node->left;
+						if (this->node->left &&
+							(this->node->left->value->first < origin_node.value->first))
+							this->node = this->node->left;
 						else
-							this->_node = this->_node->parent;
+							this->node = this->node->parent;
 					}
-					while (this->_node->right && (this->_node->right->value->first < origin_node.value->first))
+					while (this->node->right && (this->node->right->value->first < origin_node.value->first))
 					{
-						this->_node = this->_node->right;
+						this->node = this->node->right;
 					}
 				}
 				return (*this);
@@ -176,7 +176,7 @@ namespace ft
 			}
 
 
-			tree_type		*_node;
+			tree_type		*node;
 
 		private :
 
@@ -184,7 +184,7 @@ namespace ft
 			{
 				tree_type		*origin_node;
 
-				origin_node = this->_node;
+				origin_node = this->node;
 				while (origin_node->parent)
 				{
 					origin_node = origin_node->parent;
@@ -200,7 +200,7 @@ namespace ft
 			{
 				tree_type		*origin_node;
 
-				origin_node = this->_node;
+				origin_node = this->node;
 				while (origin_node->parent)
 				{
 					origin_node = origin_node->parent;
@@ -341,15 +341,22 @@ namespace ft
 		iterator	insert(iterator position, const value_type& val)
 		{
 			iterator			next_to_position;
+			rbt<value_type>		*new_node;
+			rbt<value_type>		*old_node;
 
 			next_to_position = position;
 			next_to_position++;
-			if (position->first < val.first && next_to_position->first < val.first)
+			if (position->first < val.first && next_to_position->first > val.first)
 			{
-				position
-				std::cout << "FIRST = " << node->value->first << std::endl;
+				new_node = this->create_node(val);
+				old_node = position.node->right;
+				if (old_node)
+					position.node->right->parent = new_node;
+				position.node->right = new_node;
+				new_node->parent = position.node;
+				new_node->right = old_node;
 			}
-		//	else
+			else
 				insert(val);
 			return (position);
 		}
@@ -365,21 +372,31 @@ namespace ft
 
 		// binary tree function
 
-		void		add_node(rbt<value_type> **tree, value_type new_node, rbt<value_type> *parent)
+		rbt<value_type>				*create_node(value_type node_value)
 		{
+			rbt<value_type>			*new_node;
+			value_type				*node_value_ptr;
+
+
+			node_value_ptr = this->_alloc.allocate(1);
+			this->_alloc.construct(node_value_ptr, node_value);
+
+			new_node = this->_alloc_rbt.allocate(1);
+			this->_alloc_rbt.construct(new_node, node_value_ptr);
+			return (new_node);
+		}
+
+		void		add_node(rbt<value_type> **tree, value_type node_value, rbt<value_type> *parent)
+		{
+			bool					end_node;
+
 			if (!(*tree) || (*tree && *tree == this->_end_node))
 			{
-				ft::pair<const int, int>		*node_ptr;
-				bool							end_node;
-
-				if (*tree == this->_end_node)
+				if ((*tree) == this->_end_node)
 					end_node = true;
 				else
 					end_node = false;
-				node_ptr = this->_alloc.allocate(1);
-				this->_alloc.construct(node_ptr, new_node);
-				(*tree) = this->_alloc_rbt.allocate(1);
-				this->_alloc_rbt.construct(*tree, node_ptr);
+				(*tree) = this->create_node(node_value);
 				(*tree)->parent = parent;
 				if (end_node)
 				{
@@ -387,10 +404,10 @@ namespace ft
 					this->_end_node->parent = *tree;
 				}
 			}
-			else if (!this->_compare((*tree)->value->first, new_node.first))
-				this->add_node(&(*tree)->left, new_node, *tree);
+			else if (!this->_compare((*tree)->value->first, node_value.first))
+				this->add_node(&(*tree)->left, node_value, *tree);
 			else
-				this->add_node(&(*tree)->right, new_node, *tree);
+				this->add_node(&(*tree)->right, node_value, *tree);
 		}
 	};
 }
