@@ -346,7 +346,8 @@ namespace ft
 
 			next_to_position = position;
 			next_to_position++;
-			if (position->first < val.first && next_to_position->first > val.first)
+			if (!position.node->end && position->first < val.first && (next_to_position.node->end
+						|| next_to_position->first > val.first))
 			{
 				new_node = this->create_node(val);
 				old_node = position.node->right;
@@ -355,6 +356,8 @@ namespace ft
 				position.node->right = new_node;
 				new_node->parent = position.node;
 				new_node->right = old_node;
+				this->_size++;
+				std::cout << "OPTIMISED" << std::endl;
 			}
 			else
 				insert(val);

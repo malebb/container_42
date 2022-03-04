@@ -163,25 +163,22 @@ int	main(void)
 
 	ft::map<int, int>		nbrs;
 	ft::map<int, int>::iterator		it;
+	ft::pair<const int, int>		p(200, 50);
 
 //	nbrs[4] = 20;
 //	nbrs[10] = 20;
+	nbrs.insert(ft::make_pair(3, 8));
+	nbrs.insert(ft::make_pair(5, 8));
+	nbrs.insert(ft::make_pair(10, 8));
+	nbrs.insert(ft::make_pair(30, 8));
+	nbrs.insert(ft::make_pair(100, 8));
+	nbrs.insert(ft::make_pair(40, 8));
+	nbrs.insert(ft::make_pair(35, 8));
 
-	nbrs.insert(ft::make_pair(9, 20));
-	nbrs.insert(ft::make_pair(11, 20));
-	nbrs.insert(ft::make_pair(10, 20));
-	nbrs.insert(ft::make_pair(26, 20));
-	nbrs.insert(ft::make_pair(16, 20));
-	nbrs.insert(ft::make_pair(50, 20));
-	nbrs.insert(ft::make_pair(30, 20));
-	nbrs.insert(ft::make_pair(28, 20));
-	nbrs.insert(ft::make_pair(43, 20));
+
 	it = nbrs.end();
-	it--;
-	it--;
-	it--;
 	std::cout << "IT = " << it->first << std::endl;
-	nbrs.insert(it, ft::make_pair(44, 50));
+	nbrs.insert(it, p);
 	for (ft::map<int, int>::iterator it = nbrs.begin(); it != nbrs.end(); it++)
 	{
 		std::cout << "first = " << it->first << " second = " << it->second << std::endl;
