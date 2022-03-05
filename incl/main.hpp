@@ -9,9 +9,10 @@
 #include <iostream>
 #include <iterator>
 #include <vector>
+#include <map>
 
 
-//test functions
+// test vector
 
 void	test_vector(void);
 void	test_vector_iterator(void);
@@ -22,7 +23,12 @@ void	test_vector_modifiers(void);
 void	test_vector_allocator(void);
 void	test_vector_relational_operators(void);
 
-//utils
+// test map
+
+void	test_map(void);
+void	test_map_modifiers(void);
+
+// utils
 
 template<typename T>
 void	display_tab(const ft::vector<T> & cont);
@@ -48,6 +54,30 @@ void	display_tab(const ft::vector<T> & cont)
 	std::cout << std::endl;
 
 }
+
+template<typename Key, typename T>
+void	display_map(ft::map<Key, T> & cont)
+{
+	typename ft::map<Key, T>::iterator next;
+
+	std::cout << "{";
+	for (typename ft::map<Key, T>::iterator it = cont.begin(); it != cont.end(); it++)
+	{
+		std::cout << "{";
+		std::cout << it->first;
+		std::cout << " => ";
+		std::cout << it->second;
+		std::cout << "}";
+		next = it;
+		next++;
+		if (next != cont.end())
+			std::cout << ", ";
+	}
+	std::cout << "}";
+	std::cout << std::endl;
+
+}
+
 
 void			check_comparison(bool n);
 

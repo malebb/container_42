@@ -16,8 +16,9 @@ namespace ft
 	{
 		public :
 
-			rbt() : right(NULL), left(NULL), end(false) {}
-			rbt(T* value) : value(value), right(NULL), left(NULL), end(false)
+			rbt() : right(NULL), left(NULL), parent(NULL), end(false) {}
+			rbt(T* value) : value(value), right(NULL), left(NULL),
+				parent(NULL), end(false)
 			{
 			}
 			rbt(const rbt& src)
@@ -270,9 +271,9 @@ namespace ft
 		{
 			value_type		end_node_value;
 
-			this->add_node(&this->_tree, end_node_value, NULL);
-			this->_end_node = this->_tree;
-			this->_tree->end = 1;
+			this->_end_node = this->create_node(value_type());
+			this->_end_node->end = 1;
+			this->_tree = this->_end_node;
 		}
 
 		map(const map& x)
@@ -365,6 +366,16 @@ namespace ft
 			}
 			else
 				return (insert(val).first);
+		}
+
+		template <class InputIterator>
+		void	insert(InputIterator first, InputIterator last)
+		{
+			while (first != last)
+			{
+				this->insert(*first);
+				first++;
+			}
 		}
 
 	private :

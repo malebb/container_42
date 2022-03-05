@@ -161,31 +161,15 @@ int	main(void)
 //	test_reverse_iterator();
 //	test_vector();
 	test_map();
-
-	ft::map<int, int>		nbrs;
-	ft::map<int, int>::iterator		it;
-	ft::pair<const int, int>		p(200, 50);
-	ft::pair<ft::map<int, int>::iterator, bool>		p2;
-
-//	nbrs[4] = 20;
-//	nbrs[10] = 20;
-	p2 = nbrs.insert(ft::make_pair(3, 8));
-	p2 = nbrs.insert(ft::make_pair(3, 4));
-	std::cout << "FIRST = " << p2.first->first << "SECOND = " << p2.first->second << "BOOL = " << p2.second << std::endl;
-//	nbrs.insert(ft::make_pair(35, 8));
-
-
-	it = nbrs.end();
-//	nbrs.insert(it, p);
-	for (ft::map<int, int>::iterator it = nbrs.begin(); it != nbrs.end(); it++)
-	{
-		std::cout << "first = " << it->first << " second = " << it->second << std::endl;
-	}
-
 	/*
-	for (ft::map<int, int>::iterator it = nbrs.begin(); it != nbrs.end(); ++it)
+
+	std::map<int, std::string>		numbers;
+
+	std::cout << std::endl;
+	numbers.insert(numbers.end(), std::make_pair<int, std::string>(1, "un"));
+	for (std::map<int, std::string>::iterator it = numbers.begin(); it != numbers.end(); it++)
 	{
-		std::cout << "it = " << it->first << std::endl;
+		std::cout << "first = " << it->first << std::endl;
 	}
 	*/
 	return (0);

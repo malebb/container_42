@@ -1,6 +1,6 @@
 #include "main.hpp"
 
-void	test_push_back(void)
+static void		test_push_back(void)
 {
 	std::cout << std::endl;
 	std::cout << ">> Test push_back function" << std::endl;
@@ -28,7 +28,7 @@ void	test_push_back(void)
 	std::cout << std::endl;
 }
 
-void	test_pop_back(void)
+static void		test_pop_back(void)
 {
 	std::cout << std::endl;
 	std::cout << ">> Test pop_back function" << std::endl;
@@ -55,7 +55,7 @@ void	test_pop_back(void)
 	std::cout << std::endl;
 }
 
-void	test_assign(void)
+static void		test_assign(void)
 {
 	std::cout << std::endl;
 	std::cout << ">> Test assign function" << std::endl;
@@ -83,7 +83,7 @@ void	test_assign(void)
 	std::cout << std::endl;
 }
 
-void	test_insert(void)
+static void		test_insert(void)
 {
 	std::cout << std::endl;
 	std::cout << ">> Test insert function" << std::endl;
@@ -122,7 +122,7 @@ void	test_insert(void)
 
 }
 
-void	test_erase(void)
+static void		test_erase(void)
 {
 	std::cout << std::endl;
 	std::cout << ">> Test erase function" << std::endl;
@@ -155,7 +155,7 @@ void	test_erase(void)
 	std::cout << std::endl;
 }
 
-void	test_swap(void)
+static void		test_swap(void)
 {
 	std::cout << std::endl;
 	std::cout << ">> Test swap function" << std::endl;
@@ -183,7 +183,7 @@ void	test_swap(void)
 	std::cout << std::endl;
 }
 
-void	test_swap_overload(void)
+static void		test_swap_overload(void)
 {
 	std::cout << std::endl;
 	std::cout << ">> Test swap overload function" << std::endl;
@@ -209,7 +209,7 @@ void	test_swap_overload(void)
 	std::cout << std::endl;
 }
 
-void	test_clear(void)
+static void		test_clear(void)
 {
 	std::cout << std::endl;
 	std::cout << ">> Test clear function" << std::endl;
