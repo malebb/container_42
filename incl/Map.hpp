@@ -378,6 +378,10 @@ namespace ft
 			}
 		}
 
+		void	erase(iterator position)
+		{
+		}
+
 	private :
 
 		key_compare										_compare;
@@ -436,6 +440,21 @@ namespace ft
 			else
 				return (this->add_node(&(*tree)->right, node_value, *tree));
 		}
+/*
+		void	remove_node(rbt<value_type> **tree, value_type node_value)
+		{
+			if (!(*tree))
+				return ;
+			if ((*tree)->value->first == node_value->first)
+			{
+				std::cout << "DELETE and reconnect" << std::endl;
+			}
+			else if (compare((*tree)->value->first, node_value->first))
+				remove_node((*tree)->right);
+			else
+				remove_node((*tree)->left);
+		}
+		*/
 	};
 }
 

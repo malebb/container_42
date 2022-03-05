@@ -58,8 +58,12 @@ static void		test_insert(void)
 	std::cout << "letters = ";
 	display_map(letters);
 	std::cout << std::endl;
-
 	std::cout << std::endl;
+}
+
+void			test_erase(void)
+{
+
 }
 
 void			test_map_modifiers(void)
