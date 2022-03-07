@@ -380,6 +380,7 @@ namespace ft
 
 		void	erase(iterator position)
 		{
+			(void)position;
 		}
 
 	private :
@@ -414,7 +415,38 @@ namespace ft
 
 			this->_alloc_rbt.destroy(node);
 			this->_alloc_rbt.deallocate(node, 1);
+		}
 
+		unsigned int	get_height(rbt<value_type> *node, unsigned int current_height, unsigned int max_height)
+		{
+			if (current_height > max_height)
+				max_height = current_height;
+			if (!node)
+				return (max_height);
+			if (node->left)
+			{
+				current_height++;
+				max_height = get_height(node->left, current_height, max_height);
+				current_height--;
+			}
+			else if (node->right)
+			{
+				current_height++;
+				max_height = get_height(node->right, current_height, max_height);
+				current_height--;
+			}
+			return (max_height);
+		}
+
+		void		balance(rbt<value_type> *last_inserted)
+		{
+			rbt<value_type>		*first_unbalanced;
+			first_unbalanced = last_inserted;
+			while (first_unbalanced->parent != NULL)
+			{
+				first_unbalanced = first_unbalanced->parent;
+			}
+			std::cout << get_height(first_unbalanced, 0, 0) << std::endl;
 		}
 
 		ft::pair<iterator, bool>		add_node(rbt<value_type> **tree, value_type node_value, rbt<value_type> *parent)
@@ -437,6 +469,7 @@ namespace ft
 				}
 				ret.first = iterator(*tree);
 				ret.second = true;
+				balance(*tree);
 				return (ret);
 			}
 			else if ((*tree)->value->first == node_value.first)

@@ -160,7 +160,7 @@ int	main(void)
 
 //	test_reverse_iterator();
 //	test_vector();
-	test_map();
+//	test_map();
 	/*
 	std::map<int, std::string>		numbers;
 
@@ -171,5 +171,10 @@ int	main(void)
 		std::cout << "first = " << it->first << std::endl;
 	}
 	*/
+	ft::map<int, int>		nbrs;
+
+	nbrs.insert(ft::make_pair(14, 5));
+	nbrs.insert(ft::make_pair(13, 5));
+	nbrs.insert(ft::make_pair(12, 5));
 	return (0);
 }
