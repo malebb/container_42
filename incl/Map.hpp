@@ -2,6 +2,7 @@
 #define MAP_HPP
 
 #include <memory>
+#include <stdlib.h>
 
 #include "functional.hpp"
 #include "utility.hpp"
@@ -417,19 +418,17 @@ namespace ft
 			this->_alloc_rbt.deallocate(node, 1);
 		}
 
-		unsigned int	get_height(rbt<value_type> *node, unsigned int current_height, unsigned int max_height)
+		int		get_height(rbt<value_type> *node, int current_height, int max_height)
 		{
 			if (current_height > max_height)
 				max_height = current_height;
-			if (!node)
-				return (max_height);
-			if (node->left)
+			if (node && !node->left)
 			{
 				current_height++;
 				max_height = get_height(node->left, current_height, max_height);
 				current_height--;
 			}
-			else if (node->right)
+			else if (node && node->right && !node->right->end)
 			{
 				current_height++;
 				max_height = get_height(node->right, current_height, max_height);
@@ -441,12 +440,16 @@ namespace ft
 		void		balance(rbt<value_type> *last_inserted)
 		{
 			rbt<value_type>		*first_unbalanced;
+
 			first_unbalanced = last_inserted;
 			while (first_unbalanced->parent != NULL)
 			{
+				if (abs(get_height(first_unbalanced->left, 1, 0) - get_height(first_unbalanced->right, 1, 0)))
+				{
+					std::cout << "unbalanced node : " << first_unbalanced->value->first  << std::endl;
+				}
 				first_unbalanced = first_unbalanced->parent;
 			}
-			std::cout << get_height(first_unbalanced, 0, 0) << std::endl;
 		}
 
 		ft::pair<iterator, bool>		add_node(rbt<value_type> **tree, value_type node_value, rbt<value_type> *parent)
