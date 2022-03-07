@@ -407,6 +407,16 @@ namespace ft
 			return (new_node);
 		}
 
+		void						delete_node(rbt<value_type> *node)
+		{
+			this->_alloc.destroy(node->value);
+			this->_alloc.deallocate(node->value, 1);
+
+			this->_alloc_rbt.destroy(node);
+			this->_alloc_rbt.deallocate(node, 1);
+
+		}
+
 		ft::pair<iterator, bool>		add_node(rbt<value_type> **tree, value_type node_value, rbt<value_type> *parent)
 		{
 			bool							end_node;

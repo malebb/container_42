@@ -162,7 +162,6 @@ int	main(void)
 //	test_vector();
 	test_map();
 	/*
-
 	std::map<int, std::string>		numbers;
 
 	std::cout << std::endl;
