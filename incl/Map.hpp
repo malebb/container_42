@@ -422,7 +422,7 @@ namespace ft
 		{
 			if (current_height > max_height)
 				max_height = current_height;
-			if (node && !node->left)
+			if (node && node->left)
 			{
 				current_height++;
 				max_height = get_height(node->left, current_height, max_height);
@@ -434,7 +434,41 @@ namespace ft
 				max_height = get_height(node->right, current_height, max_height);
 				current_height--;
 			}
+			else if (node && !node->end)
+				max_height++;
 			return (max_height);
+		}
+
+		void		right_rotate(rbt<value_type> *y)
+		{
+			rbt<value_type>		*y_parent;
+			rbt<value_type>		*x;
+
+			y_parent = y->parent;
+			x = y->left;
+
+			y->parent = x;
+			y->left = x->right;
+			x->parent = y_parent;
+			x->right = y;
+			if (y->parent)
+				y->parent->right = x;
+			if (!x->parent)
+				this->_tree = x;
+		}
+		void		left_rotate(rbt<value_type> *x)
+		{
+			rbt<value_type>		*x_parent;
+			rbt<value_type>		*y;
+
+			x_parent = x->parent;
+			y = x->right;
+			x->parent = y;
+			x->right = y->left;
+			y->parent = x_parent;
+			y->left = x;
+			if (!y->parent)
+				this->_tree = y;
 		}
 
 		void		balance(rbt<value_type> *last_inserted)
@@ -442,14 +476,44 @@ namespace ft
 			rbt<value_type>		*first_unbalanced;
 
 			first_unbalanced = last_inserted;
-			while (first_unbalanced->parent != NULL)
+			while (first_unbalanced != NULL)
 			{
-				if (abs(get_height(first_unbalanced->left, 1, 0) - get_height(first_unbalanced->right, 1, 0)))
+				//std::cout << "unbalanced node : " << first_unbalanced->value->first  << std::endl;
+				if (abs(get_height(first_unbalanced->left, 0, 0) - get_height(first_unbalanced->right, 0, 0)) >= 2)
 				{
-					std::cout << "unbalanced node : " << first_unbalanced->value->first  << std::endl;
+//					std::cout << "height left = " << get_height(first_unbalanced->left, 0, 0) << " height right = "
+//						<< get_height(first_unbalanced->right, 0, 0) << " last added = " << last_inserted->value->first  << std::endl;
+					if (last_inserted->value->first <= first_unbalanced->value->first)
+					{
+						if (last_inserted->value->first <= first_unbalanced->left->value->first)
+						{
+							std::cout << "LEFT LEFT" << std::endl;
+							right_rotate(first_unbalanced);
+						}
+						else
+							std::cout << "LEFT RIGHT" << std::endl;
+					}
+					else
+					{
+						if (last_inserted->value->first <= first_unbalanced->right->value->first)
+						{
+							std::cout << "RIGHT LEFT" << std::endl;
+							right_rotate(first_unbalanced->right);
+							std::cout << "first_unbalanced->right = " << first_unbalanced->right->value->first << "root = " << this->_tree->right->value->first << std::endl;
+							left_rotate(first_unbalanced);
+						}
+						else
+						{
+							std::cout << "RIGHT RIGHT" << std::endl;
+							left_rotate(first_unbalanced);
+						}
+					}
+			//		std::cout << "unbalanced node : " << first_unbalanced->value->first << " last inserted: " << last_inserted->value->first << std::endl;
+					break ;
 				}
 				first_unbalanced = first_unbalanced->parent;
 			}
+//			std::cout << "height = " << get_height(first_unbalanced, 0, 0) << std::endl;
 		}
 
 		ft::pair<iterator, bool>		add_node(rbt<value_type> **tree, value_type node_value, rbt<value_type> *parent)

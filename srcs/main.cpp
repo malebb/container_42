@@ -173,8 +173,17 @@ int	main(void)
 	*/
 	ft::map<int, int>		nbrs;
 
-	nbrs.insert(ft::make_pair(14, 5));
-	nbrs.insert(ft::make_pair(13, 5));
-	nbrs.insert(ft::make_pair(12, 5));
+//	nbrs.insert(ft::make_pair(18, 5));
+//	nbrs.insert(ft::make_pair(17, 5));
+//	nbrs.insert(ft::make_pair(16, 5));
+//	nbrs.insert(ft::make_pair(8, 5));
+//	nbrs.insert(ft::make_pair(10, 5));
+//	nbrs.insert(ft::make_pair(11, 5));
+//	nbrs.insert(ft::make_pair(15, 5));
+//	nbrs.insert(ft::make_pair(14, 5));
+	nbrs.insert(ft::make_pair<int, int>(14, 5));
+	nbrs.insert(ft::make_pair<int, int>(16, 5));
+	nbrs.insert(ft::make_pair<int, int>(15, 5));
+	display_map(nbrs);
 	return (0);
 }
