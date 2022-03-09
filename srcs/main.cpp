@@ -182,24 +182,25 @@ int	main(void)
 //	nbrs.insert(ft::make_pair(15, 5));
 //	nbrs.insert(ft::make_pair(14, 5));
 	/*
+	*/
 	nbrs.insert(ft::make_pair<int, int>(16, 5));
+	nbrs.insert(ft::make_pair<int, int>(20, 5));
+	nbrs.insert(ft::make_pair<int, int>(4, 5));
+	nbrs.insert(ft::make_pair<int, int>(3, 5));
+	nbrs.insert(ft::make_pair<int, int>(14, 5));
+	nbrs.insert(ft::make_pair<int, int>(-5, 5));
+//	nbrs.insert(ft::make_pair<int, int>(6, 5));
+//	nbrs.insert(ft::make_pair<int, int>(5, 5));
+	/*
+	nbrs.insert(ft::make_pair<int, int>(4, 5));
+	nbrs.insert(ft::make_pair<int, int>(3, 5));
+	nbrs.insert(ft::make_pair<int, int>(16, 5));
+	nbrs.insert(ft::make_pair<int, int>(-5, 5));
 	nbrs.insert(ft::make_pair<int, int>(14, 5));
 	nbrs.insert(ft::make_pair<int, int>(20, 5));
-	nbrs.insert(ft::make_pair<int, int>(3, 5));
-	nbrs.insert(ft::make_pair<int, int>(4, 5));
-	nbrs.insert(ft::make_pair<int, int>(-5, 5));
 	nbrs.insert(ft::make_pair<int, int>(6, 5));
 	nbrs.insert(ft::make_pair<int, int>(5, 5));
 	*/
-	nbrs.insert(ft::make_pair<int, int>(4, 5));
-	nbrs.insert(ft::make_pair<int, int>(3, 5));
-	nbrs.insert(ft::make_pair<int, int>(16, 5));
-	nbrs.insert(ft::make_pair<int, int>(-5, 5));
-	nbrs.insert(ft::make_pair<int, int>(14, 5));
-	nbrs.insert(ft::make_pair<int, int>(20, 5));
-	nbrs.insert(ft::make_pair<int, int>(6, 5));
-	nbrs.insert(ft::make_pair<int, int>(5, 5));
-//	nbrs.insert(ft::make_pair<int, int>(4, 5));
 	display_map(nbrs);
 	return (0);
 }

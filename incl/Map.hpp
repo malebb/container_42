@@ -268,13 +268,13 @@ namespace ft
 
 		explicit map(const key_compare& comp = key_compare(),
 				const allocator_type& alloc = allocator_type())
-				: _compare(comp), _alloc(alloc), _size(0), _tree(NULL)
+				: _compare(comp), _alloc(alloc), _size(0), _root(NULL)
 		{
 			value_type		end_node_value;
 
 			this->_end_node = this->create_node(value_type());
 			this->_end_node->end = 1;
-			this->_tree = this->_end_node;
+			this->_root = this->_end_node;
 		}
 
 		map(const map& x)
@@ -301,7 +301,7 @@ namespace ft
 		{
 			rbt<value_type>			*node;
 
-			node = this->_tree;
+			node = this->_root;
 			while (node->left != NULL)
 			{
 				node = node->left;
@@ -338,7 +338,7 @@ namespace ft
 		{
 			ft::pair<iterator, bool>	ret;
 
-			ret = this->add_node(&this->_tree, val, NULL);
+			ret = this->add_node(&this->_root, val, NULL);
 			if (ret.second)
 				this->_size++;
 			return (ret);
@@ -389,7 +389,7 @@ namespace ft
 		key_compare										_compare;
 		allocator_type									_alloc;
 		size_type										_size;
-		rbt<value_type>									*_tree;
+		rbt<value_type>									*_root;
 		rbt<value_type>									*_end_node;
 		alloc_rbt										_alloc_rbt;
 
@@ -449,6 +449,7 @@ namespace ft
 
 			y->parent = x;
 			y->left = x->right;
+			y->left->parent = y;
 			x->parent = y_parent;
 			x->right = y;
 			if (y_parent)
@@ -459,7 +460,7 @@ namespace ft
 					y_parent->left = x;
 			}
 			if (!x->parent)
-				this->_tree = x;
+				this->_root = x;
 		}
 
 		void		left_rotate(rbt<value_type> *x)
@@ -472,7 +473,6 @@ namespace ft
 
 			x->parent = y;
 			x->right = y->left;
-			y->parent = x_parent;
 			y->left = x;
 			if (x_parent)
 			{
@@ -482,7 +482,7 @@ namespace ft
 					x_parent->right = y;
 			}
 			if (!y->parent)
-				this->_tree = y;
+				this->_root = y;
 		}
 
 		void		balance(rbt<value_type> *last_inserted)
@@ -495,14 +495,13 @@ namespace ft
 				//std::cout << "unbalanced node : " << first_unbalanced->value->first  << std::endl;
 				if (abs(get_height(first_unbalanced->left, 0, 0) - get_height(first_unbalanced->right, 0, 0)) >= 2)
 				{
-//					std::cout << "height left = " << get_height(first_unbalanced->left, 0, 0) << " height right = "
-//						<< get_height(first_unbalanced->right, 0, 0) << " last added = " << last_inserted->value->first  << std::endl;
 					if (last_inserted->value->first <= first_unbalanced->value->first)
 					{
 						if (last_inserted->value->first <= first_unbalanced->left->value->first)
 						{
 							// left left case
 							std::cout << "LEFT LEFT" << std::endl;
+							std::cout << "first_unbalanced = " << first_unbalanced->value->first << std::endl;
 							right_rotate(first_unbalanced);
 						}
 						else
@@ -511,7 +510,7 @@ namespace ft
 							std::cout << "LEFT RIGHT" << std::endl;
 							left_rotate(first_unbalanced->left);
 							right_rotate(first_unbalanced);
-							std::cout << "first unbalanced = " << this->_tree->left->value->first << std::endl;
+							std::cout << "first unbalanced = " << this->_root->left->value->first << std::endl;
 						}
 					}
 					else
@@ -522,7 +521,7 @@ namespace ft
 							std::cout << "RIGHT LEFT" << std::endl;
 							right_rotate(first_unbalanced->right);
 							left_rotate(first_unbalanced);
-							std::cout << "root = " << this->_tree->value->first << "first_unbalanced = " << first_unbalanced->value->first << std::endl;
+							std::cout << "root = " << this->_root->value->first << "first_unbalanced = " << first_unbalanced->value->first << std::endl;
 						}
 						else
 						{
@@ -573,21 +572,6 @@ namespace ft
 			else
 				return (this->add_node(&(*tree)->right, node_value, *tree));
 		}
-/*
-		void	remove_node(rbt<value_type> **tree, value_type node_value)
-		{
-			if (!(*tree))
-				return ;
-			if ((*tree)->value->first == node_value->first)
-			{
-				std::cout << "DELETE and reconnect" << std::endl;
-			}
-			else if (compare((*tree)->value->first, node_value->first))
-				remove_node((*tree)->right);
-			else
-				remove_node((*tree)->left);
-		}
-		*/
 	};
 }
 
