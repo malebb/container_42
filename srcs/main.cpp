@@ -200,9 +200,10 @@ int	main(void)
 	nbrs.insert(ft::make_pair<int, int>(47, 5));
 //	nbrs.insert(ft::make_pair<int, int>(48, 5));
 //	nbrs.insert(ft::make_pair<int, int>(49, 5));
-	//ft::rbt<ft::pair<const int, int> >		*tree;
+	ft::rbt<ft::pair<const int, int> >		*tree;
 
-	//tree = nbrs.get_tree();
+	tree = nbrs.get_tree();
+	std::cout << "root = " << tree->left->left->value->first << std::endl;
 	display_map(nbrs);
 	return (0);
 }
