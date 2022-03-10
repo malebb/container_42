@@ -182,25 +182,27 @@ int	main(void)
 //	nbrs.insert(ft::make_pair(15, 5));
 //	nbrs.insert(ft::make_pair(14, 5));
 	/*
-	*/
-	nbrs.insert(ft::make_pair<int, int>(16, 5));
+	nbrs.insert(ft::make_pair<int, int>(13, 5));
+	nbrs.insert(ft::make_pair<int, int>(10, 5));
+	nbrs.insert(ft::make_pair<int, int>(21, 5));
 	nbrs.insert(ft::make_pair<int, int>(20, 5));
-	nbrs.insert(ft::make_pair<int, int>(4, 5));
-	nbrs.insert(ft::make_pair<int, int>(3, 5));
-	nbrs.insert(ft::make_pair<int, int>(14, 5));
-	nbrs.insert(ft::make_pair<int, int>(-5, 5));
-//	nbrs.insert(ft::make_pair<int, int>(6, 5));
-//	nbrs.insert(ft::make_pair<int, int>(5, 5));
-	/*
-	nbrs.insert(ft::make_pair<int, int>(4, 5));
-	nbrs.insert(ft::make_pair<int, int>(3, 5));
-	nbrs.insert(ft::make_pair<int, int>(16, 5));
-	nbrs.insert(ft::make_pair<int, int>(-5, 5));
-	nbrs.insert(ft::make_pair<int, int>(14, 5));
-	nbrs.insert(ft::make_pair<int, int>(20, 5));
-	nbrs.insert(ft::make_pair<int, int>(6, 5));
-	nbrs.insert(ft::make_pair<int, int>(5, 5));
+	nbrs.insert(ft::make_pair<int, int>(22, 5));
+	nbrs.insert(ft::make_pair<int, int>(23, 5));
 	*/
+
+/*
+ */
+	nbrs.insert(ft::make_pair<int, int>(42, 5));
+	nbrs.insert(ft::make_pair<int, int>(43, 5));
+	nbrs.insert(ft::make_pair<int, int>(44, 5));
+	nbrs.insert(ft::make_pair<int, int>(45, 5));
+	nbrs.insert(ft::make_pair<int, int>(46, 5));
+	nbrs.insert(ft::make_pair<int, int>(47, 5));
+//	nbrs.insert(ft::make_pair<int, int>(48, 5));
+//	nbrs.insert(ft::make_pair<int, int>(49, 5));
+	//ft::rbt<ft::pair<const int, int> >		*tree;
+
+	//tree = nbrs.get_tree();
 	display_map(nbrs);
 	return (0);
 }
