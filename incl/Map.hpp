@@ -427,6 +427,8 @@ namespace ft
 		{
 			if (current_height > max_height)
 				max_height = current_height;
+			if (node && !node->left && !node->right && !node->end && !max_height)
+				return (max_height + 1);
 			if (node && node->left)
 			{
 				current_height++;
@@ -439,8 +441,6 @@ namespace ft
 				max_height = get_height(node->right, current_height, max_height);
 				current_height--;
 			}
-			else if (node && !node->end)
-				max_height++;
 			return (max_height);
 		}
 
@@ -501,7 +501,7 @@ namespace ft
 			first_unbalanced = last_inserted;
 			while (first_unbalanced != NULL)
 			{
-				//std::cout << "unbalanced node : " << first_unbalanced->value->first  << std::endl;
+				std::cout << "last inserted = " << last_inserted->value->first << " first unblanced  = " << first_unbalanced->value->first << " left height = " << get_height(first_unbalanced->left, 0, 0) << " right height = " << get_height(first_unbalanced->right, 0, 0) << std::endl;
 			//	std::cout << "last_inserted = " << last_inserted->value->first << " first unblanced = " << first_unbalanced->value->first << "left height = " << get_height(first_unbalanced->left, 0, 0) << " right height = " << get_height(first_unbalanced->right, 0, 0) << std::endl;
 				if (abs(get_height(first_unbalanced->left, 0, 0) - get_height(first_unbalanced->right, 0, 0)) >= 2)
 				{
