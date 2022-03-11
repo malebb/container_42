@@ -203,21 +203,20 @@ int	main(void)
 	nbrs.insert(ft::make_pair<int, int>(48, 5));
 	nbrs.insert(ft::make_pair<int, int>(49, 5));
 	*/
+	nbrs[4] = 4;
+	nbrs[5] = 4;
+	nbrs[6] = 4;
+	nbrs[7] = 4;
+	nbrs[8] = 4;
+	nbrs[9] = 4;
 	
-	for (int i = 10; i >= 0; i--)
-	{
-		nbrs.insert(ft::make_pair<int, int>(i, 5));
-	}
 	
 	//nbrs.insert(ft::make_pair<int, int>(50, 5));
 	if (nbrs.is_balanced())
 		std::cout << "balanced" << std::endl;
 	else
 		std::cout << "unbalanced" << std::endl;
-	
-	ft::rbt<ft::pair<const int, int> >		*tree;
-
-	tree = nbrs.get_tree();
-
+	display_map(nbrs);
+	nbrs.print();
 	return (0);
 }
