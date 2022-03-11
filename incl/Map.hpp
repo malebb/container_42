@@ -407,6 +407,35 @@ namespace ft
 			return (true);
 		}
 
+		void		print(void) const
+		{
+			browse_tree(this->_root, 'R', 0);
+		}
+
+		void	browse_tree(rbt<value_type> *node, char floor, int depth) const
+		{
+			if (!node || (node && node->end))
+				return ;
+
+			for (int i = 0; i < depth; i++)
+			{
+				if (i % 5 == 1)
+					std::cout << "\033[1;31m> \033[0m";
+				else if (i % 5 == 2)
+					std::cout << "\033[1;32m> \033[0m";
+				else if (i % 5 == 3)
+					std::cout << "\033[1;33m> \033[0m";
+				else if (i % 5 == 4)
+					std::cout << "\033[1;34m> \033[0m";
+				else if (i % 5 == 0)
+					std::cout << "\033[1;35m> \033[0m";
+			}
+			std::cout << floor << ": " << node->value->first << std::endl;
+			browse_tree(node->right, 'r', depth + 1);
+			browse_tree(node->left, 'l', depth + 1);
+		}
+
+
 	private :
 
 		key_compare										_compare;
@@ -504,6 +533,36 @@ namespace ft
 				this->_root = y;
 		}
 
+		void		balance_left_cases(rbt<value_type> *last_inserted, rbt<value_type> *first_unbalanced)
+		{
+			if (last_inserted->value->first <= first_unbalanced->left->value->first)
+			{
+				// left left case
+				right_rotate(first_unbalanced);
+			}
+			else
+			{
+				// left right case
+				left_rotate(first_unbalanced->left);
+				right_rotate(first_unbalanced);
+			}
+		}
+
+		void		balance_right_cases(rbt<value_type> *last_inserted, rbt<value_type> *first_unbalanced)
+		{
+			if (last_inserted->value->first <= first_unbalanced->right->value->first)
+			{
+				// right left case
+				right_rotate(first_unbalanced->right);
+				left_rotate(first_unbalanced);
+			}
+			else
+			{
+				// right right case
+				left_rotate(first_unbalanced);
+			}
+		}
+
 		void		balance(rbt<value_type> *last_inserted)
 		{
 			rbt<value_type>		*first_unbalanced;
@@ -511,52 +570,16 @@ namespace ft
 			first_unbalanced = last_inserted;
 			while (first_unbalanced != NULL)
 			{
-				std::cout << "last inserted = " << last_inserted->value->first << " first unblanced  = " << first_unbalanced->value->first << " left height = " << get_height(first_unbalanced->left, 0, 0) << " right height = " << get_height(first_unbalanced->right, 0, 0) << std::endl;
-			//	std::cout << "last_inserted = " << last_inserted->value->first << " first unblanced = " << first_unbalanced->value->first << "left height = " << get_height(first_unbalanced->left, 0, 0) << " right height = " << get_height(first_unbalanced->right, 0, 0) << std::endl;
 				if (abs(get_height(first_unbalanced->left, 0, 0) - get_height(first_unbalanced->right, 0, 0)) >= 2)
 				{
-//					std::cout << "last inserted = " << last_inserted->value->first << std::endl;
 					if (last_inserted->value->first <= first_unbalanced->value->first)
-					{
-						if (last_inserted->value->first <= first_unbalanced->left->value->first)
-						{
-							// left left case
-							std::cout << "LEFT LEFT" << std::endl;
-					//		std::cout << "first_unbalanced = " << first_unbalanced->left->left->parent->right->value->first << std::endl;
-							right_rotate(first_unbalanced);
-						}
-						else
-						{
-							// left right case
-							std::cout << "LEFT RIGHT" << std::endl;
-							left_rotate(first_unbalanced->left);
-							right_rotate(first_unbalanced);
-//							std::cout << "first unbalanced = " << this->_root->left->value->first << std::endl;
-						}
-					}
+						balance_left_cases(last_inserted, first_unbalanced);
 					else
-					{
-						if (last_inserted->value->first <= first_unbalanced->right->value->first)
-						{
-							// right left case
-							std::cout << "RIGHT LEFT" << std::endl;
-							right_rotate(first_unbalanced->right);
-							left_rotate(first_unbalanced);
-						}
-						else
-						{
-							// right right case
-							std::cout << "RIGHT RIGHT" << std::endl;
-							left_rotate(first_unbalanced);
-//							std::cout << "root = " << this->_root->value->first << "first_unbalanced = " << first_unbalanced->value->first << std::endl;
-						}
-					}
-			//		std::cout << "unbalanced node : " << first_unbalanced->value->first << " last inserted: " << last_inserted->value->first << std::endl;
+						balance_right_cases(last_inserted, first_unbalanced);
 					break ;
 				}
 				first_unbalanced = first_unbalanced->parent;
 			}
-//			std::cout << "height = " << get_height(first_unbalanced, 0, 0) << std::endl;
 		}
 
 		ft::pair<iterator, bool>		add_node(rbt<value_type> **tree, value_type node_value, rbt<value_type> *parent)
