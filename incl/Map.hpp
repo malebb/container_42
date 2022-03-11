@@ -389,6 +389,24 @@ namespace ft
 			return (this->_root);
 		}
 
+		bool		is_balanced(void) const
+		{
+			return (check_node(this->_root));
+		}
+
+		bool		check_node(const rbt<value_type> *node) const
+		{
+			if (!node || (node && node->end))
+				return (true);
+			if (abs(this->get_height(node->left, 0, 0) - this->get_height(node->right, 0, 0)) >= 2)
+				return (false);
+			if (!check_node(node->right))
+				return (false);
+			if (!check_node(node->left))
+				return (false);
+			return (true);
+		}
+
 	private :
 
 		key_compare										_compare;
@@ -423,24 +441,16 @@ namespace ft
 			this->_alloc_rbt.deallocate(node, 1);
 		}
 
-		int		get_height(rbt<value_type> *node, int current_height, int max_height)
+		int		get_height(rbt<value_type> *node, int current_height, int max_height) const
 		{
 			if (current_height > max_height)
 				max_height = current_height;
-			if (node && !node->left && !node->right && !node->end && !max_height)
-				return (max_height + 1);
-			if (node && node->left)
-			{
-				current_height++;
-				max_height = get_height(node->left, current_height, max_height);
-				current_height--;
-			}
-			if (node && node->right && !node->right->end)
-			{
-				current_height++;
-				max_height = get_height(node->right, current_height, max_height);
-				current_height--;
-			}
+			if (!node || (node && node->end))
+				return (max_height);
+			current_height++;
+			max_height = get_height(node->left, current_height, max_height);
+			max_height = get_height(node->right, current_height, max_height);
+			current_height--;
 			return (max_height);
 		}
 

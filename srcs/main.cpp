@@ -182,17 +182,43 @@ int	main(void)
 //	nbrs.insert(ft::make_pair(15, 5));
 //	nbrs.insert(ft::make_pair(14, 5));
 	
- 
-	nbrs.insert(ft::make_pair(28, 5));
-	nbrs.insert(ft::make_pair(42, 5));
-	nbrs.insert(ft::make_pair(0, 5));
-	nbrs.insert(ft::make_pair(-1, 5));
-//	nbrs.insert(ft::make_pair<int, int>(48, 5));
-//	nbrs.insert(ft::make_pair<int, int>(49, 5));
+	nbrs.insert(ft::make_pair<int, int>(13, 5));
+	nbrs.insert(ft::make_pair<int, int>(10, 5));
+	nbrs.insert(ft::make_pair<int, int>(20, 5));
+	nbrs.insert(ft::make_pair<int, int>(21, 5));
+	nbrs.insert(ft::make_pair<int, int>(22, 5));
+	nbrs.insert(ft::make_pair<int, int>(23, 5));
+	
+
+/*
+ */
+	/*
+	nbrs.insert(ft::make_pair<int, int>(42, 5));
+	nbrs.insert(ft::make_pair<int, int>(43, 5));
+	nbrs.insert(ft::make_pair<int, int>(44, 5));
+	nbrs.insert(ft::make_pair<int, int>(45, 5));
+	nbrs.insert(ft::make_pair<int, int>(46, 5));
+	nbrs.insert(ft::make_pair<int, int>(47, 5));
+	nbrs.insert(ft::make_pair<int, int>(48, 5));
+	nbrs.insert(ft::make_pair<int, int>(49, 5));
+	*/
+	/*
+	for (int i = 0; i < 1000; i++)
+	{
+		nbrs.insert(ft::make_pair<int, int>(i, 5));
+	}
+	*/
+	//nbrs.insert(ft::make_pair<int, int>(50, 5));
+	if (nbrs.is_balanced())
+		std::cout << "balanced" << std::endl;
+	else
+		std::cout << "unbalanced" << std::endl;
+	
 	ft::rbt<ft::pair<const int, int> >		*tree;
 
 	tree = nbrs.get_tree();
-	std::cout << "root = " << tree->right->right->right->value->first << std::endl;
+//	std::cout << "root = " << tree->left->left->value->first << std::endl;
+	
 	display_map(nbrs);
 	return (0);
 }
