@@ -673,6 +673,31 @@ namespace ft
 					}
 					delete_node(node.node);
 				}
+				else
+				{
+					iterator		next;
+
+					next = node;
+					next++;
+					if ((*tree)->parent)
+					{
+						if (this->_compare(node->first, (*tree)->parent->value->first))
+							(*tree)->parent->left = next.node;
+						else
+							((*tree)->parent)->right = next.node;
+					}
+					next.node->parent = node.node->parent;
+					next.node->left = node.node->left;
+					next.node->right = node.node->right;
+					node.node->left->parent = next.node;
+
+					/*
+					if (!node.node->parent)
+						this->_root = next.node;
+						*/
+					delete_node(node.node);
+					std::cout << "hey" << std::endl;
+				}
 				return (true);
 			}
 			else if (!this->_compare((*tree)->value->first, node->first))
