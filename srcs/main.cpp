@@ -223,6 +223,7 @@ int	main(void)
 	it = nbrs.begin();
 	it++;
 	nbrs.erase(it);
+	nbrs.erase(nbrs.begin());
 	display_map(nbrs);
 	return (0);
 }

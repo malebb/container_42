@@ -691,12 +691,9 @@ namespace ft
 					next.node->right = node.node->right;
 					node.node->left->parent = next.node;
 
-					/*
 					if (!node.node->parent)
 						this->_root = next.node;
-						*/
 					delete_node(node.node);
-					std::cout << "hey" << std::endl;
 				}
 				return (true);
 			}
