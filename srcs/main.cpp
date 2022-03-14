@@ -203,20 +203,26 @@ int	main(void)
 	nbrs.insert(ft::make_pair<int, int>(48, 5));
 	nbrs.insert(ft::make_pair<int, int>(49, 5));
 	*/
-	nbrs[4] = 4;
-	nbrs[5] = 4;
-	nbrs[6] = 4;
-	nbrs[7] = 4;
-	nbrs[8] = 4;
-	nbrs[9] = 4;
+	nbrs[10] = 1;
+	nbrs[11] = 1;
+	nbrs[8] = 1;
+	nbrs[7] = 1;
 	
 	
 	//nbrs.insert(ft::make_pair<int, int>(50, 5));
+	/*
 	if (nbrs.is_balanced())
 		std::cout << "balanced" << std::endl;
 	else
 		std::cout << "unbalanced" << std::endl;
+	*/
+//	nbrs.print();
 	display_map(nbrs);
-	nbrs.print();
+	ft::map<int, int>::iterator			it;
+
+	it = nbrs.begin();
+	it++;
+	nbrs.erase(it);
+	display_map(nbrs);
 	return (0);
 }

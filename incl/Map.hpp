@@ -387,7 +387,8 @@ namespace ft
 
 		void	erase(iterator position)
 		{
-			(void)position;
+			if (deletion(position))
+				this->_size--;
 		}
 
 		rbt<value_type>		*get_tree()
@@ -465,15 +466,6 @@ namespace ft
 			new_node = this->_alloc_rbt.allocate(1);
 			this->_alloc_rbt.construct(new_node, node_value_ptr);
 			return (new_node);
-		}
-
-		void						delete_node(rbt<value_type> *node)
-		{
-			this->_alloc.destroy(node->value);
-			this->_alloc.deallocate(node->value, 1);
-
-			this->_alloc_rbt.destroy(node);
-			this->_alloc_rbt.deallocate(node, 1);
 		}
 
 		int		get_height(rbt<value_type> *node, int current_height, int max_height) const
@@ -622,6 +614,49 @@ namespace ft
 			else
 				return (this->add_node(&(*tree)->right, node_value, *tree));
 		}
+
+		void						delete_node(rbt<value_type> *node)
+		{
+			this->_alloc.destroy(node->value);
+			this->_alloc.deallocate(node->value, 1);
+
+			this->_alloc_rbt.destroy(node);
+			this->_alloc_rbt.deallocate(node, 1);
+		}
+
+		bool						remove_node(rbt<value_type> **tree, iterator node)
+		{
+			if (!(*tree) || (*tree && *tree == this->_end_node))
+				return (false);
+			else if ((*tree)->value->first == node->first)
+			{
+				//no child
+				if (!(*tree)->right && !(*tree)->left)
+				{
+					if ((*tree)->parent)
+					{
+						if (this->_compare(node->first, (*tree)->parent->value->first))
+						{
+							((*tree)->parent)->left = NULL;
+						}
+						else
+							((*tree)->parent)->right = NULL;
+						delete_node(node.node);
+					}
+				}
+				return (true);
+			}
+			else if (!this->_compare((*tree)->value->first, node->first))
+				return (this->remove_node(&(*tree)->left, node));
+			else
+				return (this->remove_node(&(*tree)->right, node));
+		}
+
+		bool				deletion(iterator node)
+		{
+			return (remove_node(&(this->_root), node));
+		}
+
 	};
 }
 
