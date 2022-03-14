@@ -204,10 +204,9 @@ int	main(void)
 	nbrs.insert(ft::make_pair<int, int>(49, 5));
 	*/
 	nbrs[10] = 1;
-	nbrs[11] = 1;
 	nbrs[8] = 1;
-	nbrs[7] = 1;
-	
+	nbrs[15] = 1;
+	nbrs[20] = 1;
 	
 	//nbrs.insert(ft::make_pair<int, int>(50, 5));
 	/*
@@ -221,6 +220,7 @@ int	main(void)
 	ft::map<int, int>::iterator			it;
 
 	it = nbrs.begin();
+	it++;
 	it++;
 	nbrs.erase(it);
 	display_map(nbrs);
