@@ -403,6 +403,20 @@ namespace ft
 			return (1);
 		}
 
+		void			erase(iterator first, iterator last)
+		{
+			iterator		next_it;
+
+			while (first != last)
+			{
+				next_it = first;
+				next_it++;
+				deletion(first);
+				this->_size--;
+				first = next_it;
+			}
+		}
+
 		rbt<value_type>		*get_tree()
 		{
 			return (this->_root);
