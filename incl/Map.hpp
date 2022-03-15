@@ -266,6 +266,8 @@ namespace ft
 					value_compare(Compare c) : comp(c) {}
 		};
 
+		// constructors / destructors
+
 		explicit map(const key_compare& comp = key_compare(),
 				const allocator_type& alloc = allocator_type())
 				: _compare(comp), _alloc(alloc), _size(0), _root(NULL)
@@ -284,6 +286,8 @@ namespace ft
 
 		~map()
 		{
+			this->clear();
+			this->delete_node(this->_end_node);
 
 		}
 
@@ -415,6 +419,11 @@ namespace ft
 				this->_size--;
 				first = next_it;
 			}
+		}
+
+		void			clear()
+		{
+			this->erase(this->begin(), this->end());
 		}
 
 		rbt<value_type>		*get_tree()

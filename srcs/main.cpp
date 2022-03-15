@@ -212,19 +212,18 @@ int	main(void)
 	*/
 //	nbrs.print();
 	ft::map<int, int>		nbrs;
-
+/*
 	nbrs[47] = 3;
 	nbrs[48] = 3;
 	nbrs[49] = 3;
-	ft::map<int, int>::iterator			it;
-	it = nbrs.end();
-	it--;
-	it--;
-	nbrs.erase(nbrs.begin(), it);
+	nbrs[5] = 3;
+	*/
+	/*
 	for (ft::map<int, int>::iterator it = nbrs.begin(); it != nbrs.end(); it++)
 	{
 		std::cout << "first = " << it->first << std::endl;
 	}
+	*/
 //	std::cout << "it = " << it->first << std::endl;
 //	display_map(nbrs);
 /*
