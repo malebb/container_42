@@ -393,13 +393,14 @@ namespace ft
 
 		size_type		erase(const key_type& k)
 		{
-			if (deletion(this->find(k)))
-			{
-				this->_size--;
-				return (1);
-			}
-			else
+			iterator		node;
+
+			node = this->find(k);
+			if (node == this->end())
 				return (0);
+			deletion(node);
+			this->_size--;
+			return (1);
 		}
 
 		rbt<value_type>		*get_tree()
