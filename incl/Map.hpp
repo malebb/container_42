@@ -13,21 +13,21 @@
 namespace ft
 {
 	template <class T>
-	class rbt
+	class avl
 	{
 		public :
 
-			rbt() : right(NULL), left(NULL), parent(NULL), end(false) {}
-			rbt(T* value) : value(value), right(NULL), left(NULL),
+			avl() : right(NULL), left(NULL), parent(NULL), end(false) {}
+			avl(T* value) : value(value), right(NULL), left(NULL),
 				parent(NULL), end(false)
 			{
 			}
-			rbt(const rbt& src)
+			avl(const avl& src)
 			{
 				*this = src;
 			}
 
-			rbt&		operator=(const rbt& rhs)
+			avl&		operator=(const avl& rhs)
 			{
 				this->value = rhs.value;
 				this->right = rhs.right;
@@ -38,9 +38,9 @@ namespace ft
 			}
 
 			T			*value;
-			rbt			*right;
-			rbt			*left;
-			rbt			*parent;
+			avl			*right;
+			avl			*left;
+			avl			*parent;
 			bool		end;
 	};
 
@@ -54,7 +54,7 @@ namespace ft
 		typedef T*												pointer;
 		typedef T&												reference;
 		typedef std::ptrdiff_t									difference_type;
-		typedef rbt<ft::pair<const key_type, mapped_type> >		tree_type;
+		typedef avl<ft::pair<const key_type, mapped_type> >		tree_type;
 		typedef ft::pair<const key_type, mapped_type>			value_type;
 
 
@@ -241,7 +241,7 @@ namespace ft
 			typedef std::ptrdiff_t								difference_type;
 			typedef size_t										size_type;
 			typedef typename allocator_type::template 
-									rebind<rbt<value_type> >::other			alloc_rbt;
+									rebind<avl<value_type> >::other			alloc_avl;
 
 			class value_compare : public ft::binary_function<value_type, value_type, bool>
 			{
@@ -271,7 +271,7 @@ namespace ft
 
 		explicit map(const key_compare& comp = key_compare(),
 				const allocator_type& alloc = allocator_type())
-				: _compare(comp), _alloc(alloc), _size(0), _root(NULL), _alloc_rbt()
+				: _compare(comp), _alloc(alloc), _size(0), _root(NULL), _alloc_avl()
 		{
 			value_type		end_node_value;
 
@@ -306,7 +306,7 @@ namespace ft
 
 		iterator		begin()
 		{
-			rbt<value_type>			*node;
+			avl<value_type>			*node;
 
 			node = this->_root;
 			while (node->left != NULL)
@@ -360,8 +360,8 @@ namespace ft
 		iterator	insert(iterator position, const value_type& val)
 		{
 			iterator			next_to_position;
-			rbt<value_type>		*new_node;
-			rbt<value_type>		*old_node;
+			avl<value_type>		*new_node;
+			avl<value_type>		*old_node;
 
 			next_to_position = position;
 			next_to_position++;
@@ -429,7 +429,7 @@ namespace ft
 			this->erase(this->begin(), this->end());
 		}
 
-		rbt<value_type>		*get_tree()
+		avl<value_type>		*get_tree()
 		{
 			return (this->_root);
 		}
@@ -439,7 +439,7 @@ namespace ft
 			return (check_node(this->_root));
 		}
 
-		bool		check_node(const rbt<value_type> *node) const
+		bool		check_node(const avl<value_type> *node) const
 		{
 			if (!node || (node && node->end))
 				return (true);
@@ -457,7 +457,7 @@ namespace ft
 			browse_tree(this->_root, 'R', 0);
 		}
 
-		void	browse_tree(rbt<value_type> *node, char floor, int depth) const
+		void	browse_tree(avl<value_type> *node, char floor, int depth) const
 		{
 			if (!node || (node && node->end))
 				return ;
@@ -484,7 +484,7 @@ namespace ft
 		
 		iterator		find(const key_type& k)
 		{
-			rbt<value_type>		*node;
+			avl<value_type>		*node;
 
 			node = this->_root;
 
@@ -505,26 +505,26 @@ namespace ft
 		key_compare										_compare;
 		allocator_type									_alloc;
 		size_type										_size;
-		rbt<value_type>									*_root;
-		rbt<value_type>									*_end_node;
-		alloc_rbt										_alloc_rbt;
+		avl<value_type>									*_root;
+		avl<value_type>									*_end_node;
+		alloc_avl										_alloc_avl;
 
 		// binary tree function
 
-		rbt<value_type>				*create_node(value_type node_value)
+		avl<value_type>				*create_node(value_type node_value)
 		{
-			rbt<value_type>			*new_node;
+			avl<value_type>			*new_node;
 			value_type				*node_value_ptr;
 
 			node_value_ptr = this->_alloc.allocate(1);
 			this->_alloc.construct(node_value_ptr, node_value);
 
-			new_node = this->_alloc_rbt.allocate(1);
-			this->_alloc_rbt.construct(new_node, node_value_ptr);
+			new_node = this->_alloc_avl.allocate(1);
+			this->_alloc_avl.construct(new_node, node_value_ptr);
 			return (new_node);
 		}
 
-		int		get_height(rbt<value_type> *node, int current_height, int max_height) const
+		int		get_height(avl<value_type> *node, int current_height, int max_height) const
 		{
 			if (current_height > max_height)
 				max_height = current_height;
@@ -537,10 +537,10 @@ namespace ft
 			return (max_height);
 		}
 
-		void		right_rotate(rbt<value_type> *y)
+		void		right_rotate(avl<value_type> *y)
 		{
-			rbt<value_type>		*y_parent;
-			rbt<value_type>		*x;
+			avl<value_type>		*y_parent;
+			avl<value_type>		*x;
 
 			y_parent = y->parent;
 			x = y->left;
@@ -562,10 +562,10 @@ namespace ft
 				this->_root = x;
 		}
 
-		void		left_rotate(rbt<value_type> *x)
+		void		left_rotate(avl<value_type> *x)
 		{
-			rbt<value_type>		*x_parent;
-			rbt<value_type>		*y;
+			avl<value_type>		*x_parent;
+			avl<value_type>		*y;
 
 			x_parent = x->parent;
 			y = x->right;
@@ -587,7 +587,7 @@ namespace ft
 				this->_root = y;
 		}
 
-		void		balance_left_cases(rbt<value_type> *last_inserted, rbt<value_type> *first_unbalanced)
+		void		balance_left_cases(avl<value_type> *last_inserted, avl<value_type> *first_unbalanced)
 		{
 			if (last_inserted->value->first <= first_unbalanced->left->value->first)
 			{
@@ -602,7 +602,7 @@ namespace ft
 			}
 		}
 
-		void		balance_right_cases(rbt<value_type> *last_inserted, rbt<value_type> *first_unbalanced)
+		void		balance_right_cases(avl<value_type> *last_inserted, avl<value_type> *first_unbalanced)
 		{
 			if (last_inserted->value->first <= first_unbalanced->right->value->first)
 			{
@@ -617,9 +617,9 @@ namespace ft
 			}
 		}
 
-		void		balance(rbt<value_type> *last_inserted)
+		void		balance(avl<value_type> *last_inserted)
 		{
-			rbt<value_type>		*first_unbalanced;
+			avl<value_type>		*first_unbalanced;
 
 			first_unbalanced = last_inserted;
 			while (first_unbalanced != NULL)
@@ -636,7 +636,7 @@ namespace ft
 			}
 		}
 
-		ft::pair<iterator, bool>		insertion(rbt<value_type> **tree, value_type node_value, rbt<value_type> *parent)
+		ft::pair<iterator, bool>		insertion(avl<value_type> **tree, value_type node_value, avl<value_type> *parent)
 		{
 			bool							end_node;
 			ft::pair<iterator, bool>		ret;
@@ -671,13 +671,13 @@ namespace ft
 				return (this->insertion(&(*tree)->right, node_value, *tree));
 		}
 
-		void						delete_node(rbt<value_type> *node)
+		void						delete_node(avl<value_type> *node)
 		{
 			this->_alloc.destroy(node->value);
 			this->_alloc.deallocate(node->value, 1);
 
-			this->_alloc_rbt.destroy(node);
-			this->_alloc_rbt.deallocate(node, 1);
+			this->_alloc_avl.destroy(node);
+			this->_alloc_avl.deallocate(node, 1);
 		}
 
 
