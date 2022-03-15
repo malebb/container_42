@@ -344,7 +344,7 @@ namespace ft
 		{
 			ft::pair<iterator, bool>	ret;
 
-			ret = this->add_node(&this->_root, val, NULL);
+			ret = this->insertion(&this->_root, val, NULL);
 			if (ret.second)
 				this->_size++;
 			return (ret);
@@ -390,6 +390,12 @@ namespace ft
 			if (deletion(position))
 				this->_size--;
 		}
+/*
+		size_type		erase(const key_type& k)
+		{
+			if (deletion(val))
+		}
+		*/
 
 		rbt<value_type>		*get_tree()
 		{
@@ -442,6 +448,25 @@ namespace ft
 			browse_tree(node->left, 'l', depth + 1);
 		}
 
+		// operations
+		
+		iterator		find(const key_type& k)
+		{
+			rbt<value_type>		*node;
+
+			node = this->_root;
+
+			while (node && !node->end)
+			{
+				if (node->value->first == k)
+					return (iterator(node));
+				if (this->_compare(k, node->value->first))
+					node = node->left;
+				else
+					node = node->right;
+			}
+			return (this->end());
+		}
 
 	private :
 
@@ -458,7 +483,6 @@ namespace ft
 		{
 			rbt<value_type>			*new_node;
 			value_type				*node_value_ptr;
-
 
 			node_value_ptr = this->_alloc.allocate(1);
 			this->_alloc.construct(node_value_ptr, node_value);
@@ -580,7 +604,7 @@ namespace ft
 			}
 		}
 
-		ft::pair<iterator, bool>		add_node(rbt<value_type> **tree, value_type node_value, rbt<value_type> *parent)
+		ft::pair<iterator, bool>		insertion(rbt<value_type> **tree, value_type node_value, rbt<value_type> *parent)
 		{
 			bool							end_node;
 			ft::pair<iterator, bool>		ret;
@@ -610,9 +634,9 @@ namespace ft
 				return (ret);
 			}
 			else if (!this->_compare((*tree)->value->first, node_value.first))
-				return (this->add_node(&(*tree)->left, node_value, *tree));
+				return (this->insertion(&(*tree)->left, node_value, *tree));
 			else
-				return (this->add_node(&(*tree)->right, node_value, *tree));
+				return (this->insertion(&(*tree)->right, node_value, *tree));
 		}
 
 		void						delete_node(rbt<value_type> *node)
@@ -624,86 +648,72 @@ namespace ft
 			this->_alloc_rbt.deallocate(node, 1);
 		}
 
-		bool						remove_node(rbt<value_type> **tree, iterator node)
-		{
-			if (!(*tree) || (*tree && *tree == this->_end_node))
-				return (false);
-			else if ((*tree) == node.node)
-			{
-				if (!(*tree)->right && !(*tree)->left)
-				{
-					//no child
-					if ((*tree)->parent)
-					{
-						if (this->_compare(node->first, (*tree)->parent->value->first))
-							((*tree)->parent)->left = NULL;
-						else
-							((*tree)->parent)->right = NULL;
-					}
-				}
-				else if ((*tree)->left && !(*tree)->right)
-				{
-					// only left child
-					if ((*tree)->parent)
-					{
-						if (this->_compare(node->first, (*tree)->parent->value->first))
-							(*tree)->parent->left = node.node->left;
-						else
-							((*tree)->parent)->right = node.node->left;
-					}
-					node.node->left->parent = node.node->parent;
-					if (!node.node->parent)
-						this->_root = node.node->left;
-				}
-				else if ((*tree)->right && !(*tree)->left)
-				{
-					// only right child
-					if ((*tree)->parent)
-					{
-						if (this->_compare(node->first, (*tree)->parent->value->first))
-							(*tree)->parent->left = node.node->right;
-						else
-							((*tree)->parent)->right = node.node->right;
-					}
-					node.node->right->parent = node.node->parent;
-					if (!node.node->parent)
-						this->_root = node.node->right;
-				}
-				else
-				{
-					iterator		next;
-
-					next = node;
-					next++;
-					if ((*tree)->parent)
-					{
-						if (this->_compare(node->first, (*tree)->parent->value->first))
-							(*tree)->parent->left = next.node;
-						else
-							((*tree)->parent)->right = next.node;
-					}
-					next.node->parent = node.node->parent;
-					next.node->left = node.node->left;
-					next.node->right = node.node->right;
-					node.node->left->parent = next.node;
-
-					if (!node.node->parent)
-						this->_root = next.node;
-				}
-				delete_node(node.node);
-				return (true);
-			}
-			else if (!this->_compare((*tree)->value->first, node->first))
-				return (this->remove_node(&(*tree)->left, node));
-			else
-				return (this->remove_node(&(*tree)->right, node));
-		}
 
 		bool				deletion(iterator node)
 		{
-			return (remove_node(&(this->_root), node));
-		}
+			if (!node.node->right && !node.node->left)
+			{
+				//no child
+				if (node.node->parent)
+				{
+					if (this->_compare(node->first, node.node->parent->value->first))
+						node.node->parent->left = NULL;
+					else
+						node.node->parent->right = NULL;
+				}
+			}
+			else if (node.node->left && !node.node->right)
+			{
+				// only left child
+				if (node.node->parent)
+				{
+					if (this->_compare(node->first, node.node->parent->value->first))
+						node.node->parent->left = node.node->left;
+					else
+						node.node->parent->right = node.node->left;
+				}
+				node.node->left->parent = node.node->parent;
+				if (!node.node->parent)
+					this->_root = node.node->left;
+			}
+			else if (node.node->right && !node.node->left)
+			{
+				// only right child
+				if (node.node->parent)
+				{
+					if (this->_compare(node->first, node.node->parent->value->first))
+						node.node->parent->left = node.node->right;
+					else
+						node.node->parent->right = node.node->right;
+				}
+				node.node->right->parent = node.node->parent;
+				if (!node.node->parent)
+					this->_root = node.node->right;
+			}
+			else
+			{
+				iterator		next;
 
+				next = node;
+				next++;
+				if (node.node->parent)
+				{
+					if (this->_compare(node->first, node.node->parent->value->first))
+						node.node->parent->left = next.node;
+					else
+						node.node->parent->right = next.node;
+				}
+				next.node->parent = node.node->parent;
+				next.node->left = node.node->left;
+				next.node->right = node.node->right;
+				node.node->left->parent = next.node;
+
+				if (!node.node->parent)
+					this->_root = next.node;
+			}
+			delete_node(node.node);
+			return (true);
+		}
 	};
 }
 

@@ -171,7 +171,6 @@ int	main(void)
 		std::cout << "first = " << it->first << std::endl;
 	}
 	*/
-	ft::map<int, int>		nbrs;
 
 //	nbrs.insert(ft::make_pair(18, 5));
 //	nbrs.insert(ft::make_pair(17, 5));
@@ -203,8 +202,6 @@ int	main(void)
 	nbrs.insert(ft::make_pair<int, int>(48, 5));
 	nbrs.insert(ft::make_pair<int, int>(49, 5));
 	*/
-	nbrs[47] = 3;
-	nbrs[50] = 1;
 	
 	//nbrs.insert(ft::make_pair<int, int>(50, 5));
 	/*
@@ -214,13 +211,24 @@ int	main(void)
 		std::cout << "unbalanced" << std::endl;
 	*/
 //	nbrs.print();
-	display_map(nbrs);
-	ft::map<int, int>::iterator			it;
+	ft::map<int, int>		nbrs;
 
-	it = nbrs.begin();
-	it++;
-	nbrs.erase(it);
-//	nbrs.erase(nbrs.begin());
-	display_map(nbrs);
+	nbrs[47] = 3;
+	nbrs[50] = 1;
+	ft::map<int, int>::iterator			it = nbrs.find(4);
+	std::cout << "it = " << it->first << std::endl;
+//	display_map(nbrs);
+/*
+	std::map<int, int>		nbrs2;
+	std::map<int, int>		nbrs3;
+	nbrs2[70] = 1;
+	nbrs2[80] = 1;
+	nbrs3[70] = 1;
+	nbrs3[80] = 1;
+
+	std::map<int, int>::iterator			it2 = nbrs2.begin();
+	std::map<int, int>::iterator			it3 = nbrs3.begin();
+	(void)it3;
+	*/
 	return (0);
 }
