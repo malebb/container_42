@@ -211,12 +211,22 @@ int	main(void)
 		std::cout << "unbalanced" << std::endl;
 	*/
 //	nbrs.print();
-	ft::map<int, int>		nbrs;
+	std::map<int, int>		nbrs;
 
 	nbrs[47] = 3;
 	nbrs[50] = 1;
-	ft::map<int, int>::iterator			it = nbrs.find(4);
-	std::cout << "it = " << it->first << std::endl;
+	nbrs[48] = 1;
+	nbrs[4] = 1;
+	std::map<int, int>::iterator			it;
+	it = nbrs.end();
+	it--;
+	it--;
+	nbrs.erase(3);
+	for (std::map<int, int>::iterator it = nbrs.begin(); it != nbrs.end(); it++)
+	{
+		std::cout << "first = " << it->first << std::endl;
+	}
+//	std::cout << "it = " << it->first << std::endl;
 //	display_map(nbrs);
 /*
 	std::map<int, int>		nbrs2;

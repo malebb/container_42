@@ -390,12 +390,17 @@ namespace ft
 			if (deletion(position))
 				this->_size--;
 		}
-/*
+
 		size_type		erase(const key_type& k)
 		{
-			if (deletion(val))
+			if (deletion(this->find(k)))
+			{
+				this->_size--;
+				return (1);
+			}
+			else
+				return (0);
 		}
-		*/
 
 		rbt<value_type>		*get_tree()
 		{
@@ -661,6 +666,8 @@ namespace ft
 					else
 						node.node->parent->right = NULL;
 				}
+//				if (!node.node->parent)
+//					this->_root = node.node->right;
 			}
 			else if (node.node->left && !node.node->right)
 			{
@@ -705,9 +712,9 @@ namespace ft
 				}
 				next.node->parent = node.node->parent;
 				next.node->left = node.node->left;
-				next.node->right = node.node->right;
+				if (node.node->right != next.node)
+						next.node->right = node.node->right;
 				node.node->left->parent = next.node;
-
 				if (!node.node->parent)
 					this->_root = next.node;
 			}
