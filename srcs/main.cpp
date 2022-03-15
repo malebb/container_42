@@ -203,11 +203,8 @@ int	main(void)
 	nbrs.insert(ft::make_pair<int, int>(48, 5));
 	nbrs.insert(ft::make_pair<int, int>(49, 5));
 	*/
-	nbrs[50] = 1;
 	nbrs[47] = 3;
-	nbrs[70] = 1;
-	nbrs[60] = 3;
-	nbrs[80] = 3;
+	nbrs[50] = 1;
 	
 	//nbrs.insert(ft::make_pair<int, int>(50, 5));
 	/*
@@ -223,7 +220,7 @@ int	main(void)
 	it = nbrs.begin();
 	it++;
 	nbrs.erase(it);
-	nbrs.erase(nbrs.begin());
+//	nbrs.erase(nbrs.begin());
 	display_map(nbrs);
 	return (0);
 }

@@ -639,7 +639,6 @@ namespace ft
 							((*tree)->parent)->left = NULL;
 						else
 							((*tree)->parent)->right = NULL;
-						delete_node(node.node);
 					}
 				}
 				else if ((*tree)->left && !(*tree)->right)
@@ -648,15 +647,13 @@ namespace ft
 					if ((*tree)->parent)
 					{
 						if (this->_compare(node->first, (*tree)->parent->value->first))
-						{
 							(*tree)->parent->left = node.node->left;
-							node.node->left->parent = node.node->parent;
-						}
 						else
 							((*tree)->parent)->right = node.node->left;
 					}
-					
-					delete_node(node.node);
+					node.node->left->parent = node.node->parent;
+					if (!node.node->parent)
+						this->_root = node.node->left;
 				}
 				else if ((*tree)->right && !(*tree)->left)
 				{
@@ -664,14 +661,13 @@ namespace ft
 					if ((*tree)->parent)
 					{
 						if (this->_compare(node->first, (*tree)->parent->value->first))
-						{
 							(*tree)->parent->left = node.node->right;
-							node.node->left->parent = node.node->parent;
-						}
 						else
 							((*tree)->parent)->right = node.node->right;
 					}
-					delete_node(node.node);
+					node.node->right->parent = node.node->parent;
+					if (!node.node->parent)
+						this->_root = node.node->right;
 				}
 				else
 				{
@@ -693,8 +689,8 @@ namespace ft
 
 					if (!node.node->parent)
 						this->_root = next.node;
-					delete_node(node.node);
 				}
+				delete_node(node.node);
 				return (true);
 			}
 			else if (!this->_compare((*tree)->value->first, node->first))
