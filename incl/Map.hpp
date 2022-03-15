@@ -33,6 +33,7 @@ namespace ft
 				this->right = rhs.right;
 				this->left = rhs.left;
 				this->parent = rhs.parent;
+				this->end = rhs.end;
 				return (*this);
 			}
 
@@ -61,7 +62,7 @@ namespace ft
 
 			// Constructors / destructor
 
-			map_iterator() {}
+			map_iterator() : node(NULL) {}
 
 			map_iterator(const map_iterator& src)
 			{
@@ -270,7 +271,7 @@ namespace ft
 
 		explicit map(const key_compare& comp = key_compare(),
 				const allocator_type& alloc = allocator_type())
-				: _compare(comp), _alloc(alloc), _size(0), _root(NULL)
+				: _compare(comp), _alloc(alloc), _size(0), _root(NULL), _alloc_rbt()
 		{
 			value_type		end_node_value;
 
@@ -296,6 +297,8 @@ namespace ft
 			this->_compare = x._compare;
 			this->_alloc = x._alloc;
 			this->_size = x._size;
+			this->_root = x._root;
+			this->_end_node = x._end_node;
 			return (*this);
 		}
 
@@ -414,7 +417,7 @@ namespace ft
 			while (first != last)
 			{
 				next_it = first;
-				next_it++;
+				++next_it;
 				deletion(first);
 				this->_size--;
 				first = next_it;

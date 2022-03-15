@@ -212,8 +212,8 @@ int	main(void)
 	*/
 //	nbrs.print();
 	ft::map<int, int>		nbrs;
-/*
 	nbrs[47] = 3;
+/*
 	nbrs[48] = 3;
 	nbrs[49] = 3;
 	nbrs[5] = 3;
