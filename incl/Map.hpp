@@ -22,6 +22,7 @@ namespace ft
 				parent(NULL), end(false)
 			{
 			}
+
 			avl(const avl& src)
 			{
 				*this = src;
@@ -54,9 +55,8 @@ namespace ft
 		typedef T*												pointer;
 		typedef T&												reference;
 		typedef std::ptrdiff_t									difference_type;
-		typedef avl<ft::pair<const key_type, mapped_type> >		tree_type;
 		typedef ft::pair<const key_type, mapped_type>			value_type;
-
+		typedef avl<value_type>		tree_type;
 
 		public :
 
@@ -216,6 +216,188 @@ namespace ft
 			}
 	};
 
+	template <class Key, class T>
+	class const_map_iterator : public ft::iterator<ft::bidirectional_iterator_tag, T>
+	{
+		typedef Key												key_type;
+		typedef T												mapped_type;
+		typedef T*												pointer;
+		typedef T&												reference;
+		typedef std::ptrdiff_t									difference_type;
+		typedef ft::pair<const key_type, mapped_type>			value_type;
+		typedef avl<value_type>									tree_type;
+
+
+		public :
+
+			// Constructors / destructor
+
+			const_map_iterator() : node(NULL) {}
+
+			const_map_iterator(map_iterator<Key, T> const & src)
+			{
+				*this = src;
+			}
+
+			const_map_iterator(const_map_iterator const & src)
+			{
+				*this = src;
+			}
+
+			const_map_iterator&		operator=(map_iterator<Key, T>const & rhs)
+			{
+				(void)rhs;
+				this->node = rhs.node;
+				return (*this);
+			}
+
+			const_map_iterator&		operator=(const_map_iterator const & rhs)
+			{
+				this->node = rhs.node;
+				return (*this);
+			}
+
+			const_map_iterator(tree_type *node) : node(node)
+			{
+			}
+
+			virtual ~const_map_iterator() {}
+
+			// comparison operators
+
+			template <class T2>
+			bool			operator==(const T2& rhs)
+			{
+				return (this->node == rhs.node);
+			}
+
+			template <class T2>
+			bool			operator!=(const T2& rhs)
+			{
+				return (!(*this == rhs));
+			}
+
+			// member access operators
+
+			const value_type			*operator->()
+			{
+				return (this->node->value);
+			}
+
+			const value_type			&operator*()
+			{
+				return (*(this->node->value));
+			}
+
+			// Increment / decrement operators
+
+			const_map_iterator&		operator++()
+			{
+				const Key		origin_value = this->node->value->first;
+
+				if (this->node->end)
+					this->operator--();
+				else
+				{
+					while (this->node->value->first <= origin_value && !this->node->end)
+					{
+						if (this->node->right &&
+							(this->node->right->value->first > origin_value
+							 || this->node->right->end))
+							this->node = this->node->right;
+						else
+							this->node = this->node->parent;
+					}
+					while (this->node->left && (this->node->left->value->first > origin_value))
+					{
+						this->node = this->node->left;
+					}
+				}
+				return (*this);
+			}
+
+			const_map_iterator		operator++(int)
+			{
+				const_map_iterator		tmp(*this);
+
+				this->operator++();
+				return (tmp);
+			}
+
+			const_map_iterator&		operator--()
+			{
+				tree_type		origin_node(*(this->node));
+
+				if (get_first_value()->first == origin_node.value->first)
+				{
+					this->node = get_last();
+				}
+				else if (this->node->end)
+					this->node = this->node->parent;
+				else
+				{
+					while (this->node->value->first >= origin_node.value->first)
+					{
+						if (this->node->left &&
+							(this->node->left->value->first < origin_node.value->first))
+							this->node = this->node->left;
+						else
+							this->node = this->node->parent;
+					}
+					while (this->node->right && (this->node->right->value->first < origin_node.value->first))
+					{
+						this->node = this->node->right;
+					}
+				}
+				return (*this);
+			}
+
+			const_map_iterator		operator--(int)
+			{
+				const_map_iterator		tmp(*this);
+
+				this->operator--();
+				return (tmp);
+			}
+
+
+			tree_type		*node;
+
+		private :
+
+			const value_type		*get_first_value()
+			{
+				tree_type		*origin_node;
+
+				origin_node = this->node;
+				while (origin_node->parent)
+				{
+					origin_node = origin_node->parent;
+				}
+				while (origin_node->left != NULL)
+				{
+					origin_node = origin_node->left;
+				}
+				return (origin_node->value);
+			}
+
+			tree_type		*get_last()
+			{
+				tree_type		*origin_node;
+
+				origin_node = this->node;
+				while (origin_node->parent)
+				{
+					origin_node = origin_node->parent;
+				}
+				while (origin_node->right != NULL)
+				{
+					origin_node = origin_node->right;
+				}
+				return (origin_node);
+			}
+	};
+
 	template <class Key,
 			 class T,
 			 class Compare = ft::less<Key>,
@@ -234,7 +416,8 @@ namespace ft
 			typedef typename allocator_type::const_reference	const_reference;
 			typedef typename allocator_type::pointer			pointer;
 			typedef typename allocator_type::const_pointer		const_pointer;
-			typedef map_iterator<Key, T>						iterator;
+			typedef ft::map_iterator<Key, T>						iterator;
+			typedef ft::const_map_iterator<Key, T>					const_iterator;
 
 			// ...
 
@@ -314,6 +497,18 @@ namespace ft
 				node = node->left;
 			}
 			return (iterator(node));
+		}
+
+		const_iterator		begin() const
+		{
+			avl<value_type>			*node;
+
+			node = this->_root;
+			while (node->left != NULL)
+			{
+				node = node->left;
+			}
+			return (const_iterator(node));
 		}
 
 		iterator		end()
@@ -693,8 +888,6 @@ namespace ft
 					else
 						node.node->parent->right = NULL;
 				}
-//				if (!node.node->parent)
-//					this->_root = node.node->right;
 			}
 			else if (node.node->left && !node.node->right)
 			{

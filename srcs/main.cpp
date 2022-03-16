@@ -211,19 +211,22 @@ int	main(void)
 		std::cout << "unbalanced" << std::endl;
 	*/
 //	nbrs.print();
-	ft::map<int, int>		nbrs;
+	ft::map<int, int>						nbrs;
+	ft::map<int, int>::const_iterator			 it;
 	nbrs[47] = 3;
-/*
 	nbrs[48] = 3;
 	nbrs[49] = 3;
 	nbrs[5] = 3;
-	*/
-	/*
-	for (ft::map<int, int>::iterator it = nbrs.begin(); it != nbrs.end(); it++)
+	it = nbrs.begin();
+
+	for (ft::map<int, int>::const_iterator it = nbrs.begin(); it != nbrs.end(); it++)
 	{
-		std::cout << "first = " << it->first << std::endl;
+		std::cout << "first = " << it->first << " " << it->second << std::endl;
 	}
+
+/*
 	*/
+
 //	std::cout << "it = " << it->first << std::endl;
 //	display_map(nbrs);
 /*
