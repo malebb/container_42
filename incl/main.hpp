@@ -27,6 +27,8 @@ void	test_vector_relational_operators(void);
 
 void	test_map(void);
 void	test_map_modifiers(void);
+void	test_map_capacity(void);
+void	test_map_element_access(void);
 
 // utils
 

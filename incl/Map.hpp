@@ -527,12 +527,12 @@ namespace ft
 		{
 			return (this->_size);
 		}
-/*
+
 		size_type		max_size() const
 		{
-
+			return (this->_alloc_avl.max_size() - 1);
 		}
-*/
+
 		// element access
 
 		mapped_type&		operator[](const key_type& k)
@@ -647,6 +647,8 @@ namespace ft
 		{
 			this->erase(this->begin(), this->end());
 		}
+
+		// others
 
 		avl<value_type>		*get_tree()
 		{

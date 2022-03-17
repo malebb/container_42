@@ -242,5 +242,7 @@ int	main(void)
 	std::map<int, int>::iterator			it3 = nbrs3.begin();
 	(void)it3;
 	*/
+	ft::map<int, int>		nbrs;
+
 	return (0);
 }
