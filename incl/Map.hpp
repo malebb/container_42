@@ -537,7 +537,7 @@ namespace ft
 
 		mapped_type&		operator[](const key_type& k)
 		{
-			return ((*((this->insert(make_pair(k,mapped_type()))).first)).second);
+			return ((*((this->insert(ft::make_pair(k,mapped_type()))).first)).second);
 		}
 
 		// modifiers
@@ -617,6 +617,30 @@ namespace ft
 				this->_size--;
 				first = next_it;
 			}
+		}
+
+		void			swap(map& x)
+		{
+			const key_compare			compare = this->_compare;
+			const allocator_type		alloc = this->_alloc;
+			const size_type				size = this->_size;
+			avl<value_type>		*root = this->_root;
+			avl<value_type>		*end_node = this->_end_node;
+			const alloc_avl				alloc_avl = this->_alloc_avl;
+
+			this->_compare = x._compare;
+			this->_alloc = x._alloc;
+			this->_size = x._size;
+			this->_root = x._root;
+			this->_end_node = x._end_node;
+			this->_alloc_avl = x._alloc_avl;
+
+			x._compare = compare;
+			x._alloc = alloc;
+			x._size = size;
+			x._root = root;
+			x._end_node = end_node;
+			x._alloc_avl = alloc_avl;
 		}
 
 		void			clear()
@@ -883,7 +907,8 @@ namespace ft
 				//no child
 				if (node.node->parent)
 				{
-					if (this->_compare(node->first, node.node->parent->value->first))
+					if (this->_compare(node->first,
+								node.node->parent->value->first))
 						node.node->parent->left = NULL;
 					else
 						node.node->parent->right = NULL;
@@ -894,7 +919,8 @@ namespace ft
 				// only left child
 				if (node.node->parent)
 				{
-					if (this->_compare(node->first, node.node->parent->value->first))
+					if (this->_compare(node->first,
+								node.node->parent->value->first))
 						node.node->parent->left = node.node->left;
 					else
 						node.node->parent->right = node.node->left;
@@ -908,7 +934,8 @@ namespace ft
 				// only right child
 				if (node.node->parent)
 				{
-					if (this->_compare(node->first, node.node->parent->value->first))
+					if (this->_compare(node->first,
+								node.node->parent->value->first))
 						node.node->parent->left = node.node->right;
 					else
 						node.node->parent->right = node.node->right;
@@ -925,7 +952,8 @@ namespace ft
 				next++;
 				if (node.node->parent)
 				{
-					if (this->_compare(node->first, node.node->parent->value->first))
+					if (this->_compare(node->first,
+								node.node->parent->value->first))
 						node.node->parent->left = next.node;
 					else
 						node.node->parent->right = next.node;

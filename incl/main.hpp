@@ -56,10 +56,11 @@ void	display_tab(const ft::vector<T> & cont)
 }
 
 template<typename Key, typename T>
-void	display_map(ft::map<Key, T> & cont)
+void	display_map(std::string name, ft::map<Key, T> & cont)
 {
 	typename ft::map<Key, T>::iterator next;
 
+	std::cout << name << " = ";
 	std::cout << "{";
 	for (typename ft::map<Key, T>::iterator it = cont.begin(); it != cont.end(); it++)
 	{
@@ -74,7 +75,7 @@ void	display_map(ft::map<Key, T> & cont)
 			std::cout << ", ";
 	}
 	std::cout << "}";
-	std::cout << std::endl;
+	std::cout << std::endl << std::endl;
 
 }
 

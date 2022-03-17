@@ -160,7 +160,7 @@ int	main(void)
 
 //	test_reverse_iterator();
 //	test_vector();
-//	test_map();
+	test_map();
 	/*
 	std::map<int, std::string>		numbers;
 
@@ -211,6 +211,7 @@ int	main(void)
 		std::cout << "unbalanced" << std::endl;
 	*/
 //	nbrs.print();
+/*
 	ft::map<int, int>						nbrs;
 	ft::map<int, int>::const_iterator			 it;
 	nbrs[47] = 3;
@@ -218,11 +219,11 @@ int	main(void)
 	nbrs[49] = 3;
 	nbrs[5] = 3;
 	it = nbrs.begin();
-
 	for (ft::map<int, int>::const_iterator it = nbrs.begin(); it != nbrs.end(); it++)
 	{
 		std::cout << "first = " << it->first << " " << it->second << std::endl;
 	}
+	*/
 
 /*
 	*/
