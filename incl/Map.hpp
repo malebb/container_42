@@ -463,6 +463,23 @@ namespace ft
 			this->_root = this->_end_node;
 		}
 
+		template <class InputIterator>
+			map(InputIterator first, InputIterator last,
+				const key_compare& comp = key_compare(),
+				const allocator_type& alloc = allocator_type())
+				: _compare(comp), _alloc(alloc), _size(0), _root(NULL), _alloc_avl()
+
+			{
+				value_type		end_node_value;
+
+				this->_end_node = this->create_node(value_type());
+				this->_end_node->end = 1;
+				this->_root = this->_end_node;
+				this->insert(first, last);
+			}
+
+
+
 		map(const map& x)
 		{
 			*this = x;
@@ -516,6 +533,11 @@ namespace ft
 			return (iterator(this->_end_node));
 		}
 
+		const_iterator		end() const
+		{
+			return (iterator(this->_end_node));
+		}
+
 		// capacity
 
 		bool			empty() const
@@ -545,7 +567,6 @@ namespace ft
 		ft::pair<iterator, bool>		insert(const value_type& val)
 		{
 			ft::pair<iterator, bool>	ret;
-
 			ret = this->insertion(&this->_root, val, NULL);
 			if (ret.second)
 				this->_size++;
@@ -723,7 +744,20 @@ namespace ft
 
 		const_iterator		find(const key_type& k) const
 		{
-			return (this->find(k));
+			avl<value_type>		*node;
+
+			node = this->_root;
+
+			while (node && !node->end)
+			{
+				if (node->value->first == k)
+					return (iterator(node));
+				if (this->_compare(k, node->value->first))
+					node = node->left;
+				else
+					node = node->right;
+			}
+			return (this->end());
 		}
 
 	private :
