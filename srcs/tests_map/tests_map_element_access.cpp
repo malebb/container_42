@@ -27,9 +27,8 @@ static void		test_subscript_operator(void)
 void			test_map_element_access(void)
 {
 	std::cout << std::endl;
-	std::cout << "<------------ Test map capacity ------------>"
-	<< std::endl;
-	std::cout << std::endl;
+	std::cout << "<------------ Test map element access ------------>"
+	<< std::endl << std::endl;
 
 	std::cout << "********************************************" << std::endl;
 	test_subscript_operator();
