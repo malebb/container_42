@@ -723,20 +723,7 @@ namespace ft
 
 		const_iterator		find(const key_type& k) const
 		{
-			avl<value_type>		*node;
-
-			node = this->_root;
-
-			while (node && !node->end)
-			{
-				if (node->value->first == k)
-					return (iterator(node));
-				if (this->_compare(k, node->value->first))
-					node = node->left;
-				else
-					node = node->right;
-			}
-			return (this->end());
+			return (this->find(k));
 		}
 
 	private :
