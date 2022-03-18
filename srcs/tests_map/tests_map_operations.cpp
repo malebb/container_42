@@ -32,6 +32,26 @@ static void		test_find(void)
 	std::cout << "cit->second = " << c_it->second << std::endl;
 }
 
+static void		test_count(void)
+{
+	std::cout << std::endl;
+	std::cout << ">> test find function" << std::endl;
+	std::cout << std::endl;
+
+	ft::map<int, std::string>		numbers;
+
+	numbers[1] = "one";
+	numbers[2] = "two";
+	numbers[3] = "three";
+	numbers[4] = "four";
+	numbers[5] = "five";
+
+	display_map("numbers", numbers);
+
+	std::cout << "numbers.count(4) = " << numbers.count(4) << std::endl;
+	std::cout << "numbers.count(23) = " << numbers.count(23) << std::endl;
+}
+
 void	test_map_operations(void)
 {
 	std::cout << std::endl;
@@ -41,4 +61,5 @@ void	test_map_operations(void)
 	std::cout << "********************************************" << std::endl;
 	test_find();
 	std::cout << "********************************************" << std::endl;
+	test_count();
 }

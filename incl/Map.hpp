@@ -84,13 +84,13 @@ namespace ft
 			// comparison operators
 
 			template <class T2>
-			bool			operator==(const T2& rhs)
+			bool			operator==(const T2& rhs) const
 			{
 				return (this->node == rhs.node);
 			}
 
 			template <class T2>
-			bool			operator!=(const T2& rhs)
+			bool			operator!=(const T2& rhs) const
 			{
 				return (!(*this == rhs));
 			}
@@ -266,25 +266,25 @@ namespace ft
 			// comparison operators
 
 			template <class T2>
-			bool			operator==(const T2& rhs)
+			bool			operator==(const T2& rhs) const
 			{
 				return (this->node == rhs.node);
 			}
 
 			template <class T2>
-			bool			operator!=(const T2& rhs)
+			bool			operator!=(const T2& rhs) const
 			{
 				return (!(*this == rhs));
 			}
 
 			// member access operators
 
-			const value_type			*operator->()
+			const value_type			*operator->() const
 			{
 				return (this->node->value);
 			}
 
-			const value_type			&operator*()
+			const value_type			&operator*() const
 			{
 				return (*(this->node->value));
 			}
@@ -758,6 +758,11 @@ namespace ft
 					node = node->right;
 			}
 			return (this->end());
+		}
+
+		size_type			count(const key_type& k) const
+		{
+			return (this->find(k).node != this->_end_node);
 		}
 
 	private :
