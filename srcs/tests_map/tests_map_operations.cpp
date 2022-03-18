@@ -52,6 +52,22 @@ static void		test_count(void)
 	std::cout << "numbers.count(23) = " << numbers.count(23) << std::endl;
 }
 
+static void		test_lower_bound(void)
+{
+	std::cout << std::endl;
+	std::cout << ">> test lower_bound function" << std::endl;
+	std::cout << std::endl;
+
+	std::map<int, std::string>		numbers;
+
+	numbers[1] = "one";
+	numbers[2] = "two";
+	numbers[3] = "three";
+	numbers[4] = "four";
+	numbers[5] = "five";
+	std::cout << (numbers.lower_bound(3))->first << std::endl;
+}
+
 void	test_map_operations(void)
 {
 	std::cout << std::endl;
@@ -62,4 +78,8 @@ void	test_map_operations(void)
 	test_find();
 	std::cout << "********************************************" << std::endl;
 	test_count();
+	std::cout << "********************************************" << std::endl;
+	test_lower_bound();
+	std::cout << "********************************************" << std::endl;
+
 }

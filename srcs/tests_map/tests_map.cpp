@@ -9,6 +9,7 @@ void	test_map(void)
 	test_map_capacity();
 	test_map_element_access();
 	test_map_modifiers();
-	test_map_operations();
+	test_map_observers();
+//	test_map_operations();
 	
 }

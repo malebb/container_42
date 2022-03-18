@@ -722,6 +722,13 @@ namespace ft
 			browse_tree(node->left, 'l', depth + 1);
 		}
 
+		// observers
+
+		key_compare		key_comp() const
+		{
+			return (this->_compare);
+		}
+
 		// operations
 		
 		iterator		find(const key_type& k)
@@ -763,6 +770,11 @@ namespace ft
 		size_type			count(const key_type& k) const
 		{
 			return (this->find(k).node != this->_end_node);
+		}
+
+		iterator			lower_bound(const key_type& k)
+		{
+			(void)k;
 		}
 
 	private :
