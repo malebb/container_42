@@ -428,6 +428,7 @@ namespace ft
 
 			class value_compare : public ft::binary_function<value_type, value_type, bool>
 			{
+				friend class map;
 				public:
 
 					typedef typename ft::binary_function<value_type,
@@ -454,7 +455,7 @@ namespace ft
 
 		explicit map(const key_compare& comp = key_compare(),
 				const allocator_type& alloc = allocator_type())
-				: _compare(comp), _alloc(alloc), _size(0), _root(NULL), _alloc_avl()
+				: _compare(comp), _comp(this->_compare), _alloc(alloc), _size(0), _root(NULL), _alloc_avl()
 		{
 			value_type		end_node_value;
 
@@ -467,7 +468,7 @@ namespace ft
 			map(InputIterator first, InputIterator last,
 				const key_compare& comp = key_compare(),
 				const allocator_type& alloc = allocator_type())
-				: _compare(comp), _alloc(alloc), _size(0), _root(NULL), _alloc_avl()
+				: _compare(comp), _comp(this->_compare), _alloc(alloc), _size(0), _root(NULL), _alloc_avl()
 
 			{
 				value_type		end_node_value;
@@ -729,6 +730,11 @@ namespace ft
 			return (this->_compare);
 		}
 
+		value_compare	value_comp() const
+		{
+			return (this->_comp);
+		}
+
 		// operations
 		
 		iterator		find(const key_type& k)
@@ -780,6 +786,7 @@ namespace ft
 	private :
 
 		key_compare										_compare;
+		value_compare									_comp;
 		allocator_type									_alloc;
 		size_type										_size;
 		avl<value_type>									*_root;
