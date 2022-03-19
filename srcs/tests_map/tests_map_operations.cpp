@@ -35,7 +35,7 @@ static void		test_find(void)
 static void		test_count(void)
 {
 	std::cout << std::endl;
-	std::cout << ">> test find function" << std::endl;
+	std::cout << ">> test count function" << std::endl;
 	std::cout << std::endl;
 
 	ft::map<int, std::string>		numbers;
@@ -58,14 +58,23 @@ static void		test_lower_bound(void)
 	std::cout << ">> test lower_bound function" << std::endl;
 	std::cout << std::endl;
 
-	std::map<int, std::string>		numbers;
+	ft::map<int, std::string>		numbers;
 
-	numbers[1] = "one";
-	numbers[2] = "two";
-	numbers[3] = "three";
-	numbers[4] = "four";
-	numbers[5] = "five";
-	std::cout << (numbers.lower_bound(3))->first << std::endl;
+	numbers[15] = "fiveteen";
+	numbers[20] = "twenty";
+	numbers[25] = "twenty-five";
+	numbers[30] = "thirty";
+	numbers[35] = "thirty-five";
+	const ft::map<int, std::string>		const_numbers(numbers);
+
+	display_map("numbers", numbers);
+	std::cout << "numbers.lower_bound(7)->first) = " << numbers.lower_bound(7)->first << std::endl;
+	std::cout << "numbers.lower_bound(25)->first) = " << numbers.lower_bound(25)->first << std::endl;
+	std::cout << "numbers.lower_bound(32)->first) = " << numbers.lower_bound(32)->first << std::endl << std::endl;
+
+	std::cout << "const_numbers.lower_bound(7)->first) = " << const_numbers.lower_bound(7)->first << std::endl;
+	std::cout << "const_numbers.lower_bound(25)->first) = " << const_numbers.lower_bound(25)->first << std::endl;
+	std::cout << "const_numbers.lower_bound(32)->first) = " << const_numbers.lower_bound(32)->first << std::endl;
 }
 
 void	test_map_operations(void)

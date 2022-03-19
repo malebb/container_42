@@ -429,6 +429,7 @@ namespace ft
 			class value_compare : public ft::binary_function<value_type, value_type, bool>
 			{
 				friend class map;
+
 				public:
 
 					typedef typename ft::binary_function<value_type,
@@ -481,9 +482,15 @@ namespace ft
 
 
 
-		map(const map& x)
+		map(const map& x) : _compare(x._compare), _comp(x._comp),
+			_alloc(x._alloc)
 		{
-			*this = x;
+				value_type		end_node_value;
+
+				this->_end_node = this->create_node(value_type());
+				this->_end_node->end = 1;
+				this->_root = this->_end_node;
+				this->insert(x.begin(), x.end());
 		}
 
 		~map()
@@ -496,10 +503,16 @@ namespace ft
 		map&	operator=(const map& x)
 		{
 			this->_compare = x._compare;
+			this->_comp = x._comp;
 			this->_alloc = x._alloc;
+			this->clear();
+
+			this->insert(x.begin(), x.end());
+			/*
 			this->_size = x._size;
 			this->_root = x._root;
 			this->_end_node = x._end_node;
+			*/
 			return (*this);
 		}
 
@@ -670,6 +683,115 @@ namespace ft
 			this->erase(this->begin(), this->end());
 		}
 
+
+		// observers
+
+		key_compare		key_comp() const
+		{
+			return (this->_compare);
+		}
+
+		value_compare	value_comp() const
+		{
+			return (this->_comp);
+		}
+
+		// operations
+		
+		iterator		find(const key_type& k)
+		{
+			avl<value_type>		*node;
+
+			node = this->_root;
+			while (node && !node->end)
+			{
+				if (!this->_compare(node->value->first, k) && 
+						!this->_compare(k, node->value->first))
+					return (iterator(node));
+				if (this->_compare(k, node->value->first))
+					node = node->left;
+				else
+					node = node->right;
+			}
+			return (this->end());
+		}
+
+		const_iterator		find(const key_type& k) const
+		{
+			avl<value_type>		*node;
+
+			node = this->_root;
+			while (node && !node->end)
+			{
+				if (!this->_compare(node->value->first, k) && 
+						!this->_compare(k, node->value->first))
+					return (iterator(node));
+				if (this->_compare(k, node->value->first))
+					node = node->left;
+				else
+					node = node->right;
+			}
+			return (this->end());
+		}
+
+		size_type			count(const key_type& k) const
+		{
+			return (this->find(k).node != this->_end_node);
+		}
+
+		iterator			lower_bound(const key_type& k)
+		{
+			avl<value_type>		*node;
+
+			node = this->_root;
+			while (node && !node->end)
+			{
+				if (!this->_compare(k, node->value->first)
+					 && !this->_compare(node->value->first, k))
+					return (node);
+				if (this->_compare(k, node->value->first))
+				{
+					if (node->left &&
+							(this->_compare(k, node->left->value->first)
+							 || (!this->_compare(k, node->left->value->first)
+								 && !this->_compare(node->left->value->first, k))))
+						node = node->left;
+					else
+						return(node);
+				}
+				else
+					node = node->right;
+			}
+			return (this->end());
+		}
+
+		const_iterator			lower_bound(const key_type& k) const
+		{
+			avl<value_type>		*node;
+
+			node = this->_root;
+			while (node && !node->end)
+			{
+				if (!this->_compare(k, node->value->first)
+					 && !this->_compare(node->value->first, k))
+					return (node);
+				if (this->_compare(k, node->value->first))
+				{
+					if (node->left &&
+							(this->_compare(k, node->left->value->first)
+							 || (!this->_compare(k, node->left->value->first)
+								 && !this->_compare(node->left->value->first, k))))
+						node = node->left;
+					else
+						return(node);
+				}
+				else
+					node = node->right;
+			}
+			return (this->end());
+		}
+
+		
 		// others
 
 		avl<value_type>		*get_tree()
@@ -721,66 +843,6 @@ namespace ft
 			std::cout << floor << ": " << node->value->first << std::endl;
 			browse_tree(node->right, 'r', depth + 1);
 			browse_tree(node->left, 'l', depth + 1);
-		}
-
-		// observers
-
-		key_compare		key_comp() const
-		{
-			return (this->_compare);
-		}
-
-		value_compare	value_comp() const
-		{
-			return (this->_comp);
-		}
-
-		// operations
-		
-		iterator		find(const key_type& k)
-		{
-			avl<value_type>		*node;
-
-			node = this->_root;
-
-			while (node && !node->end)
-			{
-				if (node->value->first == k)
-					return (iterator(node));
-				if (this->_compare(k, node->value->first))
-					node = node->left;
-				else
-					node = node->right;
-			}
-			return (this->end());
-		}
-
-		const_iterator		find(const key_type& k) const
-		{
-			avl<value_type>		*node;
-
-			node = this->_root;
-
-			while (node && !node->end)
-			{
-				if (node->value->first == k)
-					return (iterator(node));
-				if (this->_compare(k, node->value->first))
-					node = node->left;
-				else
-					node = node->right;
-			}
-			return (this->end());
-		}
-
-		size_type			count(const key_type& k) const
-		{
-			return (this->find(k).node != this->_end_node);
-		}
-
-		iterator			lower_bound(const key_type& k)
-		{
-			(void)k;
 		}
 
 	private :
