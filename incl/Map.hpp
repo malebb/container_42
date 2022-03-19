@@ -508,11 +508,6 @@ namespace ft
 			this->clear();
 
 			this->insert(x.begin(), x.end());
-			/*
-			this->_size = x._size;
-			this->_root = x._root;
-			this->_end_node = x._end_node;
-			*/
 			return (*this);
 		}
 
@@ -774,7 +769,33 @@ namespace ft
 			{
 				if (!this->_compare(k, node->value->first)
 					 && !this->_compare(node->value->first, k))
-					return (node);
+					return (iterator(node));
+				if (this->_compare(k, node->value->first))
+				{
+					if (node->left &&
+							(this->_compare(k, node->left->value->first)
+							 || (!this->_compare(k, node->left->value->first)
+								 && !this->_compare(node->left->value->first, k))))
+						node = node->left;
+					else
+						return(iterator(node));
+				}
+				else
+					node = node->right;
+			}
+			return (this->end());
+		}
+
+		iterator			upper_bound(const key_type& k)
+		{
+			avl<value_type>		*node;
+
+			node = this->_root;
+			while (node && !node->end)
+			{
+				if (!this->_compare(k, node->value->first)
+					 && !this->_compare(node->value->first, k))
+					return (++iterator(node));
 				if (this->_compare(k, node->value->first))
 				{
 					if (node->left &&
@@ -791,6 +812,31 @@ namespace ft
 			return (this->end());
 		}
 
+		const_iterator			upper_bound(const key_type& k) const
+		{
+			avl<value_type>		*node;
+
+			node = this->_root;
+			while (node && !node->end)
+			{
+				if (!this->_compare(k, node->value->first)
+					 && !this->_compare(node->value->first, k))
+					return (++iterator(node));
+				if (this->_compare(k, node->value->first))
+				{
+					if (node->left &&
+							(this->_compare(k, node->left->value->first)
+							 || (!this->_compare(k, node->left->value->first)
+								 && !this->_compare(node->left->value->first, k))))
+						node = node->left;
+					else
+						return(node);
+				}
+				else
+					node = node->right;
+			}
+			return (this->end());
+		}
 		
 		// others
 

@@ -67,7 +67,7 @@ static void		test_lower_bound(void)
 	numbers[35] = "thirty-five";
 	const ft::map<int, std::string>		const_numbers(numbers);
 
-	display_map("numbers", numbers);
+//	display_map("numbers", numbers);
 	std::cout << "numbers.lower_bound(7)->first) = " << numbers.lower_bound(7)->first << std::endl;
 	std::cout << "numbers.lower_bound(25)->first) = " << numbers.lower_bound(25)->first << std::endl;
 	std::cout << "numbers.lower_bound(32)->first) = " << numbers.lower_bound(32)->first << std::endl << std::endl;
@@ -75,6 +75,31 @@ static void		test_lower_bound(void)
 	std::cout << "const_numbers.lower_bound(7)->first) = " << const_numbers.lower_bound(7)->first << std::endl;
 	std::cout << "const_numbers.lower_bound(25)->first) = " << const_numbers.lower_bound(25)->first << std::endl;
 	std::cout << "const_numbers.lower_bound(32)->first) = " << const_numbers.lower_bound(32)->first << std::endl;
+}
+
+static void		test_upper_bound(void)
+{
+	std::cout << std::endl;
+	std::cout << ">> test upper_bound function" << std::endl;
+	std::cout << std::endl;
+
+	ft::map<int, std::string>		numbers;
+
+	numbers[15] = "fiveteen";
+	numbers[20] = "twenty";
+	numbers[25] = "twenty-five";
+	numbers[30] = "thirty";
+	numbers[35] = "thirty-five";
+	const ft::map<int, std::string>		const_numbers(numbers);
+
+	//display_map("numbers", numbers);
+	std::cout << "numbers.upper_bound(7)->first) = " << numbers.upper_bound(7)->first << std::endl;
+	std::cout << "numbers.upper_bound(25)->first) = " << numbers.upper_bound(25)->first << std::endl;
+	std::cout << "numbers.upper_bound(32)->first) = " << numbers.upper_bound(32)->first << std::endl << std::endl;
+
+	std::cout << "const_numbers.upper_bound(7)->first) = " << const_numbers.upper_bound(7)->first << std::endl;
+	std::cout << "const_numbers.upper_bound(25)->first) = " << const_numbers.upper_bound(25)->first << std::endl;
+	std::cout << "const_numbers.upper_bound(32)->first) = " << const_numbers.upper_bound(32)->first << std::endl;
 }
 
 void	test_map_operations(void)
@@ -89,6 +114,8 @@ void	test_map_operations(void)
 	test_count();
 	std::cout << "********************************************" << std::endl;
 	test_lower_bound();
+	std::cout << "********************************************" << std::endl;
+	test_upper_bound();
 	std::cout << "********************************************" << std::endl;
 
 }
