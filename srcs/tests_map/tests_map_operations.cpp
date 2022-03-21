@@ -90,12 +90,14 @@ static void		test_upper_bound(void)
 	numbers[25] = "twenty-five";
 	numbers[30] = "thirty";
 	numbers[35] = "thirty-five";
-	const ft::map<int, std::string>		const_numbers(numbers);
+
 
 	//display_map("numbers", numbers);
 	std::cout << "numbers.upper_bound(7)->first) = " << numbers.upper_bound(7)->first << std::endl;
 	std::cout << "numbers.upper_bound(25)->first) = " << numbers.upper_bound(25)->first << std::endl;
 	std::cout << "numbers.upper_bound(32)->first) = " << numbers.upper_bound(32)->first << std::endl << std::endl;
+
+	const ft::map<int, std::string>		const_numbers(numbers);
 
 	std::cout << "const_numbers.upper_bound(7)->first) = " << const_numbers.upper_bound(7)->first << std::endl;
 	std::cout << "const_numbers.upper_bound(25)->first) = " << const_numbers.upper_bound(25)->first << std::endl;
@@ -109,14 +111,14 @@ static void		test_equal_range(void)
 	std::cout << std::endl;
 
 	ft::map<int, std::string>		numbers;
+	ft::pair<ft::map<int, std::string>::iterator, ft::map<int, std::string>::iterator>		ret;
 
 	numbers[15] = "fiveteen";
 	numbers[20] = "twenty";
 	numbers[25] = "twenty-five";
 	numbers[30] = "thirty";
 	numbers[35] = "thirty-five";
-	const ft::map<int, std::string>		const_numbers(numbers);
-	ft::pair<ft::map<int, std::string>::const_iterator, ft::map<int, std::string>::const_iterator>		ret;
+	display_map("numbers", numbers);
 
 	std::cout << "ret = numbers.equal_range(15)" << std::endl;
 	ret = numbers.equal_range(15);
@@ -127,7 +129,27 @@ static void		test_equal_range(void)
 
 	ret = numbers.equal_range(16);
 	std::cout << "(ret.first)->first = " << (ret.first)->first << std::endl;
-	std::cout << "(ret.first)->first = " << (ret.second)->first << std::endl;
+	std::cout << "(ret.first)->first = " << (ret.second)->first << std::endl << std::endl;
+
+	const ft::map<int, std::string>		const_numbers(numbers);
+	ft::pair<ft::map<int, std::string>::const_iterator, ft::map<int, std::string>::const_iterator>		const_ret;
+	
+	display_map("const_numbers", const_numbers);
+
+	std::cout << "ret = const_numbers.equal_range(15)" << std::endl;
+	const_ret = const_numbers.equal_range(15);
+	
+	std::cout << "(const_ret.first)->first = " << (const_ret.first)->first << std::endl;
+	std::cout << "(const_ret.first)->first = " << (const_ret.second)->first << std::endl << std::endl;
+
+	std::cout << "const_ret = const_numbers.equal_range(16)" << std::endl;
+	
+	const_ret = const_numbers.equal_range(16);
+
+	std::cout << "(const_ret.first)->first = " << (const_ret.first)->first << std::endl;
+	std::cout << "(const_ret.first)->first = " << (const_ret.second)->first << std::endl;
+
+
 }
 
 void	test_map_operations(void)

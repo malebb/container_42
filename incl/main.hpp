@@ -31,6 +31,7 @@ void	test_map_capacity(void);
 void	test_map_element_access(void);
 void	test_map_observers(void);
 void	test_map_operations(void);
+void	test_map_allocator(void);
 
 // utils
 

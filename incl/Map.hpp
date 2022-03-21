@@ -855,6 +855,13 @@ namespace ft
 			range.second = this->upper_bound(k);
 			return (range);
 		}
+
+		// allocator
+		
+		allocator_type		get_allocator() const
+		{
+			return (this->_alloc);
+		}
 		
 		// others
 
