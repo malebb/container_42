@@ -102,6 +102,34 @@ static void		test_upper_bound(void)
 	std::cout << "const_numbers.upper_bound(32)->first) = " << const_numbers.upper_bound(32)->first << std::endl;
 }
 
+static void		test_equal_range(void)
+{
+	std::cout << std::endl;
+	std::cout << ">> test equal_range function" << std::endl;
+	std::cout << std::endl;
+
+	ft::map<int, std::string>		numbers;
+
+	numbers[15] = "fiveteen";
+	numbers[20] = "twenty";
+	numbers[25] = "twenty-five";
+	numbers[30] = "thirty";
+	numbers[35] = "thirty-five";
+	const ft::map<int, std::string>		const_numbers(numbers);
+	ft::pair<ft::map<int, std::string>::const_iterator, ft::map<int, std::string>::const_iterator>		ret;
+
+	std::cout << "ret = numbers.equal_range(15)" << std::endl;
+	ret = numbers.equal_range(15);
+	std::cout << "(ret.first)->first = " << (ret.first)->first << std::endl;
+	std::cout << "(ret.first)->first = " << (ret.second)->first << std::endl << std::endl;
+
+	std::cout << "ret = numbers.equal_range(16)" << std::endl;
+
+	ret = numbers.equal_range(16);
+	std::cout << "(ret.first)->first = " << (ret.first)->first << std::endl;
+	std::cout << "(ret.first)->first = " << (ret.second)->first << std::endl;
+}
+
 void	test_map_operations(void)
 {
 	std::cout << std::endl;
@@ -116,6 +144,8 @@ void	test_map_operations(void)
 	test_lower_bound();
 	std::cout << "********************************************" << std::endl;
 	test_upper_bound();
+	std::cout << "********************************************" << std::endl;
+	test_equal_range();
 	std::cout << "********************************************" << std::endl;
 
 }

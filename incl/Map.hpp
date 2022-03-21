@@ -837,6 +837,24 @@ namespace ft
 			}
 			return (this->end());
 		}
+
+		pair<const_iterator, const_iterator>		equal_range(const key_type& k) const
+		{
+			pair <const_iterator, const_iterator>		range;
+
+			range.first = this->lower_bound(k);
+			range.second = this->upper_bound(k);
+			return (range);
+		}
+
+		pair<iterator, iterator>					equal_range(const key_type& k)
+		{
+			pair <iterator, iterator>		range;
+
+			range.first = this->lower_bound(k);
+			range.second = this->upper_bound(k);
+			return (range);
+		}
 		
 		// others
 
