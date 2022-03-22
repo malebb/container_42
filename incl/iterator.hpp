@@ -1,6 +1,8 @@
 #ifndef ITERATOR_HPP
 #define ITERATOR_HPP
 
+#include <cstddef>
+
 namespace ft
 {
 	struct random_access_iterator_tag {};

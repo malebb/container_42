@@ -1,6 +1,8 @@
 #ifndef REVERSE_ITERATOR
 #define REVERSE_ITERATOR
 
+#include "iterator.hpp"
+
 namespace ft
 {
 
@@ -101,7 +103,8 @@ namespace ft
 
 			pointer		operator->() const
 			{
-				return &(this->operator*());
+				return (this->_it.operator->());
+//				return &(this->operator*());
 			}
 
 			reference			operator[](difference_type rhs) const

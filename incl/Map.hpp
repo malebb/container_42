@@ -7,6 +7,7 @@
 #include "functional.hpp"
 #include "utility.hpp"
 #include "iterator.hpp"
+#include "reverse_iterator.hpp"
 
 #include <iostream>
 
@@ -50,15 +51,17 @@ namespace ft
 	template <class Key, class T>
 	class map_iterator : public ft::iterator<ft::bidirectional_iterator_tag, T>
 	{
-		typedef Key												key_type;
-		typedef T												mapped_type;
-		typedef T*												pointer;
-		typedef T&												reference;
-		typedef std::ptrdiff_t									difference_type;
-		typedef ft::pair<const key_type, mapped_type>			value_type;
-		typedef avl<value_type>		tree_type;
+
 
 		public :
+
+			typedef Key												key_type;
+			typedef T												mapped_type;
+			typedef T*												pointer;
+			typedef T&												reference;
+			typedef std::ptrdiff_t									difference_type;
+			typedef ft::pair<const key_type, mapped_type>			value_type;
+			typedef avl<value_type>		tree_type;
 
 			// Constructors / destructor
 
@@ -416,8 +419,10 @@ namespace ft
 			typedef typename allocator_type::const_reference	const_reference;
 			typedef typename allocator_type::pointer			pointer;
 			typedef typename allocator_type::const_pointer		const_pointer;
-			typedef ft::map_iterator<Key, T>						iterator;
-			typedef ft::const_map_iterator<Key, T>					const_iterator;
+			typedef ft::map_iterator<Key, T>					iterator;
+			typedef ft::const_map_iterator<Key, T>				const_iterator;
+			typedef ft::reverse_iterator<iterator>				reverse_iterator;
+			typedef ft::reverse_iterator<const_iterator>	 	const_reverse_iterator;
 
 			// ...
 
@@ -537,6 +542,11 @@ namespace ft
 			return (const_iterator(node));
 		}
 
+		reverse_iterator	rbegin()
+		{
+			return (reverse_iterator(this->_end_node));
+		}
+
 		iterator		end()
 		{
 			return (iterator(this->_end_node));
@@ -545,6 +555,18 @@ namespace ft
 		const_iterator		end() const
 		{
 			return (iterator(this->_end_node));
+		}
+
+		reverse_iterator	rend()
+		{
+			avl<value_type>			*node;
+
+			node = this->_root;
+			while (node->left != NULL)
+			{
+				node = node->left;
+			}
+			return (reverse_iterator(node));
 		}
 
 		// capacity
