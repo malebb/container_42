@@ -10,7 +10,7 @@ void	test_get_allocator(void)
 	int						*ptr;
 
 	std::cout << "vector_container = ";
-	display_tab(vector_container);
+	display_vector("vector_container", vector_container);
 	std::cout << std::endl;
 
 	ptr = vector_container.get_allocator().allocate(3);

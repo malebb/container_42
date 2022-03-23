@@ -15,11 +15,8 @@ void	test_subscript_operator(void)
 	numbers.push_back("three");
 	numbers.push_back("four");
 
-	std::cout << "numbers = ";
-	display_tab(numbers);
-	std::cout << "const_numbers = ";
-	display_tab(const_numbers);
-	std::cout << std::endl;
+	display_vector("numbers", numbers);
+	display_vector("const_numbers", const_numbers);
 
 	for (ft::vector<std::string>::size_type i = 0; i < numbers.size(); i++)
 	{
@@ -51,11 +48,8 @@ void	test_at(void)
 	animals.push_back("horse");
 	animals.push_back("owl");
 
-	std::cout << "animals = ";
-	display_tab(animals);
-	std::cout << "const_animals = ";
-	display_tab(const_animals);
-	std::cout << std::endl;
+	display_vector("animals", const_animals);
+	display_vector("const_animals", const_animals);
 
 	try
 	{
@@ -121,11 +115,8 @@ void	test_front(void)
 	materials.push_back("glass");
 	materials.push_back("steel");
 
-	std::cout << "materials = ";
-	display_tab(materials);
-	std::cout << "const_materials = ";
-	display_tab(const_materials);
-	std::cout << std::endl;
+	display_vector("materials", materials);
+	display_vector("const_materials", const_materials);
 
 	std::cout << "materials.front() = " << materials.front() << std::endl;
 	std::cout << "const_materials.front() = " << const_materials.front() << std::endl;
@@ -146,11 +137,8 @@ void	test_back(void)
 	weathers.push_back("windy");
 	weathers.push_back("rainy");
 
-	std::cout << "weathers = ";
-	display_tab(weathers);
-	std::cout << "const_weathers = ";
-	display_tab(const_weathers);
-	std::cout << std::endl;
+	display_vector("weathers", weathers);
+	display_vector("const_weathers", weathers);
 
 	std::cout << "weathers.back() = " << weathers.back() << std::endl;
 	std::cout << "const_weathers.back() = " << const_weathers.back() << std::endl;

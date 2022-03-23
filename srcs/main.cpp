@@ -5,7 +5,7 @@
 #include <stack>
 #include <map>
 
-void	test_reverse_iterator(void)
+void	test_vector_reverse_iterator(void)
 {
 	ft::vector<std::string>::reverse_iterator		rit;
 	ft::vector<std::string>::reverse_iterator		rit2;
@@ -62,12 +62,11 @@ void	test_reverse_iterator(void)
 
 	std::cout << "*--rit = " << *--rit << std::endl;
 
-	std::cout << "*rit++" << std::endl;
-	*rit++;
+	std::cout << "*rit++ = " << *rit++ << std::endl;
+
 	std::cout << "*rit = " << *rit << std::endl;
 
-	std::cout << "*rit--" << std::endl;
-	*rit--;
+	std::cout << "*rit-- = " << *rit-- << std::endl;
 	std::cout << "*rit = " << *rit << std::endl;
 
 	std::cout << "rit += 2" << std::endl;
@@ -125,8 +124,8 @@ void	test_reverse_iterator(void)
 	std::cout << "nbs is a vector of class Nb" << std::endl;
 	rit3 = nbs.rbegin();
 	rit3 = nbs.rbegin();
-	std::cout << "rit3->nb = " << rit3->nb << std::endl;
-	std::cout << "rit3->nb2 = " << rit3->nb2 << std::endl;
+	std::cout << "rit3->first_value = " << rit3->first_value << std::endl;
+	std::cout << "rit3->second_value = " << rit3->second_value << std::endl;
 }
 
 bool	check(std::string str1, std::string str2)
@@ -158,112 +157,8 @@ int	main(void)
 	std::cout << "[------------ TEST FT CONTAINER ------------]" << std::endl;
 	std::cout << std::endl;
 
-//	test_reverse_iterator();
-//	test_vector();
-	test_map();
-	/*
-	std::map<int, std::string>		numbers;
-
-	std::cout << std::endl;
-	numbers.insert(numbers.end(), std::make_pair<int, std::string>(1, "un"));
-	for (std::map<int, std::string>::iterator it = numbers.begin(); it != numbers.end(); it++)
-	{
-		std::cout << "first = " << it->first << std::endl;
-	}
-	*/
-
-//	nbrs.insert(ft::make_pair(18, 5));
-//	nbrs.insert(ft::make_pair(17, 5));
-//	nbrs.insert(ft::make_pair(16, 5));
-//	nbrs.insert(ft::make_pair(8, 5));
-//	nbrs.insert(ft::make_pair(10, 5));
-//	nbrs.insert(ft::make_pair(11, 5));
-//	nbrs.insert(ft::make_pair(15, 5));
-//	nbrs.insert(ft::make_pair(14, 5));
-	
-/*	nbrs.insert(ft::make_pair<int, int>(13, 5));
-	nbrs.insert(ft::make_pair<int, int>(10, 5));
-	nbrs.insert(ft::make_pair<int, int>(20, 5));
-	nbrs.insert(ft::make_pair<int, int>(21, 5));
-	nbrs.insert(ft::make_pair<int, int>(22, 5));
-	nbrs.insert(ft::make_pair<int, int>(23, 5));
-	*/
-	
-
-/*
- */
-	/*
-	nbrs.insert(ft::make_pair<int, int>(42, 5));
-	nbrs.insert(ft::make_pair<int, int>(43, 5));
-	nbrs.insert(ft::make_pair<int, int>(44, 5));
-	nbrs.insert(ft::make_pair<int, int>(45, 5));
-	nbrs.insert(ft::make_pair<int, int>(46, 5));
-	nbrs.insert(ft::make_pair<int, int>(47, 5));
-	nbrs.insert(ft::make_pair<int, int>(48, 5));
-	nbrs.insert(ft::make_pair<int, int>(49, 5));
-	*/
-	
-	//nbrs.insert(ft::make_pair<int, int>(50, 5));
-	/*
-	if (nbrs.is_balanced())
-		std::cout << "balanced" << std::endl;
-	else
-		std::cout << "unbalanced" << std::endl;
-	*/
-//	nbrs.print();
-/*
-	ft::map<int, int>						nbrs;
-	ft::map<int, int>::const_iterator			 it;
-	nbrs[47] = 3;
-	nbrs[48] = 3;
-	nbrs[49] = 3;
-	nbrs[5] = 3;
-	it = nbrs.begin();
-	for (ft::map<int, int>::const_iterator it = nbrs.begin(); it != nbrs.end(); it++)
-	{
-		std::cout << "first = " << it->first << " " << it->second << std::endl;
-	}
-	*/
-
-/*
-	*/
-
-//	std::cout << "it = " << it->first << std::endl;
-//	display_map(nbrs);
-/*
-	std::map<int, int>		nbrs2;
-	std::map<int, int>		nbrs3;
-	nbrs2[70] = 1;
-	nbrs2[80] = 1;
-	nbrs3[70] = 1;
-	nbrs3[80] = 1;
-
-	std::map<int, int>::iterator			it2 = nbrs2.begin();
-	std::map<int, int>::iterator			it3 = nbrs3.begin();
-	(void)it3;
-	*/
-	
-	ft::map<int, int>		nbrs;
-
-	nbrs[1] = 1;
-	nbrs[2] = 2;
-	nbrs[3] = 3;
-	const ft::map<int, int>		nbrs2(nbrs);
-
-	/*
-	nbrs[4] = 4;
-	nbrs[5] = 5;
-	nbrs[6] = 6;
-	nbrs[19] = 6;
-	*/
-	//ft::map<int, int>::reverse_iterator rit = nbrs.rbegin();
-	std::cout << "rend = " << (nbrs.rbegin())->first;
-	/*
-	for (std::map<int, int>::reverse_iterator rit = nbrs.rbegin(); rit != nbrs.rend(); rit++)
-	{
-		std::cout << "first = " << rit->first << " second = " << rit->second << std::endl;
-	}
-	*/
-	
+//	test_vector_reverse_iterator();
+	test_vector();
+//	test_map();
 	return (0);
 }

@@ -13,11 +13,8 @@ static void		test_equal_to(void)
 	nbrs.push_back(0);
 	nbrs2.assign(nbrs.begin(), nbrs.end());
 	
-	std::cout << "nbrs = ";
-	display_tab(nbrs);
-	std::cout << "nbrs2 = ";
-	display_tab(nbrs2);
-	std::cout << std::endl;
+	display_vector("nbrs", nbrs);
+	display_vector("nbrs2", nbrs2);
 
 	std::cout << "(nbrs == nbrs2) = " << (nbrs == nbrs2) << std::endl;
 	std::cout << std::endl;
@@ -25,11 +22,8 @@ static void		test_equal_to(void)
 	nbrs.pop_back();
 	nbrs.push_back(1);
 
-	std::cout << "nbrs = ";
-	display_tab(nbrs);
-	std::cout << "nbrs2 = ";
-	display_tab(nbrs2);
-	std::cout << std::endl;
+	display_vector("nbrs", nbrs);
+	display_vector("nbrs2", nbrs2);
 
 	std::cout << "(nbrs == nbrs2) = " << (nbrs == nbrs2) << std::endl;
 	std::cout << std::endl;
@@ -48,11 +42,8 @@ static void		test_not_equal_to(void)
 	nbrs.push_back(0);
 	nbrs2.assign(nbrs.begin(), nbrs.end());
 	
-	std::cout << "nbrs = ";
-	display_tab(nbrs);
-	std::cout << "nbrs2 = ";
-	display_tab(nbrs2);
-	std::cout << std::endl;
+	display_vector("nbrs", nbrs);
+	display_vector("nbrs2", nbrs2);
 
 	std::cout << "(nbrs != nbrs2) = " << (nbrs != nbrs2) << std::endl;
 	std::cout << std::endl;
@@ -60,11 +51,8 @@ static void		test_not_equal_to(void)
 	nbrs.pop_back();
 	nbrs.push_back(1);
 
-	std::cout << "nbrs = ";
-	display_tab(nbrs);
-	std::cout << "nbrs2 = ";
-	display_tab(nbrs2);
-	std::cout << std::endl;
+	display_vector("nbrs", nbrs);
+	display_vector("nbrs2", nbrs2);
 
 	std::cout << "(nbrs != nbrs2) = " << (nbrs != nbrs2) << std::endl;
 	std::cout << std::endl;
@@ -83,11 +71,8 @@ static void		test_less_than(void)
 	nbrs.push_back(1);
 	nbrs2.assign(nbrs.begin(), nbrs.end());
 	
-	std::cout << "nbrs = ";
-	display_tab(nbrs);
-	std::cout << "nbrs2 = ";
-	display_tab(nbrs2);
-	std::cout << std::endl;
+	display_vector("nbrs", nbrs);
+	display_vector("nbrs2", nbrs2);
 
 	std::cout << "(nbrs < nbrs2) = " << (nbrs < nbrs2) << std::endl;
 	std::cout << std::endl;
@@ -95,11 +80,8 @@ static void		test_less_than(void)
 	nbrs.pop_back();
 	nbrs.push_back(0);
 
-	std::cout << "nbrs = ";
-	display_tab(nbrs);
-	std::cout << "nbrs2 = ";
-	display_tab(nbrs2);
-	std::cout << std::endl;
+	display_vector("nbrs", nbrs);
+	display_vector("nbrs2", nbrs2);
 
 	std::cout << "(nbrs < nbrs2) = " << (nbrs < nbrs2) << std::endl;
 	std::cout << std::endl;
@@ -118,11 +100,8 @@ static void		test_greater_than(void)
 	nbrs.push_back(0);
 	nbrs2.assign(nbrs.begin(), nbrs.end());
 	
-	std::cout << "nbrs = ";
-	display_tab(nbrs);
-	std::cout << "nbrs2 = ";
-	display_tab(nbrs2);
-	std::cout << std::endl;
+	display_vector("nbrs", nbrs);
+	display_vector("nbrs2", nbrs2);
 
 	std::cout << "(nbrs > nbrs2) = " << (nbrs > nbrs2) << std::endl;
 	std::cout << std::endl;
@@ -130,11 +109,8 @@ static void		test_greater_than(void)
 	nbrs.pop_back();
 	nbrs.push_back(1);
 
-	std::cout << "nbrs = ";
-	display_tab(nbrs);
-	std::cout << "nbrs2 = ";
-	display_tab(nbrs2);
-	std::cout << std::endl;
+	display_vector("nbrs", nbrs);
+	display_vector("nbrs2", nbrs2);
 
 	std::cout << "(nbrs > nbrs2) = " << (nbrs > nbrs2) << std::endl;
 	std::cout << std::endl;
@@ -153,11 +129,8 @@ static void		test_less_than_or_equal_to(void)
 	nbrs.push_back(1);
 	nbrs2.assign(nbrs.begin(), nbrs.end());
 	
-	std::cout << "nbrs = ";
-	display_tab(nbrs);
-	std::cout << "nbrs2 = ";
-	display_tab(nbrs2);
-	std::cout << std::endl;
+	display_vector("nbrs", nbrs);
+	display_vector("nbrs2", nbrs2);
 
 	std::cout << "(nbrs <= nbrs2) = " << (nbrs <= nbrs2) << std::endl;
 	std::cout << std::endl;
@@ -165,11 +138,8 @@ static void		test_less_than_or_equal_to(void)
 	nbrs.pop_back();
 	nbrs.push_back(0);
 
-	std::cout << "nbrs = ";
-	display_tab(nbrs);
-	std::cout << "nbrs2 = ";
-	display_tab(nbrs2);
-	std::cout << std::endl;
+	display_vector("nbrs", nbrs);
+	display_vector("nbrs2", nbrs2);
 
 	std::cout << "(nbrs <= nbrs2) = " << (nbrs <= nbrs2) << std::endl;
 	std::cout << std::endl;
@@ -179,11 +149,8 @@ static void		test_less_than_or_equal_to(void)
 	nbrs2.pop_back();
 	nbrs2.push_back(0);
 
-	std::cout << "nbrs = ";
-	display_tab(nbrs);
-	std::cout << "nbrs2 = ";
-	display_tab(nbrs2);
-	std::cout << std::endl;
+	display_vector("nbrs", nbrs);
+	display_vector("nbrs2", nbrs2);
 
 	std::cout << "(nbrs <= nbrs2) = " << (nbrs <= nbrs2) << std::endl;
 	std::cout << std::endl;
@@ -202,11 +169,8 @@ static void		test_greater_than_or_equal_to()
 	nbrs.push_back(1);
 	nbrs2.assign(nbrs.begin(), nbrs.end());
 	
-	std::cout << "nbrs = ";
-	display_tab(nbrs);
-	std::cout << "nbrs2 = ";
-	display_tab(nbrs2);
-	std::cout << std::endl;
+	display_vector("nbrs", nbrs);
+	display_vector("nbrs2", nbrs2);
 
 	std::cout << "(nbrs >= nbrs2) = " << (nbrs >= nbrs2) << std::endl;
 	std::cout << std::endl;
@@ -214,11 +178,8 @@ static void		test_greater_than_or_equal_to()
 	nbrs.pop_back();
 	nbrs.push_back(0);
 
-	std::cout << "nbrs = ";
-	display_tab(nbrs);
-	std::cout << "nbrs2 = ";
-	display_tab(nbrs2);
-	std::cout << std::endl;
+	display_vector("nbrs", nbrs);
+	display_vector("nbrs2", nbrs2);
 
 	std::cout << "(nbrs >= nbrs2) = " << (nbrs >= nbrs2) << std::endl;
 	std::cout << std::endl;
@@ -228,11 +189,8 @@ static void		test_greater_than_or_equal_to()
 	nbrs2.pop_back();
 	nbrs2.push_back(0);
 
-	std::cout << "nbrs = ";
-	display_tab(nbrs);
-	std::cout << "nbrs2 = ";
-	display_tab(nbrs2);
-	std::cout << std::endl;
+	display_vector("nbrs", nbrs);
+	display_vector("nbrs2", nbrs2);
 
 	std::cout << "(nbrs >= nbrs2) = " << (nbrs >= nbrs2) << std::endl;
 	std::cout << std::endl;

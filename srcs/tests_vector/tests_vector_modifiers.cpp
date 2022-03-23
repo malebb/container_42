@@ -8,9 +8,7 @@ static void		test_push_back(void)
 
 	ft::vector<std::string>	seasons;
 
-	std::cout << "seasons = ";
-	display_tab(seasons);
-	std::cout << std::endl;
+	display_vector("seasons", seasons);
 
 	std::cout << "seasons.push_back(\"spring\")" << std::endl;
 	std::cout << "seasons.push_back(\"summer\")" << std::endl;
@@ -23,9 +21,7 @@ static void		test_push_back(void)
 	seasons.push_back("autumn");
 	seasons.push_back("winter");
 
-	std::cout << "seasons = ";
-	display_tab(seasons);
-	std::cout << std::endl;
+	display_vector("seasons", seasons);
 }
 
 static void		test_pop_back(void)
@@ -41,18 +37,14 @@ static void		test_pop_back(void)
 	seasons.push_back("autumn");
 	seasons.push_back("winter");
 
-	std::cout << "seasons = ";
-	display_tab(seasons);
-	std::cout << std::endl;
+	display_vector("seasons", seasons);
 
 	std::cout << "seasons.pop_back()" << std::endl;
 	std::cout << std::endl;
 
 	seasons.pop_back();
 
-	std::cout << "seasons = ";
-	display_tab(seasons);
-	std::cout << std::endl;
+	display_vector("seasons", seasons);
 }
 
 static void		test_assign(void)
@@ -64,23 +56,16 @@ static void		test_assign(void)
 	ft::vector<std::string>		colors(6, "empty");
 	ft::vector<std::string>		green(6, "green");
 
-	std::cout << "colors = ";
-	display_tab(colors);
-	std::cout << "green = ";
-	display_tab(green);
-	std::cout << std::endl;
+	display_vector("colors", colors);
+	display_vector("green", green);
 
 	std::cout << "colors.assign(green.begin(), green.end() - 3)" << std::endl;
 	colors.assign(green.begin(), green.end() - 3);
-	std::cout << "colors = ";
-	display_tab(colors);
-	std::cout << std::endl;
+	display_vector("colors", colors);
 
 	std::cout << "colors.assign(6, \"yellow\")" << std::endl;
 	colors.assign(6, "yellow");
-	std::cout << "colors = ";
-	display_tab(colors);
-	std::cout << std::endl;
+	display_vector("colors", colors);
 }
 
 static void		test_insert(void)
@@ -94,31 +79,21 @@ static void		test_insert(void)
 	ft::vector<std::string>		red(6, "red");
 	ft::vector<std::string>		yellow(6, "yellow");
 
-	std::cout << "white = ";
-	display_tab(white);
-	std::cout << "red = ";
-	display_tab(red);
-	std::cout << "black = ";
-	display_tab(black);
-	std::cout << std::endl;
+	display_vector("white", white);
+	display_vector("red", red);
+	display_vector("black", black);
 
 	std::cout << "while.insert(white.begin() + 1, \"orange\")" << std::endl;
 	white.insert(white.begin() + 1, "orange");
-	std::cout << "white = ";
-	display_tab(white);
-	std::cout << std::endl;
+	display_vector("white", white);
 
 	std::cout << "black.insert(colors.begin() + 3, 2, \"blue\")" << std::endl;
 	black.insert(black.begin() + 3, 2, "blue");
-	std::cout << "black = ";
-	display_tab(black);
-	std::cout << std::endl;
+	display_vector("black", black);
 
 	std::cout << "yellow.insert(yellow.begin() + 1, red.begin(), red.begin() + 3 " << std::endl;
 	yellow.insert(yellow.begin() + 1, red.begin(), red.begin() + 3);
-	std::cout << "yellow = ";
-	display_tab(yellow);
-	std::cout << std::endl;
+	display_vector("yellow", yellow);
 
 }
 
@@ -131,28 +106,21 @@ static void		test_erase(void)
 	ft::vector<std::string>		trees(6, "TREE");
 
 	trees.insert(trees.begin() + 2, "flower");
-	std::cout << "trees = ";
-	display_tab(trees);
-	std::cout << std::endl;
-
+	display_vector("trees", trees);
 
 	std::cout << "trees.erase(trees.begin() + 2)" << std::endl;
 	std::cout << std::endl;
 
 	trees.erase(trees.begin() + 2);
 
-	std::cout << "trees = ";
-	display_tab(trees);
-	std::cout << std::endl;
+	display_vector("trees", trees);
 
 	std::cout << "trees.erase(trees.begin() + 2, trees.end())" << std::endl;
 
 	trees.erase(trees.begin() + 2, trees.end());
 
 	std::cout << std::endl;
-	std::cout << "trees = ";
-	display_tab(trees);
-	std::cout << std::endl;
+	display_vector("trees", trees);
 }
 
 static void		test_swap(void)
@@ -164,23 +132,16 @@ static void		test_swap(void)
 	ft::vector<std::string>		tomato(6, "tomato");
 	ft::vector<std::string>		cucumber(6, "cucumber");
 
-	std::cout << "tomato = ";
-	display_tab(tomato);
+	display_vector("tomato", tomato);
 
-	std::cout << "cucumber = ";
-	display_tab(cucumber);
-	std::cout << std::endl;
+	display_vector("cucumber", cucumber);
 	std::cout << "tomato.swap(cucumber)" << std::endl;
 
 	tomato.swap(cucumber);
 	std::cout << std::endl;
 
-	std::cout << "tomato = ";
-	display_tab(tomato);
-
-	std::cout << "cucumber = ";
-	display_tab(cucumber);
-	std::cout << std::endl;
+	display_vector("tomato", tomato);
+	display_vector("cucumber", cucumber);
 }
 
 static void		test_swap_overload(void)
@@ -192,21 +153,15 @@ static void		test_swap_overload(void)
 	ft::vector<std::string>		pasta(6, "pasta");
 	ft::vector<std::string>		rice(6, "rice");
 
-	std::cout << "pasta = ";
-	display_tab(pasta);
-	std::cout << "rice = ";
-	display_tab(rice);
-	std::cout << std::endl;
+	display_vector("pasta", pasta);
+	display_vector("rice", rice);
 
 	std::cout << "swap(pasta, rice)" << std::endl;
 	swap(rice, pasta);
 	std::cout << std::endl;
 
-	std::cout << "pasta = ";
-	display_tab(pasta);
-	std::cout << "rice = ";
-	display_tab(rice);
-	std::cout << std::endl;
+	display_vector("pasta", pasta);
+	display_vector("rice", rice);
 }
 
 static void		test_clear(void)
@@ -217,18 +172,14 @@ static void		test_clear(void)
 	
 	ft::vector<std::string>		content(6, "content");
 
-	std::cout << "content = ";
-	display_tab(content);
-	std::cout << std::endl;
+	display_vector("content", content);
 
 	std::cout << "content.clear()" << std::endl;
 	std::cout << std::endl;
 
 	content.clear();
 
-	std::cout << "content = ";
-	display_tab(content);
-	std::cout << std::endl;
+	display_vector("content", content);
 }
 
 void	test_vector_modifiers(void)

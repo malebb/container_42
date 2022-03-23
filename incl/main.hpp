@@ -36,18 +36,19 @@ void	test_map_allocator(void);
 // utils
 
 template<typename T>
-void	display_tab(const ft::vector<T> & cont);
+void	display_vector(std::string name, const ft::vector<T> & cont);
 
 class	Nb
 {
 	public :
-		static const int nb = 5;
-		static const int nb2 = 22;
+		static const int first_value = 5;
+		static const int second_value = 22;
 };
 
 template<typename T>
-void	display_tab(const ft::vector<T> & cont)
+void	display_vector(std::string name, const ft::vector<T> & cont)
 {
+	std::cout << name << " = ";
 	std::cout << "{";
 	for (typename ft::vector<T>::const_iterator it = cont.begin(); it != cont.end(); it++)
 	{
@@ -56,7 +57,7 @@ void	display_tab(const ft::vector<T> & cont)
 			std::cout << ", ";
 	}
 	std::cout << "}";
-	std::cout << std::endl;
+	std::cout << std::endl << std::endl;
 
 }
 

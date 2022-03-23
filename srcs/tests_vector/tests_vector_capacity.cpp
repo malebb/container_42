@@ -14,11 +14,8 @@ static void		test_size(void)
 	nbrs.push_back(13);
 	nbrs.push_back(14);
 
-	std::cout << "nbrs = ";
-	display_tab(nbrs);
-	std::cout << "letters = ";
-	display_tab(letters);
-	std::cout << std::endl;
+	display_vector("nbrs = ", nbrs);
+	display_vector("letters", letters);
 
 	std::cout << "nbrs.size() = " << nbrs.size() << std::endl;
 	std::cout << "letters.size() = " << letters.size() << std::endl;
@@ -39,12 +36,8 @@ static void		test_max_size(void)
 	boolean.push_back(false);
 	boolean.push_back(true);
 
-	std::cout << "boolean = ";
-	display_tab(boolean);
-	std::cout << std::endl;
-	std::cout << "strs = ";
-	display_tab(strs);
-	std::cout << std::endl;
+	display_vector("boolean", boolean);
+	display_vector("strs", strs);
 
 	std::cout << "nbrs.max_size() = " << boolean.max_size() << std::endl;
 	std::cout << "strs.max_size() = " << strs.max_size() << std::endl;
@@ -60,26 +53,22 @@ static void		test_resize(void)
 	std::cout << ">> Test resize function" << std::endl;
 	std::cout << std::endl;
 
-	std::cout << "hundreds = ";
-	display_tab(hundreds);
+	display_vector("hundreds", hundreds);
 
 	hundreds.resize(6, 200);
 	std::cout << std::endl;
 	std::cout << "hundreds.resize(6, 200)" << std::endl;
 	std::cout << std::endl;
 
-	std::cout << "hundreds = ";
-	display_tab(hundreds);
+	display_vector("hundreds", hundreds);
+
 
 	hundreds.resize(4);
 	std::cout << std::endl;
 	std::cout << "hundreds.resize(4)" << std::endl;
 	std::cout << std::endl;
 
-	std::cout << "hundreds = ";
-	display_tab(hundreds);
-
-	std::cout << std::endl;
+	display_vector("hundreds", hundreds);
 }
 
 static void		test_reserve(void)
@@ -119,18 +108,14 @@ static void		test_capacity(void)
 
 	ft::vector<std::string>		plants;
 
-	std::cout << "plants = ";
-	display_tab(plants);
-	std::cout << std::endl;
+	display_vector("plants", plants);
 
 	std::cout << "plants.capacity() = " << plants.capacity() << std::endl;
 	std::cout << std::endl;
 
 	std::cout << "plants.push_back(\"tree\")" << std::endl;
 	plants.push_back("tree");
-	std::cout << "plants = ";
-	display_tab(plants);
-	std::cout << std::endl;
+	display_vector("plants", plants);
 
 	std::cout << "plants.capacity() = " << plants.capacity() << std::endl;
 	std::cout << std::endl;
@@ -139,9 +124,7 @@ static void		test_capacity(void)
 	std::cout << "plants.push_back(\"daisy\")" << std::endl;
 	plants.push_back("tulip");
 	plants.push_back("daisy");
-	std::cout << "plants = ";
-	display_tab(plants);
-	std::cout << std::endl;
+	display_vector("plants", plants);
 
 	std::cout << "plants.capacity() = " << plants.capacity() << std::endl;
 	std::cout << std::endl;
@@ -157,11 +140,8 @@ static void		test_empty(void)
 	std::cout << ">> Test empty function" << std::endl;
 	std::cout << std::endl;
 
-	std::cout << "empty_vector = ";
-	display_tab(empty_vector);
-	std::cout << "filled_vector = ";
-	display_tab(filled_vector);
-	std::cout << std::endl;
+	display_vector("empty_vector", empty_vector);
+	display_vector("filled_vector", filled_vector);
 
 	std::cout << "empty_vector.empty() = "<< empty_vector.empty() << std::endl;
 	std::cout << "filled_vector.empty() = "<< filled_vector.empty() << std::endl;
