@@ -101,7 +101,7 @@ namespace ft
 
 			// member access operators
 
-			pointer		operator->() const
+			pointer		operator->()
 			{
 				return (this->_it.operator->());
 //				return &(this->operator*());

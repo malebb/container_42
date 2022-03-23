@@ -158,9 +158,9 @@ int	main(void)
 	std::cout << "[------------ TEST FT CONTAINER ------------]" << std::endl;
 	std::cout << std::endl;
 
-	test_reverse_iterator();
+//	test_reverse_iterator();
 //	test_vector();
-//	test_map();
+	test_map();
 	/*
 	std::map<int, std::string>		numbers;
 
@@ -248,14 +248,22 @@ int	main(void)
 	nbrs[1] = 1;
 	nbrs[2] = 2;
 	nbrs[3] = 3;
+	const ft::map<int, int>		nbrs2(nbrs);
+
+	/*
 	nbrs[4] = 4;
 	nbrs[5] = 5;
 	nbrs[6] = 6;
+	nbrs[19] = 6;
+	*/
 	//ft::map<int, int>::reverse_iterator rit = nbrs.rbegin();
-	for (ft::map<int, int>::reverse_iterator rit = nbrs.rbegin(); rit != nbrs.rend(); rit++)
+	std::cout << "rend = " << (nbrs.rbegin())->first;
+	/*
+	for (std::map<int, int>::reverse_iterator rit = nbrs.rbegin(); rit != nbrs.rend(); rit++)
 	{
 		std::cout << "first = " << rit->first << " second = " << rit->second << std::endl;
 	}
+	*/
 	
 	return (0);
 }

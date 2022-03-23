@@ -57,10 +57,10 @@ namespace ft
 
 			typedef Key												key_type;
 			typedef T												mapped_type;
-			typedef T*												pointer;
-			typedef T&												reference;
 			typedef std::ptrdiff_t									difference_type;
 			typedef ft::pair<const key_type, mapped_type>			value_type;
+			typedef ft::pair<const key_type, mapped_type>&			reference;
+			typedef ft::pair<const key_type, mapped_type>*			pointer;
 			typedef avl<value_type>		tree_type;
 
 			// Constructors / destructor
@@ -222,16 +222,15 @@ namespace ft
 	template <class Key, class T>
 	class const_map_iterator : public ft::iterator<ft::bidirectional_iterator_tag, T>
 	{
-		typedef Key												key_type;
-		typedef T												mapped_type;
-		typedef T*												pointer;
-		typedef T&												reference;
-		typedef std::ptrdiff_t									difference_type;
-		typedef ft::pair<const key_type, mapped_type>			value_type;
-		typedef avl<value_type>									tree_type;
-
-
 		public :
+
+			typedef Key												key_type;
+			typedef T												mapped_type;
+			typedef std::ptrdiff_t									difference_type;
+			typedef ft::pair<const key_type, mapped_type>			value_type;
+			typedef const ft::pair<const key_type, mapped_type>*	pointer;
+			typedef const ft::pair<const key_type, mapped_type>&	reference;
+			typedef avl<value_type>									tree_type;
 
 			// Constructors / destructor
 
@@ -282,12 +281,12 @@ namespace ft
 
 			// member access operators
 
-			const value_type			*operator->() const
+			pointer 		operator->() const
 			{
 				return (this->node->value);
 			}
 
-			const value_type			&operator*() const
+			reference		&operator*() const
 			{
 				return (*(this->node->value));
 			}
@@ -544,7 +543,26 @@ namespace ft
 
 		reverse_iterator	rbegin()
 		{
-			return (reverse_iterator(this->_end_node));
+			avl<value_type>			*node;
+
+			node = this->_root;
+			while (node->right && !node->right->end)
+			{
+			node = node->right;
+			}
+			return (reverse_iterator(node));
+		}
+
+		const_reverse_iterator	rbegin() const
+		{
+			avl<value_type>			*node;
+
+			node = this->_root;
+			while (node->right && !node->right->end)
+			{
+			node = node->right;
+			}
+			return (const_reverse_iterator(node));
 		}
 
 		iterator		end()
@@ -567,6 +585,18 @@ namespace ft
 				node = node->left;
 			}
 			return (reverse_iterator(node));
+		}
+
+		const_reverse_iterator		rend() const
+		{
+			avl<value_type>			*node;
+
+			node = this->_root;
+			while (node->left != NULL)
+			{
+				node = node->left;
+			}
+			return (const_reverse_iterator(node));
 		}
 
 		// capacity
