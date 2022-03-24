@@ -6,7 +6,6 @@ void	test_vector(void)
 	std::cout << "[------------ Tests vector ------------]"
 	<< std::endl;
 
-//	test_const_vector_iterator();
 	test_vector_iterator();
 //	test_vector_reverse_iterator();
 //	test_vector_capacity();

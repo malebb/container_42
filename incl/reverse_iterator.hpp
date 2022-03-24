@@ -36,6 +36,12 @@ namespace ft
 			}
 
 			// assignment operators
+			
+			reverse_iterator&	operator=(reverse_iterator const & rhs)
+			{
+				this->_it = rhs._it;
+				return (*this);
+			}
 
 			reverse_iterator&	operator+=(difference_type rhs)
 			{
@@ -104,7 +110,6 @@ namespace ft
 			pointer		operator->()
 			{
 				return (this->_it.operator->());
-//				return &(this->operator*());
 			}
 
 			reference			operator[](difference_type rhs) const

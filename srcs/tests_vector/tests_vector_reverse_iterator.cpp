@@ -2,8 +2,8 @@
 
 static void		test_increment_decrement(void)
 {
-	ft::vector<std::string>::iterator		it;
-	ft::vector<std::string>					nbrs;
+	ft::vector<std::string>::reverse_iterator		it;
+	ft::vector<std::string>							nbrs;
 
 	nbrs.push_back("one");
 	nbrs.push_back("two");
@@ -15,7 +15,7 @@ static void		test_increment_decrement(void)
 	std::cout << std::endl;
 
 	display_vector("nbrs", nbrs);
-	it = nbrs.begin();
+	it = nbrs.rbegin();
 	std::cout << "*it = " << *it << std::endl << std::endl;
 
 	std::cout << "it++" << std::endl;
@@ -40,8 +40,8 @@ static void		test_increment_decrement(void)
 
 static void		test_assignment(void)
 {
-	ft::vector<std::string>::iterator		it;
-	ft::vector<std::string>					nbrs;
+	ft::vector<std::string>::reverse_iterator		it;
+	ft::vector<std::string>							nbrs;
 
 	nbrs.push_back("one");
 	nbrs.push_back("two");
@@ -54,7 +54,7 @@ static void		test_assignment(void)
 	
 	display_vector("nbrs", nbrs);
 
-	it = nbrs.begin();
+	it = nbrs.rbegin();
 
 	std::cout << "*it = " << *it << std::endl << std::endl;
 
@@ -69,9 +69,9 @@ static void		test_assignment(void)
 
 static void		test_arithmetic(void)
 {
-	ft::vector<std::string>::iterator		it;
-	ft::vector<std::string>::iterator		it2;
-	ft::vector<std::string>					nbrs;
+	ft::vector<std::string>::reverse_iterator	it;
+	ft::vector<std::string>::reverse_iterator	it2;
+	ft::vector<std::string>						nbrs;
 
 	nbrs.push_back("one");
 	nbrs.push_back("two");
@@ -84,7 +84,7 @@ static void		test_arithmetic(void)
 	
 	display_vector("nbrs", nbrs);
 
-	it = nbrs.begin();
+	it = nbrs.rbegin();
 
 	std::cout << "*it = " << *it << std::endl  << std::endl;
 
@@ -104,9 +104,9 @@ static void		test_arithmetic(void)
 
 static void		test_comparison(void)
 {
-	ft::vector<std::string>::iterator		it;
-	ft::vector<std::string>::iterator		it2;
-	ft::vector<std::string>					nbrs;
+	ft::vector<std::string>::reverse_iterator		it;
+	ft::vector<std::string>::reverse_iterator		it2;
+	ft::vector<std::string>							nbrs;
 
 	nbrs.push_back("one");
 	nbrs.push_back("two");
@@ -119,8 +119,8 @@ static void		test_comparison(void)
 	
 	display_vector("nbrs", nbrs);
 
-	it = nbrs.begin();
-	it2 = nbrs.begin() + 1;
+	it = nbrs.rbegin();
+	it2 = nbrs.rbegin() + 1;
 
 	std::cout << "*it = " << *it << std::endl;
 	std::cout << "*it2 = " << *it2 << std::endl << std::endl;
@@ -147,29 +147,32 @@ static void		test_comparison(void)
 
 static void		test_member_access(void)
 {
-	ft::vector<std::string>::iterator		it;
-	ft::vector<Nb>::iterator		it2;
-	ft::vector<std::string>					nbrs;
-	Nb										nb;
+	ft::vector<std::string>::reverse_iterator		it;
+	ft::vector<Nb>::reverse_iterator				it2;
+	ft::vector<Nb>::iterator						it3;
+	ft::vector<std::string>						nbrs;
+	ft::vector<Nb>									nbs;
+	Nb												nb;
 
 	nbrs.push_back("one");
 	nbrs.push_back("two");
 	nbrs.push_back("three");
 	nbrs.push_back("four");
 
+	nbs.push_back(nb);
+
 	std::cout << std::endl;
 	std::cout << ">> Test member access" << std::endl;
 	std::cout << std::endl;
 	
-//	display_vector("nbrs", nbrs);
+	display_vector("nbrs", nbrs);
 	std::cout << "nb->first_value = " << nb.first_value << std::endl;
 	std::cout << "nb->second_value = " << nb.second_value << std::endl << std::endl;
 
-	it = nbrs.begin();
-	it2 = &nb;
+	it = nbrs.rbegin();
+	it2 = nbs.rbegin();
 
 	std::cout << "*it = " << *it << std::endl;
-	std::cout << "it2 = &nb" << std::endl << std::endl;
 
 	std::cout << "it[3] = " << it[3] << std::endl << std::endl;
 	std::cout << "it2->nb = " << it2->first_value << std::endl;
@@ -178,9 +181,9 @@ static void		test_member_access(void)
 
 static void		test_substract(void)
 {
-	ft::vector<std::string>::iterator		it;
-	ft::vector<std::string>::iterator		it2;
-	ft::vector<std::string>					nbrs;
+	ft::vector<std::string>::const_reverse_iterator		it;
+	ft::vector<std::string>::const_reverse_iterator		it2;
+	ft::vector<std::string>						nbrs;
 
 	nbrs.push_back("one");
 	nbrs.push_back("two");
@@ -193,8 +196,8 @@ static void		test_substract(void)
 	
 	display_vector("nbrs", nbrs);
 
-	it = nbrs.begin();
-	it2 = nbrs.begin() + 1;
+	it = nbrs.rbegin();
+	it2 = nbrs.rbegin() + 1;
 
 	std::cout << "*it = " << *it << std::endl;
 	std::cout << "*it2 = " << *it2 << std::endl << std::endl;
@@ -202,14 +205,14 @@ static void		test_substract(void)
 	std::cout << "it - it2 = " << it - it2 << std::endl << std::endl;
 }
 
-static void		test_const_iterator(void)
+static void		test_const_reverse_iterator(void)
 {
 	std::cout << std::endl;
 	std::cout << ">> Test const" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<std::string>::const_iterator		const_it;
-	ft::vector<std::string>						nbrs;
+	ft::vector<std::string>::const_reverse_iterator		const_it;
+	ft::vector<std::string>								nbrs;
 
 	nbrs.push_back("one");
 	nbrs.push_back("two");
@@ -217,7 +220,7 @@ static void		test_const_iterator(void)
 	nbrs.push_back("four");
 
 	display_vector("nbrs", nbrs);
-	const_it = nbrs.begin();
+	const_it = nbrs.rbegin();
 	std::cout << "*const_it = " << *const_it << std::endl << std::endl;
 	std::cout << "*const_it = \"first\" => impossible" << std::endl;
 //	*const_it = "first"; // impossible
@@ -226,10 +229,10 @@ static void		test_const_iterator(void)
 	std::cout << "*const_it = " << *const_it << std::endl;
 }
 
-void	test_vector_iterator(void)
+void	test_vector_reverse_iterator(void)
 {
 	std::cout << std::endl;
-	std::cout << "<------------ Test vector iterator ------------>"
+	std::cout << "<------------ Test vector reverse iterator ------------>"
 	<< std::endl;
 	std::cout << std::endl;
 
@@ -246,6 +249,8 @@ void	test_vector_iterator(void)
 	std::cout << "********************************************" << std::endl;
 	test_substract();
 	std::cout << "********************************************" << std::endl;
-	test_const_iterator();
+	test_const_reverse_iterator();
 	std::cout << "********************************************" << std::endl;
+	
 }
+
