@@ -365,18 +365,15 @@ namespace ft
 				this->resize(n, val);
 			}
 
-			vector (const vector& x)
+			vector (const vector& x) : _alloc(x._alloc), _array(NULL), _size(0), _capacity(0)
 			{
-				*this = x;
+				this->assign(x.begin(), x.end());
 			}
 
 			vector&		operator=(const vector & x)
 			{
 				this->_alloc = x._alloc;
-				this->_array = x._array;
-				this->_size = x._size;
-				this->_capacity = x._capacity;
-			//	this->assign(x.begin(), x.end());
+				this->assign(x.begin(), x.end());
 				return (*this);
 			}
 
@@ -567,10 +564,10 @@ namespace ft
 			{
 				difference_type		range_size;
 
+				this->clear();
 				range_size = last - first;
 				if (this->capacity() < static_cast<size_type>(range_size))
 					reserve(last - first);
-				this->clear();
 				for (difference_type i = 0; i < range_size; i++)
 				{
 					this->_alloc.construct(this->_array + i, *(first + i));
@@ -696,6 +693,7 @@ namespace ft
 				for (typename ft::vector<value_type>::iterator it = first; it != last; it++)
 				{
 					this->_alloc.destroy(&(*it));
+				//	std::cout << "CA PASSE" << std::endl;
 				}
 				this->_size -= last - first;
 				return (first);
