@@ -34,15 +34,7 @@ int	main(void)
 	std::cout << "[------------ TEST FT CONTAINER ------------]" << std::endl;
 	std::cout << std::endl;
 
-//	test_vector_reverse_iterator();
-	test_vector();
-//	test_map();
-//	ft::vector<int>		nbrs;
-
-//	nbrs.push_back(10);
-//	nbrs.push_back(20);
-//	nbrs.push_back(30);
-//	nbrs.push_back(40);
-//	nbrs.erase(nbrs.begin(), nbrs.end());
+//	test_vector();
+	test_map();
 	return (0);
 }

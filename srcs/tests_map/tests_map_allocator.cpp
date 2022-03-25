@@ -3,18 +3,32 @@
 static void test_get_allocator(void)
 {
 	ft::map<int, std::string>						numbers;
-	ft::pair<const int, std::string>				*p;
+	ft::pair<const int, std::string>				*pair_ptr;
+	ft::pair<const int, std::string>				pair;
 
 	std::cout << std::endl;
 	std::cout << ">> test get_allocator function" << std::endl;
 	std::cout << std::endl;
 
 	display_map("numbers", numbers);
-	std::cout << "p = numbers.get_allocator().allocate(2)" << std::endl;
-	p = numbers.get_allocator().allocate(2);
-	std::cout << "p->second = \"one\"" << std::endl;
-	p->second = "one";
-	std::cout << "p->second = " << p->second << std::endl;
+
+	std::cout << "pair_ptr = numbers.get_allocator().allocate(1)" << std::endl << std::endl;
+	pair_ptr = numbers.get_allocator().allocate(1);
+
+	std::cout << "pair.second = \"one\"" << std::endl;
+	pair.second = "one";
+
+	std::cout << "numbers.get_allocator().construct(pair_ptr, pair)" << std::endl << std::endl;
+	numbers.get_allocator().construct(pair_ptr, pair);
+
+	std::cout << "pair_ptr->second = " << pair_ptr->second << std::endl << std::endl;
+
+	std::cout << "numbers.get_allocator().destroy(pair_ptr)" << std::endl << std::endl;
+	numbers.get_allocator().destroy(pair_ptr);
+
+	std::cout << "numbers.get_allocator().deallocate(pair_ptr, 1)" << std::endl << std::endl;
+	numbers.get_allocator().deallocate(pair_ptr, 1);
+
 }
 
 void	test_map_allocator(void)

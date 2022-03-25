@@ -15,7 +15,7 @@ static void test_empty(void)
 	numbers[1] = "one";
 	display_map("numbers", numbers);
 
-	std::cout << "numbers.empty() = " << numbers.empty() << std::endl;
+	std::cout << "numbers.empty() = " << numbers.empty() << std::endl << std::endl;
 }
 
 static void test_size(void)

@@ -13,6 +13,8 @@ static void		test_key_comp(void)
 
 	std::cout << "compare(1, 5) = " << compare(1, 5) << std::endl;
 	std::cout << "compare(6, 5) = " << compare(6, 5) << std::endl;
+
+	std::cout << std::endl;
 }
 
 static void		test_value_comp(void)
@@ -40,6 +42,8 @@ static void		test_value_comp(void)
 		<< numbers.value_comp()(*it, *it_2) << std::endl;
 	std::cout << "numbers.value_comp()(*it_2, *it) = "
 		<< numbers.value_comp()(*it_2, *it) << std::endl;
+
+	std::cout << std::endl;
 }
 
 void			test_map_observers(void)

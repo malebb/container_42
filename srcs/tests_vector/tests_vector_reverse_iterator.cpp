@@ -36,6 +36,7 @@ static void		test_increment_decrement(void)
 	std::cout << "*it-- = " << *it-- << std::endl;
 
 	std::cout << "*it = " << *it << std::endl;
+	std::cout << std::endl;
 }
 
 static void		test_assignment(void)
@@ -226,6 +227,7 @@ static void		test_const_reverse_iterator(void)
 	std::cout << "*const_it[0] = \"first\" => impossible" << std::endl << std::endl;
 //	const_it[0] = "first"; // impossible
 	std::cout << "*const_it = " << *const_it << std::endl;
+	std::cout << std::endl;
 }
 
 void	test_vector_reverse_iterator(void)

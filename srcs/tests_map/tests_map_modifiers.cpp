@@ -46,7 +46,6 @@ static void		test_insert(void)
 	std::cout << std::endl;
 
 	display_map("letters", letters);
-	std::cout << std::endl;
 }
 
 static void		test_erase(void)

@@ -30,6 +30,8 @@ static void		test_find(void)
 
 	std::cout << "cit->first = " << c_it->first << std::endl;
 	std::cout << "cit->second = " << c_it->second << std::endl;
+
+	std::cout << std::endl;
 }
 
 static void		test_count(void)
@@ -50,6 +52,8 @@ static void		test_count(void)
 
 	std::cout << "numbers.count(4) = " << numbers.count(4) << std::endl;
 	std::cout << "numbers.count(23) = " << numbers.count(23) << std::endl;
+
+	std::cout << std::endl;
 }
 
 static void		test_lower_bound(void)
@@ -75,6 +79,8 @@ static void		test_lower_bound(void)
 	std::cout << "const_numbers.lower_bound(7)->first) = " << const_numbers.lower_bound(7)->first << std::endl;
 	std::cout << "const_numbers.lower_bound(25)->first) = " << const_numbers.lower_bound(25)->first << std::endl;
 	std::cout << "const_numbers.lower_bound(32)->first) = " << const_numbers.lower_bound(32)->first << std::endl;
+
+	std::cout << std::endl;
 }
 
 static void		test_upper_bound(void)
@@ -102,6 +108,8 @@ static void		test_upper_bound(void)
 	std::cout << "const_numbers.upper_bound(7)->first) = " << const_numbers.upper_bound(7)->first << std::endl;
 	std::cout << "const_numbers.upper_bound(25)->first) = " << const_numbers.upper_bound(25)->first << std::endl;
 	std::cout << "const_numbers.upper_bound(32)->first) = " << const_numbers.upper_bound(32)->first << std::endl;
+
+	std::cout << std::endl;
 }
 
 static void		test_equal_range(void)
@@ -149,7 +157,7 @@ static void		test_equal_range(void)
 	std::cout << "(const_ret.first)->first = " << (const_ret.first)->first << std::endl;
 	std::cout << "(const_ret.first)->first = " << (const_ret.second)->first << std::endl;
 
-
+	std::cout << std::endl;
 }
 
 void	test_map_operations(void)
