@@ -30,9 +30,8 @@ namespace ft
 			}
 
 			template <class Iter>
-			reverse_iterator(const reverse_iterator<Iter>& rev_it)
+			reverse_iterator(const reverse_iterator<Iter>& rev_it) : _it(rev_it._it)
 			{
-				*this = rev_it;
 			}
 
 			// assignment operators
@@ -122,8 +121,6 @@ namespace ft
 			{
 				return (this->_it);
 			}
-
-		private :
 
 			iterator_type		_it;
 	};

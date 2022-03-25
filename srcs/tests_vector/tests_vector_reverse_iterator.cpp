@@ -29,12 +29,12 @@ static void		test_increment_decrement(void)
 	std::cout << "*++it = " << *++it << std::endl;
 	std::cout << "*--it = " << *--it << std::endl << std::endl;
 
-	std::cout << "*it++" << std::endl;
-	*it++;
+	std::cout << "*it++ = " << *it++ << std::endl;
+
 	std::cout << "*it = " << *it << std::endl << std::endl;
 
-	std::cout << "*it--" << std::endl;
-	*it--;
+	std::cout << "*it-- = " << *it-- << std::endl;
+
 	std::cout << "*it = " << *it << std::endl;
 }
 
@@ -149,7 +149,6 @@ static void		test_member_access(void)
 {
 	ft::vector<std::string>::reverse_iterator		it;
 	ft::vector<Nb>::reverse_iterator				it2;
-	ft::vector<Nb>::iterator						it3;
 	ft::vector<std::string>						nbrs;
 	ft::vector<Nb>									nbs;
 	Nb												nb;
