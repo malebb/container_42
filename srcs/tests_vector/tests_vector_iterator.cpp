@@ -29,12 +29,12 @@ static void		test_increment_decrement(void)
 	std::cout << "*++it = " << *++it << std::endl;
 	std::cout << "*--it = " << *--it << std::endl << std::endl;
 
-	std::cout << "*it++" << std::endl;
-	*it++;
+	std::cout << "*it++ = " << *it++ << std::endl;
+
 	std::cout << "*it = " << *it << std::endl << std::endl;
 
-	std::cout << "*it--" << std::endl;
-	*it--;
+	std::cout << "*it-- = " << *it-- << std::endl;
+
 	std::cout << "*it = " << *it << std::endl;
 }
 
@@ -148,8 +148,9 @@ static void		test_comparison(void)
 static void		test_member_access(void)
 {
 	ft::vector<std::string>::iterator		it;
-	ft::vector<Nb>::iterator		it2;
+	ft::vector<Nb>::iterator				it2;
 	ft::vector<std::string>					nbrs;
+	ft::vector<Nb>							nbs;
 	Nb										nb;
 
 	nbrs.push_back("one");
@@ -157,23 +158,22 @@ static void		test_member_access(void)
 	nbrs.push_back("three");
 	nbrs.push_back("four");
 
+	nbs.push_back(nb);
+
 	std::cout << std::endl;
 	std::cout << ">> Test member access" << std::endl;
 	std::cout << std::endl;
 	
-//	display_vector("nbrs", nbrs);
+	display_vector("nbrs", nbrs);
 	std::cout << "nb->first_value = " << nb.first_value << std::endl;
 	std::cout << "nb->second_value = " << nb.second_value << std::endl << std::endl;
 
 	it = nbrs.begin();
-	it2 = &nb;
-
-	std::cout << "*it = " << *it << std::endl;
-	std::cout << "it2 = &nb" << std::endl << std::endl;
+	it2 = nbs.begin();
 
 	std::cout << "it[3] = " << it[3] << std::endl << std::endl;
-	std::cout << "it2->nb = " << it2->first_value << std::endl;
-	std::cout << "it2->nb2 = " << it2->second_value << std::endl << std::endl;
+	std::cout << "it2->first_value = " << it2->first_value << std::endl;
+	std::cout << "it2->second_value = " << it2->second_value << std::endl << std::endl;
 }
 
 static void		test_substract(void)
