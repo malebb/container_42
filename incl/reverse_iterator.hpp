@@ -96,12 +96,9 @@ namespace ft
 				return (reverse_iterator(this->_it.operator+(rhs)));
 			}
 
-			reference					operator*() const
+			reference					operator*()
 			{
-				iterator_type		tmp(this->_it);
-
-				tmp.operator--();
-				return (*tmp);
+				return (this->_it.operator*());
 			}
 
 			// member access operators

@@ -2,7 +2,7 @@
 
 static void		test_increment_decrement(void)
 {
-	ft::map<int, std::string>::iterator		it;
+	ft::map<int, std::string>::reverse_iterator		it;
 	ft::map<int, std::string>					nbrs;
 
 	nbrs[1] = "one";
@@ -15,7 +15,7 @@ static void		test_increment_decrement(void)
 	std::cout << std::endl;
 
 	display_map("nbrs", nbrs);
-	it = nbrs.begin();
+	it = nbrs.rbegin();
 	std::cout << "it = " << "{" << it->first << " => " << it->second << "}"
 		<< std::endl << std::endl;
 
@@ -45,8 +45,8 @@ static void		test_increment_decrement(void)
 
 static void		test_comparison(void)
 {
-	ft::map<int, std::string>::iterator		it;
-	ft::map<int, std::string>::iterator		it2;
+	ft::map<int, std::string>::reverse_iterator		it;
+	ft::map<int, std::string>::reverse_iterator		it2;
 	ft::map<int, std::string>					nbrs;
 
 	nbrs[1] = "one";
@@ -60,7 +60,7 @@ static void		test_comparison(void)
 	
 	display_map("nbrs", nbrs);
 
-	it = nbrs.begin();
+	it = nbrs.rbegin();
 	it2 = it;
 	it2++;
 
@@ -79,8 +79,8 @@ static void		test_comparison(void)
 
 static void		test_member_access(void)
 {
-	ft::map<int, std::string>::iterator		it;
-	ft::map<int, std::string>					nbrs;
+	ft::map<int, std::string>::reverse_iterator		it;
+	ft::map<int, std::string>						nbrs;
 
 	nbrs[1] = "one";
 	nbrs[2] = "two";
@@ -93,7 +93,7 @@ static void		test_member_access(void)
 	
 	display_map("nbrs", nbrs);
 
-	it = nbrs.begin();
+	it = nbrs.rbegin();
 
 	std::cout << "it->first = " << it->first << std::endl;
 	std::cout << "it->second = " << it->second << std::endl << std::endl;
@@ -107,8 +107,8 @@ static void		test_const_iterator(void)
 	std::cout << ">> Test const" << std::endl;
 	std::cout << std::endl;
 
-	ft::map<int, std::string>::const_iterator		const_it;
-	ft::map<int, std::string>						nbrs;
+	ft::map<int, std::string>::const_reverse_iterator		const_it;
+	ft::map<int, std::string>								nbrs;
 
 	nbrs[1] = "one";
 	nbrs[2] = "two";
@@ -116,7 +116,7 @@ static void		test_const_iterator(void)
 	nbrs[4] = "four";
 
 	display_map("nbrs", nbrs);
-	const_it = nbrs.begin();
+	const_it = nbrs.rbegin();
 	std::cout << "it = " << "{" << const_it->first << " => " << const_it->second << "}"
 		<< std::endl << std::endl;
 	std::cout << "const_it->second = \"first\" => impossible" << std::endl;
@@ -126,10 +126,10 @@ static void		test_const_iterator(void)
 	std::cout << std::endl;
 }
 
-void	test_map_iterator(void)
+void	test_map_reverse_iterator(void)
 {
 	std::cout << std::endl;
-	std::cout << "<------------ Test map iterator ------------>"
+	std::cout << "<------------ Test map reverse iterator ------------>"
 	<< std::endl;
 	std::cout << std::endl;
 
