@@ -98,7 +98,10 @@ namespace ft
 
 			reference					operator*()
 			{
-				return (this->_it.operator*());
+				iterator_type		tmp(this->_it);
+
+				tmp.operator--();
+				return (*tmp);
 			}
 
 			// member access operators
@@ -148,7 +151,7 @@ namespace ft
 	
 	}
 
-	template<class Iterator>
+    template<class Iterator>
 	bool		operator>(const ft::reverse_iterator<Iterator>& lhs,
 					   	const ft::reverse_iterator<Iterator>& rhs)
 	{

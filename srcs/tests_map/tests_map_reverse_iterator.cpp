@@ -32,7 +32,7 @@ static void		test_increment_decrement(void)
 	std::cout << "(++it)->first = " << (++it)->first << std::endl << std::endl;
 	std::cout << "(--it)->first = " << (--it)->first << std::endl << std::endl;
 
-	std::cout << "(it++)->first = " << (it++)->first << std::endl << std::endl;
+	std::cout << "(it++)->first = " << (it++)->first << std::endl;
 	std::cout << "it = " << "{" << it->first << " => " << it->second << "}"
 		<< std::endl << std::endl;
 

@@ -445,7 +445,7 @@ namespace ft
 							value_type, bool>::second_argument_type
 								second_argument_type;
 
-					bool operator() (const value_type& x, const value_type& y) const
+				bool operator() (const value_type& x, const value_type& y) const
 					{
 						return comp(x.first, y.first);
 					}
@@ -555,14 +555,7 @@ namespace ft
 
 		const_reverse_iterator	rbegin() const
 		{
-			avl<value_type>			*node;
-
-			node = this->_root;
-			while (node->right && !node->right->end)
-			{
-			node = node->right;
-			}
-			return (const_reverse_iterator(node));
+			return (const_reverse_iterator(this->end()));
 		}
 
 		iterator		end()
@@ -577,14 +570,7 @@ namespace ft
 
 		reverse_iterator	rend()
 		{
-			avl<value_type>			*node;
-
-			node = this->_root;
-			while (node->left != NULL)
-			{
-				node = node->left;
-			}
-			return (reverse_iterator(node));
+			return (reverse_iterator(this->begin()));
 		}
 
 		const_reverse_iterator		rend() const
