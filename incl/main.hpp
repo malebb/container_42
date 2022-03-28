@@ -11,6 +11,11 @@
 #include <vector>
 #include <map>
 
+// test stack
+
+void	test_stack(void);
+void	test_stack_member_functions(void);
+void	test_stack_relational_operators(void);
 
 // test vector
 
@@ -38,8 +43,21 @@ void	test_map_allocator(void);
 
 // utils
 
+
 template<typename T>
-void	display_vector(std::string name, const ft::vector<T> & cont);
+void	display_stack(std::string name, const ft::stack<T> cont)
+{
+	std::cout << name << " = ";
+	std::cout << "{";
+	while (cont.empty())
+	{
+		std::cout << cont.top() << ", ";
+		cont.pop();
+	}
+	std::cout << "}";
+	std::cout << std::endl << std::endl;
+
+}
 
 class	Nb
 {

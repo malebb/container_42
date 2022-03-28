@@ -50,7 +50,7 @@ namespace ft
 				this->_array.pop_back();
 			}
 
-			//relational operators
+			// relational operators
 
 			template <class T1, class Cont>
 			friend bool	operator==(const stack<T1, Cont>& lhs,
