@@ -61,86 +61,44 @@ static void		test_comparison(void)
 	display_map("nbrs", nbrs);
 
 	it = nbrs.begin();
-	it2 = nbrs.begin() + 1;
+	it2 = it;
+	it2++;
 
-	std::cout << "*it = " << *it << std::endl;
-	std::cout << "*it2 = " << *it2 << std::endl << std::endl;
+	std::cout << "it = " << "{" << it->first << " => " << it->second << "}"
+		<< std::endl << std::endl;
+	std::cout << "it2 = " << "{" << it2->first << " => " << it2->second << "}"
+		<< std::endl << std::endl;
 
 	std::cout << "it == it2 : ";
 	check_comparison(it == it2);
 
 	std::cout << "it != it2 : ";
 	check_comparison(it != it2);
-
-	std::cout << "it < it2 : ";
-	check_comparison(it < it2);
-
-	std::cout << "it > it2 : ";
-	check_comparison(it > it2);
-
-	std::cout << "it <= it2 : ";
-	check_comparison(it <= it2);
-
-	std::cout << "it >= it2 : ";
-	check_comparison(it >= it2);
 	std::cout << std::endl;
 }
-/*
+
 static void		test_member_access(void)
 {
-	ft::map<std::string>::iterator		it;
-	ft::map<Nb>::iterator				it2;
-	ft::map<std::string>					nbrs;
-	ft::map<Nb>							nbs;
-	Nb										nb;
+	ft::map<int, std::string>::iterator		it;
+	ft::map<int, std::string>					nbrs;
 
-	nbrs.push_back("one");
-	nbrs.push_back("two");
-	nbrs.push_back("three");
-	nbrs.push_back("four");
-
-	nbs.push_back(nb);
+	nbrs[1] = "one";
+	nbrs[2] = "two";
+	nbrs[3] = "three";
+	nbrs[4] = "four";
 
 	std::cout << std::endl;
 	std::cout << ">> Test member access" << std::endl;
 	std::cout << std::endl;
 	
 	display_map("nbrs", nbrs);
-	std::cout << "nb->first_value = " << nb.first_value << std::endl;
-	std::cout << "nb->second_value = " << nb.second_value << std::endl << std::endl;
 
 	it = nbrs.begin();
-	it2 = nbs.begin();
 
-	std::cout << "it[3] = " << it[3] << std::endl << std::endl;
-	std::cout << "it2->first_value = " << it2->first_value << std::endl;
-	std::cout << "it2->second_value = " << it2->second_value << std::endl << std::endl;
-}
-
-static void		test_substract(void)
-{
-	ft::map<std::string>::iterator		it;
-	ft::map<std::string>::iterator		it2;
-	ft::map<std::string>					nbrs;
-
-	nbrs.push_back("one");
-	nbrs.push_back("two");
-	nbrs.push_back("three");
-	nbrs.push_back("four");
-
-	std::cout << std::endl;
-	std::cout << ">> Test substract" << std::endl;
-	std::cout << std::endl;
-	
-	display_map("nbrs", nbrs);
-
-	it = nbrs.begin();
-	it2 = nbrs.begin() + 1;
-
-	std::cout << "*it = " << *it << std::endl;
-	std::cout << "*it2 = " << *it2 << std::endl << std::endl;
-
-	std::cout << "it - it2 = " << it - it2 << std::endl << std::endl;
+	std::cout << "it->first = " << it->first << std::endl;
+	std::cout << "it->second = " << it->second << std::endl << std::endl;
+	std::cout << "(*it).first = " << (*it).first << std::endl;
+	std::cout << "(*it).second = " << (*it).second << std::endl << std::endl;
 }
 
 static void		test_const_iterator(void)
@@ -149,25 +107,25 @@ static void		test_const_iterator(void)
 	std::cout << ">> Test const" << std::endl;
 	std::cout << std::endl;
 
-	ft::map<std::string>::const_iterator		const_it;
-	ft::map<std::string>						nbrs;
+	ft::map<int, std::string>::const_iterator		const_it;
+	ft::map<int, std::string>						nbrs;
 
-	nbrs.push_back("one");
-	nbrs.push_back("two");
-	nbrs.push_back("three");
-	nbrs.push_back("four");
+	nbrs[1] = "one";
+	nbrs[2] = "two";
+	nbrs[3] = "three";
+	nbrs[4] = "four";
 
 	display_map("nbrs", nbrs);
 	const_it = nbrs.begin();
-	std::cout << "*const_it = " << *const_it << std::endl << std::endl;
-	std::cout << "*const_it = \"first\" => impossible" << std::endl;
-//	*const_it = "first"; // impossible
-	std::cout << "*const_it[0] = \"first\" => impossible" << std::endl << std::endl;
-//	const_it[0] = "first"; // impossible
-	std::cout << "*const_it = " << *const_it << std::endl;
+	std::cout << "it = " << "{" << const_it->first << " => " << const_it->second << "}"
+		<< std::endl << std::endl;
+	std::cout << "const_it->second = \"first\" => impossible" << std::endl;
+	//const_it->second = "first"; // impossible
+	std::cout << "it = " << "{" << const_it->first << " => " << const_it->second << "}"
+		<< std::endl << std::endl;
 	std::cout << std::endl;
 }
-*/
+
 void	test_map_iterator(void)
 {
 	std::cout << std::endl;
@@ -179,13 +137,11 @@ void	test_map_iterator(void)
 	test_increment_decrement();
 	std::cout << "********************************************" << std::endl;
 	test_comparison();
-	/*
+	std::cout << "********************************************" << std::endl;
+	
 	std::cout << "********************************************" << std::endl;
 	test_member_access();
 	std::cout << "********************************************" << std::endl;
-	test_substract();
-	std::cout << "********************************************" << std::endl;
 	test_const_iterator();
 	std::cout << "********************************************" << std::endl;
-	*/
 }
