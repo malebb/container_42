@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <iterator>
+#include <stack>
 #include <vector>
 #include <map>
 
@@ -45,13 +46,15 @@ void	test_map_allocator(void);
 
 
 template<typename T>
-void	display_stack(std::string name, const ft::stack<T> cont)
+void	display_stack(std::string name, ft::stack<T> cont)
 {
 	std::cout << name << " = ";
 	std::cout << "{";
-	while (cont.empty())
+	while (!cont.empty())
 	{
-		std::cout << cont.top() << ", ";
+		std::cout << cont.top();
+		if (cont.size() != 1)
+			std::cout << ", ";
 		cont.pop();
 	}
 	std::cout << "}";

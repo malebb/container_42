@@ -6,24 +6,25 @@ static void		test_equal_to(void)
 	std::cout << ">> Test == operator" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<int>		nbrs;
-	ft::vector<int>		nbrs2;
+	ft::stack<int>		nbrs;
+	ft::stack<int>		nbrs2;
 
-	nbrs.push_back(0);
-	nbrs.push_back(0);
-	nbrs2.assign(nbrs.begin(), nbrs.end());
-	
-	display_vector("nbrs", nbrs);
-	display_vector("nbrs2", nbrs2);
+	nbrs.push(0);
+	nbrs.push(0);
+
+	nbrs2 = nbrs;
+
+	display_stack("nbrs", nbrs);
+	display_stack("nbrs2", nbrs2);
 
 	std::cout << "(nbrs == nbrs2) = " << (nbrs == nbrs2) << std::endl;
 	std::cout << std::endl;
 
-	nbrs.pop_back();
-	nbrs.push_back(1);
+	nbrs.pop();
+	nbrs.push(1);
 
-	display_vector("nbrs", nbrs);
-	display_vector("nbrs2", nbrs2);
+	display_stack("nbrs", nbrs);
+	display_stack("nbrs2", nbrs2);
 
 	std::cout << "(nbrs == nbrs2) = " << (nbrs == nbrs2) << std::endl;
 	std::cout << std::endl;
@@ -35,24 +36,25 @@ static void		test_not_equal_to(void)
 	std::cout << ">> Test != operator" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<int>		nbrs;
-	ft::vector<int>		nbrs2;
+	ft::stack<int>		nbrs;
+	ft::stack<int>		nbrs2;
 
-	nbrs.push_back(0);
-	nbrs.push_back(0);
-	nbrs2.assign(nbrs.begin(), nbrs.end());
+	nbrs.push(0);
+	nbrs.push(0);
+
+	nbrs2 = nbrs;
 	
-	display_vector("nbrs", nbrs);
-	display_vector("nbrs2", nbrs2);
+	display_stack("nbrs", nbrs);
+	display_stack("nbrs2", nbrs2);
 
 	std::cout << "(nbrs != nbrs2) = " << (nbrs != nbrs2) << std::endl;
 	std::cout << std::endl;
 
-	nbrs.pop_back();
-	nbrs.push_back(1);
+	nbrs.pop();
+	nbrs.push(1);
 
-	display_vector("nbrs", nbrs);
-	display_vector("nbrs2", nbrs2);
+	display_stack("nbrs", nbrs);
+	display_stack("nbrs2", nbrs2);
 
 	std::cout << "(nbrs != nbrs2) = " << (nbrs != nbrs2) << std::endl;
 	std::cout << std::endl;
@@ -64,24 +66,25 @@ static void		test_less_than(void)
 	std::cout << ">> Test < operator" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<int>		nbrs;
-	ft::vector<int>		nbrs2;
+	ft::stack<int>		nbrs;
+	ft::stack<int>		nbrs2;
 
-	nbrs.push_back(1);
-	nbrs.push_back(1);
-	nbrs2.assign(nbrs.begin(), nbrs.end());
+	nbrs.push(1);
+	nbrs.push(1);
+
+	nbrs2 = nbrs;
 	
-	display_vector("nbrs", nbrs);
-	display_vector("nbrs2", nbrs2);
+	display_stack("nbrs", nbrs);
+	display_stack("nbrs2", nbrs2);
 
 	std::cout << "(nbrs < nbrs2) = " << (nbrs < nbrs2) << std::endl;
 	std::cout << std::endl;
 
-	nbrs.pop_back();
-	nbrs.push_back(0);
+	nbrs.pop();
+	nbrs.push(0);
 
-	display_vector("nbrs", nbrs);
-	display_vector("nbrs2", nbrs2);
+	display_stack("nbrs", nbrs);
+	display_stack("nbrs2", nbrs2);
 
 	std::cout << "(nbrs < nbrs2) = " << (nbrs < nbrs2) << std::endl;
 	std::cout << std::endl;
@@ -93,24 +96,25 @@ static void		test_greater_than(void)
 	std::cout << ">> Test > operator" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<int>		nbrs;
-	ft::vector<int>		nbrs2;
+	ft::stack<int>		nbrs;
+	ft::stack<int>		nbrs2;
 
-	nbrs.push_back(0);
-	nbrs.push_back(0);
-	nbrs2.assign(nbrs.begin(), nbrs.end());
+	nbrs.push(0);
+	nbrs.push(0);
+
+	nbrs2 = nbrs;
 	
-	display_vector("nbrs", nbrs);
-	display_vector("nbrs2", nbrs2);
+	display_stack("nbrs", nbrs);
+	display_stack("nbrs2", nbrs2);
 
 	std::cout << "(nbrs > nbrs2) = " << (nbrs > nbrs2) << std::endl;
 	std::cout << std::endl;
 
-	nbrs.pop_back();
-	nbrs.push_back(1);
+	nbrs.pop();
+	nbrs.push(1);
 
-	display_vector("nbrs", nbrs);
-	display_vector("nbrs2", nbrs2);
+	display_stack("nbrs", nbrs);
+	display_stack("nbrs2", nbrs2);
 
 	std::cout << "(nbrs > nbrs2) = " << (nbrs > nbrs2) << std::endl;
 	std::cout << std::endl;
@@ -122,35 +126,36 @@ static void		test_less_than_or_equal_to(void)
 	std::cout << ">> Test <= operator" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<int>		nbrs;
-	ft::vector<int>		nbrs2;
+	ft::stack<int>		nbrs;
+	ft::stack<int>		nbrs2;
 
-	nbrs.push_back(1);
-	nbrs.push_back(1);
-	nbrs2.assign(nbrs.begin(), nbrs.end());
+	nbrs.push(1);
+	nbrs.push(1);
+
+	nbrs2 = nbrs;
 	
-	display_vector("nbrs", nbrs);
-	display_vector("nbrs2", nbrs2);
+	display_stack("nbrs", nbrs);
+	display_stack("nbrs2", nbrs2);
 
 	std::cout << "(nbrs <= nbrs2) = " << (nbrs <= nbrs2) << std::endl;
 	std::cout << std::endl;
 
-	nbrs.pop_back();
-	nbrs.push_back(0);
+	nbrs.pop();
+	nbrs.push(0);
 
-	display_vector("nbrs", nbrs);
-	display_vector("nbrs2", nbrs2);
+	display_stack("nbrs", nbrs);
+	display_stack("nbrs2", nbrs2);
 
 	std::cout << "(nbrs <= nbrs2) = " << (nbrs <= nbrs2) << std::endl;
 	std::cout << std::endl;
 
-	nbrs.pop_back();
-	nbrs.push_back(1);
-	nbrs2.pop_back();
-	nbrs2.push_back(0);
+	nbrs.pop();
+	nbrs.push(1);
+	nbrs2.pop();
+	nbrs2.push(0);
 
-	display_vector("nbrs", nbrs);
-	display_vector("nbrs2", nbrs2);
+	display_stack("nbrs", nbrs);
+	display_stack("nbrs2", nbrs2);
 
 	std::cout << "(nbrs <= nbrs2) = " << (nbrs <= nbrs2) << std::endl;
 	std::cout << std::endl;
@@ -162,35 +167,36 @@ static void		test_greater_than_or_equal_to()
 	std::cout << ">> Test >= operator" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<int>		nbrs;
-	ft::vector<int>		nbrs2;
+	ft::stack<int>		nbrs;
+	ft::stack<int>		nbrs2;
 
-	nbrs.push_back(1);
-	nbrs.push_back(1);
-	nbrs2.assign(nbrs.begin(), nbrs.end());
+	nbrs.push(1);
+	nbrs.push(1);
+
+	nbrs2 = nbrs;
 	
-	display_vector("nbrs", nbrs);
-	display_vector("nbrs2", nbrs2);
+	display_stack("nbrs", nbrs);
+	display_stack("nbrs2", nbrs2);
 
 	std::cout << "(nbrs >= nbrs2) = " << (nbrs >= nbrs2) << std::endl;
 	std::cout << std::endl;
 
-	nbrs.pop_back();
-	nbrs.push_back(0);
+	nbrs.pop();
+	nbrs.push(0);
 
-	display_vector("nbrs", nbrs);
-	display_vector("nbrs2", nbrs2);
+	display_stack("nbrs", nbrs);
+	display_stack("nbrs2", nbrs2);
 
 	std::cout << "(nbrs >= nbrs2) = " << (nbrs >= nbrs2) << std::endl;
 	std::cout << std::endl;
 
-	nbrs.pop_back();
-	nbrs.push_back(1);
-	nbrs2.pop_back();
-	nbrs2.push_back(0);
+	nbrs.pop();
+	nbrs.push(1);
+	nbrs2.pop();
+	nbrs2.push(0);
 
-	display_vector("nbrs", nbrs);
-	display_vector("nbrs2", nbrs2);
+	display_stack("nbrs", nbrs);
+	display_stack("nbrs2", nbrs2);
 
 	std::cout << "(nbrs >= nbrs2) = " << (nbrs >= nbrs2) << std::endl;
 	std::cout << std::endl;

@@ -20,6 +20,17 @@ namespace ft
 			{
 			}
 
+			stack (const stack& x)
+			{
+				*this = x;
+			}
+			
+			stack&		operator=(const stack & x)
+			{
+				this->_array = x._array;
+				return (*this);
+			}
+
 			bool					empty() const
 			{
 				return (this->_array.empty());

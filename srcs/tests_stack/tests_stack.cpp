@@ -7,4 +7,5 @@ void	test_stack(void)
 	<< std::endl;
 
 	test_stack_member_functions();
+	test_stack_relational_operators();
 }

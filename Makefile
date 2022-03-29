@@ -17,7 +17,8 @@ SRCS_FT = ./srcs/main.cpp ./srcs/main_utils.cpp \
 			./srcs/tests_map/tests_map_iterator.cpp \
 			./srcs/tests_map/tests_map_reverse_iterator.cpp \
 			./srcs/tests_stack/tests_stack.cpp \
-			./srcs/tests_stack/tests_stack_member_functions.cpp
+			./srcs/tests_stack/tests_stack_member_functions.cpp \
+			./srcs/tests_stack/tests_stack_relational_operators.cpp
 
 OBJS_FT = ${SRCS_FT:.cpp=.o}
 
