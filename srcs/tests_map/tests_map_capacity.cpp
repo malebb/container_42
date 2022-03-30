@@ -6,7 +6,7 @@ static void test_empty(void)
 	std::cout << ">> Test empty function" << std::endl;
 	std::cout << std::endl;
 	
-	ft::map<int, std::string>		numbers;
+	LIB::map<int, std::string>		numbers;
 
 	display_map("numbers", numbers);
 	std::cout << "numbers.empty() = " << numbers.empty()
@@ -23,7 +23,7 @@ static void test_size(void)
 	std::cout << std::endl;
 	std::cout << ">> test size function" << std::endl;
 	std::cout << std::endl;
-	ft::map<int, std::string>		numbers;
+	LIB::map<int, std::string>		numbers;
 
 	display_map("numbers", numbers);
 	std::cout << "numbers.size() = " << numbers.size()
@@ -44,8 +44,8 @@ static void test_max_size(void)
 	std::cout << ">> test max_size function" << std::endl;
 	std::cout << std::endl;
 
-	ft::map<int, std::string>		numbers;
-	ft::map<char, char>		letters;
+	LIB::map<int, std::string>		numbers;
+	LIB::map<char, char>		letters;
 
 	display_map("numbers", numbers);
 	display_map("letters", letters);

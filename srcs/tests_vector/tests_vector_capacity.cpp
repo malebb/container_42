@@ -6,8 +6,8 @@ static void		test_size(void)
 	std::cout << ">> Test size function" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<int>				nbrs;
-	ft::vector<char>			letters;
+	LIB::vector<int>				nbrs;
+	LIB::vector<char>			letters;
 
 	nbrs.push_back(11);
 	nbrs.push_back(12);
@@ -29,8 +29,8 @@ static void		test_max_size(void)
 	std::cout << ">> Test max size function" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<bool>				boolean;
-	ft::vector<std::string>			strs(3, "string");
+	LIB::vector<bool>				boolean;
+	LIB::vector<std::string>			strs(3, "string");
 
 	boolean.push_back(true);
 	boolean.push_back(false);
@@ -47,7 +47,7 @@ static void		test_max_size(void)
 
 static void		test_resize(void)
 {
-	ft::vector<int>		hundreds(3, 100);
+	LIB::vector<int>		hundreds(3, 100);
 
 	std::cout << std::endl;
 	std::cout << ">> Test resize function" << std::endl;
@@ -77,7 +77,7 @@ static void		test_reserve(void)
 	std::cout << ">> Test reserve function" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<int>				nbrs;
+	LIB::vector<int>				nbrs;
 
 	std::cout << "nbrs.capacity() = " << nbrs.capacity() << std::endl;
 	std::cout << "nbrs.reserve(2)" << std::endl;
@@ -106,7 +106,7 @@ static void		test_capacity(void)
 	std::cout << ">> Test capacity function" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<std::string>		plants;
+	LIB::vector<std::string>		plants;
 
 	display_vector("plants", plants);
 
@@ -132,8 +132,8 @@ static void		test_capacity(void)
 
 static void		test_empty(void)
 {
-	ft::vector<int>				empty_vector;
-	ft::vector<int>			filled_vector(4, 1);
+	LIB::vector<int>				empty_vector;
+	LIB::vector<int>			filled_vector(4, 1);
 
 
 	std::cout << std::endl;

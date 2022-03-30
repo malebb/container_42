@@ -6,37 +6,37 @@ static void		test_insert(void)
 	std::cout << ">> Test insert function" << std::endl;
 	std::cout << std::endl;
 
-	ft::map<std::string, std::string>		countries;
+	LIB::map<std::string, std::string>		countries;
 
 	display_map("countries", countries);
 
-	std::cout << "countries.insert(ft::make_pair<std::string, std::string>(\"Italie\", \"Italy\"))" << std::endl;
-	std::cout << "countries.insert(ft::make_pair<std::string, std::string>(\"Espagne\", \"Spain\"))" << std::endl;
-	std::cout << "countries.insert(ft::make_pair<std::string, std::string>(\"Maroc\", \"Marocco\"))" << std::endl;
+	std::cout << "countries.insert(LIB::make_pair<std::string, std::string>(\"Italie\", \"Italy\"))" << std::endl;
+	std::cout << "countries.insert(LIB::make_pair<std::string, std::string>(\"Espagne\", \"Spain\"))" << std::endl;
+	std::cout << "countries.insert(LIB::make_pair<std::string, std::string>(\"Maroc\", \"Marocco\"))" << std::endl;
 
-	countries.insert(ft::make_pair<std::string, std::string>("Italie", "Italy"));
-	countries.insert(ft::make_pair<std::string, std::string>("Espagne", "Spain"));
-	countries.insert(ft::make_pair<std::string, std::string>("Maroc", "Marocco"));
+	countries.insert(LIB::make_pair<std::string, std::string>("Italie", "Italy"));
+	countries.insert(LIB::make_pair<std::string, std::string>("Espagne", "Spain"));
+	countries.insert(LIB::make_pair<std::string, std::string>("Maroc", "Marocco"));
 
 	std::cout << std::endl;
 
 	display_map("countries", countries);
 
-	ft::map<int, std::string>		numbers;
+	LIB::map<int, std::string>		numbers;
 
-	numbers.insert(ft::make_pair<int, std::string>(1, "un"));
+	numbers.insert(LIB::make_pair<int, std::string>(1, "un"));
 	display_map("numbers", numbers);
 
-	std::cout << "numbers.insert(numbers.begin(), ft::make_pair<int, std::string>(6, \"six\"))" << std::endl;
-	numbers.insert(numbers.begin(), ft::make_pair<int, std::string>(6, "six"));
+	std::cout << "numbers.insert(numbers.begin(), LIB::make_pair<int, std::string>(6, \"six\"))" << std::endl;
+	numbers.insert(numbers.begin(), LIB::make_pair<int, std::string>(6, "six"));
 	display_map("numbers", numbers);
 
-	ft::map<char, char>		letters;
-	ft::map<char, char>		end_alphabet;
+	LIB::map<char, char>		letters;
+	LIB::map<char, char>		end_alphabet;
 
-	end_alphabet.insert(ft::make_pair<char, char>('x', 'X'));
-	end_alphabet.insert(ft::make_pair<char, char>('y', 'Y'));
-	end_alphabet.insert(ft::make_pair<char, char>('z', 'Z'));
+	end_alphabet.insert(LIB::make_pair<char, char>('x', 'X'));
+	end_alphabet.insert(LIB::make_pair<char, char>('y', 'Y'));
+	end_alphabet.insert(LIB::make_pair<char, char>('z', 'Z'));
 
 	display_map("letters", letters);
 	display_map("end_alphabet", end_alphabet);
@@ -54,7 +54,7 @@ static void		test_erase(void)
 	std::cout << ">> Test erase function" << std::endl;
 	std::cout << std::endl;
 
-	ft::map<int, std::string>		numbers;
+	LIB::map<int, std::string>		numbers;
 
 	numbers[0] = "zero";
 	numbers[1] = "one";
@@ -71,7 +71,7 @@ static void		test_erase(void)
 	numbers.erase(4);
 	display_map("numbers", numbers);
 
-	ft::map<int, std::string>::iterator		it;
+	LIB::map<int, std::string>::iterator		it;
 
 	std::cout << "it = numbers.end()" << std::endl;
 	std::cout << "it--" << std::endl;
@@ -89,7 +89,7 @@ static void		test_clear(void)
 	std::cout << ">> Test clear function" << std::endl;
 	std::cout << std::endl;
 
-	ft::map<std::string, std::string>		fruits_colors;
+	LIB::map<std::string, std::string>		fruits_colors;
 
 	fruits_colors["banana"] = "yellow";
 	fruits_colors["strawberry"] = "red";
@@ -107,8 +107,8 @@ static void		test_swap(void)
 	std::cout << ">> Test clear function" << std::endl;
 	std::cout << std::endl;
 
-	ft::map<std::string, std::string>	ying;
-	ft::map<std::string, std::string>	yang;
+	LIB::map<std::string, std::string>	ying;
+	LIB::map<std::string, std::string>	yang;
 
 	ying["YING"] = "YING";
 	ying["ying"] = "ying";

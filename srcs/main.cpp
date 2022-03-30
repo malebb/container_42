@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <stack>
 #include <map>
-
+/*
 bool	check(std::string str1, std::string str2)
 {
 	std::cout << "str1 = " << str1 << " str2 = " << str2 << std::endl;
@@ -14,7 +14,7 @@ bool	check(std::string str1, std::string str2)
 	}
 	return (false);
 }
-
+*/
 class A
 {
 	public :
@@ -35,7 +35,7 @@ int	main(void)
 	std::cout << std::endl;
 
 	test_stack();
-//	test_vector();
-//	test_map();
+	test_vector();
+	test_map();
 	return (0);
 }

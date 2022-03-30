@@ -2,8 +2,8 @@
 
 static void		test_increment_decrement(void)
 {
-	ft::map<int, std::string>::reverse_iterator		it;
-	ft::map<int, std::string>					nbrs;
+	LIB::map<int, std::string>::reverse_iterator		it;
+	LIB::map<int, std::string>					nbrs;
 
 	nbrs[1] = "one";
 	nbrs[2] = "two";
@@ -45,9 +45,9 @@ static void		test_increment_decrement(void)
 
 static void		test_comparison(void)
 {
-	ft::map<int, std::string>::reverse_iterator		it;
-	ft::map<int, std::string>::reverse_iterator		it2;
-	ft::map<int, std::string>					nbrs;
+	LIB::map<int, std::string>::reverse_iterator		it;
+	LIB::map<int, std::string>::reverse_iterator		it2;
+	LIB::map<int, std::string>					nbrs;
 
 	nbrs[1] = "one";
 	nbrs[2] = "two";
@@ -79,8 +79,8 @@ static void		test_comparison(void)
 
 static void		test_member_access(void)
 {
-	ft::map<int, std::string>::reverse_iterator		it;
-	ft::map<int, std::string>						nbrs;
+	LIB::map<int, std::string>::reverse_iterator		it;
+	LIB::map<int, std::string>						nbrs;
 
 	nbrs[1] = "one";
 	nbrs[2] = "two";
@@ -107,8 +107,8 @@ static void		test_const_iterator(void)
 	std::cout << ">> Test const" << std::endl;
 	std::cout << std::endl;
 
-	ft::map<int, std::string>::const_reverse_iterator		const_it;
-	ft::map<int, std::string>								nbrs;
+	LIB::map<int, std::string>::const_reverse_iterator		const_it;
+	LIB::map<int, std::string>								nbrs;
 
 	nbrs[1] = "one";
 	nbrs[2] = "two";

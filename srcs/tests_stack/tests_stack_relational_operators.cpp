@@ -6,8 +6,8 @@ static void		test_equal_to(void)
 	std::cout << ">> Test == operator" << std::endl;
 	std::cout << std::endl;
 
-	ft::stack<int>		nbrs;
-	ft::stack<int>		nbrs2;
+	LIB::stack<int>		nbrs;
+	LIB::stack<int>		nbrs2;
 
 	nbrs.push(0);
 	nbrs.push(0);
@@ -36,8 +36,8 @@ static void		test_not_equal_to(void)
 	std::cout << ">> Test != operator" << std::endl;
 	std::cout << std::endl;
 
-	ft::stack<int>		nbrs;
-	ft::stack<int>		nbrs2;
+	LIB::stack<int>		nbrs;
+	LIB::stack<int>		nbrs2;
 
 	nbrs.push(0);
 	nbrs.push(0);
@@ -66,8 +66,8 @@ static void		test_less_than(void)
 	std::cout << ">> Test < operator" << std::endl;
 	std::cout << std::endl;
 
-	ft::stack<int>		nbrs;
-	ft::stack<int>		nbrs2;
+	LIB::stack<int>		nbrs;
+	LIB::stack<int>		nbrs2;
 
 	nbrs.push(1);
 	nbrs.push(1);
@@ -96,8 +96,8 @@ static void		test_greater_than(void)
 	std::cout << ">> Test > operator" << std::endl;
 	std::cout << std::endl;
 
-	ft::stack<int>		nbrs;
-	ft::stack<int>		nbrs2;
+	LIB::stack<int>		nbrs;
+	LIB::stack<int>		nbrs2;
 
 	nbrs.push(0);
 	nbrs.push(0);
@@ -126,8 +126,8 @@ static void		test_less_than_or_equal_to(void)
 	std::cout << ">> Test <= operator" << std::endl;
 	std::cout << std::endl;
 
-	ft::stack<int>		nbrs;
-	ft::stack<int>		nbrs2;
+	LIB::stack<int>		nbrs;
+	LIB::stack<int>		nbrs2;
 
 	nbrs.push(1);
 	nbrs.push(1);
@@ -167,8 +167,8 @@ static void		test_greater_than_or_equal_to()
 	std::cout << ">> Test >= operator" << std::endl;
 	std::cout << std::endl;
 
-	ft::stack<int>		nbrs;
-	ft::stack<int>		nbrs2;
+	LIB::stack<int>		nbrs;
+	LIB::stack<int>		nbrs2;
 
 	nbrs.push(1);
 	nbrs.push(1);

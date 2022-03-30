@@ -5,8 +5,8 @@ static void		test_key_comp(void)
 	std::cout << std::endl;
 	std::cout << ">> test key_comp function" << std::endl;
 	std::cout << std::endl;
-	ft::map<int, int>::key_compare			compare;
-	ft::map<int, int>						numbers;
+	LIB::map<int, int>::key_compare			compare;
+	LIB::map<int, int>						numbers;
 
 	compare = numbers.key_comp();
 	std::cout << "compare = numbers.key_comp()" << std::endl << std::endl;
@@ -22,9 +22,9 @@ static void		test_value_comp(void)
 	std::cout << std::endl;
 	std::cout << ">> test value_comp function" << std::endl;
 	std::cout << std::endl;
-	ft::map<int, int>						numbers;
-	ft::map<int, int>::iterator				it;
-	ft::map<int, int>::iterator				it_2;
+	LIB::map<int, int>						numbers;
+	LIB::map<int, int>::iterator				it;
+	LIB::map<int, int>::iterator				it_2;
 	
 
 	numbers[1] = 1;

@@ -2,9 +2,9 @@
 
 static void test_get_allocator(void)
 {
-	ft::map<int, std::string>						numbers;
-	ft::pair<const int, std::string>				*pair_ptr;
-	ft::pair<const int, std::string>				pair;
+	LIB::map<int, std::string>						numbers;
+	LIB::pair<const int, std::string>				*pair_ptr;
+	LIB::pair<const int, std::string>				pair;
 
 	std::cout << std::endl;
 	std::cout << ">> test get_allocator function" << std::endl;

@@ -2,8 +2,8 @@
 
 static void		test_increment_decrement(void)
 {
-	ft::vector<std::string>::reverse_iterator		it;
-	ft::vector<std::string>							nbrs;
+	LIB::vector<std::string>::reverse_iterator		it;
+	LIB::vector<std::string>							nbrs;
 
 	nbrs.push_back("one");
 	nbrs.push_back("two");
@@ -41,8 +41,8 @@ static void		test_increment_decrement(void)
 
 static void		test_assignment(void)
 {
-	ft::vector<std::string>::reverse_iterator		it;
-	ft::vector<std::string>							nbrs;
+	LIB::vector<std::string>::reverse_iterator		it;
+	LIB::vector<std::string>							nbrs;
 
 	nbrs.push_back("one");
 	nbrs.push_back("two");
@@ -70,9 +70,9 @@ static void		test_assignment(void)
 
 static void		test_arithmetic(void)
 {
-	ft::vector<std::string>::reverse_iterator	it;
-	ft::vector<std::string>::reverse_iterator	it2;
-	ft::vector<std::string>						nbrs;
+	LIB::vector<std::string>::reverse_iterator	it;
+	LIB::vector<std::string>::reverse_iterator	it2;
+	LIB::vector<std::string>						nbrs;
 
 	nbrs.push_back("one");
 	nbrs.push_back("two");
@@ -105,9 +105,9 @@ static void		test_arithmetic(void)
 
 static void		test_comparison(void)
 {
-	ft::vector<std::string>::reverse_iterator		it;
-	ft::vector<std::string>::reverse_iterator		it2;
-	ft::vector<std::string>							nbrs;
+	LIB::vector<std::string>::reverse_iterator		it;
+	LIB::vector<std::string>::reverse_iterator		it2;
+	LIB::vector<std::string>							nbrs;
 
 	nbrs.push_back("one");
 	nbrs.push_back("two");
@@ -148,10 +148,10 @@ static void		test_comparison(void)
 
 static void		test_member_access(void)
 {
-	ft::vector<std::string>::reverse_iterator		it;
-	ft::vector<Nb>::reverse_iterator				it2;
-	ft::vector<std::string>						nbrs;
-	ft::vector<Nb>									nbs;
+	LIB::vector<std::string>::reverse_iterator		it;
+	LIB::vector<Nb>::reverse_iterator				it2;
+	LIB::vector<std::string>						nbrs;
+	LIB::vector<Nb>									nbs;
 	Nb												nb;
 
 	nbrs.push_back("one");
@@ -181,9 +181,9 @@ static void		test_member_access(void)
 
 static void		test_substract(void)
 {
-	ft::vector<std::string>::const_reverse_iterator		it;
-	ft::vector<std::string>::const_reverse_iterator		it2;
-	ft::vector<std::string>						nbrs;
+	LIB::vector<std::string>::const_reverse_iterator		it;
+	LIB::vector<std::string>::const_reverse_iterator		it2;
+	LIB::vector<std::string>						nbrs;
 
 	nbrs.push_back("one");
 	nbrs.push_back("two");
@@ -211,8 +211,8 @@ static void		test_const_reverse_iterator(void)
 	std::cout << ">> Test const" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<std::string>::const_reverse_iterator		const_it;
-	ft::vector<std::string>								nbrs;
+	LIB::vector<std::string>::const_reverse_iterator		const_it;
+	LIB::vector<std::string>								nbrs;
 
 	nbrs.push_back("one");
 	nbrs.push_back("two");

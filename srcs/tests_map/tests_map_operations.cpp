@@ -6,15 +6,15 @@ static void		test_find(void)
 	std::cout << ">> test find function" << std::endl;
 	std::cout << std::endl;
 
-	ft::map<std::string, std::string>				animal_size;
-	ft::map<std::string, std::string>::iterator		it;
+	LIB::map<std::string, std::string>				animal_size;
+	LIB::map<std::string, std::string>::iterator		it;
 
 	animal_size["mouse"] = "2 inches";
 	animal_size["cat"] = "1 foot";
 	animal_size["elephant"] = "5 yards";
 
-	const ft::map<std::string, std::string>					const_animal_size(animal_size.begin(), animal_size.end());
-	ft::map<std::string, std::string>::const_iterator		c_it;
+	const LIB::map<std::string, std::string>					const_animal_size(animal_size.begin(), animal_size.end());
+	LIB::map<std::string, std::string>::const_iterator		c_it;
 
 	display_map("animal_size", animal_size);
 	display_map("const_animal_size", const_animal_size);
@@ -40,7 +40,7 @@ static void		test_count(void)
 	std::cout << ">> test count function" << std::endl;
 	std::cout << std::endl;
 
-	ft::map<int, std::string>		numbers;
+	LIB::map<int, std::string>		numbers;
 
 	numbers[1] = "one";
 	numbers[2] = "two";
@@ -62,14 +62,14 @@ static void		test_lower_bound(void)
 	std::cout << ">> test lower_bound function" << std::endl;
 	std::cout << std::endl;
 
-	ft::map<int, std::string>		numbers;
+	LIB::map<int, std::string>		numbers;
 
 	numbers[15] = "fiveteen";
 	numbers[20] = "twenty";
 	numbers[25] = "twenty-five";
 	numbers[30] = "thirty";
 	numbers[35] = "thirty-five";
-	const ft::map<int, std::string>		const_numbers(numbers);
+	const LIB::map<int, std::string>		const_numbers(numbers);
 
 //	display_map("numbers", numbers);
 	std::cout << "numbers.lower_bound(7)->first) = " << numbers.lower_bound(7)->first << std::endl;
@@ -89,7 +89,7 @@ static void		test_upper_bound(void)
 	std::cout << ">> test upper_bound function" << std::endl;
 	std::cout << std::endl;
 
-	ft::map<int, std::string>		numbers;
+	LIB::map<int, std::string>		numbers;
 
 	numbers[15] = "fiveteen";
 	numbers[20] = "twenty";
@@ -103,7 +103,7 @@ static void		test_upper_bound(void)
 	std::cout << "numbers.upper_bound(25)->first) = " << numbers.upper_bound(25)->first << std::endl;
 	std::cout << "numbers.upper_bound(32)->first) = " << numbers.upper_bound(32)->first << std::endl << std::endl;
 
-	const ft::map<int, std::string>		const_numbers(numbers);
+	const LIB::map<int, std::string>		const_numbers(numbers);
 
 	std::cout << "const_numbers.upper_bound(7)->first) = " << const_numbers.upper_bound(7)->first << std::endl;
 	std::cout << "const_numbers.upper_bound(25)->first) = " << const_numbers.upper_bound(25)->first << std::endl;
@@ -118,8 +118,8 @@ static void		test_equal_range(void)
 	std::cout << ">> test equal_range function" << std::endl;
 	std::cout << std::endl;
 
-	ft::map<int, std::string>		numbers;
-	ft::pair<ft::map<int, std::string>::iterator, ft::map<int, std::string>::iterator>		ret;
+	LIB::map<int, std::string>		numbers;
+	LIB::pair<LIB::map<int, std::string>::iterator, LIB::map<int, std::string>::iterator>		ret;
 
 	numbers[15] = "fiveteen";
 	numbers[20] = "twenty";
@@ -139,8 +139,8 @@ static void		test_equal_range(void)
 	std::cout << "(ret.first)->first = " << (ret.first)->first << std::endl;
 	std::cout << "(ret.first)->first = " << (ret.second)->first << std::endl << std::endl;
 
-	const ft::map<int, std::string>		const_numbers(numbers);
-	ft::pair<ft::map<int, std::string>::const_iterator, ft::map<int, std::string>::const_iterator>		const_ret;
+	const LIB::map<int, std::string>		const_numbers(numbers);
+	LIB::pair<LIB::map<int, std::string>::const_iterator, LIB::map<int, std::string>::const_iterator>		const_ret;
 	
 	display_map("const_numbers", const_numbers);
 

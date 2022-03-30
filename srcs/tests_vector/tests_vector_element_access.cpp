@@ -6,8 +6,8 @@ void	test_subscript_operator(void)
 	std::cout << ">> Test operator[]" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<std::string>				numbers;
-	const ft::vector<std::string>		const_numbers(2, "zero");
+	LIB::vector<std::string>				numbers;
+	const LIB::vector<std::string>		const_numbers(2, "zero");
 
 	numbers.push_back("zero");
 	numbers.push_back("one");
@@ -18,14 +18,14 @@ void	test_subscript_operator(void)
 	display_vector("numbers", numbers);
 	display_vector("const_numbers", const_numbers);
 
-	for (ft::vector<std::string>::size_type i = 0; i < numbers.size(); i++)
+	for (LIB::vector<std::string>::size_type i = 0; i < numbers.size(); i++)
 	{
 		std::cout << "numbers[" << i << "] = " << numbers[i];
 		std::cout << std::endl;
 	}
 
 	std::cout << std::endl;
-	for (ft::vector<std::string>::size_type i = 0; i < const_numbers.size(); i++)
+	for (LIB::vector<std::string>::size_type i = 0; i < const_numbers.size(); i++)
 	{
 		std::cout << "const_numbers[" << i << "] = " << const_numbers[i];
 		std::cout << std::endl;
@@ -39,8 +39,8 @@ void	test_at(void)
 	std::cout << ">> Test at function" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<std::string>				animals;
-	const ft::vector<std::string>		const_animals(2, "pigeon");
+	LIB::vector<std::string>				animals;
+	const LIB::vector<std::string>		const_animals(2, "pigeon");
 
 	animals.push_back("giraffe");
 	animals.push_back("bear");
@@ -53,7 +53,7 @@ void	test_at(void)
 
 	try
 	{
-		for (ft::vector<int>::size_type i = 0; i < animals.size(); i++)
+		for (LIB::vector<int>::size_type i = 0; i < animals.size(); i++)
 		{
 			std::cout << "animals.at(" << i << ") = " << animals.at(i);
 			std::cout << std::endl;
@@ -78,7 +78,7 @@ void	test_at(void)
 	std::cout << std::endl;
 	try
 	{
-		for (ft::vector<int>::size_type i = 0; i < const_animals.size(); i++)
+		for (LIB::vector<int>::size_type i = 0; i < const_animals.size(); i++)
 		{
 			std::cout << "const_animals.at(" << i << ") = " << const_animals.at(i);
 			std::cout << std::endl;
@@ -108,8 +108,8 @@ void	test_front(void)
 	std::cout << ">> Test front function" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<std::string>				materials;
-	const ft::vector<std::string> 		const_materials(2, "stone");
+	LIB::vector<std::string>				materials;
+	const LIB::vector<std::string> 		const_materials(2, "stone");
 
 	materials.push_back("wood");
 	materials.push_back("glass");
@@ -130,8 +130,8 @@ void	test_back(void)
 	std::cout << ">> Test back function" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<std::string>				weathers;
-	const ft::vector<std::string> 		const_weathers(2, "snowy");
+	LIB::vector<std::string>				weathers;
+	const LIB::vector<std::string> 		const_weathers(2, "snowy");
 
 	weathers.push_back("sunny");
 	weathers.push_back("windy");
@@ -148,9 +148,9 @@ void	test_back(void)
 
 void	test_vector_element_access(void)
 {
-	ft::vector<std::string>				strs;
-	ft::vector<char>					letters;
-	const ft::vector<std::string>		const_strs(2, "blue");
+	LIB::vector<std::string>				strs;
+	LIB::vector<char>					letters;
+	const LIB::vector<std::string>		const_strs(2, "blue");
 
 	strs.push_back("yellow");
 	strs.push_back("red");

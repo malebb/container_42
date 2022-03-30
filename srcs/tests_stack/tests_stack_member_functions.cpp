@@ -6,7 +6,7 @@ void	test_empty(void)
 	std::cout << ">> test empty function" << std::endl;
 	std::cout << std::endl;
 
-	ft::stack<std::string>		animals;
+	LIB::stack<std::string>		animals;
 
 	display_stack("animals", animals);
 	std::cout << "animals.empty() = " << animals.empty() <<
@@ -26,7 +26,7 @@ void	test_size(void)
 	std::cout << ">> test size function" << std::endl;
 	std::cout << std::endl;
 
-	ft::stack<std::string>		animals;
+	LIB::stack<std::string>		animals;
 
 	display_stack("animals", animals);
 
@@ -44,7 +44,7 @@ void	test_size(void)
 
 void	test_top(void)
 {
-	ft::stack<std::string>		animals;
+	LIB::stack<std::string>		animals;
 
 	std::cout << std::endl;
 	std::cout << ">> test top" << std::endl;
@@ -65,7 +65,7 @@ void	test_push(void)
 	std::cout << ">> test push function" << std::endl;
 	std::cout << std::endl;
 
-	ft::stack<std::string>		animals;
+	LIB::stack<std::string>		animals;
 
 	display_stack("animals", animals);
 
@@ -83,7 +83,7 @@ void	test_pop(void)
 	std::cout << ">> test pop function" << std::endl;
 	std::cout << std::endl;
 
-	ft::stack<std::string>		animals;
+	LIB::stack<std::string>		animals;
 
 	animals.push("bird");
 	animals.push("cat");

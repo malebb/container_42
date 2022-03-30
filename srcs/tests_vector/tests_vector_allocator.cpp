@@ -6,7 +6,7 @@ void	test_get_allocator(void)
 	std::cout << ">> Test get_allocator" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<int>		vector_container(3, 0);
+	LIB::vector<int>		vector_container(3, 0);
 	int						*ptr;
 
 	std::cout << "vector_container = ";

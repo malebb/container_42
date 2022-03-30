@@ -6,7 +6,7 @@ static void		test_subscript_operator(void)
 	std::cout << ">> test operator[]" << std::endl;
 	std::cout << std::endl;
 
-	ft::map<int, std::string>		numbers;
+	LIB::map<int, std::string>		numbers;
 
 	display_map("numbers", numbers);
 	std::cout << "numbers[3] = \"three\"" << std::endl;

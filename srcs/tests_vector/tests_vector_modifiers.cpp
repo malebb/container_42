@@ -6,7 +6,7 @@ static void		test_push_back(void)
 	std::cout << ">> Test push_back function" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<std::string>	seasons;
+	LIB::vector<std::string>	seasons;
 
 	display_vector("seasons", seasons);
 
@@ -30,7 +30,7 @@ static void		test_pop_back(void)
 	std::cout << ">> Test pop_back function" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<std::string>	seasons;
+	LIB::vector<std::string>	seasons;
 
 	seasons.push_back("spring");
 	seasons.push_back("summer");
@@ -53,8 +53,8 @@ static void		test_assign(void)
 	std::cout << ">> Test assign function" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<std::string>		colors(6, "empty");
-	ft::vector<std::string>		green(6, "green");
+	LIB::vector<std::string>		colors(6, "empty");
+	LIB::vector<std::string>		green(6, "green");
 
 	display_vector("colors", colors);
 	display_vector("green", green);
@@ -74,10 +74,10 @@ static void		test_insert(void)
 	std::cout << ">> Test insert function" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<std::string>		white(6, "white");
-	ft::vector<std::string>		black(6, "black");
-	ft::vector<std::string>		red(6, "red");
-	ft::vector<std::string>		yellow(6, "yellow");
+	LIB::vector<std::string>		white(6, "white");
+	LIB::vector<std::string>		black(6, "black");
+	LIB::vector<std::string>		red(6, "red");
+	LIB::vector<std::string>		yellow(6, "yellow");
 
 	display_vector("white", white);
 	display_vector("red", red);
@@ -103,7 +103,7 @@ static void		test_erase(void)
 	std::cout << ">> Test erase function" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<std::string>		trees(6, "TREE");
+	LIB::vector<std::string>		trees(6, "TREE");
 
 	trees.insert(trees.begin() + 2, "flower");
 	display_vector("trees", trees);
@@ -129,8 +129,8 @@ static void		test_swap(void)
 	std::cout << ">> Test swap function" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<std::string>		tomato(6, "tomato");
-	ft::vector<std::string>		cucumber(6, "cucumber");
+	LIB::vector<std::string>		tomato(6, "tomato");
+	LIB::vector<std::string>		cucumber(6, "cucumber");
 
 	display_vector("tomato", tomato);
 
@@ -150,8 +150,8 @@ static void		test_swap_overload(void)
 	std::cout << ">> Test swap overload function" << std::endl;
 	std::cout << std::endl;
 
-	ft::vector<std::string>		pasta(6, "pasta");
-	ft::vector<std::string>		rice(6, "rice");
+	LIB::vector<std::string>		pasta(6, "pasta");
+	LIB::vector<std::string>		rice(6, "rice");
 
 	display_vector("pasta", pasta);
 	display_vector("rice", rice);
@@ -170,7 +170,7 @@ static void		test_clear(void)
 	std::cout << ">> Test clear function" << std::endl;
 	std::cout << std::endl;
 	
-	ft::vector<std::string>		content(6, "content");
+	LIB::vector<std::string>		content(6, "content");
 
 	display_vector("content", content);
 

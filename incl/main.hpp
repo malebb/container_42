@@ -46,7 +46,7 @@ void	test_map_allocator(void);
 
 
 template<typename T>
-void	display_stack(std::string name, ft::stack<T> cont)
+void	display_stack(std::string name, LIB::stack<T> cont)
 {
 	std::cout << name << " = ";
 	std::cout << "{";
@@ -70,11 +70,11 @@ class	Nb
 };
 
 template<typename T>
-void	display_vector(std::string name, const ft::vector<T> & cont)
+void	display_vector(std::string name, const LIB::vector<T> & cont)
 {
 	std::cout << name << " = ";
 	std::cout << "{";
-	for (typename ft::vector<T>::const_iterator it = cont.begin(); it != cont.end(); it++)
+	for (typename LIB::vector<T>::const_iterator it = cont.begin(); it != cont.end(); it++)
 	{
 		std::cout << *it;
 		if (it + 1 != cont.end())
@@ -86,13 +86,13 @@ void	display_vector(std::string name, const ft::vector<T> & cont)
 }
 
 template<typename Key, typename T>
-void	display_map(std::string name, const ft::map<Key, T> & cont)
+void	display_map(std::string name, const LIB::map<Key, T> & cont)
 {
-	typename ft::map<Key, T>::const_iterator next;
+	typename LIB::map<Key, T>::const_iterator next;
 
 	std::cout << name << " = ";
 	std::cout << "{";
-	for (typename ft::map<Key, T>::const_iterator it = cont.begin(); it != cont.end(); ++it)
+	for (typename LIB::map<Key, T>::const_iterator it = cont.begin(); it != cont.end(); ++it)
 	{
 		std::cout << "{";
 		std::cout << it->first;
