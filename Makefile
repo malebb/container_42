@@ -1,9 +1,19 @@
+DIR_SRCS = ./srcs/
+
+DIR_FT = ./srcs/ft/
+
+DIR_STACK = ./srcs/tests_stack/
+
+DIR_VECTOR = ./srcs/tests_vector/
+
+DIR_MAP = ./srcs/tests_map/
 
 
-SRCS = main_utils.cpp
+SRCS = ./srcs/main_utils.cpp
 
 SRCS_STACK = ./srcs/tests_stack/tests_stack_relational_operators.cpp \
-			./srcs/tests_stack/tests_stack_member_functions.cpp
+			./srcs/tests_stack/tests_stack_member_functions.cpp\
+			./srcs/tests_stack/tests_stack.cpp
 
 SRCS_VECTOR = ./srcs/tests_vector/tests_vector.cpp \
 			  ./srcs/tests_vector/tests_vector_iterator.cpp \
@@ -23,17 +33,20 @@ SRCS_MAP = ./srcs/tests_map/tests_map.cpp \
 		   ./srcs/tests_map/tests_map_allocator.cpp \
 		   ./srcs/tests_map/tests_map_iterator.cpp \
 		   ./srcs/tests_map/tests_map_reverse_iterator.cpp \
-		   ./srcs/tests_map/tests_map tests_stack.cpp 
 
 
 SRCS_FT = ./srcs/main.cpp
 
 SRCS_STL = ./srcs/main_stl.cpp
 
-OBJS_FT = ${SRCS_STACK:${DIR_STACK}%.cpp=${DIR_FT}%.o} ${SRCS_VECTOR:${DIR_STACK}%.cpp=${DIR_FT}%.o}
+OBJS_FT = ${SRCS_STACK:${DIR_STACK}%.cpp=${DIR_FT}%.o} ${SRCS_VECTOR:${DIR_VECTOR}%.cpp=${DIR_FT}%.o} \
+		${SRCS_MAP:${DIR_MAP}%.cpp=${DIR_FT}%.o} ${SRCS:${DIR_SRCS}%.cpp=${DIR_FT}%.o} ${SRCS_FT:${DIR_SRCS}%.cpp=${DIR_FT}%.o}
 
 
-OBJS_FT = ${DIR_FT}${SRCS_FT:.cpp=.o} ${DIR_FT}${SRCS:.cpp=.o} \
+
+
+
+#OBJS_FT = ${DIR_FT}${SRCS_FT:.cpp=.o} ${DIR_FT}${SRCS:.cpp=.o} \
 			${SRCS_STACK:$(DIR_STACK)%.cpp=$(DIR_FT)%.o} ${DIR_FT}${SRCS_VECTOR:.cpp=.o} \
 			${DIR_FT}${SRCS_MAP:.cpp=.o}
 
@@ -55,6 +68,8 @@ RM	= rm -rf
 .PHONY:		all
 all:		${NAME}# ${NAME2}
 
+test :
+	test ${OBJS_FT} test
 
 $(NAME):	${OBJS_FT}
 			${CC} ${OBJS_FT} -o ${NAME}
@@ -63,10 +78,12 @@ $(NAME2):	${OBJS_STL}
 			${CC} ${OBJS_STL} -o ${NAME2}
 
 #-include ${DEP}
-srcs/stl/%.o: srcs/%.cpp
-	echo $(OBJS_FT)
 
-srcs/ft/%.o: srcs/%.cpp
+
+#srcs/stl/%.o: srcs/%.cpp
+#	echo $(OBJS_FT)
+
+./srcs/ft/%.o: srcs/%.cpp
 	echo truc
 	echo $(OBJS_FT)
 
