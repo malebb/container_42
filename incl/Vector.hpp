@@ -513,7 +513,7 @@ namespace ft
 				std::stringstream			ss;
 
 				ss << "vector::_M_range_check: __n (which is ";
-				ss << this->size();
+				ss << n;
 				ss << ") >= this->size() (which is ";
 				ss << this->size();
 				ss <<")";
@@ -527,7 +527,7 @@ namespace ft
 				std::stringstream			ss;
 
 				ss << "vector::_M_range_check: __n (which is ";
-				ss << this->size();
+				ss << n;
 				ss << ") >= this->size() (which is ";
 				ss << this->size();
 				ss <<")";

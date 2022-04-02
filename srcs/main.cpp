@@ -34,8 +34,16 @@ int	main(void)
 	std::cout << "[------------ TEST FT CONTAINER ------------]" << std::endl;
 	std::cout << std::endl;
 
-	test_stack();
-	test_vector();
-	test_map();
+	ft::map<int, int>							nbrs;
+	ft::map<int, int>::reverse_iterator		it;
+	
+	nbrs[3] = 3;
+	nbrs[4] = 4;
+	nbrs[5] = 5;
+	it = nbrs.rbegin();
+	std::cout << it->first;
+//	test_stack();
+//	test_vector();
+//	test_map();
 	return (0);
 }

@@ -108,7 +108,10 @@ namespace ft
 
 			pointer		operator->()
 			{
-				return (this->_it.operator->());
+				iterator_type		tmp(this->_it);
+
+				tmp.operator--();
+				return (tmp.operator->());
 			}
 
 			reference			operator[](difference_type rhs) const

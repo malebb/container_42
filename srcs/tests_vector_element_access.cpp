@@ -92,7 +92,7 @@ void	test_at(void)
 	try
 	{
 		std::cout << "const_animals.at(" << const_animals.size() << ") = ";
-		const_animals.at(animals.size());
+		const_animals.at(const_animals.size());
 	}
 	catch(std::exception const & e)
 	{
