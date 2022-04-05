@@ -370,18 +370,11 @@ namespace ft
 				this->assign(x.begin(), x.end());
 			}
 
-			vector&		operator=(const vector & x)
-			{
-				this->_alloc = x._alloc;
-				this->assign(x.begin(), x.end());
-				return (*this);
-			}
-
 			template <class InputIterator>
 			vector (InputIterator first, InputIterator last,
 				const allocator_type& alloc = allocator_type(),
 				typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type * = NULL)
-				: _array(NULL), _alloc(alloc), _size(0), _capacity(0)
+				:  _alloc(alloc), _array(NULL), _size(0), _capacity(0)
 			{
 				reserve(last - first);
 				this->_size = last - first;
@@ -389,6 +382,13 @@ namespace ft
 				{
 					this->_alloc.construct(this->_array + i, *(first + i));
 				}
+			}
+
+			vector&		operator=(const vector & x)
+			{
+				this->_alloc = x._alloc;
+				this->assign(x.begin(), x.end());
+				return (*this);
 			}
 
 			~vector()

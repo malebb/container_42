@@ -2,9 +2,9 @@
 #define MAIN_HPP
 
 
-#include "Vector.hpp"
-#include "Map.hpp"
-#include "Stack.hpp"
+#include "vector.hpp"
+#include "map.hpp"
+#include "stack.hpp"
 
 #include <iostream>
 #include <iterator>
