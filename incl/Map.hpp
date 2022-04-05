@@ -543,6 +543,7 @@ namespace ft
 
 		reverse_iterator	rbegin()
 		{
+			/*
 			avl<value_type>			*node;
 
 			node = this->_root;
@@ -550,12 +551,16 @@ namespace ft
 			{
 			node = node->right;
 			}
-			return (reverse_iterator(node));
+			*/
+			return (reverse_iterator(this->_end_node));
 		}
 
 		const_reverse_iterator	rbegin() const
 		{
+			/*
 			return (const_reverse_iterator(this->end()));
+			*/
+			return (this->_end_node);
 		}
 
 		iterator		end()
