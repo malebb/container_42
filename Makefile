@@ -8,6 +8,7 @@ SRCS = ./srcs/main.cpp \
 	   ./srcs/tests_stack_member_functions.cpp \
 	   ./srcs/tests_stack.cpp \
 	   ./srcs/tests_vector.cpp \
+	   ./srcs/tests_vector_init.cpp \
 	   ./srcs/tests_vector_iterator.cpp \
 	   ./srcs/tests_vector_reverse_iterator.cpp \
 	   ./srcs/tests_vector_capacity.cpp \

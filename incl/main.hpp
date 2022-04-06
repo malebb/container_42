@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <iterator>
+#include <sstream>
 #include <stack>
 #include <vector>
 #include <map>
@@ -21,6 +22,7 @@ void	test_stack_relational_operators(void);
 // test vector
 
 void	test_vector(void);
+void	test_vector_init(void);
 void	test_vector_iterator(void);
 void	test_vector_reverse_iterator(void);
 void	test_const_vector_iterator(void);
