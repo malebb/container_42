@@ -17,6 +17,7 @@ SRCS = ./srcs/main.cpp \
 	   ./srcs/tests_vector_allocator.cpp \
 	   ./srcs/tests_vector_relational_operators.cpp \
 	   ./srcs/tests_map.cpp \
+	   ./srcs/tests_map_init.cpp \
 	   ./srcs/tests_map_element_access.cpp \
 	   ./srcs/tests_map_capacity.cpp \
 	   ./srcs/tests_map_modifiers.cpp \

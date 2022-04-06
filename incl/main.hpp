@@ -35,6 +35,7 @@ void	test_vector_relational_operators(void);
 // test map
 
 void	test_map(void);
+void	test_map_init(void);
 void	test_map_iterator(void);
 void	test_map_reverse_iterator(void);
 void	test_map_modifiers(void);
