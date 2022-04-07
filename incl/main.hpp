@@ -16,6 +16,7 @@
 // test stack
 
 void	test_stack(void);
+void	test_stack_init(void);
 void	test_stack_member_functions(void);
 void	test_stack_relational_operators(void);
 

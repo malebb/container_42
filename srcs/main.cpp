@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <stack>
 #include <map>
+#include <list>
 /*
 bool	check(std::string str1, std::string str2)
 {
@@ -36,6 +37,12 @@ int	main(void)
 
 	test_stack();
 	test_vector();
-	test_map();	
+	test_map();
+//	LIB::vector<std::string>		red(6, "red");
+//	LIB::vector<std::string>		yellow(6, "yellow");
+//	display_vector("yellow", yellow);
+//	std::cout << "yellow.insert(yellow.begin() + 1, red.begin(), red.begin() + 3 " << std::endl;
+//	yellow.insert(yellow.begin() + 1, red.begin(), red.begin() + 3);
+//	display_vector("yellow", yellow);
 	return (0);
 }

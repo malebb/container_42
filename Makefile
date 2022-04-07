@@ -6,6 +6,7 @@ SRCS = ./srcs/main.cpp \
 	   ./srcs/main_utils.cpp \
 	   ./srcs/tests_stack_relational_operators.cpp \
 	   ./srcs/tests_stack_member_functions.cpp \
+	   ./srcs/tests_stack_init.cpp \
 	   ./srcs/tests_stack.cpp \
 	   ./srcs/tests_vector.cpp \
 	   ./srcs/tests_vector_init.cpp \
@@ -42,7 +43,7 @@ NAME2 = stl_containers
 RM	= rm -rf
 
 .PHONY:		all
-all:		${NAME} #${NAME2}
+all:		${NAME} ${NAME2}
 
 $(NAME):	${OBJS_FT}
 			${CC} ${OBJS_FT} -o ${NAME}

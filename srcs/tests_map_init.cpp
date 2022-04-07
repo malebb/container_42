@@ -11,7 +11,7 @@ static void		test_default_constructor(void)
 
 	std::cout << "nbrs" << std::endl;
 	display_map("nbrs", nbrs);
-	std::cout << "nbrs.size() = " << nbrs.size() << std::endl;
+	std::cout << "nbrs.size() = " << nbrs.size() << std::endl << std::endl;
 }
 
 static void		test_range_constructor(void)
@@ -61,7 +61,7 @@ static void		test_copy_constructor(void)
 static void		test_assign_operator(void)
 {
 	std::cout << std::endl;
-	std::cout << ">> Test assign constructor" << std::endl;
+	std::cout << ">> Test assign operator" << std::endl;
 	std::cout << std::endl;
 	LIB::map<int, int>		nbrs; 
 	for (int i = 0; i < 5; i++)

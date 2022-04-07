@@ -376,11 +376,19 @@ namespace ft
 				typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type * = NULL)
 				:  _alloc(alloc), _array(NULL), _size(0), _capacity(0)
 			{
-				reserve(last - first);
-				this->_size = last - first;
+				size_type		range_size;
+
+				range_size = 0;
+				for (InputIterator it = first; it != last; it++)
+				{
+					range_size++;
+				}
+				reserve(range_size);
+				this->_size = range_size;
 				for (size_type i = 0; i < this->_size; i++)
 				{
-					this->_alloc.construct(this->_array + i, *(first + i));
+					this->_alloc.construct(this->_array + i, *first);
+					++first;
 				}
 			}
 
@@ -565,12 +573,17 @@ namespace ft
 				difference_type		range_size;
 
 				this->clear();
-				range_size = last - first;
+				range_size = 0;
+				for (InputIterator it = first; it != last; it++)
+				{
+					range_size++;
+				}
 				if (this->capacity() < static_cast<size_type>(range_size))
-					reserve(last - first);
+					reserve(range_size);
 				for (difference_type i = 0; i < range_size; i++)
 				{
-					this->_alloc.construct(this->_array + i, *(first + i));
+					this->_alloc.construct(this->_array + i, *first);
+					first++;
 				}
 				this->_size = range_size;
 			}
@@ -655,8 +668,16 @@ namespace ft
 				size_type		offset;
 				size_type		range_size;
 
-				range_size = (last - first);
-				offset = position - this->begin();
+				range_size = 0;
+				for (InputIterator it = first; it != last; it++)
+				{
+					range_size++;
+				}
+				offset = 0;
+				for (iterator it = this->begin(); it != position; it++)
+				{
+					offset++;
+				}
 				if (this->size() + range_size > this->capacity())
 				{
 					if (this->size() + range_size <= this->capacity() * 2)
@@ -664,15 +685,15 @@ namespace ft
 					else
 						reserve(this->size() + range_size);
 				}
-
-				for (long long int i = this->size() - 1; i >= static_cast<long long int>(offset); i--)
+				for (size_type i = offset; i < size(); i++)
 				{
 					this->_alloc.construct(this->_array + i + range_size, *(this->_array + i));
 					this->_alloc.destroy(this->_array + i);
 				}
-				for (size_type i = offset; i <= (offset + range_size) - 1; i++)
+				for (size_type i = offset; i < offset + range_size; i++)
 				{
-					this->_alloc.construct(this->_array + i, *(first + i - offset));
+					this->_alloc.construct(this->_array + i, *(first));
+					first++;
 				}
 				this->_size += range_size;
 			}
@@ -693,7 +714,6 @@ namespace ft
 				for (typename ft::vector<value_type>::iterator it = first; it != last; it++)
 				{
 					this->_alloc.destroy(&(*it));
-				//	std::cout << "CA PASSE" << std::endl;
 				}
 				this->_size -= last - first;
 				return (first);
