@@ -149,12 +149,10 @@ namespace ft
 			{
 				tree_type		origin_node(*(this->node));
 
-				if (get_first_value()->first == origin_node.value->first)
-				{
-					this->node = get_last();
-				}
-				else if (this->node->end)
+				if (this->node->end)
 					this->node = this->node->parent;
+				else if (get_first_value()->first == origin_node.value->first)
+					this->node = get_last();
 				else
 				{
 					while (this->node->value->first >= origin_node.value->first)

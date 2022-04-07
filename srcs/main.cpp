@@ -34,8 +34,8 @@ int	main(void)
 	std::cout << "[------------ TEST FT CONTAINER ------------]" << std::endl;
 	std::cout << std::endl;
 
-//	test_stack();
-//	test_vector();
-	test_map();
+	test_stack();
+	test_vector();
+	test_map();	
 	return (0);
 }
