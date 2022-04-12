@@ -60,7 +60,7 @@ int	main(void)
 	*/
 	std::cout << std::endl;
 	display_vector("yellow", yellow);
-	yellow.erase(yellow.begin() + 4, yellow.end() - 3);
+	yellow.erase(yellow.begin() + 1 , yellow.end() - 6);
 	display_vector("yellow", yellow);
 
 }

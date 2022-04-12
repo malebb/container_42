@@ -728,7 +728,7 @@ namespace ft
 				{
 					this->_alloc.destroy(this->_array + i);
 				}
-				for (size_type i = offset; i != (this->size() - offset - range_size); i++)
+				for (size_type i = offset; i != this->size() - range_size; i++)
 				{
 					this->_alloc.construct(this->_array + i, *(this->_array + i + range_size));
 					this->_alloc.destroy(this->_array + i + range_size);
