@@ -39,7 +39,7 @@ int	main(void)
 //	test_vector();
 //	test_map();
 
-	ft::vector<std::string>		red(10, "red");
+	ft::vector<std::string>		red;
 	ft::vector<std::string>		yellow;
 
 	yellow.push_back("un");
@@ -47,11 +47,11 @@ int	main(void)
 	yellow.push_back("trois");
 	yellow.push_back("quatre");
 	yellow.push_back("cinq");
-	yellow.push_back("six");
-	yellow.push_back("sept");
-	yellow.push_back("huit");
-	yellow.push_back("neuf");
-	yellow.push_back("dix");
+//	yellow.push_back("six");
+//	yellow.push_back("sept");
+//	yellow.push_back("huit");
+//	yellow.push_back("neuf");
+//	yellow.push_back("dix");
 	/*
 	for (std::vector<std::string>::iterator it = yellow.begin(); it != yellow.end(); it++)
 	{
@@ -59,8 +59,15 @@ int	main(void)
 	}
 	*/
 	std::cout << std::endl;
-	display_vector("yellow", yellow);
-	yellow.erase(yellow.begin() + 1 , yellow.end() - 6);
-	display_vector("yellow", yellow);
-
+//	display_vector("red", red);
+	red.insert(red.begin(), yellow.begin(), yellow.begin() + 3);
+	display_vector("red", red);
+	red.insert(red.begin(), yellow.begin() + 3, yellow.end());
+	display_vector("red", red);
+	/*
+	for (std::vector<std::string>::iterator it = red.begin(); it != red.end(); it++)
+	{
+		std::cout << "it = " << *it << std::endl;
+	}
+	*/
 }

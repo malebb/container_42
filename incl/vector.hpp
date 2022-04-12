@@ -678,6 +678,7 @@ namespace ft
 				{
 					offset++;
 				}
+//				std::cout << "i = " << *(this->_array + 2) << std::endl;
 				if (this->size() + range_size > this->capacity())
 				{
 					if (this->size() + range_size <= this->capacity() * 2)
@@ -685,13 +686,14 @@ namespace ft
 					else
 						reserve(this->size() + range_size);
 				}
-				for (size_type i = offset; i < size(); i++)
+				for (long long int i = size() - 1; i >= (long long int)offset; i++)
 				{
-					this->_alloc.construct(this->_array + i + range_size, *(this->_array + i));
+					this->_alloc.construct(this->_array + i - range_size, *(this->_array + i));
 					this->_alloc.destroy(this->_array + i);
 				}
 				for (size_type i = offset; i < offset + range_size; i++)
 				{
+				//	std::cout << "offset = " << offset << std::endl;
 					this->_alloc.construct(this->_array + i, *(first));
 					first++;
 				}
@@ -730,7 +732,7 @@ namespace ft
 				}
 				for (size_type i = offset; i != this->size() - range_size; i++)
 				{
-					this->_alloc.construct(this->_array + i, *(this->_array + i + range_size));
+		 			this->_alloc.construct(this->_array + i, *(this->_array + i + range_size));
 					this->_alloc.destroy(this->_array + i + range_size);
 				}
 				this->_size -= range_size;
