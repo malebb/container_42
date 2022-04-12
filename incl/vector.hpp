@@ -711,11 +711,29 @@ namespace ft
 
 			iterator		erase(iterator first, iterator last)
 			{
-				for (typename ft::vector<value_type>::iterator it = first; it != last; it++)
+				size_type		range_size;
+				size_type		offset;
+
+				range_size = 0;
+				for (iterator it = first; it != last; it++)
 				{
-					this->_alloc.destroy(&(*it));
+					range_size++;
 				}
-				this->_size -= last - first;
+				offset = 0;
+				for (iterator it = this->begin(); it != first; it++)
+				{
+					offset++;
+				}
+				for (size_type i = offset; i != offset + range_size; i++)
+				{
+					this->_alloc.destroy(this->_array + i);
+				}
+				for (size_type i = offset; i != (this->size() - offset - range_size); i++)
+				{
+					this->_alloc.construct(this->_array + i, *(this->_array + i + range_size));
+					this->_alloc.destroy(this->_array + i + range_size);
+				}
+				this->_size -= range_size;
 				return (first);
 			}
 

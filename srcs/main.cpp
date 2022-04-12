@@ -35,14 +35,32 @@ int	main(void)
 	std::cout << "[------------ TEST FT CONTAINER ------------]" << std::endl;
 	std::cout << std::endl;
 
-	test_stack();
-	test_vector();
-	test_map();
-//	LIB::vector<std::string>		red(6, "red");
-//	LIB::vector<std::string>		yellow(6, "yellow");
-//	display_vector("yellow", yellow);
-//	std::cout << "yellow.insert(yellow.begin() + 1, red.begin(), red.begin() + 3 " << std::endl;
-//	yellow.insert(yellow.begin() + 1, red.begin(), red.begin() + 3);
-//	display_vector("yellow", yellow);
-	return (0);
+//	test_stack();
+//	test_vector();
+//	test_map();
+
+	ft::vector<std::string>		red(10, "red");
+	ft::vector<std::string>		yellow;
+
+	yellow.push_back("un");
+	yellow.push_back("deux");
+	yellow.push_back("trois");
+	yellow.push_back("quatre");
+	yellow.push_back("cinq");
+	yellow.push_back("six");
+	yellow.push_back("sept");
+	yellow.push_back("huit");
+	yellow.push_back("neuf");
+	yellow.push_back("dix");
+	/*
+	for (std::vector<std::string>::iterator it = yellow.begin(); it != yellow.end(); it++)
+	{
+		std::cout << "it = " << *it << std::endl;
+	}
+	*/
+	std::cout << std::endl;
+	display_vector("yellow", yellow);
+	yellow.erase(yellow.begin() + 4, yellow.end() - 3);
+	display_vector("yellow", yellow);
+
 }
