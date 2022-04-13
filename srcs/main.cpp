@@ -38,36 +38,13 @@ int	main(void)
 //	test_stack();
 //	test_vector();
 //	test_map();
+	
+	ft::vector<int>		nbrs;
 
-	ft::vector<std::string>		red;
-	ft::vector<std::string>		yellow;
+	nbrs.insert(nbrs.begin(), 3, 7);
 
-	yellow.push_back("un");
-	yellow.push_back("deux");
-	yellow.push_back("trois");
-	yellow.push_back("quatre");
-	yellow.push_back("cinq");
-//	yellow.push_back("six");
-//	yellow.push_back("sept");
-//	yellow.push_back("huit");
-//	yellow.push_back("neuf");
-//	yellow.push_back("dix");
-	/*
-	for (std::vector<std::string>::iterator it = yellow.begin(); it != yellow.end(); it++)
+	for (ft::vector<int>::iterator it = nbrs.begin(); it != nbrs.end(); it++)
 	{
 		std::cout << "it = " << *it << std::endl;
 	}
-	*/
-	std::cout << std::endl;
-//	display_vector("red", red);
-	red.insert(red.begin(), yellow.begin(), yellow.begin() + 3);
-	display_vector("red", red);
-	red.insert(red.begin(), yellow.begin() + 3, yellow.end());
-	display_vector("red", red);
-	/*
-	for (std::vector<std::string>::iterator it = red.begin(); it != red.end(); it++)
-	{
-		std::cout << "it = " << *it << std::endl;
-	}
-	*/
 }

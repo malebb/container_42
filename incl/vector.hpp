@@ -123,32 +123,38 @@ namespace ft
 
 			// comparison operators
 
-			bool	operator==(vector_iterator const & rhs) const
+			template <typename InputIterator>
+			bool	operator==(InputIterator const & rhs) const
 			{
 				return (this->_it == rhs._it);
 			}
 
-			bool	operator!=(vector_iterator const & rhs) const
+			template <typename InputIterator>
+			bool	operator!=(InputIterator const & rhs) const
 			{
 				return (!(*this == rhs));
 			}
 
-			bool	operator<(vector_iterator const & rhs)
+			template <typename InputIterator>
+			bool	operator<(InputIterator const & rhs)
 			{
 				return (this->_it < rhs._it);
 			}
 
-			bool	operator>(vector_iterator const & rhs)
+			template <typename InputIterator>
+			bool	operator>(InputIterator const & rhs)
 			{
 				return (this->_it > rhs._it);
 			}
 
-			bool	operator<=(vector_iterator const & rhs)
+			template <typename InputIterator>
+			bool	operator<=(InputIterator const & rhs)
 			{
 				return (!(*this > rhs));
 			}
 
-			bool	operator>=(vector_iterator const & rhs)
+			template <typename InputIterator>
+			bool	operator>=(InputIterator const & rhs)
 			{
 				return (!(*this < rhs));
 			}
@@ -315,8 +321,6 @@ namespace ft
 			{
 				return (!(*this < rhs));
 			}
-
-		protected :
 
 			pointer		_it;
 	};
@@ -663,7 +667,8 @@ namespace ft
 			}
 
 			template <class InputIterator>
-			void		insert(iterator position, InputIterator first, InputIterator last)
+			void		insert(iterator position, InputIterator first, InputIterator last, 
+					typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type * = NULL)
 			{
 				size_type		offset;
 				size_type		range_size;
@@ -678,7 +683,6 @@ namespace ft
 				{
 					offset++;
 				}
-//				std::cout << "i = " << *(this->_array + 2) << std::endl;
 				if (this->size() + range_size > this->capacity())
 				{
 					if (this->size() + range_size <= this->capacity() * 2)
@@ -686,14 +690,13 @@ namespace ft
 					else
 						reserve(this->size() + range_size);
 				}
-				for (long long int i = size() - 1; i >= (long long int)offset; i++)
+				for (long long int i = size() - 1; i >= (long long int)offset; i--)
 				{
-					this->_alloc.construct(this->_array + i - range_size, *(this->_array + i));
+					this->_alloc.construct(this->_array + i + range_size, *(this->_array + i));
 					this->_alloc.destroy(this->_array + i);
 				}
 				for (size_type i = offset; i < offset + range_size; i++)
 				{
-				//	std::cout << "offset = " << offset << std::endl;
 					this->_alloc.construct(this->_array + i, *(first));
 					first++;
 				}
