@@ -28,6 +28,14 @@ class A
 
 	int		_nb;
 };
+/*
+template <typename t_it1, typename t_it2>
+void		test (const t_it1 & it , const t_it2 & it2)
+{
+	if (it < it2)
+		std::cout << "hello guys" << std::endl;
+}
+*/
 
 int	main(void)
 {
@@ -39,12 +47,27 @@ int	main(void)
 //	test_vector();
 //	test_map();
 	
-	ft::vector<int>		nbrs;
+	ft::vector<int>							nbrs(4, 4);
+	ft::vector<int>							nbrs2(6, 6);
+	ft::vector<int>::const_reverse_iterator	crit;
+	ft::vector<int>::reverse_iterator	rit;
 
-	nbrs.insert(nbrs.begin(), 3, 7);
-
-	for (ft::vector<int>::iterator it = nbrs.begin(); it != nbrs.end(); it++)
+	rit = nbrs.rbegin();
+	crit = nbrs2.rbegin();
+//	test(it, it2);
+	if (crit - rit)
+	{
+		std::cout << "rit == it" << std::endl;
+		std::cout << "rit = " << *rit << "crit = " << *crit << std::endl;
+	}
+	else
+	{
+		std::cout << "rit != it" << std::endl;
+	}
+	/*
+	for (std::vector<int>::iterator it = nbrs.begin(); it != nbrs.end(); it++)
 	{
 		std::cout << "it = " << *it << std::endl;
 	}
+	*/
 }

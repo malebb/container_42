@@ -136,25 +136,25 @@ namespace ft
 			}
 
 			template <typename InputIterator>
-			bool	operator<(InputIterator const & rhs)
+			bool	operator<(InputIterator const & rhs) const
 			{
 				return (this->_it < rhs._it);
 			}
 
 			template <typename InputIterator>
-			bool	operator>(InputIterator const & rhs)
+			bool	operator>(InputIterator const & rhs) const
 			{
 				return (this->_it > rhs._it);
 			}
 
 			template <typename InputIterator>
-			bool	operator<=(InputIterator const & rhs)
+			bool	operator<=(InputIterator const & rhs) const
 			{
 				return (!(*this > rhs));
 			}
 
 			template <typename InputIterator>
-			bool	operator>=(InputIterator const & rhs)
+			bool	operator>=(InputIterator const & rhs) const
 			{
 				return (!(*this < rhs));
 			}
@@ -302,22 +302,22 @@ namespace ft
 				return (!(*this == rhs));
 			}
 
-			bool	operator<(const_vector_iterator const & rhs)
+			bool	operator<(const_vector_iterator const & rhs) const
 			{
 				return (this->_it < rhs._it);
 			}
 
-			bool	operator>(const_vector_iterator const & rhs)
+			bool	operator>(const_vector_iterator const & rhs) const
 			{
 				return (this->_it > rhs._it);
 			}
 
-			bool	operator<=(const_vector_iterator const & rhs)
+			bool	operator<=(const_vector_iterator const & rhs) const
 			{
 				return (!(*this > rhs));
 			}
 
-			bool	operator>=(const_vector_iterator const & rhs)
+			bool	operator>=(const_vector_iterator const & rhs) const
 			{
 				return (!(*this < rhs));
 			}
