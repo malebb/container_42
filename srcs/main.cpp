@@ -49,21 +49,15 @@ int	main(void)
 	
 	ft::vector<int>							nbrs(4, 4);
 	ft::vector<int>							nbrs2(6, 6);
-	ft::vector<int>::const_reverse_iterator	crit;
-	ft::vector<int>::reverse_iterator	rit;
+	ft::vector<int>::const_iterator	crit;
+	ft::vector<int>::iterator		rit;
 
-	rit = nbrs.rbegin();
-	crit = nbrs2.rbegin();
+	rit = nbrs.begin();
+	crit = nbrs2.begin();
 //	test(it, it2);
-	if (crit - rit)
-	{
-		std::cout << "rit == it" << std::endl;
-		std::cout << "rit = " << *rit << "crit = " << *crit << std::endl;
-	}
-	else
-	{
-		std::cout << "rit != it" << std::endl;
-	}
+	
+	std::cout << rit - crit << std::endl;
+	
 	/*
 	for (std::vector<int>::iterator it = nbrs.begin(); it != nbrs.end(); it++)
 	{

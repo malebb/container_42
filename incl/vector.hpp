@@ -15,6 +15,8 @@
 namespace ft
 {
 	template <typename T>
+	class const_vector_iterator;
+	template <typename T>
 	class vector_iterator : public ft::iterator<ft::random_access_iterator_tag, T>
 	{
 		public :
@@ -99,7 +101,7 @@ namespace ft
 				return (vector_iterator(this->_it - rhs));
 			}
 
-			difference_type		operator-(vector_iterator const & rhs) const
+			difference_type		operator-(const_vector_iterator<T> const & rhs)
 			{
 				return (this->_it - rhs._it);
 			}
@@ -268,7 +270,7 @@ namespace ft
 				return (const_vector_iterator(this->_it - rhs));
 			}
 
-			difference_type		operator-(const_vector_iterator const & rhs) const
+			difference_type		operator-(const_vector_iterator<T> const & rhs) const
 			{
 				return (this->_it - rhs._it);
 			}
