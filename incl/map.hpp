@@ -100,7 +100,7 @@ namespace ft
 
 			// member access operators
 
-			value_type			*operator->()
+			value_type			*operator->() const
 			{
 				return (this->node->value);
 			}
@@ -780,6 +780,8 @@ namespace ft
 			avl<value_type>		*node;
 
 			node = this->_root;
+			this->print();
+//				std::cout << "root = " << node->value->first << std::endl;
 			while (node && !node->end)
 			{
 				if (!this->_compare(k, node->value->first)

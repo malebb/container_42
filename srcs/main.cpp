@@ -46,22 +46,17 @@ int	main(void)
 //	test_stack();
 //	test_vector();
 //	test_map();
-	
-	ft::vector<int>							nbrs(4, 4);
-	ft::vector<int>							nbrs2(6, 6);
-	ft::vector<int>::const_iterator	crit;
-	ft::vector<int>::iterator		rit;
+	ft::map<int, int>		nbrs;
 
-	rit = nbrs.begin();
-	crit = nbrs2.begin();
-//	test(it, it2);
-	
-	std::cout << rit - crit << std::endl;
-	
-	/*
-	for (std::vector<int>::iterator it = nbrs.begin(); it != nbrs.end(); it++)
-	{
-		std::cout << "it = " << *it << std::endl;
-	}
-	*/
+	nbrs[1] = 3;
+	nbrs[2] = 6;
+	nbrs[3] = 9;
+	nbrs[4] = 12;
+	nbrs[5] = 15;
+	nbrs[6] = 18;
+//	nbrs[7] = 21;
+//	nbrs[8] = 24;
+//	nbrs[9] = 27;
+//	nbrs[10] = 30;
+	std::cout << (nbrs.lower_bound(7))->first << " | " << (nbrs.lower_bound(7))->second << std::endl;
 }
