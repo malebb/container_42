@@ -54,9 +54,12 @@ int	main(void)
 	nbrs[4] = 12;
 	nbrs[5] = 15;
 	nbrs[6] = 18;
-//	nbrs[7] = 21;
-//	nbrs[8] = 24;
-//	nbrs[9] = 27;
-//	nbrs[10] = 30;
-	std::cout << (nbrs.lower_bound(7))->first << " | " << (nbrs.lower_bound(7))->second << std::endl;
+	nbrs[7] = 21;
+	nbrs[8] = 24;
+	nbrs[9] = 27;
+	nbrs[10] = 30;
+	for (int i = 0; i < 11; i++)
+	{
+	std::cout << (nbrs.lower_bound(i))->first << " | " << (nbrs.lower_bound(i))->second << std::endl;
+	}
 }

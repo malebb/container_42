@@ -780,8 +780,7 @@ namespace ft
 			avl<value_type>		*node;
 
 			node = this->_root;
-			this->print();
-//				std::cout << "root = " << node->value->first << std::endl;
+//			this->print();
 			while (node && !node->end)
 			{
 				if (!this->_compare(k, node->value->first)
@@ -789,13 +788,13 @@ namespace ft
 					return (node);
 				if (this->_compare(k, node->value->first))
 				{
-					if (node->left &&
-							(this->_compare(k, node->left->value->first)
-							 || (!this->_compare(k, node->left->value->first)
-								 && !this->_compare(node->left->value->first, k))))
+					if (node->left) //&&
+					//		(this->_compare(k, node->left->value->first)
+					//		 || (!this->_compare(k, node->left->value->first)
+					//			 && !this->_compare(node->left->value->first, k))))
 						node = node->left;
 					else
-						return(node);
+						return (node);
 				}
 				else
 					node = node->right;
