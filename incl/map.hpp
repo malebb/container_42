@@ -617,6 +617,7 @@ namespace ft
 		ft::pair<iterator, bool>		insert(const value_type& val)
 		{
 			ft::pair<iterator, bool>	ret;
+
 			ret = this->insertion(&this->_root, val, NULL);
 			if (ret.second)
 				this->_size++;
@@ -684,7 +685,11 @@ namespace ft
 			{
 				next_it = first;
 				++next_it;
+				std::cout << "BEFORE" << std::endl;
+				this->print();
 				deletion(first);
+				std::cout << "AFTER" << std::endl;
+				this->print();
 				this->_size--;
 				first = next_it;
 			}
