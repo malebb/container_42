@@ -685,11 +685,12 @@ namespace ft
 			{
 				next_it = first;
 				++next_it;
-				std::cout << "BEFORE" << std::endl;
-				this->print();
+//				std::cout << "( " << first.node->value->first<< ")" << std::endl;
+			//	std::cout << "BEFORE" << std::endl;
+			//	this->print();
 				deletion(first);
-				std::cout << "AFTER" << std::endl;
-				this->print();
+			//	std::cout << "AFTER, balanced = " << this->is_balanced() << std::endl;
+			//	this->print();
 				this->_size--;
 				first = next_it;
 			}
@@ -1093,7 +1094,57 @@ namespace ft
 					if (last_inserted->value->first <= first_unbalanced->value->first)
 						balance_left_cases(last_inserted, first_unbalanced);
 					else
+					{
 						balance_right_cases(last_inserted, first_unbalanced);
+					}
+					break ;
+				}
+				first_unbalanced = first_unbalanced->parent;
+			}
+		}
+
+		void		balance_left_cases_deletion(avl<value_type> *first_unbalanced)
+		{
+			if (get_height(first_unbalanced->left->left, 0, 0) >= get_height(first_unbalanced->left->right, 0, 0))
+			{
+				// left left case
+				right_rotate(first_unbalanced);
+			}
+			else
+			{
+				// left right case
+				left_rotate(first_unbalanced->left);
+				right_rotate(first_unbalanced);
+			}
+		}
+
+		void		balance_right_cases_deletion(avl<value_type> *first_unbalanced)
+		{
+			if (get_height(first_unbalanced->right->left, 0, 0) >= get_height(first_unbalanced->right->right, 0, 0))
+			{
+				// right left case
+				right_rotate(first_unbalanced->right);
+				left_rotate(first_unbalanced);
+			}
+			else
+			{
+				// right right case
+				left_rotate(first_unbalanced);
+			}
+		}
+		void		balance_deletion(avl<value_type> *deleted_substitute)
+		{
+			avl<value_type>		*first_unbalanced;
+
+			first_unbalanced = deleted_substitute;
+			while (first_unbalanced != NULL)
+			{
+				if (abs(get_height(first_unbalanced->left, 0, 0) - get_height(first_unbalanced->right, 0, 0)) >= 2)
+				{
+					if (get_height(first_unbalanced->left, 0, 0) > get_height(first_unbalanced->right, 0, 0))
+						balance_left_cases_deletion(first_unbalanced);
+					else
+						balance_right_cases_deletion(first_unbalanced);
 					break ;
 				}
 				first_unbalanced = first_unbalanced->parent;
@@ -1147,7 +1198,9 @@ namespace ft
 
 		bool				deletion(iterator node)
 		{
-			if (!node.node->right && !node.node->left)
+//			this->print();
+			if (!node.node->left && (!node.node->right ||
+				(node.node->right && node.node->right->end)))
 			{
 				//no child
 				if (node.node->parent)
@@ -1156,10 +1209,22 @@ namespace ft
 								node.node->parent->value->first))
 						node.node->parent->left = NULL;
 					else
-						node.node->parent->right = NULL;
+					{
+						if (node.node->right)
+						{
+							node.node->parent->right = this->_end_node;
+							this->_end_node->parent = node.node->parent;
+						}
+						else
+							node.node->parent->right = NULL;
+					}
+					balance_deletion(node.node->parent);
 				}
+				else
+					this->_root = this->_end_node;
 			}
-			else if (node.node->left && !node.node->right)
+			else if (node.node->left && (!node.node->right ||
+						(node.node->right && node.node->right->end)))
 			{
 				// only left child
 				if (node.node->parent)
@@ -1171,10 +1236,13 @@ namespace ft
 						node.node->parent->right = node.node->left;
 				}
 				node.node->left->parent = node.node->parent;
+				node.node->left->right = node.node->right;
 				if (!node.node->parent)
 					this->_root = node.node->left;
+				this->balance_deletion(node.node->left);
 			}
-			else if (node.node->right && !node.node->left)
+			else if (node.node->right && (!node.node->left
+					|| (node.node->left && node.node->left->end)))
 			{
 				// only right child
 				if (node.node->parent)
@@ -1188,9 +1256,13 @@ namespace ft
 				node.node->right->parent = node.node->parent;
 				if (!node.node->parent)
 					this->_root = node.node->right;
+				this->balance_deletion(node.node->right);
 			}
 			else
 			{
+//				std::cout << "BALANCE TWO CHILD ( " << node->first
+//					<< ")" << std::endl;
+				// two childs
 				iterator		next;
 
 				next = node;
@@ -1210,6 +1282,11 @@ namespace ft
 				node.node->left->parent = next.node;
 				if (!node.node->parent)
 					this->_root = next.node;
+//				std::cout << "BEFORE BALANCE" << std::endl;
+//				this->print();
+				this->balance_deletion(next.node);
+//				std::cout << "AFTER BALANCE" << std::endl;
+//				this->print();
 			}
 			delete_node(node.node);
 			return (true);
