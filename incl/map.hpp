@@ -485,7 +485,7 @@ namespace ft
 
 
 		map(const map& x) : _compare(x._compare), _comp(x._comp),
-			_alloc(x._alloc)
+			_alloc(x._alloc), _size(0), _root(NULL), _alloc_avl()
 		{
 				value_type		end_node_value;
 
