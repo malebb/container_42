@@ -48,7 +48,7 @@ namespace ft
 
 	struct bidirectional_iterator_tag {};
 
-	template <class Key, class T>
+	template <class Key, class T, class Compare>
 	class map_iterator : public ft::iterator<ft::bidirectional_iterator_tag, T>
 	{
 
@@ -57,6 +57,7 @@ namespace ft
 
 			typedef Key												key_type;
 			typedef T												mapped_type;
+			typedef Compare											key_compare;
 			typedef std::ptrdiff_t									difference_type;
 			typedef ft::pair<const key_type, mapped_type>			value_type;
 			typedef ft::pair<const key_type, mapped_type>&			reference;
@@ -75,6 +76,7 @@ namespace ft
 			map_iterator&		operator=(const map_iterator& rhs)
 			{
 				this->node = rhs.node;
+
 				return (*this);
 			}
 
@@ -120,16 +122,21 @@ namespace ft
 					this->operator--();
 				else
 				{
-					while (this->node->value->first <= origin_value && !this->node->end)
+					while ((this->_compare(this->node->value->first, origin_value) ||
+								
+							 (!this->_compare(this->node->value->first, origin_value)
+								&& !this->_compare(origin_value, this->node->value->first)))
+							&& !this->node->end)
 					{
-						if (this->node->right &&
-							(this->node->right->value->first > origin_value
+						if (this->node->right && 
+							(this->_compare(origin_value, this->node->right->value->first)
 							 || this->node->right->end))
 							this->node = this->node->right;
 						else
 							this->node = this->node->parent;
 					}
-					while (this->node->left && (this->node->left->value->first > origin_value))
+					while (this->node->left && 
+						this->_compare(origin_value, this->node->left->value->first))
 					{
 						this->node = this->node->left;
 					}
@@ -155,7 +162,8 @@ namespace ft
 					this->node = get_last();
 				else
 				{
-					while (this->node->value->first >= origin_node.value->first)
+					while (_compare(origin_node.value->first, this->node->value->first))
+//					while (this->node->value->first >= origin_node.value->first)
 					{
 						if (this->node->left &&
 							(this->node->left->value->first < origin_node.value->first))
@@ -180,7 +188,8 @@ namespace ft
 			}
 
 
-			tree_type		*node;
+			tree_type			*node;
+			key_compare			_compare;
 
 		private :
 
@@ -217,13 +226,14 @@ namespace ft
 			}
 	};
 
-	template <class Key, class T>
+	template <class Key, class T, class Compare>
 	class const_map_iterator : public ft::iterator<ft::bidirectional_iterator_tag, T>
 	{
 		public :
 
 			typedef Key												key_type;
 			typedef T												mapped_type;
+			typedef Compare											key_compare;
 			typedef std::ptrdiff_t									difference_type;
 			typedef ft::pair<const key_type, mapped_type>			value_type;
 			typedef const ft::pair<const key_type, mapped_type>*	pointer;
@@ -234,7 +244,7 @@ namespace ft
 
 			const_map_iterator() : node(NULL) {}
 
-			const_map_iterator(map_iterator<Key, T> const & src)
+			const_map_iterator(map_iterator<Key, T, Compare> const & src)
 			{
 				*this = src;
 			}
@@ -244,7 +254,7 @@ namespace ft
 				*this = src;
 			}
 
-			const_map_iterator&		operator=(map_iterator<Key, T>const & rhs)
+			const_map_iterator&		operator=(map_iterator<Key, T, Compare>const & rhs)
 			{
 				(void)rhs;
 				this->node = rhs.node;
@@ -416,8 +426,8 @@ namespace ft
 			typedef typename allocator_type::const_reference	const_reference;
 			typedef typename allocator_type::pointer			pointer;
 			typedef typename allocator_type::const_pointer		const_pointer;
-			typedef ft::map_iterator<Key, T>					iterator;
-			typedef ft::const_map_iterator<Key, T>				const_iterator;
+			typedef ft::map_iterator<Key, T, Compare>			iterator;
+			typedef ft::const_map_iterator<Key, T, Compare>		const_iterator;
 			typedef ft::reverse_iterator<iterator>				reverse_iterator;
 			typedef ft::reverse_iterator<const_iterator>	 	const_reverse_iterator;
 
