@@ -5,7 +5,7 @@
 #include <stack>
 #include <map>
 #include <list>
-/*
+
 class A
 {
 	public :
@@ -25,46 +25,37 @@ int	main(void)
 	std::cout << "[------------ TEST FT CONTAINER ------------]" << std::endl;
 	std::cout << std::endl;
 
-	test_stack();
-	test_vector();
-	test_map();
+//	test_stack();
+//	test_vector();
+//	test_map();
+	
+	ft::map<int, int>				nbrs;
+	ft::map<int, int>::iterator		it;
+
+
+	for (int i = 0; i < 10; i++)
+		nbrs[i] = i;
+	display_map("nbrs", nbrs);
+	it = --nbrs.end();
+	std::cout << "error " << std::endl;
+	std::cout << "END = " << (--it)->first << std::endl;
+	std::cout << "error " << std::endl;
+//	nbrs.erase(++nbrs.begin());
+	/*
+	display_map("nbrs", nbrs);
+	nbrs.erase(nbrs.begin());
+	display_map("nbrs", nbrs);
+	nbrs.erase(--nbrs.end());
+	display_map("nbrs", nbrs);
+	nbrs.erase(++(++(++nbrs.begin())));
+	display_map("nbrs", nbrs);
+	std::cout << "Error" << std::endl;
+	std::cout << "END = " << (--(--nbrs.end()))->first << std::endl;
+	std::cout << "VALUE = " << (--(--(--nbrs.end())))->first << std::endl;
+	nbrs.erase(--(--(--nbrs.end())), --nbrs.end());
+	std::cout << "Error" << std::endl;
+	display_map("nbrs", nbrs);
+	*/
 	return (0);
 }
-*/
-struct ft_more {
-	bool	operator()(const int &first, const int &second) const {
-		return (first > second);
-	}
-};
 
-typedef ft::map<int, int, ft_more> ft_mp;
-typedef ft::map<int, int, ft_more>::iterator ft_mp_it;
-
-int		main(void)
-{
-	ft_mp mp;
-
-	mp[42] = 42;
-	mp[25] = 25;
-	mp[80] = 80;
-	mp[12] = 12;
-	mp[27] = 27;
-	mp[90] = 90;
-
-	std::cout << "ERROR" << std::endl;	
-	ft_mp::iterator it = mp.begin();
-
-//	std::cout << "first = " << it->first << " second = " << it->second << std::endl;
-
-
-
-	for (ft_mp::iterator it = mp.begin(); it != mp.end(); it++)
-	{
-		std::cout << "first = " << it->first << " second = " << it->second << std::endl;
-	}
-	
-	
-//	display_map("mp", mp);
-
-	return (0);
-}

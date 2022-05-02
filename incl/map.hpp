@@ -162,8 +162,8 @@ namespace ft
 					this->node = get_last();
 				else
 				{
-					while (_compare(origin_node.value->first, this->node->value->first))
-//					while (this->node->value->first >= origin_node.value->first)
+				//	while (_compare(origin_node.value->first, this->node->value->first))
+					while (this->node->value->first >= origin_node.value->first)
 					{
 						if (this->node->left &&
 							(this->node->left->value->first < origin_node.value->first))
@@ -1208,7 +1208,7 @@ namespace ft
 
 		bool				deletion(iterator node)
 		{
-//			this->print();
+//		this->print();
 			if (!node.node->left && (!node.node->right ||
 				(node.node->right && node.node->right->end)))
 			{
@@ -1288,7 +1288,11 @@ namespace ft
 				next.node->parent = node.node->parent;
 				next.node->left = node.node->left;
 				if (node.node->right != next.node)
-						next.node->right = node.node->right;
+				{
+					node.node->right->parent = next.node;
+					node.node->right->left = next.node->right;
+					next.node->right = node.node->right;
+				}
 				node.node->left->parent = next.node;
 				if (!node.node->parent)
 					this->_root = next.node;
@@ -1296,7 +1300,7 @@ namespace ft
 //				this->print();
 				this->balance_deletion(next.node);
 //				std::cout << "AFTER BALANCE" << std::endl;
-//				this->print();
+			//	this->print();
 			}
 			delete_node(node.node);
 			return (true);
