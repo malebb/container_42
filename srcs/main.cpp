@@ -19,6 +19,12 @@ class A
 	int		_nb;
 };
 
+struct ft_more {
+	bool	operator()(const int &first, const int &second) const {
+		return (first > second);
+	}
+};
+
 int	main(void)
 {
 	std::cout << std::endl;
@@ -27,35 +33,22 @@ int	main(void)
 
 //	test_stack();
 //	test_vector();
-//	test_map();
+//	test_mapĸk
+
 	
-	ft::map<int, int>				nbrs;
-	ft::map<int, int>::iterator		it;
+	ft::map<int, std::string, ft_more>				mp;
 
 
-	for (int i = 0; i < 10; i++)
-		nbrs[i] = i;
-	display_map("nbrs", nbrs);
-	it = --nbrs.end();
-	std::cout << "error " << std::endl;
-	std::cout << "END = " << (--it)->first << std::endl;
-	std::cout << "error " << std::endl;
-//	nbrs.erase(++nbrs.begin());
-	/*
-	display_map("nbrs", nbrs);
-	nbrs.erase(nbrs.begin());
-	display_map("nbrs", nbrs);
-	nbrs.erase(--nbrs.end());
-	display_map("nbrs", nbrs);
-	nbrs.erase(++(++(++nbrs.begin())));
-	display_map("nbrs", nbrs);
-	std::cout << "Error" << std::endl;
-	std::cout << "END = " << (--(--nbrs.end()))->first << std::endl;
-	std::cout << "VALUE = " << (--(--(--nbrs.end())))->first << std::endl;
-	nbrs.erase(--(--(--nbrs.end())), --nbrs.end());
-	std::cout << "Error" << std::endl;
-	display_map("nbrs", nbrs);
-	*/
+	mp[42] = "fgzgxfn";
+	mp[25] = "funny";
+	mp[80] = "hey";
+	mp[12] = "no";
+	mp[27] = "bee";
+	mp[90] = "8";
+	for (ft::map<int, std::string, ft_more>::const_iterator it = mp.begin();
+			it != mp.end(); ++it)
+	std::cout << "mp" << it->first << " " << it->second << std::endl;
+	std::cout << mp.size() << std::endl;
 	return (0);
 }
 

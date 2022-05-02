@@ -309,16 +309,21 @@ namespace ft
 					this->operator--();
 				else
 				{
-					while (this->node->value->first <= origin_value && !this->node->end)
+					while ((this->_compare(this->node->value->first, origin_value) ||
+								
+							 (!this->_compare(this->node->value->first, origin_value)
+								&& !this->_compare(origin_value, this->node->value->first)))
+							&& !this->node->end)
 					{
-						if (this->node->right &&
-							(this->node->right->value->first > origin_value
+						if (this->node->right && 
+							(this->_compare(origin_value, this->node->right->value->first)
 							 || this->node->right->end))
 							this->node = this->node->right;
 						else
 							this->node = this->node->parent;
 					}
-					while (this->node->left && (this->node->left->value->first > origin_value))
+					while (this->node->left && 
+						this->_compare(origin_value, this->node->left->value->first))
 					{
 						this->node = this->node->left;
 					}
@@ -372,6 +377,7 @@ namespace ft
 
 
 			tree_type		*node;
+			key_compare		_compare;
 
 		private :
 
