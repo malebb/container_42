@@ -7,7 +7,7 @@ void	test_map(void)
 	<< std::endl;
 
 //	test_map_iterator();
-	test_map_init();
+//	test_map_init();
 //	test_map_reverse_iterator();
 //	test_map_capacity();
 //	test_map_element_access();
@@ -15,4 +15,5 @@ void	test_map(void)
 //	test_map_observers();
 //	test_map_operations();
 //	test_map_allocator();
+	test_map_relational_operators();
 }

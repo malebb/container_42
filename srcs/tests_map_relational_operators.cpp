@@ -6,25 +6,23 @@ static void		test_equal_to(void)
 	std::cout << ">> Test == operator" << std::endl;
 	std::cout << std::endl;
 
-	LIB::stack<int>		nbrs;
-	LIB::stack<int>		nbrs2;
+	LIB::map<int, int>		nbrs;
+	LIB::map<int, int>		nbrs2;
 
-	nbrs.push(0);
-	nbrs.push(0);
-
+	nbrs[0] = 0;
+	nbrs[1] = 0;
 	nbrs2 = nbrs;
-
-	display_stack("nbrs", nbrs);
-	display_stack("nbrs2", nbrs2);
+	
+	display_map("nbrs", nbrs);
+	display_map("nbrs2", nbrs2);
 
 	std::cout << "(nbrs == nbrs2) = " << (nbrs == nbrs2) << std::endl;
 	std::cout << std::endl;
 
-	nbrs.pop();
-	nbrs.push(1);
+	nbrs[1] = 1;
 
-	display_stack("nbrs", nbrs);
-	display_stack("nbrs2", nbrs2);
+	display_map("nbrs", nbrs);
+	display_map("nbrs2", nbrs2);
 
 	std::cout << "(nbrs == nbrs2) = " << (nbrs == nbrs2) << std::endl;
 	std::cout << std::endl;
@@ -36,25 +34,23 @@ static void		test_not_equal_to(void)
 	std::cout << ">> Test != operator" << std::endl;
 	std::cout << std::endl;
 
-	LIB::stack<int>		nbrs;
-	LIB::stack<int>		nbrs2;
+	LIB::map<int, int>		nbrs;
+	LIB::map<int, int>		nbrs2;
 
-	nbrs.push(0);
-	nbrs.push(0);
-
+	nbrs[0] = 0;
+	nbrs[1] = 0;
 	nbrs2 = nbrs;
 	
-	display_stack("nbrs", nbrs);
-	display_stack("nbrs2", nbrs2);
+	display_map("nbrs", nbrs);
+	display_map("nbrs2", nbrs2);
 
 	std::cout << "(nbrs != nbrs2) = " << (nbrs != nbrs2) << std::endl;
 	std::cout << std::endl;
 
-	nbrs.pop();
-	nbrs.push(1);
+	nbrs[1] = 1;
 
-	display_stack("nbrs", nbrs);
-	display_stack("nbrs2", nbrs2);
+	display_map("nbrs", nbrs);
+	display_map("nbrs2", nbrs2);
 
 	std::cout << "(nbrs != nbrs2) = " << (nbrs != nbrs2) << std::endl;
 	std::cout << std::endl;
@@ -66,25 +62,23 @@ static void		test_less_than(void)
 	std::cout << ">> Test < operator" << std::endl;
 	std::cout << std::endl;
 
-	LIB::stack<int>		nbrs;
-	LIB::stack<int>		nbrs2;
+	LIB::map<int, int>		nbrs;
+	LIB::map<int, int>		nbrs2;
 
-	nbrs.push(1);
-	nbrs.push(1);
-
+	nbrs[0] = 1;
+	nbrs[1] = 1;
 	nbrs2 = nbrs;
 	
-	display_stack("nbrs", nbrs);
-	display_stack("nbrs2", nbrs2);
+	display_map("nbrs", nbrs);
+	display_map("nbrs2", nbrs2);
 
 	std::cout << "(nbrs < nbrs2) = " << (nbrs < nbrs2) << std::endl;
 	std::cout << std::endl;
 
-	nbrs.pop();
-	nbrs.push(0);
 
-	display_stack("nbrs", nbrs);
-	display_stack("nbrs2", nbrs2);
+	nbrs[1] = 0;
+	display_map("nbrs", nbrs);
+	display_map("nbrs2", nbrs2);
 
 	std::cout << "(nbrs < nbrs2) = " << (nbrs < nbrs2) << std::endl;
 	std::cout << std::endl;
@@ -96,25 +90,23 @@ static void		test_greater_than(void)
 	std::cout << ">> Test > operator" << std::endl;
 	std::cout << std::endl;
 
-	LIB::stack<int>		nbrs;
-	LIB::stack<int>		nbrs2;
+	LIB::map<int, int>		nbrs;
+	LIB::map<int, int>		nbrs2;
 
-	nbrs.push(0);
-	nbrs.push(0);
-
+	nbrs[0] = 0;
+	nbrs[1] = 0;
 	nbrs2 = nbrs;
 	
-	display_stack("nbrs", nbrs);
-	display_stack("nbrs2", nbrs2);
+	display_map("nbrs", nbrs);
+	display_map("nbrs2", nbrs2);
 
 	std::cout << "(nbrs > nbrs2) = " << (nbrs > nbrs2) << std::endl;
 	std::cout << std::endl;
 
-	nbrs.pop();
-	nbrs.push(1);
+	nbrs[1] = 1;
 
-	display_stack("nbrs", nbrs);
-	display_stack("nbrs2", nbrs2);
+	display_map("nbrs", nbrs);
+	display_map("nbrs2", nbrs2);
 
 	std::cout << "(nbrs > nbrs2) = " << (nbrs > nbrs2) << std::endl;
 	std::cout << std::endl;
@@ -126,36 +118,32 @@ static void		test_less_than_or_equal_to(void)
 	std::cout << ">> Test <= operator" << std::endl;
 	std::cout << std::endl;
 
-	LIB::stack<int>		nbrs;
-	LIB::stack<int>		nbrs2;
+	LIB::map<int, int>		nbrs;
+	LIB::map<int, int>		nbrs2;
 
-	nbrs.push(1);
-	nbrs.push(1);
-
+	nbrs[0] = 1;
+	nbrs[1] = 1;
 	nbrs2 = nbrs;
 	
-	display_stack("nbrs", nbrs);
-	display_stack("nbrs2", nbrs2);
+	display_map("nbrs", nbrs);
+	display_map("nbrs2", nbrs2);
 
 	std::cout << "(nbrs <= nbrs2) = " << (nbrs <= nbrs2) << std::endl;
 	std::cout << std::endl;
 
-	nbrs.pop();
-	nbrs.push(0);
+	nbrs[1] = 0;
 
-	display_stack("nbrs", nbrs);
-	display_stack("nbrs2", nbrs2);
+	display_map("nbrs", nbrs);
+	display_map("nbrs2", nbrs2);
 
 	std::cout << "(nbrs <= nbrs2) = " << (nbrs <= nbrs2) << std::endl;
 	std::cout << std::endl;
 
-	nbrs.pop();
-	nbrs.push(1);
-	nbrs2.pop();
-	nbrs2.push(0);
+	nbrs[1] = 1;
+	nbrs2[1] = 0;
 
-	display_stack("nbrs", nbrs);
-	display_stack("nbrs2", nbrs2);
+	display_map("nbrs", nbrs);
+	display_map("nbrs2", nbrs2);
 
 	std::cout << "(nbrs <= nbrs2) = " << (nbrs <= nbrs2) << std::endl;
 	std::cout << std::endl;
@@ -167,42 +155,38 @@ static void		test_greater_than_or_equal_to()
 	std::cout << ">> Test >= operator" << std::endl;
 	std::cout << std::endl;
 
-	LIB::stack<int>		nbrs;
-	LIB::stack<int>		nbrs2;
+	LIB::map<int, int>		nbrs;
+	LIB::map<int, int>		nbrs2;
 
-	nbrs.push(1);
-	nbrs.push(1);
-
+	nbrs[0] = 1;
+	nbrs[1] = 1;
 	nbrs2 = nbrs;
 	
-	display_stack("nbrs", nbrs);
-	display_stack("nbrs2", nbrs2);
+	display_map("nbrs", nbrs);
+	display_map("nbrs2", nbrs2);
 
 	std::cout << "(nbrs >= nbrs2) = " << (nbrs >= nbrs2) << std::endl;
 	std::cout << std::endl;
 
-	nbrs.pop();
-	nbrs.push(0);
+	nbrs[1] = 0;
 
-	display_stack("nbrs", nbrs);
-	display_stack("nbrs2", nbrs2);
+	display_map("nbrs", nbrs);
+	display_map("nbrs2", nbrs2);
 
 	std::cout << "(nbrs >= nbrs2) = " << (nbrs >= nbrs2) << std::endl;
 	std::cout << std::endl;
 
-	nbrs.pop();
-	nbrs.push(1);
-	nbrs2.pop();
-	nbrs2.push(0);
+	nbrs[1] = 1;
+	nbrs2[1] = 0;
 
-	display_stack("nbrs", nbrs);
-	display_stack("nbrs2", nbrs2);
+	display_map("nbrs", nbrs);
+	display_map("nbrs2", nbrs2);
 
 	std::cout << "(nbrs >= nbrs2) = " << (nbrs >= nbrs2) << std::endl;
 	std::cout << std::endl;
 }
 
-void	test_stack_relational_operators(void)
+void	test_map_relational_operators(void)
 {
 	std::cout << std::endl;
 	std::cout << "<------------ Test relational operators ------------>"

@@ -33,19 +33,8 @@ int	main(void)
 
 //	test_stack();
 //	test_vector();
-//	test_mapĸk
+	test_map();
 
-	
-	std::map<int, int>				mp1;
-	std::map<int, int>				mp2;
-
-	mp1[0] = 0;
-	mp2[1] = 0;
-
-	if (mp1 == mp2)
-		std::cout << "ok" << std::endl;
-	else
-		std::cout << "ko" << std::endl;
 	
 	return (0);
 }

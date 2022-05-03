@@ -26,7 +26,8 @@ SRCS = ./srcs/main.cpp \
 	   ./srcs/tests_map_operations.cpp \
 	   ./srcs/tests_map_allocator.cpp \
 	   ./srcs/tests_map_iterator.cpp \
-	   ./srcs/tests_map_reverse_iterator.cpp
+	   ./srcs/tests_map_reverse_iterator.cpp \
+	   ./srcs/tests_map_relational_operators.cpp
 
 OBJS_FT = ${SRCS:${DIR_SRCS}%.cpp=${DIR_FT}%.o}
 OBJS_STL = ${SRCS:${DIR_SRCS}%.cpp=${DIR_STL}%.o}
