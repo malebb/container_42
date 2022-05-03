@@ -36,19 +36,17 @@ int	main(void)
 //	test_mapĸk
 
 	
-	ft::map<int, std::string, ft_more>				mp;
+	std::map<int, int>				mp1;
+	std::map<int, int>				mp2;
 
+	mp1[0] = 0;
+	mp2[1] = 0;
 
-	mp[42] = "fgzgxfn";
-	mp[25] = "funny";
-	mp[80] = "hey";
-	mp[12] = "no";
-	mp[27] = "bee";
-	mp[90] = "8";
-	for (ft::map<int, std::string, ft_more>::const_iterator it = mp.begin();
-			it != mp.end(); ++it)
-	std::cout << "mp" << it->first << " " << it->second << std::endl;
-	std::cout << mp.size() << std::endl;
+	if (mp1 == mp2)
+		std::cout << "ok" << std::endl;
+	else
+		std::cout << "ko" << std::endl;
+	
 	return (0);
 }
 
