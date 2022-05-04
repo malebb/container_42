@@ -105,6 +105,7 @@ namespace ft
 
 			value_type			*operator->() const
 			{
+//				std::cout << "value = "
 				return (this->node->value);
 			}
 
@@ -344,14 +345,13 @@ namespace ft
 			{
 				tree_type		origin_node(*(this->node));
 
-				if (get_first_value()->first == origin_node.value->first)
-				{
-					this->node = get_last();
-				}
-				else if (this->node->end)
+				if (this->node->end)
 					this->node = this->node->parent;
+				else if (get_first_value()->first == origin_node.value->first)
+					this->node = get_last();
 				else
 				{
+				//	while (_compare(origin_node.value->first, this->node->value->first))
 					while (this->node->value->first >= origin_node.value->first)
 					{
 						if (this->node->left &&
@@ -558,24 +558,12 @@ namespace ft
 
 		reverse_iterator	rbegin()
 		{
-			/*
-			avl<value_type>			*node;
-
-			node = this->_root;
-			while (node->right && !node->right->end)
-			{
-			node = node->right;
-			}
-			*/
-			return (reverse_iterator(this->_end_node));
+			return (reverse_iterator(this->end()));
 		}
 
 		const_reverse_iterator	rbegin() const
 		{
-			/*
-			return (const_reverse_iterator(this->end()));
-			*/
-			return (this->_end_node);
+			return (reverse_iterator(this->end()));
 		}
 
 		iterator		end()
@@ -686,6 +674,7 @@ namespace ft
 		{
 			iterator		node;
 
+			this->print();
 			node = this->find(k);
 			if (node == this->end())
 				return (0);

@@ -2,6 +2,7 @@
 #define REVERSE_ITERATOR
 
 #include "iterator.hpp"
+#include <iostream>
 
 namespace ft
 {
@@ -106,7 +107,7 @@ namespace ft
 
 			// member access operators
 
-			pointer		operator->()
+			pointer		operator->() const
 			{
 				iterator_type		tmp(this->_it);
 
@@ -118,7 +119,6 @@ namespace ft
 			{
 				return (this->_it[rhs * -1 - 1]);
 			}
-
 
 			iterator_type				base() const
 			{
