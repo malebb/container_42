@@ -71,11 +71,12 @@ static void		test_lower_bound(void)
 	numbers[35] = "thirty-five";
 	const LIB::map<int, std::string>		const_numbers(numbers);
 
-//	display_map("numbers", numbers);
+	display_map("numbers", numbers);
 	std::cout << "numbers.lower_bound(7)->first) = " << numbers.lower_bound(7)->first << std::endl;
 	std::cout << "numbers.lower_bound(25)->first) = " << numbers.lower_bound(25)->first << std::endl;
 	std::cout << "numbers.lower_bound(32)->first) = " << numbers.lower_bound(32)->first << std::endl << std::endl;
 
+	display_map("const_numbers", const_numbers);
 	std::cout << "const_numbers.lower_bound(7)->first) = " << const_numbers.lower_bound(7)->first << std::endl;
 	std::cout << "const_numbers.lower_bound(25)->first) = " << const_numbers.lower_bound(25)->first << std::endl;
 	std::cout << "const_numbers.lower_bound(32)->first) = " << const_numbers.lower_bound(32)->first << std::endl;
@@ -98,13 +99,14 @@ static void		test_upper_bound(void)
 	numbers[35] = "thirty-five";
 
 
-	//display_map("numbers", numbers);
+	display_map("numbers", numbers);
 	std::cout << "numbers.upper_bound(7)->first) = " << numbers.upper_bound(7)->first << std::endl;
 	std::cout << "numbers.upper_bound(25)->first) = " << numbers.upper_bound(25)->first << std::endl;
 	std::cout << "numbers.upper_bound(32)->first) = " << numbers.upper_bound(32)->first << std::endl << std::endl;
 
 	const LIB::map<int, std::string>		const_numbers(numbers);
 
+	display_map("const_numbers", const_numbers);
 	std::cout << "const_numbers.upper_bound(7)->first) = " << const_numbers.upper_bound(7)->first << std::endl;
 	std::cout << "const_numbers.upper_bound(25)->first) = " << const_numbers.upper_bound(25)->first << std::endl;
 	std::cout << "const_numbers.upper_bound(32)->first) = " << const_numbers.upper_bound(32)->first << std::endl;

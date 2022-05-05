@@ -1,0 +1,1485 @@
+
+[------------ TEST FT CONTAINER ------------]
+
+
+[------------ Tests stack ------------]
+
+[------------ Test stack init ------------]
+
+********************************************
+
+>> Test default constructor
+
+nbrs
+nbrs = {}
+
+nbrs.size() = 0
+
+********************************************
+
+>> Test copy constructor
+
+nbrs = {4, 3, 2, 1, 0}
+
+nbrs2(nbrs)
+
+nbrs2 = {4, 3, 2, 1, 0}
+
+nbrs.pop()
+nbrs.push(99)
+
+nbrs = {99, 3, 2, 1, 0}
+
+nbrs2 = {4, 3, 2, 1, 0}
+
+********************************************
+
+>> Test assign operator
+
+nbrs = {4, 3, 2, 1, 0}
+
+nbrs2 = nbrs
+
+nbrs2 = {4, 3, 2, 1, 0}
+
+nbrs.pop()
+nbrs.push(99)
+
+nbrs = {99, 3, 2, 1, 0}
+
+nbrs2 = {4, 3, 2, 1, 0}
+
+********************************************
+
+<------------ Test member functions ------------>
+
+********************************************
+
+>> test empty function
+
+animals = {}
+
+animals.empty() = 1
+
+animals = {goat, zebra}
+
+animals.empty() = 0
+
+********************************************
+
+>> test size function
+
+animals = {}
+
+animals.size() = 0
+
+animals = {snake, tiger}
+
+animals.size() = 2
+
+********************************************
+
+>> test top
+
+animals = {lion, bear}
+
+animals.top() = lion
+
+********************************************
+
+>> test push function
+
+animals = {}
+
+animals.push("giraffe")
+animals.push("hippopotamus")
+
+animals = {hippopotamus, giraffe}
+
+********************************************
+
+>> test pop function
+
+animals = {cat, bird}
+
+animals.pop()
+
+animals = {bird}
+
+********************************************
+
+<------------ Test relational operators ------------>
+
+********************************************
+
+>> Test == operator
+
+nbrs = {0, 0}
+
+nbrs2 = {0, 0}
+
+(nbrs == nbrs2) = 1
+
+nbrs = {1, 0}
+
+nbrs2 = {0, 0}
+
+(nbrs == nbrs2) = 0
+
+********************************************
+
+>> Test != operator
+
+nbrs = {0, 0}
+
+nbrs2 = {0, 0}
+
+(nbrs != nbrs2) = 0
+
+nbrs = {1, 0}
+
+nbrs2 = {0, 0}
+
+(nbrs != nbrs2) = 1
+
+********************************************
+
+>> Test < operator
+
+nbrs = {1, 1}
+
+nbrs2 = {1, 1}
+
+(nbrs < nbrs2) = 0
+
+nbrs = {0, 1}
+
+nbrs2 = {1, 1}
+
+(nbrs < nbrs2) = 1
+
+********************************************
+
+>> Test > operator
+
+nbrs = {0, 0}
+
+nbrs2 = {0, 0}
+
+(nbrs > nbrs2) = 0
+
+nbrs = {1, 0}
+
+nbrs2 = {0, 0}
+
+(nbrs > nbrs2) = 1
+
+********************************************
+
+>> Test <= operator
+
+nbrs = {1, 1}
+
+nbrs2 = {1, 1}
+
+(nbrs <= nbrs2) = 1
+
+nbrs = {0, 1}
+
+nbrs2 = {1, 1}
+
+(nbrs <= nbrs2) = 1
+
+nbrs = {1, 1}
+
+nbrs2 = {0, 1}
+
+(nbrs <= nbrs2) = 0
+
+********************************************
+
+>> Test >= operator
+
+nbrs = {1, 1}
+
+nbrs2 = {1, 1}
+
+(nbrs >= nbrs2) = 1
+
+nbrs = {0, 1}
+
+nbrs2 = {1, 1}
+
+(nbrs >= nbrs2) = 0
+
+nbrs = {1, 1}
+
+nbrs2 = {0, 1}
+
+(nbrs >= nbrs2) = 1
+
+********************************************
+
+[------------ Tests vector ------------]
+
+<------------ Test vector iterator ------------>
+
+********************************************
+
+>> Test increment and decrement
+
+nbrs = {one, two, three, four}
+
+*it = one
+
+it++
+*it = two
+
+it--
+*it = one
+
+*++it = two
+*--it = one
+
+*it++ = one
+*it = two
+
+*it-- = two
+*it = one
+
+********************************************
+
+>> Test assignment
+
+nbrs = {one, two, three, four}
+
+*it = one
+
+it += 2
+*it = three
+it -= 2
+*it = one
+
+********************************************
+
+>> Test arithmetic
+
+nbrs = {one, two, three, four}
+
+*it = one
+
+it2 = it + 2 
+*it2 = three
+it2 = 3 + it 
+*it2 = four
+*++it = two
+it2 = it - 1 
+*it2 = one
+
+********************************************
+
+>> Test comparison
+
+nbrs = {one, two, three, four}
+
+*it = one
+*it2 = two
+
+it == it2 : false
+it != it2 : true
+it < it2 : true
+it > it2 : false
+it <= it2 : true
+it >= it2 : false
+
+********************************************
+
+>> Test member access
+
+nbrs = {one, two, three, four}
+
+nb->first_value = 5
+nb->second_value = 22
+
+it[3] = four
+
+it2->first_value = 5
+it2->second_value = 22
+
+********************************************
+
+>> Test substract
+
+nbrs = {one, two, three, four}
+
+*it = one
+*it2 = two
+
+it - it2 = -1
+
+********************************************
+
+>> Test const
+
+nbrs = {one, two, three, four}
+
+*const_it = one
+
+*const_it = "first" => impossible
+*const_it[0] = "first" => impossible
+
+*const_it = one
+
+********************************************
+
+<------------ Test vector reverse iterator ------------>
+
+********************************************
+
+>> Test increment and decrement
+
+nbrs = {one, two, three, four}
+
+*it = four
+
+it++
+*it = three
+
+it--
+*it = four
+
+*++it = three
+*--it = four
+
+*it++ = four
+*it = three
+
+*it-- = three
+*it = four
+
+********************************************
+
+>> Test assignment
+
+nbrs = {one, two, three, four}
+
+*it = four
+
+it += 2
+*it = two
+it -= 2
+*it = four
+
+********************************************
+
+>> Test arithmetic
+
+nbrs = {one, two, three, four}
+
+*it = four
+
+it2 = it + 2 
+*it2 = two
+it2 = 3 + it 
+*it2 = one
+*++it = three
+it2 = it - 1 
+*it2 = four
+
+********************************************
+
+>> Test comparison
+
+nbrs = {one, two, three, four}
+
+*it = four
+*it2 = three
+
+it == it2 : false
+it != it2 : true
+it < it2 : true
+it > it2 : false
+it <= it2 : true
+it >= it2 : false
+
+********************************************
+
+>> Test member access
+
+nbrs = {one, two, three, four}
+
+nb->first_value = 5
+nb->second_value = 22
+
+*it = four
+it[3] = one
+
+it2->nb = 5
+it2->nb2 = 22
+
+********************************************
+
+>> Test substract
+
+nbrs = {one, two, three, four}
+
+*it = four
+*it2 = three
+
+it - it2 = -1
+
+********************************************
+
+>> Test const
+
+nbrs = {one, two, three, four}
+
+*const_it = four
+
+*const_it = "first" => impossible
+*const_it[0] = "first" => impossible
+
+*const_it = four
+
+********************************************
+
+[------------ Test vector init ------------]
+
+********************************************
+
+>> Test default constructor
+
+nbrs
+nbrs = {}
+
+nbrs.size() = 0
+
+********************************************
+
+>> Test fill constructor
+
+nbrs(6, 5)
+nbrs = {5, 5, 5, 5, 5, 5}
+
+nbrs.size() = 6
+********************************************
+
+>> Test range constructor
+
+nbrs = {0, 1, 2, 3, 4}
+
+nbrs2(nbrs.begin(), nbrs.end() - 1)
+
+nbrs2 = {0, 1, 2, 3, 4}
+
+nbrs[0] = 99
+
+nbrs = {99, 1, 2, 3, 4}
+
+nbrs2 = {0, 1, 2, 3, 4}
+
+********************************************
+
+>> Test copy constructor
+
+nbrs = {0, 1, 2, 3, 4}
+
+nbrs2(nbrs)
+
+nbrs2 = {0, 1, 2, 3, 4}
+
+nbrs[0] = 99
+
+nbrs = {99, 1, 2, 3, 4}
+
+nbrs2 = {0, 1, 2, 3, 4}
+
+********************************************
+
+>> Test assign operator
+
+nbrs = {0, 1, 2, 3, 4}
+
+nbrs2 = nbrs
+
+nbrs2 = {0, 1, 2, 3, 4}
+
+nbrs[0] = 99
+
+nbrs = {99, 1, 2, 3, 4}
+
+nbrs2 = {0, 1, 2, 3, 4}
+
+********************************************
+
+<------------ Test capacity ------------>
+
+********************************************
+
+>> Test size function
+
+nbrs =  = {11, 12, 13, 14}
+
+letters = {}
+
+nbrs.size() = 4
+letters.size() = 0
+
+********************************************
+
+>> Test max size function
+
+boolean = {1, 0, 1}
+
+strs = {string, string, string}
+
+nbrs.max_size() = 9223372036854775744
+strs.max_size() = 288230376151711743
+
+********************************************
+
+>> Test resize function
+
+hundreds = {100, 100, 100}
+
+
+hundreds.resize(6, 200)
+
+hundreds = {100, 100, 100, 200, 200, 200}
+
+
+hundreds.resize(4)
+
+hundreds = {100, 100, 100, 200}
+
+********************************************
+
+>> Test reserve function
+
+nbrs.capacity() = 0
+nbrs.reserve(2)
+nbrs.capacity() = 2
+nbrs.reserve(10)
+nbrs.capacity() = 10
+nbrs.reserve(nbrs.max_size() + 1) ==> exception
+vector::reserve
+
+********************************************
+
+>> Test capacity function
+
+plants = {}
+
+plants.capacity() = 0
+
+plants.push_back("tree")
+plants = {tree}
+
+plants.capacity() = 1
+
+plants.push_back("tulip")
+plants.push_back("daisy")
+plants = {tree, tulip, daisy}
+
+plants.capacity() = 4
+
+********************************************
+
+>> Test empty function
+
+empty_vector = {}
+
+filled_vector = {1, 1, 1, 1}
+
+empty_vector.empty() = 1
+filled_vector.empty() = 0
+
+********************************************
+
+<------------ Test vector element access------------>
+
+********************************************
+
+>> Test operator[]
+
+numbers = {zero, one, two, three, four}
+
+const_numbers = {zero, zero}
+
+numbers[0] = zero
+numbers[1] = one
+numbers[2] = two
+numbers[3] = three
+numbers[4] = four
+
+const_numbers[0] = zero
+const_numbers[1] = zero
+
+********************************************
+
+>> Test at function
+
+animals = {pigeon, pigeon}
+
+const_animals = {pigeon, pigeon}
+
+animals.at(0) = giraffe
+animals.at(1) = bear
+animals.at(2) = bird
+animals.at(3) = horse
+animals.at(4) = owl
+
+animals.at(5) = vector::_M_range_check: __n (which is 5) >= this->size() (which is 5)
+
+const_animals.at(0) = pigeon
+const_animals.at(1) = pigeon
+
+const_animals.at(2) = vector::_M_range_check: __n (which is 2) >= this->size() (which is 2)
+
+********************************************
+
+>> Test front function
+
+materials = {wood, glass, steel}
+
+const_materials = {stone, stone}
+
+materials.front() = wood
+const_materials.front() = stone
+
+********************************************
+
+>> Test back function
+
+weathers = {sunny, windy, rainy}
+
+const_weathers = {sunny, windy, rainy}
+
+weathers.back() = rainy
+const_weathers.back() = snowy
+
+********************************************
+
+<------------ Test modifiers ------------>
+
+********************************************
+
+>> Test push_back function
+
+seasons = {}
+
+seasons.push_back("spring")
+seasons.push_back("summer")
+seasons.push_back("autumn")
+seasons.push_back("winter")
+
+seasons = {spring, summer, autumn, winter}
+
+********************************************
+
+>> Test pop_back function
+
+seasons = {spring, summer, autumn, winter}
+
+seasons.pop_back()
+
+seasons = {spring, summer, autumn}
+
+********************************************
+
+>> Test assign function
+
+colors = {empty, empty, empty, empty, empty, empty}
+
+green = {green, green, green, green, green, green}
+
+colors.assign(green.begin(), green.end() - 3)
+colors = {green, green, green}
+
+colors.assign(6, "yellow")
+colors = {yellow, yellow, yellow, yellow, yellow, yellow}
+
+********************************************
+
+>> Test insert function
+
+white = {white, white, white, white, white, white}
+
+red = {red, red, red, red, red, red}
+
+black = {black, black, black, black, black, black}
+
+while.insert(white.begin() + 1, "orange")
+white = {white, orange, white, white, white, white, white}
+
+black.insert(colors.begin() + 3, 2, "blue")
+black = {black, black, black, blue, blue, black, black, black}
+
+yellow.insert(yellow.begin() + 1, red.begin(), red.begin() + 3 
+yellow = {yellow, red, red, red, yellow, yellow, yellow, yellow, yellow}
+
+********************************************
+
+>> Test erase function
+
+trees = {TREE, TREE, flower, TREE, TREE, TREE, TREE}
+
+trees.erase(trees.begin() + 2)
+
+trees = {TREE, TREE, TREE, TREE, TREE, TREE}
+
+trees.erase(trees.begin() + 2, trees.end())
+
+trees = {TREE, TREE}
+
+********************************************
+
+>> Test swap function
+
+tomato = {tomato, tomato, tomato, tomato, tomato, tomato}
+
+cucumber = {cucumber, cucumber, cucumber, cucumber, cucumber, cucumber}
+
+tomato.swap(cucumber)
+
+tomato = {cucumber, cucumber, cucumber, cucumber, cucumber, cucumber}
+
+cucumber = {tomato, tomato, tomato, tomato, tomato, tomato}
+
+********************************************
+
+>> Test swap overload function
+
+pasta = {pasta, pasta, pasta, pasta, pasta, pasta}
+
+rice = {rice, rice, rice, rice, rice, rice}
+
+swap(pasta, rice)
+
+pasta = {rice, rice, rice, rice, rice, rice}
+
+rice = {pasta, pasta, pasta, pasta, pasta, pasta}
+
+********************************************
+
+>> Test clear function
+
+content = {content, content, content, content, content, content}
+
+content.clear()
+
+content = {}
+
+********************************************
+
+[------------ Test vector allocator ------------]
+
+********************************************
+
+>> Test get_allocator
+
+vector_container = vector_container = {0, 0, 0}
+
+
+ptr = vector_container.get_allocator().allocate(3)
+
+vector_container.get_allocator().construct(ptr + 0, 1)
+vector_container.get_allocator().construct(ptr + 1, 2)
+vector_container.get_allocator().construct(ptr + 2, 3)
+
+ptr[0] = 1
+ptr[1] = 2
+ptr[2] = 3
+
+vector_container.get_allocator().destroy(ptr + 0)
+vector_container.get_allocator().destroy(ptr + 1)
+vector_container.get_allocator().destroy(ptr + 2)
+
+vector_container.get_allocator().deallocate(ptr, 3)
+
+********************************************
+
+<------------ Test relational operators ------------>
+
+********************************************
+
+>> Test == operator
+
+nbrs = {0, 0}
+
+nbrs2 = {0, 0}
+
+(nbrs == nbrs2) = 1
+
+nbrs = {0, 1}
+
+nbrs2 = {0, 0}
+
+(nbrs == nbrs2) = 0
+
+********************************************
+
+>> Test != operator
+
+nbrs = {0, 0}
+
+nbrs2 = {0, 0}
+
+(nbrs != nbrs2) = 0
+
+nbrs = {0, 1}
+
+nbrs2 = {0, 0}
+
+(nbrs != nbrs2) = 1
+
+********************************************
+
+>> Test < operator
+
+nbrs = {1, 1}
+
+nbrs2 = {1, 1}
+
+(nbrs < nbrs2) = 0
+
+nbrs = {1, 0}
+
+nbrs2 = {1, 1}
+
+(nbrs < nbrs2) = 1
+
+********************************************
+
+>> Test > operator
+
+nbrs = {0, 0}
+
+nbrs2 = {0, 0}
+
+(nbrs > nbrs2) = 0
+
+nbrs = {0, 1}
+
+nbrs2 = {0, 0}
+
+(nbrs > nbrs2) = 1
+
+********************************************
+
+>> Test <= operator
+
+nbrs = {1, 1}
+
+nbrs2 = {1, 1}
+
+(nbrs <= nbrs2) = 1
+
+nbrs = {1, 0}
+
+nbrs2 = {1, 1}
+
+(nbrs <= nbrs2) = 1
+
+nbrs = {1, 1}
+
+nbrs2 = {1, 0}
+
+(nbrs <= nbrs2) = 0
+
+********************************************
+
+>> Test >= operator
+
+nbrs = {1, 1}
+
+nbrs2 = {1, 1}
+
+(nbrs >= nbrs2) = 1
+
+nbrs = {1, 0}
+
+nbrs2 = {1, 1}
+
+(nbrs >= nbrs2) = 0
+
+nbrs = {1, 1}
+
+nbrs2 = {1, 0}
+
+(nbrs >= nbrs2) = 1
+
+********************************************
+
+[------------ Tests map ------------]
+
+<------------ Test map iterator ------------>
+
+********************************************
+
+>> Test increment and decrement
+
+nbrs = {{1 => one}, {2 => two}, {3 => three}, {4 => four}}
+
+it = {1 => one}
+
+it++
+it = {2 => two}
+
+it--
+it = {1 => one}
+
+(++it)->first = 2
+
+(--it)->first = 1
+
+(it++)->first = 1
+
+it = {2 => two}
+
+(it--)->first = 2
+it = {1 => one}
+
+
+********************************************
+
+>> Test comparison
+
+nbrs = {{1 => one}, {2 => two}, {3 => three}, {4 => four}}
+
+it = {1 => one}
+
+it2 = {2 => two}
+
+it == it2 : false
+it != it2 : true
+
+********************************************
+
+>> Test member access
+
+nbrs = {{1 => one}, {2 => two}, {3 => three}, {4 => four}}
+
+it->first = 1
+it->second = one
+
+(*it).first = 1
+(*it).second = one
+
+********************************************
+
+>> Test const
+
+nbrs = {{1 => one}, {2 => two}, {3 => three}, {4 => four}}
+
+it = {1 => one}
+
+const_it->second = "first" => impossible
+it = {1 => one}
+
+
+********************************************
+
+[------------ Test map init ------------]
+
+********************************************
+
+>> Test default constructor
+
+nbrs
+nbrs = {}
+
+nbrs.size() = 0
+
+********************************************
+
+>> Test range constructor
+
+nbrs = {{0 => 0}, {1 => 1}, {2 => 2}, {3 => 3}, {4 => 4}}
+
+it->first = 4
+nbrs2(nbrs.begin(), --nbrs.end())
+
+nbrs2 = {{0 => 0}, {1 => 1}, {2 => 2}, {3 => 3}}
+
+nbrs[0] = 99
+
+nbrs = {{0 => 99}, {1 => 1}, {2 => 2}, {3 => 3}, {4 => 4}}
+
+nbrs2 = {{0 => 0}, {1 => 1}, {2 => 2}, {3 => 3}}
+
+********************************************
+
+>> Test copy constructor
+
+nbrs = {{0 => 0}, {1 => 1}, {2 => 2}, {3 => 3}, {4 => 4}}
+
+nbrs2(nbrs)
+
+nbrs2 = {{0 => 0}, {1 => 1}, {2 => 2}, {3 => 3}, {4 => 4}}
+
+nbrs[0] = 99
+
+nbrs = {{0 => 99}, {1 => 1}, {2 => 2}, {3 => 3}, {4 => 4}}
+
+nbrs2 = {{0 => 0}, {1 => 1}, {2 => 2}, {3 => 3}, {4 => 4}}
+
+********************************************
+
+>> Test assign operator
+
+nbrs = {{0 => 0}, {1 => 1}, {2 => 2}, {3 => 3}, {4 => 4}}
+
+nbrs2 = nbrs
+
+nbrs2 = {{0 => 0}, {1 => 1}, {2 => 2}, {3 => 3}, {4 => 4}}
+
+nbrs[0] = 99
+
+nbrs = {{0 => 99}, {1 => 1}, {2 => 2}, {3 => 3}, {4 => 4}}
+
+nbrs2 = {{0 => 0}, {1 => 1}, {2 => 2}, {3 => 3}, {4 => 4}}
+
+********************************************
+
+<------------ Test map reverse iterator ------------>
+
+********************************************
+
+>> Test increment and decrement
+
+nbrs = {{1 => one}, {2 => two}, {3 => three}, {4 => four}}
+
+it = {4 => four}
+
+it++
+it = {3 => three}
+
+it--
+it = {4 => four}
+
+(++it)->first = 3
+
+(--it)->first = 4
+
+(it++)->first = 4
+it = {3 => three}
+
+(it--)->first = 3
+it = {4 => four}
+
+
+********************************************
+
+>> Test comparison
+
+nbrs = {{1 => one}, {2 => two}, {3 => three}, {4 => four}}
+
+it = {4 => four}
+
+it2 = {3 => three}
+
+it == it2 : false
+it != it2 : true
+
+********************************************
+
+>> Test member access
+
+nbrs = {{1 => one}, {2 => two}, {3 => three}, {4 => four}}
+
+it->first = 4
+it->second = four
+
+(*it).first = 4
+(*it).second = four
+
+********************************************
+
+>> Test const
+
+nbrs = {{1 => one}, {2 => two}, {3 => three}, {4 => four}}
+
+it = {4 => four}
+
+const_it->second = "first" => impossible
+it = {4 => four}
+
+
+********************************************
+
+<------------ Test map capacity ------------>
+
+********************************************
+
+>> Test empty function
+
+numbers = {}
+
+numbers.empty() = 1
+
+numbers = {{1 => one}}
+
+numbers.empty() = 0
+
+********************************************
+
+>> test size function
+
+numbers = {}
+
+numbers.size() = 0
+
+numbers = {{1 => one}, {2 => two}, {3 => three}}
+
+numbers.size() = 3
+
+********************************************
+
+>> test max_size function
+
+numbers = {}
+
+letters = {}
+
+numbers.max_size() = 128102389400760775
+letters.max_size() = 230584300921369395
+
+********************************************
+
+<------------ Test map element access ------------>
+
+********************************************
+
+>> test operator[]
+
+numbers = {}
+
+numbers[3] = "three"
+numbers[10] = "ten"
+
+numbers = {{3 => three}, {10 => ten}}
+
+numbers[10] = ten
+numbers[10] = "dix"
+
+numbers = {{3 => three}, {10 => dix}}
+
+********************************************
+
+<------------ Test modifiers ------------>
+
+********************************************
+
+>> Test insert function
+
+countries = {}
+
+countries.insert(LIB::make_pair<std::string, std::string>("Italie", "Italy"))
+countries.insert(LIB::make_pair<std::string, std::string>("Espagne", "Spain"))
+countries.insert(LIB::make_pair<std::string, std::string>("Maroc", "Marocco"))
+
+countries = {{Espagne => Spain}, {Italie => Italy}, {Maroc => Marocco}}
+
+numbers = {{1 => un}}
+
+numbers.insert(numbers.begin(), LIB::make_pair<int, std::string>(6, "six"))
+numbers = {{1 => un}, {6 => six}}
+
+letters = {}
+
+end_alphabet = {{x => X}, {y => Y}, {z => Z}}
+
+letters.insert(end_alphabet.begin(), end_alphabet.end())
+
+letters = {{x => X}, {y => Y}, {z => Z}}
+
+********************************************
+
+>> Test erase function
+
+numbers = {{0 => zero}, {1 => one}, {2 => two}, {3 => three}, {4 => four}}
+
+erase(numbers.begin())
+
+numbers = {{1 => one}, {2 => two}, {3 => three}, {4 => four}}
+
+erase(4)
+
+numbers = {{1 => one}, {2 => two}, {3 => three}}
+
+it = numbers.end()
+it--
+erase(first.begin(), it)
+
+numbers = {{3 => three}}
+
+********************************************
+
+>> Test clear function
+
+fruits_colors = {{banana => yellow}, {kiwi => green}, {strawberry => red}}
+
+fruits_colors.clear()
+
+fruits_colors = {}
+
+********************************************
+
+>> Test clear function
+
+ying = {{YIIIING => YIIIING}, {YING => YING}, {yiiiing => yiiiing}, {ying => ying}}
+
+yang = {{YAAAANG => YAAAANG}, {YANG => YANG}, {yaaaang => yaaaang}, {yang => yang}}
+
+ying.swap(yang)
+
+ying = {{YAAAANG => YAAAANG}, {YANG => YANG}, {yaaaang => yaaaang}, {yang => yang}}
+
+yang = {{YIIIING => YIIIING}, {YING => YING}, {yiiiing => yiiiing}, {ying => ying}}
+
+********************************************
+
+<------------ Test map observers ------------>
+
+********************************************
+
+>> test key_comp function
+
+compare = numbers.key_comp()
+
+compare(1, 5) = 1
+compare(6, 5) = 0
+
+********************************************
+
+>> test value_comp function
+
+numbers = {{1 => 1}, {2 => 2}, {3 => 3}, {4 => 4}}
+
+it = numbers.find(2)
+it_2 = numbers.find(4)
+
+numbers.value_comp()(*it, *it_2) = 1
+numbers.value_comp()(*it_2, *it) = 0
+
+********************************************
+
+<------------ Test map operations ------------>
+
+********************************************
+
+>> test find function
+
+animal_size = {{cat => 1 foot}, {elephant => 5 yards}, {mouse => 2 inches}}
+
+const_animal_size = {{cat => 1 foot}, {elephant => 5 yards}, {mouse => 2 inches}}
+
+it = animal_size.find("elephant")
+cit = animal_size.find("elephant")
+
+it->first = elephant
+it->second = 5 yards
+
+cit->first = elephant
+cit->second = 5 yards
+
+********************************************
+
+>> test count function
+
+numbers = {{1 => one}, {2 => two}, {3 => three}, {4 => four}, {5 => five}}
+
+numbers.count(4) = 1
+numbers.count(23) = 0
+
+********************************************
+
+>> test lower_bound function
+
+numbers = {{15 => fiveteen}, {20 => twenty}, {25 => twenty-five}, {30 => thirty}, {35 => thirty-five}}
+
+numbers.lower_bound(7)->first) = 15
+numbers.lower_bound(25)->first) = 25
+numbers.lower_bound(32)->first) = 35
+
+const_numbers = {{15 => fiveteen}, {20 => twenty}, {25 => twenty-five}, {30 => thirty}, {35 => thirty-five}}
+
+const_numbers.lower_bound(7)->first) = 15
+const_numbers.lower_bound(25)->first) = 25
+const_numbers.lower_bound(32)->first) = 35
+
+********************************************
+
+>> test upper_bound function
+
+numbers = {{15 => fiveteen}, {20 => twenty}, {25 => twenty-five}, {30 => thirty}, {35 => thirty-five}}
+
+numbers.upper_bound(7)->first) = 15
+numbers.upper_bound(25)->first) = 30
+numbers.upper_bound(32)->first) = 35
+
+const_numbers = {{15 => fiveteen}, {20 => twenty}, {25 => twenty-five}, {30 => thirty}, {35 => thirty-five}}
+
+const_numbers.upper_bound(7)->first) = 15
+const_numbers.upper_bound(25)->first) = 30
+const_numbers.upper_bound(32)->first) = 35
+
+********************************************
+
+>> test equal_range function
+
+numbers = {{15 => fiveteen}, {20 => twenty}, {25 => twenty-five}, {30 => thirty}, {35 => thirty-five}}
+
+ret = numbers.equal_range(15)
+(ret.first)->first = 15
+(ret.first)->first = 20
+
+ret = numbers.equal_range(16)
+(ret.first)->first = 20
+(ret.first)->first = 20
+
+const_numbers = {{15 => fiveteen}, {20 => twenty}, {25 => twenty-five}, {30 => thirty}, {35 => thirty-five}}
+
+ret = const_numbers.equal_range(15)
+(const_ret.first)->first = 15
+(const_ret.first)->first = 20
+
+const_ret = const_numbers.equal_range(16)
+(const_ret.first)->first = 20
+(const_ret.first)->first = 20
+
+********************************************
+
+<------------ Test map allocator ------------>
+
+********************************************
+
+>> test get_allocator function
+
+numbers = {}
+
+pair_ptr = numbers.get_allocator().allocate(1)
+
+pair.second = "one"
+numbers.get_allocator().construct(pair_ptr, pair)
+
+pair_ptr->second = one
+
+numbers.get_allocator().destroy(pair_ptr)
+
+numbers.get_allocator().deallocate(pair_ptr, 1)
+
+********************************************
+
+<------------ Test relational operators ------------>
+
+********************************************
+
+>> Test == operator
+
+nbrs = {{0 => 0}, {1 => 0}}
+
+nbrs2 = {{0 => 0}, {1 => 0}}
+
+(nbrs == nbrs2) = 1
+
+nbrs = {{0 => 0}, {1 => 1}}
+
+nbrs2 = {{0 => 0}, {1 => 0}}
+
+(nbrs == nbrs2) = 0
+
+********************************************
+
+>> Test != operator
+
+nbrs = {{0 => 0}, {1 => 0}}
+
+nbrs2 = {{0 => 0}, {1 => 0}}
+
+(nbrs != nbrs2) = 0
+
+nbrs = {{0 => 0}, {1 => 1}}
+
+nbrs2 = {{0 => 0}, {1 => 0}}
+
+(nbrs != nbrs2) = 1
+
+********************************************
+
+>> Test < operator
+
+nbrs = {{0 => 1}, {1 => 1}}
+
+nbrs2 = {{0 => 1}, {1 => 1}}
+
+(nbrs < nbrs2) = 0
+
+nbrs = {{0 => 1}, {1 => 0}}
+
+nbrs2 = {{0 => 1}, {1 => 1}}
+
+(nbrs < nbrs2) = 1
+
+********************************************
+
+>> Test > operator
+
+nbrs = {{0 => 0}, {1 => 0}}
+
+nbrs2 = {{0 => 0}, {1 => 0}}
+
+(nbrs > nbrs2) = 0
+
+nbrs = {{0 => 0}, {1 => 1}}
+
+nbrs2 = {{0 => 0}, {1 => 0}}
+
+(nbrs > nbrs2) = 1
+
+********************************************
+
+>> Test <= operator
+
+nbrs = {{0 => 1}, {1 => 1}}
+
+nbrs2 = {{0 => 1}, {1 => 1}}
+
+(nbrs <= nbrs2) = 1
+
+nbrs = {{0 => 1}, {1 => 0}}
+
+nbrs2 = {{0 => 1}, {1 => 1}}
+
+(nbrs <= nbrs2) = 1
+
+nbrs = {{0 => 1}, {1 => 1}}
+
+nbrs2 = {{0 => 1}, {1 => 0}}
+
+(nbrs <= nbrs2) = 0
+
+********************************************
+
+>> Test >= operator
+
+nbrs = {{0 => 1}, {1 => 1}}
+
+nbrs2 = {{0 => 1}, {1 => 1}}
+
+(nbrs >= nbrs2) = 1
+
+nbrs = {{0 => 1}, {1 => 0}}
+
+nbrs2 = {{0 => 1}, {1 => 1}}
+
+(nbrs >= nbrs2) = 0
+
+nbrs = {{0 => 1}, {1 => 1}}
+
+nbrs2 = {{0 => 1}, {1 => 0}}
+
+(nbrs >= nbrs2) = 1
+
+********************************************

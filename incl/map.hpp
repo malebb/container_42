@@ -160,19 +160,26 @@ namespace ft
 
 				if (this->node->end)
 					this->node = this->node->parent;
+	//		else if (!this->_compare(get_first_value()->first, origin_node.value->first)
+	//					&& !this->_compare(origin_node.value->first, get_first_value()->first))
 				else if (get_first_value()->first == origin_node.value->first)
 					this->node = get_last();
 				else
 				{
-				//	while (_compare(origin_node.value->first, this->node->value->first))
+				//	while (!this->_compare(this->node->value->first, origin_node.value->first))
 					while (this->node->value->first >= origin_node.value->first)
 					{
+	//					if (this->node->left &&
+	//							this->_compare(this->node->left->value->first,
+	//							origin_node.value->first))
 						if (this->node->left &&
 							(this->node->left->value->first < origin_node.value->first))
 							this->node = this->node->left;
 						else
 							this->node = this->node->parent;
 					}
+//					while (this->node->right &&
+//						this->_compare(this->node->right->value->first, origin_node.value->first))
 					while (this->node->right && (this->node->right->value->first < origin_node.value->first))
 					{
 						this->node = this->node->right;
@@ -674,7 +681,7 @@ namespace ft
 		{
 			iterator		node;
 
-			this->print();
+			//this->print();
 			node = this->find(k);
 			if (node == this->end())
 				return (0);
@@ -691,12 +698,7 @@ namespace ft
 			{
 				next_it = first;
 				++next_it;
-//				std::cout << "( " << first.node->value->first<< ")" << std::endl;
-			//	std::cout << "BEFORE" << std::endl;
-			//	this->print();
 				deletion(first);
-			//	std::cout << "AFTER, balanced = " << this->is_balanced() << std::endl;
-			//	this->print();
 				this->_size--;
 				first = next_it;
 			}
@@ -790,20 +792,19 @@ namespace ft
 		iterator			lower_bound(const key_type& k)
 		{
 			avl<value_type>		*node;
+			avl<value_type>		*prev;
 
-			node = this->_root;
 //			this->print();
+			node = this->_root;
 			while (node && !node->end)
 			{
+				prev = node;
 				if (!this->_compare(k, node->value->first)
 					 && !this->_compare(node->value->first, k))
 					return (node);
 				if (this->_compare(k, node->value->first))
 				{
-					if (node->left) //&&
-					//		(this->_compare(k, node->left->value->first)
-					//		 || (!this->_compare(k, node->left->value->first)
-					//			 && !this->_compare(node->left->value->first, k))))
+					if (node->left)
 						node = node->left;
 					else
 						return (node);
@@ -811,6 +812,8 @@ namespace ft
 				else
 					node = node->right;
 			}
+			if (!node)
+				return (++iterator(prev));
 			return (this->end());
 		}
 
@@ -1204,7 +1207,6 @@ namespace ft
 
 		bool				deletion(iterator node)
 		{
-//		this->print();
 			if (!node.node->left && (!node.node->right ||
 				(node.node->right && node.node->right->end)))
 			{
@@ -1266,9 +1268,6 @@ namespace ft
 			}
 			else
 			{
-//				std::cout << "BALANCE TWO CHILD ( " << node->first
-//					<< ")" << std::endl;
-				// two childs
 				iterator		next;
 
 				next = node;
@@ -1281,22 +1280,18 @@ namespace ft
 					else
 						node.node->parent->right = next.node;
 				}
-				next.node->parent = node.node->parent;
 				next.node->left = node.node->left;
 				if (node.node->right != next.node)
 				{
+					next.node->parent->left = next.node->right;
 					node.node->right->parent = next.node;
-					node.node->right->left = next.node->right;
 					next.node->right = node.node->right;
 				}
+				next.node->parent = node.node->parent;
 				node.node->left->parent = next.node;
 				if (!node.node->parent)
 					this->_root = next.node;
-//				std::cout << "BEFORE BALANCE" << std::endl;
-//				this->print();
 				this->balance_deletion(next.node);
-//				std::cout << "AFTER BALANCE" << std::endl;
-			//	this->print();
 			}
 			delete_node(node.node);
 			return (true);
