@@ -160,27 +160,22 @@ namespace ft
 
 				if (this->node->end)
 					this->node = this->node->parent;
-	//		else if (!this->_compare(get_first_value()->first, origin_node.value->first)
-	//					&& !this->_compare(origin_node.value->first, get_first_value()->first))
-				else if (get_first_value()->first == origin_node.value->first)
+				else if (!this->_compare(get_first_value()->first, origin_node.value->first)
+						&& !this->_compare(origin_node.value->first, get_first_value()->first))
 					this->node = get_last();
 				else
 				{
-				//	while (!this->_compare(this->node->value->first, origin_node.value->first))
-					while (this->node->value->first >= origin_node.value->first)
+					while (!this->_compare(this->node->value->first, origin_node.value->first))
 					{
-	//					if (this->node->left &&
-	//							this->_compare(this->node->left->value->first,
-	//							origin_node.value->first))
 						if (this->node->left &&
-							(this->node->left->value->first < origin_node.value->first))
+								this->_compare(this->node->left->value->first,
+								origin_node.value->first))
 							this->node = this->node->left;
 						else
 							this->node = this->node->parent;
 					}
-//					while (this->node->right &&
-//						this->_compare(this->node->right->value->first, origin_node.value->first))
-					while (this->node->right && (this->node->right->value->first < origin_node.value->first))
+					while (this->node->right &&
+						this->_compare(this->node->right->value->first, origin_node.value->first))
 					{
 						this->node = this->node->right;
 					}
@@ -354,20 +349,22 @@ namespace ft
 
 				if (this->node->end)
 					this->node = this->node->parent;
-				else if (get_first_value()->first == origin_node.value->first)
+				else if (!this->_compare(get_first_value()->first, origin_node.value->first)
+						&& !this->_compare(origin_node.value->first, get_first_value()->first))
 					this->node = get_last();
 				else
 				{
-				//	while (_compare(origin_node.value->first, this->node->value->first))
-					while (this->node->value->first >= origin_node.value->first)
+					while (!this->_compare(this->node->value->first, origin_node.value->first))
 					{
 						if (this->node->left &&
-							(this->node->left->value->first < origin_node.value->first))
+								this->_compare(this->node->left->value->first,
+								origin_node.value->first))
 							this->node = this->node->left;
 						else
 							this->node = this->node->parent;
 					}
-					while (this->node->right && (this->node->right->value->first < origin_node.value->first))
+					while (this->node->right &&
+						this->_compare(this->node->right->value->first, origin_node.value->first))
 					{
 						this->node = this->node->right;
 					}
@@ -644,8 +641,8 @@ namespace ft
 
 			next_to_position = position;
 			next_to_position++;
-			if (!position.node->end && position->first < val.first && (next_to_position.node->end
-						|| next_to_position->first > val.first))
+			if (!position.node->end && this->_compare(position->first, val.first) && (next_to_position.node->end
+				|| this->_compare(val.first, next_to_position->first)))
 			{
 				new_node = this->create_node(val);
 				old_node = position.node->right;
@@ -794,7 +791,6 @@ namespace ft
 			avl<value_type>		*node;
 			avl<value_type>		*prev;
 
-//			this->print();
 			node = this->_root;
 			while (node && !node->end)
 			{
@@ -1063,7 +1059,10 @@ namespace ft
 
 		void		balance_left_cases(avl<value_type> *last_inserted, avl<value_type> *first_unbalanced)
 		{
-			if (last_inserted->value->first <= first_unbalanced->left->value->first)
+			if (this->_compare(last_inserted->value->first, first_unbalanced->left->value->first) ||
+					(!this->_compare(last_inserted->value->first, first_unbalanced->left->value->first)
+					 && !this->_compare(first_unbalanced->left->value->first, last_inserted->value->first)))
+//			if (last_inserted->value->first <= first_unbalanced->left->value->first)
 			{
 				// left left case
 				right_rotate(first_unbalanced);
@@ -1078,7 +1077,9 @@ namespace ft
 
 		void		balance_right_cases(avl<value_type> *last_inserted, avl<value_type> *first_unbalanced)
 		{
-			if (last_inserted->value->first <= first_unbalanced->right->value->first)
+			if (this->_compare(last_inserted->value->first, first_unbalanced->right->value->first) ||
+					(!this->_compare(last_inserted->value->first, first_unbalanced->right->value->first)
+					 && !this->_compare(first_unbalanced->right->value->first, last_inserted->value->first)))
 			{
 				// right left case
 				right_rotate(first_unbalanced->right);
@@ -1100,7 +1101,9 @@ namespace ft
 			{
 				if (abs(get_height(first_unbalanced->left, 0, 0) - get_height(first_unbalanced->right, 0, 0)) >= 2)
 				{
-					if (last_inserted->value->first <= first_unbalanced->value->first)
+					if (this->_compare(last_inserted->value->first, first_unbalanced->value->first) ||
+						(!this->_compare(last_inserted->value->first, first_unbalanced->value->first)
+						&& !this->_compare(first_unbalanced->value->first, last_inserted->value->first)))
 						balance_left_cases(last_inserted, first_unbalanced);
 					else
 					{
@@ -1183,7 +1186,8 @@ namespace ft
 				balance(*tree);
 				return (ret);
 			}
-			else if ((*tree)->value->first == node_value.first)
+			else if (!this->_compare((*tree)->value->first, node_value.first)
+					&& !this->_compare(node_value.first, (*tree)->value->first))
 			{
 				ret.first = iterator(*tree);
 				ret.second = false;
