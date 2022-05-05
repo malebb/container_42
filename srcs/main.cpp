@@ -45,6 +45,11 @@ int	main(void)
 	test_stack();
 	test_vector();
 	test_map();
+	LIB::vector<int>		nbrs;
+
+	for (int i = 0; i < 5000000; i++)
+		nbrs.push_back(8);
+
 	std::cout << "execution terminated after " << get_prog_time(first_time) << "ms" << std::endl;
 //	ft::map<int, int>		nbrs;
 
