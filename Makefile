@@ -35,7 +35,7 @@ OBJS_STL = ${SRCS:${DIR_SRCS}%.cpp=${DIR_STL}%.o}
 DEP_FT = ${OBJS_FT:.o=.d}
 DEP_STL = ${OBJS_STL:.o=.d}
 
-CC = clang++
+CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -I ./incl/
 

@@ -5,7 +5,6 @@
 
 namespace ft
 {
-
 	template <class T, class Container = ft::vector<T> >
 	class stack
 	{
@@ -109,8 +108,6 @@ namespace ft
 
 			container_type		_array;
 	};
-
-
 }
 
 #endif

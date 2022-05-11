@@ -25,7 +25,7 @@ long long int	get_time_ms()
 	struct timeval		tv;
 
 	gettimeofday(&tv, NULL);
-	return (tv.tv_sec / 1000 + tv.tv_usec * 1000);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
 long long int get_prog_time(long long int first_time)
@@ -45,21 +45,8 @@ int	main(void)
 	test_stack();
 	test_vector();
 	test_map();
-	LIB::vector<int>		nbrs;
-
-	for (int i = 0; i < 5000000; i++)
-		nbrs.push_back(8);
 
 	std::cout << "execution terminated after " << get_prog_time(first_time) << "ms" << std::endl;
-//	ft::map<int, int>		nbrs;
-
-//	nbrs[15] = 15;
-//	nbrs[20] = 20;
-//	nbrs[25] = 25;
-//	nbrs[30] = 30;
-//	nbrs[35] = 35;
-
-//	std::cout << "value = " << nbrs.lower_bound(16)->first << std::endl;
 	return (0);
 }
 

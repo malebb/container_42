@@ -327,7 +327,7 @@ namespace ft
 			pointer		_it;
 	};
 
-	//non-member function const_vector_iterator
+	// non-member function const_vector_iterator
 
 	template<class T>
 	const_vector_iterator<T>			operator+(

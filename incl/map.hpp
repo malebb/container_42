@@ -2,6 +2,7 @@
 #define MAP_HPP
 
 #include <memory>
+#include <iostream>
 #include <stdlib.h>
 
 #include "functional.hpp"
@@ -9,8 +10,6 @@
 #include "iterator.hpp"
 #include "reverse_iterator.hpp"
 #include "compare.hpp"
-
-#include <iostream>
 
 namespace ft
 {
@@ -915,8 +914,9 @@ namespace ft
 		{
 			return (this->_alloc);
 		}
-		
-		// others
+/*
+ 
+// 		Functions useful to debug
 
 		avl<value_type>		*get_tree()
 		{
@@ -968,6 +968,7 @@ namespace ft
 			browse_tree(node->right, 'r', depth + 1);
 			browse_tree(node->left, 'l', depth + 1);
 		}
+	*/
 
 	private :
 
@@ -1062,7 +1063,6 @@ namespace ft
 			if (this->_compare(last_inserted->value->first, first_unbalanced->left->value->first) ||
 					(!this->_compare(last_inserted->value->first, first_unbalanced->left->value->first)
 					 && !this->_compare(first_unbalanced->left->value->first, last_inserted->value->first)))
-//			if (last_inserted->value->first <= first_unbalanced->left->value->first)
 			{
 				// left left case
 				right_rotate(first_unbalanced);
@@ -1301,6 +1301,7 @@ namespace ft
 			return (true);
 		}
 	};
+
 	template< class Key, class T, class Compare, class Alloc >
 	bool operator==( const ft::map<Key,T,Compare,Alloc>& lhs,
 		const ft::map<Key,T,Compare,Alloc>& rhs )
@@ -1310,6 +1311,7 @@ namespace ft
 					&& !ft::lexicographical_compare(rhs.begin(), rhs.end(), 
 						lhs.begin(), lhs.end())));
 	}
+
 	template< class Key, class T, class Compare, class Alloc >
 	bool operator!=( const ft::map<Key,T,Compare,Alloc>& lhs,
 		const ft::map<Key,T,Compare,Alloc>& rhs )
@@ -1324,7 +1326,6 @@ namespace ft
 		return (ft::lexicographical_compare(lhs.begin(), lhs.end(),
 					rhs.begin(), rhs.end()));
 	}
-
 
 	template< class Key, class T, class Compare, class Alloc >
 	bool operator>( const ft::map<Key,T,Compare,Alloc>& lhs,
