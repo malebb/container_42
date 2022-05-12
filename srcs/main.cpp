@@ -47,6 +47,10 @@ int	main(void)
 	test_map();
 
 	std::cout << "execution terminated after " << get_prog_time(first_time) << "ms" << std::endl;
+	ft::stack<int> stack_1;
+	ft::stack<int> stack_2;
+	(void) stack_1;
+	(void) stack_2;
 	return (0);
 }
 
