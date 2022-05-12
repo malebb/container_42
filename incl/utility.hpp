@@ -16,7 +16,11 @@ namespace ft
 
 		pair() : first(), second() {}
 
-		template <class U, class V>
+		pair(const pair& pr) : first(pr.first), second(pr.second)
+		{
+		}
+
+		template <typename U, typename V>
 		pair(const pair<U, V>& pr) : first(pr.first), second(pr.second)
 		{
 		}
@@ -31,7 +35,6 @@ namespace ft
 			this->second = pr.second;
 			return (*this);
 		}
-
 	};
 
 	template <class U1, class U2>
