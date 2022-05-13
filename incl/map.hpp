@@ -694,7 +694,9 @@ namespace ft
 			{
 				next_it = first;
 				++next_it;
+				//std::cout << "size = " << this->_size << std::endl;
 				deletion(first);
+				//std::cout << "size = " << this->_size << std::endl;
 				this->_size--;
 				first = next_it;
 			}
@@ -1147,13 +1149,17 @@ namespace ft
 		void		balance_deletion(avl<value_type> *deleted_substitute)
 		{
 			avl<value_type>		*first_unbalanced;
+			int					size_difference;
 
 			first_unbalanced = deleted_substitute;
 			while (first_unbalanced != NULL)
 			{
-				if (abs(get_height(first_unbalanced->left, 0, 0) - get_height(first_unbalanced->right, 0, 0)) >= 2)
+				size_difference = get_height(first_unbalanced->left, 0, 0) - get_height(first_unbalanced->right, 0, 0);
+//				if (abs(get_height(first_unbalanced->left, 0, 0) - get_height(first_unbalanced->right, 0, 0)) >= 2)
+				if (size_difference <= -2 || size_difference >= 2)
 				{
-					if (get_height(first_unbalanced->left, 0, 0) > get_height(first_unbalanced->right, 0, 0))
+					if (size_difference >= 2)
+//					if (get_height(first_unbalanced->left, 0, 0) > get_height(first_unbalanced->right, 0, 0))
 						balance_left_cases_deletion(first_unbalanced);
 					else
 						balance_right_cases_deletion(first_unbalanced);
