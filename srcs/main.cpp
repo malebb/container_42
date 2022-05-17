@@ -46,12 +46,12 @@ int	main(void)
 	test_vector();
 	test_map();
 
-//	ft::map<int, int>			mp;
+	ft::map<int, int>			mp;
 
-//	for (int i = 0; i < 10000; i++)
-//	{
-//		mp[i] = i;
-//	}
+	for (int i = 0; i < 100000; i++)
+	{
+		mp[i] = i;
+	}
 //	mp.clear();
 	std::cout << "execution terminated after " << get_prog_time(first_time) << "ms" << std::endl;
 
