@@ -997,8 +997,23 @@ namespace ft
 			return (new_node);
 		}
 
-		int		get_height(avl<value_type> *node, int current_height, int max_height) const
+		int		get_height(avl<value_type> *node) const
 		{
+			int right_height;
+			int left_height;
+
+			if (!node || node->end)
+				return (0);
+			left_height = get_height(node->left);
+			right_height = get_height(node->right);
+			
+			if (left_height > right_height)
+			{
+				return (left_height + 1);
+			}
+			else
+				return (right_height + 1);
+			/*
 			if (current_height > max_height)
 				max_height = current_height;
 			if (!node || (node && node->end))
@@ -1007,7 +1022,8 @@ namespace ft
 			max_height = get_height(node->left, current_height, max_height);
 			max_height = get_height(node->right, current_height, max_height);
 			current_height--;
-			return (max_height);
+			*/
+//			if ()
 		}
 
 		void		right_rotate(avl<value_type> *y)
@@ -1097,11 +1113,12 @@ namespace ft
 		void		balance(avl<value_type> *last_inserted)
 		{
 			avl<value_type>		*first_unbalanced;
+			int					*heights = new int[2];
 
 			first_unbalanced = last_inserted;
 			while (first_unbalanced != NULL)
 			{
-				if (abs(get_height(first_unbalanced->left, 0, 0) - get_height(first_unbalanced->right, 0, 0)) >= 2)
+				if (abs(get_height(first_unbalanced->left) - get_height(first_unbalanced->right)) >= 2)
 				{
 					if (this->_compare(last_inserted->value->first, first_unbalanced->value->first) ||
 						(!this->_compare(last_inserted->value->first, first_unbalanced->value->first)
@@ -1115,11 +1132,12 @@ namespace ft
 				}
 				first_unbalanced = first_unbalanced->parent;
 			}
+			delete [] heights;
 		}
 
 		void		balance_left_cases_deletion(avl<value_type> *first_unbalanced)
 		{
-			if (get_height(first_unbalanced->left->left, 0, 0) >= get_height(first_unbalanced->left->right, 0, 0))
+			if (get_height(first_unbalanced->left->left) >= get_height(first_unbalanced->left->right))
 			{
 				// left left case
 				right_rotate(first_unbalanced);
@@ -1134,7 +1152,7 @@ namespace ft
 
 		void		balance_right_cases_deletion(avl<value_type> *first_unbalanced)
 		{
-			if (get_height(first_unbalanced->right->left, 0, 0) >= get_height(first_unbalanced->right->right, 0, 0))
+			if (get_height(first_unbalanced->right->left) >= get_height(first_unbalanced->right->right))
 			{
 				// right left case
 				right_rotate(first_unbalanced->right);
@@ -1146,6 +1164,7 @@ namespace ft
 				left_rotate(first_unbalanced);
 			}
 		}
+
 		void		balance_deletion(avl<value_type> *deleted_substitute)
 		{
 			avl<value_type>		*first_unbalanced;
@@ -1154,7 +1173,7 @@ namespace ft
 			first_unbalanced = deleted_substitute;
 			while (first_unbalanced != NULL)
 			{
-				size_difference = get_height(first_unbalanced->left, 0, 0) - get_height(first_unbalanced->right, 0, 0);
+				size_difference = get_height(first_unbalanced->left) - get_height(first_unbalanced->right);
 //				if (abs(get_height(first_unbalanced->left, 0, 0) - get_height(first_unbalanced->right, 0, 0)) >= 2)
 				if (size_difference <= -2 || size_difference >= 2)
 				{
