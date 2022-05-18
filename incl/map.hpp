@@ -985,35 +985,11 @@ namespace ft
 
 		// binary tree function
 
-		avl<value_type>				*create_node(value_type node_value)
+		int			get_height(avl<value_type> *node)
 		{
-			avl<value_type>			*new_node;
-			value_type				*node_value_ptr;
-
-			node_value_ptr = this->_alloc.allocate(1);
-			this->_alloc.construct(node_value_ptr, node_value);
-
-			new_node = this->_alloc_avl.allocate(1);
-			this->_alloc_avl.construct(new_node, node_value_ptr);
-			return (new_node);
-		}
-
-		int		get_height(avl<value_type> *node) const
-		{
-			int right_height;
-			int left_height;
-
-			if (!node || node->end)
+			if (!node)
 				return (0);
-			left_height = get_height(node->left);
-			right_height = get_height(node->right);
-			
-			if (left_height > right_height)
-			{
-				return (left_height + 1);
-			}
-			else
-				return (right_height + 1);
+			return (node->height);
 		}
 
 		int			max_height(avl<value_type> *first, avl<value_type> *second)
@@ -1141,15 +1117,15 @@ namespace ft
 		void		balance(avl<value_type> *last_inserted)
 		{
 			avl<value_type>		*first_unbalanced;
+			int					size_difference;
 
 			first_unbalanced = last_inserted;
 			while (first_unbalanced != NULL)
 			{
-				if (abs(get_height(first_unbalanced->left) - get_height(first_unbalanced->right)) >= 2)
+				size_difference = get_height(first_unbalanced->left) - get_height(first_unbalanced->right);
+				if (size_difference <= -2 || size_difference >= 2)
 				{
-					if (this->_compare(last_inserted->value->first, first_unbalanced->value->first) ||
-						(!this->_compare(last_inserted->value->first, first_unbalanced->value->first)
-						&& !this->_compare(first_unbalanced->value->first, last_inserted->value->first)))
+					if (size_difference >= 2)
 						balance_left_cases(last_inserted, first_unbalanced);
 					else
 						balance_right_cases(last_inserted, first_unbalanced);
@@ -1161,19 +1137,9 @@ namespace ft
 
 		void		balance_left_cases_deletion(avl<value_type> *first_unbalanced)
 		{
-			int					left_right_height;
-			int					left_left_height;
 			avl<value_type>		*subtree_root;
 
-			if (!first_unbalanced->left->right)
-				left_right_height = 0;
-			else
-				left_right_height = first_unbalanced->left->right->height;
-			if (!first_unbalanced->left->left)
-				left_left_height = 0;
-			else
-				left_left_height = first_unbalanced->left->left->height;
-			if (left_left_height >= left_right_height)
+			if (get_height(first_unbalanced->left->left) >= get_height(first_unbalanced->left->right))
 			{
 				// left left case
 				subtree_root = first_unbalanced->left;
@@ -1193,19 +1159,8 @@ namespace ft
 		void		balance_right_cases_deletion(avl<value_type> *first_unbalanced)
 		{
 			avl<value_type>		*subtree_root;
-			int					right_left_height;
-			int					right_right_height;
 
-			if (!first_unbalanced->right->left)
-				right_left_height = 0;
-			else
-				right_left_height = first_unbalanced->right->left->height;
-			if (!first_unbalanced->right->right)
-				right_right_height = 0;
-			else
-				right_right_height = first_unbalanced->right->right->height;
-
-			if (right_left_height >= right_right_height)
+			if (get_height(first_unbalanced->right->left) >= get_height(first_unbalanced->right->right))
 			{
 				// right left case
 				subtree_root = first_unbalanced->right->left;
@@ -1230,14 +1185,7 @@ namespace ft
 			first_unbalanced = deleted_substitute;
 			while (first_unbalanced != NULL)
 			{
-				if (!first_unbalanced->left && !first_unbalanced->right)
-					size_difference = 0;
-				else if  (!first_unbalanced->left)
-					size_difference = 0 - first_unbalanced->right->height;
-				else if (!first_unbalanced->right)
-					size_difference = first_unbalanced->left->height;
-				else
-					size_difference = first_unbalanced->left->height - first_unbalanced->right->height;
+				size_difference = get_height(first_unbalanced->left) - get_height(first_unbalanced->right);
 				if (size_difference <= -2 || size_difference >= 2)
 				{
 					if (size_difference >= 2)
@@ -1306,6 +1254,19 @@ namespace ft
 				prev_node = node;
 				node = node->parent;
 			}
+		}
+
+		avl<value_type>				*create_node(value_type node_value)
+		{
+			avl<value_type>			*new_node;
+			value_type				*node_value_ptr;
+
+			node_value_ptr = this->_alloc.allocate(1);
+			this->_alloc.construct(node_value_ptr, node_value);
+
+			new_node = this->_alloc_avl.allocate(1);
+			this->_alloc_avl.construct(new_node, node_value_ptr);
+			return (new_node);
 		}
 
 		ft::pair<iterator, bool>		insertion(avl<value_type> **tree, value_type node_value, avl<value_type> *parent)
