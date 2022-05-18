@@ -679,7 +679,6 @@ namespace ft
 		{
 			iterator		node;
 
-			//this->print();
 			node = this->find(k);
 			if (node == this->end())
 				return (0);
@@ -1015,17 +1014,6 @@ namespace ft
 			}
 			else
 				return (right_height + 1);
-			/*
-			if (current_height > max_height)
-				max_height = current_height;
-			if (!node || (node && node->end))
-				return (max_height);
-			current_height++;
-			max_height = get_height(node->left, current_height, max_height);
-			max_height = get_height(node->right, current_height, max_height);
-			current_height--;
-			*/
-//			if ()
 		}
 
 		int			max_height(avl<value_type> *first, avl<value_type> *second)
@@ -1153,7 +1141,6 @@ namespace ft
 		void		balance(avl<value_type> *last_inserted)
 		{
 			avl<value_type>		*first_unbalanced;
-			int					*heights = new int[2];
 
 			first_unbalanced = last_inserted;
 			while (first_unbalanced != NULL)
@@ -1165,43 +1152,73 @@ namespace ft
 						&& !this->_compare(first_unbalanced->value->first, last_inserted->value->first)))
 						balance_left_cases(last_inserted, first_unbalanced);
 					else
-					{
 						balance_right_cases(last_inserted, first_unbalanced);
-					}
 					break ;
 				}
 				first_unbalanced = first_unbalanced->parent;
 			}
-			delete [] heights;
 		}
 
 		void		balance_left_cases_deletion(avl<value_type> *first_unbalanced)
 		{
-			if (get_height(first_unbalanced->left->left) >= get_height(first_unbalanced->left->right))
+			int					left_right_height;
+			int					left_left_height;
+			avl<value_type>		*subtree_root;
+
+			if (!first_unbalanced->left->right)
+				left_right_height = 0;
+			else
+				left_right_height = first_unbalanced->left->right->height;
+			if (!first_unbalanced->left->left)
+				left_left_height = 0;
+			else
+				left_left_height = first_unbalanced->left->left->height;
+			if (left_left_height >= left_right_height)
 			{
 				// left left case
+				subtree_root = first_unbalanced->left;
 				right_rotate(first_unbalanced);
+				update_height_after_balance(subtree_root);
 			}
 			else
 			{
 				// left right case
+				subtree_root = first_unbalanced->left->right;
 				left_rotate(first_unbalanced->left);
 				right_rotate(first_unbalanced);
+				update_height_after_balance(subtree_root);
 			}
 		}
 
 		void		balance_right_cases_deletion(avl<value_type> *first_unbalanced)
 		{
-			if (get_height(first_unbalanced->right->left) >= get_height(first_unbalanced->right->right))
+			avl<value_type>		*subtree_root;
+			int					right_left_height;
+			int					right_right_height;
+
+			if (!first_unbalanced->right->left)
+				right_left_height = 0;
+			else
+				right_left_height = first_unbalanced->right->left->height;
+			if (!first_unbalanced->right->right)
+				right_right_height = 0;
+			else
+				right_right_height = first_unbalanced->right->right->height;
+
+			if (right_left_height >= right_right_height)
 			{
 				// right left case
+				subtree_root = first_unbalanced->right->left;
 				right_rotate(first_unbalanced->right);
 				left_rotate(first_unbalanced);
+				update_height_after_balance(subtree_root);
 			}
 			else
 			{
 				// right right case
+				subtree_root = first_unbalanced->right;
 				left_rotate(first_unbalanced);
+				update_height_after_balance(subtree_root);
 			}
 		}
 
@@ -1213,12 +1230,17 @@ namespace ft
 			first_unbalanced = deleted_substitute;
 			while (first_unbalanced != NULL)
 			{
-				size_difference = get_height(first_unbalanced->left) - get_height(first_unbalanced->right);
-//				if (abs(get_height(first_unbalanced->left, 0, 0) - get_height(first_unbalanced->right, 0, 0)) >= 2)
+				if (!first_unbalanced->left && !first_unbalanced->right)
+					size_difference = 0;
+				else if  (!first_unbalanced->left)
+					size_difference = 0 - first_unbalanced->right->height;
+				else if (!first_unbalanced->right)
+					size_difference = first_unbalanced->left->height;
+				else
+					size_difference = first_unbalanced->left->height - first_unbalanced->right->height;
 				if (size_difference <= -2 || size_difference >= 2)
 				{
 					if (size_difference >= 2)
-//					if (get_height(first_unbalanced->left, 0, 0) > get_height(first_unbalanced->right, 0, 0))
 						balance_left_cases_deletion(first_unbalanced);
 					else
 						balance_right_cases_deletion(first_unbalanced);
@@ -1249,6 +1271,7 @@ namespace ft
 		{
 			int		child_height;
 			avl<value_type>		*prev_node;
+
 			if (node)
 			{
 				child_height = node->height;
@@ -1307,7 +1330,6 @@ namespace ft
 				ret.first = iterator(*tree);
 				ret.second = true;
 				balance(*tree);
-				this->print();
 				return (ret);
 			}
 			else if (!this->_compare((*tree)->value->first, node_value.first)
@@ -1354,6 +1376,7 @@ namespace ft
 						else
 							node.node->parent->right = NULL;
 					}
+					update_height_after_balance(node.node->parent);
 					balance_deletion(node.node->parent);
 				}
 				else
@@ -1375,6 +1398,7 @@ namespace ft
 				node.node->left->right = node.node->right;
 				if (!node.node->parent)
 					this->_root = node.node->left;
+				update_height_after_balance(node.node->left);
 				this->balance_deletion(node.node->left);
 			}
 			else if (node.node->right && (!node.node->left
@@ -1392,6 +1416,7 @@ namespace ft
 				node.node->right->parent = node.node->parent;
 				if (!node.node->parent)
 					this->_root = node.node->right;
+				update_height_after_balance(node.node->right);
 				this->balance_deletion(node.node->right);
 			}
 			else
@@ -1419,6 +1444,7 @@ namespace ft
 				node.node->left->parent = next.node;
 				if (!node.node->parent)
 					this->_root = next.node;
+				update_height_after_balance(next.node);
 				this->balance_deletion(next.node);
 			}
 			delete_node(node.node);

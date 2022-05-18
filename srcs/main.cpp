@@ -40,21 +40,15 @@ int	main(void)
 	std::cout << std::endl;
 	std::cout << "[------------ TEST FT CONTAINER ------------]" << std::endl;
 	std::cout << std::endl;
+
 	first_time = get_time_ms();
-//	test_stack();
-//	test_vector();
-//	test_map();
 
-	ft::map<int, int>			mp; 
+	test_stack();
+	test_vector();
+	test_map();
 
-//	mp.erase(mp.begin(), --(--(--mp.end())));
-//	display_map("mp", mp);
-
-//	mp.clear();
 	std::cout << "execution terminated after " << get_prog_time(first_time) << "ms" << std::endl;
 
-//	std::cout << "mp.end() - 1 " << (--it)->first << std::endl;
-//	std::cout << "mp.end() - 1 " << (--it)->first << std::endl;
 	return (0);
 }
 
