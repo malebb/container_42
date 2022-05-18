@@ -44,7 +44,7 @@ NAME2 = stl_containers
 RM	= rm -rf
 
 .PHONY:		all
-all:		${NAME} ${NAME2}
+all:		${NAME} #${NAME2}
 
 $(NAME):	${OBJS_FT}
 			${CC} ${OBJS_FT} -o ${NAME}

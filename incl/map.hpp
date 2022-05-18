@@ -20,7 +20,7 @@ namespace ft
 
 			avl() : right(NULL), left(NULL), parent(NULL), end(false) {}
 			avl(T* value) : value(value), right(NULL), left(NULL),
-				parent(NULL), end(false)
+				parent(NULL), height(1), end(false)
 			{
 			}
 
@@ -35,6 +35,7 @@ namespace ft
 				this->right = rhs.right;
 				this->left = rhs.left;
 				this->parent = rhs.parent;
+				this->height = rhs.height;
 				this->end = rhs.end;
 				return (*this);
 			}
@@ -43,6 +44,7 @@ namespace ft
 			avl			*right;
 			avl			*left;
 			avl			*parent;
+			int			height;
 			bool		end;
 	};
 
@@ -297,7 +299,7 @@ namespace ft
 				return (this->node->value);
 			}
 
-			reference		&operator*() const
+			reference		operator*() const
 			{
 				return (*(this->node->value));
 			}
@@ -943,6 +945,7 @@ namespace ft
 			return (true);
 		}
 
+	*/
 		void		print(void) const
 		{
 			browse_tree(this->_root, 'R', 0);
@@ -966,11 +969,10 @@ namespace ft
 				else if (i % 5 == 0)
 					std::cout << "\033[1;35m> \033[0m";
 			}
-			std::cout << floor << ": " << node->value->first << std::endl;
+			std::cout << floor << ": " << node->value->first << " " << node->height << std::endl;
 			browse_tree(node->right, 'r', depth + 1);
 			browse_tree(node->left, 'l', depth + 1);
 		}
-	*/
 
 	private :
 
@@ -1026,6 +1028,26 @@ namespace ft
 //			if ()
 		}
 
+		int			max_height(avl<value_type> *first, avl<value_type> *second)
+		{
+			int		first_height;
+			int		second_height;
+
+			if (!first || first->end)
+				first_height = 0;
+			else
+				first_height = first->height;
+			if (!second || second->end)
+				second_height = 0;
+			else
+				second_height = second->height;
+
+			if (first_height > second_height)
+				return (first_height);
+			else
+				return (second_height);
+		}
+
 		void		right_rotate(avl<value_type> *y)
 		{
 			avl<value_type>		*y_parent;
@@ -1033,6 +1055,8 @@ namespace ft
 
 			y_parent = y->parent;
 			x = y->left;
+			y->height = max_height(y->right, x->right) + 1;
+			x->height = max_height(y, x->left) + 1;
 
 			y->parent = x;
 			y->left = x->right;
@@ -1059,6 +1083,10 @@ namespace ft
 			x_parent = x->parent;
 			y = x->right;
 
+			// update height
+			x->height = max_height(x->left, y->left) + 1;
+			y->height = max_height(x, y->right) + 1;
+
 			x->parent = y;
 			x->right = y->left;
 			if (y->left)
@@ -1078,35 +1106,47 @@ namespace ft
 
 		void		balance_left_cases(avl<value_type> *last_inserted, avl<value_type> *first_unbalanced)
 		{
+			avl<value_type>		*subtree_root;
+
 			if (this->_compare(last_inserted->value->first, first_unbalanced->left->value->first) ||
 					(!this->_compare(last_inserted->value->first, first_unbalanced->left->value->first)
 					 && !this->_compare(first_unbalanced->left->value->first, last_inserted->value->first)))
 			{
 				// left left case
+				subtree_root = first_unbalanced->left;
 				right_rotate(first_unbalanced);
+				update_height_after_balance(subtree_root);
 			}
 			else
 			{
 				// left right case
+				subtree_root = first_unbalanced->left->right;
 				left_rotate(first_unbalanced->left);
 				right_rotate(first_unbalanced);
+				update_height_after_balance(subtree_root);
 			}
 		}
 
 		void		balance_right_cases(avl<value_type> *last_inserted, avl<value_type> *first_unbalanced)
 		{
+			avl<value_type>		*subtree_root;
+
 			if (this->_compare(last_inserted->value->first, first_unbalanced->right->value->first) ||
 					(!this->_compare(last_inserted->value->first, first_unbalanced->right->value->first)
 					 && !this->_compare(first_unbalanced->right->value->first, last_inserted->value->first)))
 			{
 				// right left case
+				subtree_root = first_unbalanced->right->left;
 				right_rotate(first_unbalanced->right);
 				left_rotate(first_unbalanced);
+				update_height_after_balance(subtree_root);
 			}
 			else
 			{
 				// right right case
+				subtree_root = first_unbalanced->right;
 				left_rotate(first_unbalanced);
+				update_height_after_balance(subtree_root);
 			}
 		}
 
@@ -1188,6 +1228,63 @@ namespace ft
 			}
 		}
 
+		void	update_height_after_insertion(avl<value_type> *node)
+		{
+			int		child_height;
+
+			child_height = node->height;
+			node = node->parent;
+			while (node)
+			{
+				if (node->height <= child_height)
+					node->height = child_height + 1;
+				else
+					break ;
+				child_height = node->height;
+				node = node->parent;
+			}
+		}
+
+		void	update_height_after_balance(avl<value_type> *node)
+		{
+			int		child_height;
+			avl<value_type>		*prev_node;
+			if (node)
+			{
+				child_height = node->height;
+				prev_node = node;
+				node = node->parent;
+			}
+			while (node)
+			{
+				if (this->_compare(node->value->first, prev_node->value->first))
+				{
+					if (node->left && node->left->height != node->height - 1)
+					{
+						if (node->height != child_height + 1)
+						{
+							node->height = child_height + 1;
+						}
+						else
+							break ;
+					}
+				}
+				else
+				{
+					if (node->right && node->right->height != node->height - 1)
+					{
+						if (node->height != child_height + 1)
+							node->height = child_height + 1;
+						else
+							break ;
+					}
+				}
+				child_height = node->height;
+				prev_node = node;
+				node = node->parent;
+			}
+		}
+
 		ft::pair<iterator, bool>		insertion(avl<value_type> **tree, value_type node_value, avl<value_type> *parent)
 		{
 			bool							end_node;
@@ -1201,6 +1298,7 @@ namespace ft
 					end_node = false;
 				(*tree) = this->create_node(node_value);
 				(*tree)->parent = parent;
+				update_height_after_insertion(*tree);
 				if (end_node)
 				{
 					(*tree)->right = this->_end_node;
@@ -1209,6 +1307,7 @@ namespace ft
 				ret.first = iterator(*tree);
 				ret.second = true;
 				balance(*tree);
+				this->print();
 				return (ret);
 			}
 			else if (!this->_compare((*tree)->value->first, node_value.first)
