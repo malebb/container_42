@@ -47,9 +47,10 @@ int	main(void)
 
 	ft::map<int, int>			mp; 
 
-	mp.clear();
 //	mp.erase(mp.begin(), --(--(--mp.end())));
 //	display_map("mp", mp);
+
+//	mp.clear();
 	std::cout << "execution terminated after " << get_prog_time(first_time) << "ms" << std::endl;
 
 //	std::cout << "mp.end() - 1 " << (--it)->first << std::endl;
