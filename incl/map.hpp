@@ -261,7 +261,6 @@ namespace ft
 
 			const_map_iterator&		operator=(map_iterator<Key, T, Compare>const & rhs)
 			{
-				(void)rhs;
 				this->node = rhs.node;
 				return (*this);
 			}
@@ -1447,6 +1446,7 @@ namespace ft
 	{
 		return (!(lhs < rhs));
 	}
+
 
 	friend void	swap(map &x, map &y)
 	{

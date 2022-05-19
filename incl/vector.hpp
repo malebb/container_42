@@ -16,6 +16,7 @@ namespace ft
 {
 	template <typename T>
 	class const_vector_iterator;
+
 	template <typename T>
 	class vector_iterator : public ft::iterator<ft::random_access_iterator_tag, T>
 	{
@@ -192,14 +193,12 @@ namespace ft
 			{
 			}
 
-			const_vector_iterator(vector_iterator<T> rhs)
+			const_vector_iterator(vector_iterator<T> const &rhs) : _it(rhs._it)
 			{
-				*this = rhs;
 			}
 
-			const_vector_iterator(const_vector_iterator const & rhs)
+			const_vector_iterator(const_vector_iterator const & rhs) : _it(rhs._it)
 			{
-				*this = rhs;
 			}
 
 			// assignment operators
@@ -504,7 +503,9 @@ namespace ft
 						_alloc.destroy(this->_array + i);
 					}
 					if (this->capacity())
+					{
 						_alloc.deallocate(this->_array, this->_capacity);
+					}
 					this->_array = new_array;
 					this->_capacity = n;
 				}
@@ -585,7 +586,9 @@ namespace ft
 					range_size++;
 				}
 				if (this->capacity() < static_cast<size_type>(range_size))
+				{
 					reserve(range_size);
+				}
 				for (difference_type i = 0; i < range_size; i++)
 				{
 					this->_alloc.construct(this->_array + i, *first);
@@ -631,7 +634,9 @@ namespace ft
 				for (long long int i = this->size(); i >= static_cast<long long int>(offset); i--)
 				{
 					if (i == static_cast<long long int>(offset))
+					{
 						this->_alloc.construct(this->_array + i, val);
+					}
 					else
 					{
 						this->_alloc.construct(this->_array + i, *(this->_array + i - 1));
@@ -707,10 +712,18 @@ namespace ft
 
 			iterator		erase(iterator position)
 			{
-				this->_alloc.destroy(&(*position));
-				for (iterator it = position; it != this->end() - 1; it++)
+				size_type		offset;
+
+				offset = 0;
+				for (iterator it = this->begin(); it != position; it++)
 				{
-					*it = *(it + 1);
+					offset++;
+				}
+				this->_alloc.destroy(this->_array + offset);
+				for (size_type i = offset; i < this->size() - 1; i++)
+				{
+					this->_alloc.construct(this->_array + i, *(this->_array + i + 1));
+					this->_alloc.destroy(this->_array + i + 1);
 				}
 				this->_size--;
 				return (position);
@@ -772,6 +785,11 @@ namespace ft
 			allocator_type		get_allocator() const
 			{
 				return (this->_alloc);
+			}
+
+			pointer		get_array(void) const
+			{
+				return (this->_array);
 			}
 
 		private :

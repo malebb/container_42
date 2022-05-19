@@ -98,6 +98,7 @@ namespace ft
 				return (lhs.c >= rhs.c);
 			}
 
+
 			friend void	swap(const stack& x, const stack& y)
 			{
 				x.swap(y);
