@@ -621,7 +621,8 @@ namespace ft
 
 			iterator		insert(iterator position, const value_type& val)
 			{
-				size_type	offset;
+				size_type		offset;
+				pointer			ret;
 
 				offset = position - this->begin();
 				if (this->size() + 1 > this->capacity())
@@ -635,6 +636,7 @@ namespace ft
 				{
 					if (i == static_cast<long long int>(offset))
 					{
+						ret = this->_array + i;
 						this->_alloc.construct(this->_array + i, val);
 					}
 					else
@@ -644,7 +646,7 @@ namespace ft
 					}
 				}
 				this->_size++;
-				return (position);
+				return (ret);
 			}
 
 			iterator		insert(iterator position, size_type n,

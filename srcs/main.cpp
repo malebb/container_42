@@ -46,17 +46,8 @@ int	main(void)
 	test_stack();
 	test_vector();
 	test_map();
+
 	std::cout << "execution terminated after " << get_prog_time(first_time) << "ms" << std::endl;
-/*
-	std::cout << "\nERASE\n";
-	ft::vector<ft::vector<int> >	erase_in_me;
-	for (int i = 0; i < 3; i++)
-	{
-		ft::vector<int>	j(1, i);
-		erase_in_me.push_back(j);
-	}
-	erase_in_me.erase(erase_in_me.begin());
-*/	
 	return (0);
 }
 
