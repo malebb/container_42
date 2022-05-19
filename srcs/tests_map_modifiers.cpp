@@ -129,6 +129,12 @@ static void		test_swap(void)
 
 	display_map("ying", ying);
 	display_map("yang", yang);
+	std::cout << "swap(ying, yang)" << std::endl;
+
+	swap(ying, yang);
+
+	display_map("ying", ying);
+	display_map("yang", yang);
 }
 
 void			test_map_modifiers(void)

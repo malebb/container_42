@@ -47,6 +47,10 @@ int	main(void)
 	test_vector();
 	test_map();
 
+	LIB::map<int, int>		mp;
+
+	for (int i = 0; i < 10000000; i++)
+		mp[i] = i;
 	std::cout << "execution terminated after " << get_prog_time(first_time) << "ms" << std::endl;
 
 	return (0);
