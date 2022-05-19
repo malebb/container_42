@@ -37,7 +37,7 @@ DEP_STL = ${OBJS_STL:.o=.d}
 
 CC = c++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -I ./incl/
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = ft_containers
 NAME2 = stl_containers
@@ -57,10 +57,10 @@ $(NAME2):	${OBJS_STL}
 
 
 ./srcs/ft/%.o: ./srcs/%.cpp Makefile
-		${CC} ${CFLAGS} -MMD -MP -DLIB=ft -o $@ -c $< 
+		${CC} ${CFLAGS} -MMD -MP -DLIB=ft -I ./incl/ -o $@ -c $< 
 
 ./srcs/stl/%.o: ./srcs/%.cpp Makefile
-		${CC} ${CFLAGS} -MMD -MP -DLIB=std -o $@ -c $< 
+		${CC} ${CFLAGS} -MMD -MP -DLIB=std -I ./incl/ -o $@ -c $< 
 
 .PHONY:		clean
 clean:

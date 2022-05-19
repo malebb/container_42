@@ -780,12 +780,10 @@ namespace ft
 			pointer				_array;
 			size_type			_size;
 			size_type			_capacity;
-	};
 
-	//relational operator
+	// non member overloads
 
-	template <class T, class Alloc>
-	bool	operator==(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs)
+	friend bool	operator==(const vector &lhs, const vector &rhs)
 	{
 		if (lhs.size() != rhs.size()
 			|| !ft::equal(lhs.begin(), lhs.end(), rhs.begin()))
@@ -793,44 +791,39 @@ namespace ft
 		return (true);
 	}
 
-	template <class T, class Alloc>
-	bool	operator!=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs)
+	friend bool	operator!=(const vector &lhs, const vector &rhs)
 	{
 		return (!(lhs == rhs));
 	}
 
-	template <class T, class Alloc>
-	bool	operator<(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs)
+	friend bool	operator<(const vector &lhs, const vector &rhs)
 	{
 		return (ft::lexicographical_compare(lhs.begin(), lhs.end(),
 					rhs.begin(), rhs.end()));
 	}
 
-	template <class T, class Alloc>
-	bool	operator>(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs)
+	friend bool	operator>(const vector &lhs, const vector &rhs)
 	{
 		return (!(lhs < rhs) && lhs != rhs);
 	}
 
-	template <class T, class Alloc>
-	bool	operator<=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs)
+	friend bool	operator<=(const vector &lhs, const vector &rhs)
 	{
 		return (!(lhs > rhs));
 	}
 
-	template <class T, class Alloc>
-	bool	operator>=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs)
+	friend bool	operator>=(const vector &lhs, const vector &rhs)
 	{
 		return (!(lhs < rhs));
 	}
 
-	//swap overload
-	
-	template <class T, class Alloc>
-	void	swap(vector<T, Alloc>& x, vector<T, Alloc>& y)
+
+	friend void	swap(vector &x, vector &y)
 	{
 		x.swap(y);
 	}
+
+	};
 }
 
 #endif

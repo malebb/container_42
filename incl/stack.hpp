@@ -60,7 +60,7 @@ namespace ft
 				this->c.pop_back();
 			}
 
-			// relational operators
+			// non-member overloads
 
 			friend bool operator==(const stack& lhs,
 					const stack& rhs)
@@ -96,6 +96,11 @@ namespace ft
 					const stack& rhs)
 			{
 				return (lhs.c >= rhs.c);
+			}
+
+			friend void	swap(const stack& x, const stack& y)
+			{
+				x.swap(y);
 			}
 
 		protected :

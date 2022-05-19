@@ -95,6 +95,33 @@ void	test_pop(void)
 	display_stack("animals", animals);
 }
 
+void	test_swap(void)
+{
+	std::cout << std::endl;
+	std::cout << ">> test swap function" << std::endl;
+	std::cout << std::endl;
+
+	LIB::stack<std::string>		sun;
+	LIB::stack<std::string>		rain;
+
+	sun.push("SUN");
+	sun.push("Sun");
+	sun.push("Sunnnnn");
+
+	rain.push("RAIN");
+	rain.push("rain");
+	rain.push("rainnnnnn");
+
+	display_stack("sun", sun);
+	display_stack("rain", rain);
+
+	swap(sun, rain);
+	std::cout << "swap(sun, rain)" << std::endl << std::endl;
+
+	display_stack("sun", sun);
+	display_stack("rain", rain);
+}
+
 void	test_stack_member_functions(void)
 {
 	std::cout << std::endl;
@@ -111,5 +138,7 @@ void	test_stack_member_functions(void)
 	test_push();
 	std::cout << "********************************************" << std::endl;
 	test_pop();
+	std::cout << "********************************************" << std::endl;
+	test_swap();
 	std::cout << "********************************************" << std::endl;
 }

@@ -1411,11 +1411,10 @@ namespace ft
 			delete_node(node.node);
 			return (true);
 		}
-	};
 
-	template< class Key, class T, class Compare, class Alloc >
-	bool operator==( const ft::map<Key,T,Compare,Alloc>& lhs,
-		const ft::map<Key,T,Compare,Alloc>& rhs )
+	// non-member overloads
+
+	friend bool operator==( const map &lhs, const map &rhs )
 	{
 		return ((!ft::lexicographical_compare(lhs.begin(), lhs.end(), 
 						rhs.begin(), rhs.end())
@@ -1423,46 +1422,39 @@ namespace ft
 						lhs.begin(), lhs.end())));
 	}
 
-	template< class Key, class T, class Compare, class Alloc >
-	bool operator!=( const ft::map<Key,T,Compare,Alloc>& lhs,
-		const ft::map<Key,T,Compare,Alloc>& rhs )
+	friend bool operator!=( const map &lhs, const map &rhs )
 	{
 		return (!(lhs == rhs));
 	}
 
-	template< class Key, class T, class Compare, class Alloc >
-	bool operator<( const ft::map<Key,T,Compare,Alloc>& lhs,
-		const ft::map<Key,T,Compare,Alloc>& rhs )
+	friend bool operator<( const map &lhs, const map &rhs )
 	{
 		return (ft::lexicographical_compare(lhs.begin(), lhs.end(),
 					rhs.begin(), rhs.end()));
 	}
 
-	template< class Key, class T, class Compare, class Alloc >
-	bool operator>( const ft::map<Key,T,Compare,Alloc>& lhs,
-		const ft::map<Key,T,Compare,Alloc>& rhs )
+	friend bool operator>( const map &lhs, const map &rhs )
 	{
 		return (rhs < lhs);
 	}
 
-	template< class Key, class T, class Compare, class Alloc >
-	bool operator<=( const ft::map<Key,T,Compare,Alloc>& lhs,
-		const ft::map<Key,T,Compare,Alloc>& rhs )
+	friend bool operator<=( const map &lhs, const map &rhs )
 	{
 		return ((lhs < rhs) || (lhs == rhs));
 	}
 
-	template< class Key, class T, class Compare, class Alloc >
-	bool operator>=( const ft::map<Key,T,Compare,Alloc>& lhs,
-		const ft::map<Key,T,Compare,Alloc>& rhs )
+	friend bool operator>=( const map &lhs, const map &rhs )
 	{
 		return (!(lhs < rhs));
 	}
-	template <class Key, class T, class Compare, class Alloc>
-	void	swap(map<Key, T, Compare, Alloc>& x, map<Key, T, Compare, Alloc>& y)
+
+	friend void	swap(map &x, map &y)
 	{
 		x.swap(y);
 	}
+
+	};
+
 }
 
 #endif
