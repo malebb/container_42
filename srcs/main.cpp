@@ -47,6 +47,10 @@ int	main(void)
 	test_vector();
 	test_map();
 
+	std::map<int, int>		nbrs;
+
+	std::cout << **nbrs << std::endl;
+
 	std::cout << "execution terminated after " << get_prog_time(first_time) << "ms" << std::endl;
 	return (0);
 }
