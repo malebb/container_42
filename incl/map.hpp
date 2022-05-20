@@ -106,11 +106,10 @@ namespace ft
 
 			value_type			*operator->() const
 			{
-//				std::cout << "value = "
 				return (this->node->value);
 			}
 
-			value_type			&operator*()
+			value_type			&operator*() const
 			{
 				return (*(this->node->value));
 			}
@@ -694,9 +693,7 @@ namespace ft
 			{
 				next_it = first;
 				++next_it;
-				//std::cout << "size = " << this->_size << std::endl;
 				deletion(first);
-				//std::cout << "size = " << this->_size << std::endl;
 				this->_size--;
 				first = next_it;
 			}
@@ -789,105 +786,60 @@ namespace ft
 
 		iterator			lower_bound(const key_type& k)
 		{
-			avl<value_type>		*node;
-			avl<value_type>		*prev;
+			iterator		elem;
 
-			node = this->_root;
-			while (node && !node->end)
+			elem = find(k);
+			if (elem != this->end())
+				return (elem);
+			for (iterator it = this->begin(); it != this->end(); ++it)
 			{
-				prev = node;
-				if (!this->_compare(k, node->value->first)
-					 && !this->_compare(node->value->first, k))
-					return (node);
-				if (this->_compare(k, node->value->first))
-				{
-					if (node->left)
-						node = node->left;
-					else
-						return (node);
-				}
-				else
-					node = node->right;
+				if (this->_compare(k, it.node->value->first))
+					return (it);
 			}
-			if (!node)
-				return (++iterator(prev));
 			return (this->end());
 		}
 
 		const_iterator			lower_bound(const key_type& k) const
 		{
-			avl<value_type>		*node;
+			const_iterator		elem;
 
-			node = this->_root;
-			while (node && !node->end)
+			elem = find(k);
+			if (elem != this->end())
+				return (elem);
+			for (const_iterator it = this->begin(); it != this->end(); ++it)
 			{
-				if (!this->_compare(k, node->value->first)
-					 && !this->_compare(node->value->first, k))
-					return (iterator(node));
-				if (this->_compare(k, node->value->first))
-				{
-					if (node->left &&
-							(this->_compare(k, node->left->value->first)
-							 || (!this->_compare(k, node->left->value->first)
-								 && !this->_compare(node->left->value->first, k))))
-						node = node->left;
-					else
-						return(iterator(node));
-				}
-				else
-					node = node->right;
+				if (this->_compare(k, it.node->value->first))
+					return (it);
 			}
 			return (this->end());
 		}
 
 		iterator			upper_bound(const key_type& k)
 		{
-			avl<value_type>		*node;
+			iterator		elem;
 
-			node = this->_root;
-			while (node && !node->end)
+			elem = find(k);
+			if (elem != this->end())
+				return (++elem);
+			for (iterator it = this->begin(); it != this->end(); ++it)
 			{
-				if (!this->_compare(k, node->value->first)
-					 && !this->_compare(node->value->first, k))
-					return (++iterator(node));
-				if (this->_compare(k, node->value->first))
-				{
-					if (node->left &&
-							(this->_compare(k, node->left->value->first)
-							 || (!this->_compare(k, node->left->value->first)
-								 && !this->_compare(node->left->value->first, k))))
-						node = node->left;
-					else
-						return(node);
-				}
-				else
-					node = node->right;
+				if (this->_compare(k, it.node->value->first))
+					return (it);
 			}
 			return (this->end());
 		}
 
 		const_iterator			upper_bound(const key_type& k) const
 		{
-			avl<value_type>		*node;
+			const_iterator		elem;
 
-			node = this->_root;
-			while (node && !node->end)
+			elem = find(k);
+			if (elem != this->end())
+				return (++elem);
+			for (const_iterator it = this->begin(); it != this->end(); ++it)
 			{
-				if (!this->_compare(k, node->value->first)
-					 && !this->_compare(node->value->first, k))
-					return (++iterator(node));
-				if (this->_compare(k, node->value->first))
-				{
-					if (node->left &&
-							(this->_compare(k, node->left->value->first)
-							 || (!this->_compare(k, node->left->value->first)
-								 && !this->_compare(node->left->value->first, k))))
-						node = node->left;
-					else
-						return(node);
-				}
-				else
-					node = node->right;
+				if (this->_compare(k, it.node->value->first))
+					return (it);
 			}
 			return (this->end());
 		}
@@ -943,7 +895,6 @@ namespace ft
 			return (true);
 		}
 
-	*/
 		void		print(void) const
 		{
 			browse_tree(this->_root, 'R', 0);
@@ -971,6 +922,7 @@ namespace ft
 			browse_tree(node->right, 'r', depth + 1);
 			browse_tree(node->left, 'l', depth + 1);
 		}
+	*/
 
 	private :
 
@@ -1078,7 +1030,7 @@ namespace ft
 				// left left case
 				subtree_root = first_unbalanced->left;
 				right_rotate(first_unbalanced);
-				update_height_after_balance(subtree_root);
+				update_height(subtree_root, true);
 			}
 			else
 			{
@@ -1086,7 +1038,7 @@ namespace ft
 				subtree_root = first_unbalanced->left->right;
 				left_rotate(first_unbalanced->left);
 				right_rotate(first_unbalanced);
-				update_height_after_balance(subtree_root);
+				update_height(subtree_root, true);
 			}
 		}
 
@@ -1102,14 +1054,14 @@ namespace ft
 				subtree_root = first_unbalanced->right->left;
 				right_rotate(first_unbalanced->right);
 				left_rotate(first_unbalanced);
-				update_height_after_balance(subtree_root);
+				update_height(subtree_root, true);
 			}
 			else
 			{
 				// right right case
 				subtree_root = first_unbalanced->right;
 				left_rotate(first_unbalanced);
-				update_height_after_balance(subtree_root);
+				update_height(subtree_root, true);
 			}
 		}
 
@@ -1143,7 +1095,7 @@ namespace ft
 				// left left case
 				subtree_root = first_unbalanced->left;
 				right_rotate(first_unbalanced);
-				update_height_after_balance(subtree_root);
+				update_height(subtree_root, true);
 			}
 			else
 			{
@@ -1151,7 +1103,7 @@ namespace ft
 				subtree_root = first_unbalanced->left->right;
 				left_rotate(first_unbalanced->left);
 				right_rotate(first_unbalanced);
-				update_height_after_balance(subtree_root);
+				update_height(subtree_root, true);
 			}
 		}
 
@@ -1165,14 +1117,14 @@ namespace ft
 				subtree_root = first_unbalanced->right->left;
 				right_rotate(first_unbalanced->right);
 				left_rotate(first_unbalanced);
-				update_height_after_balance(subtree_root);
+				update_height(subtree_root, true);
 			}
 			else
 			{
 				// right right case
 				subtree_root = first_unbalanced->right;
 				left_rotate(first_unbalanced);
-				update_height_after_balance(subtree_root);
+				update_height(subtree_root, true);
 			}
 		}
 
@@ -1214,14 +1166,17 @@ namespace ft
 			}
 		}
 
-		void	update_height_after_balance(avl<value_type> *node)
+		void	update_height(avl<value_type> *node, bool height_node_updated)
 		{
 			int		child_height;
 			avl<value_type>		*prev_node;
 
 			if (node)
 			{
-				child_height = node->height;
+				if (height_node_updated)
+					child_height = node->height;
+				else
+					child_height = 0;
 				prev_node = node;
 				node = node->parent;
 			}
@@ -1237,6 +1192,10 @@ namespace ft
 						}
 						else
 							break ;
+					}
+					else if (!height_node_updated)
+					{
+						node->height = child_height + 1;
 					}
 				}
 				else
@@ -1336,16 +1295,23 @@ namespace ft
 						else
 							node.node->parent->right = NULL;
 					}
-					update_height_after_balance(node.node->parent);
+					update_height(node.node, false);
 					balance_deletion(node.node->parent);
 				}
 				else
+				{
+					this->_end_node->parent = NULL;
 					this->_root = this->_end_node;
+				}
 			}
 			else if (node.node->left && (!node.node->right ||
 						(node.node->right && node.node->right->end)))
 			{
 				// only left child
+				iterator		prev;
+
+				prev = node;
+				--prev;
 				if (node.node->parent)
 				{
 					if (this->_compare(node->first,
@@ -1355,10 +1321,15 @@ namespace ft
 						node.node->parent->right = node.node->left;
 				}
 				node.node->left->parent = node.node->parent;
-				node.node->left->right = node.node->right;
+				prev.node->right = node.node->right;
+				if (node.node->right)
+				{
+					//replace end_node
+					node.node->right->parent = prev.node;
+				}
 				if (!node.node->parent)
 					this->_root = node.node->left;
-				update_height_after_balance(node.node->left);
+				update_height(node.node->left, true);
 				this->balance_deletion(node.node->left);
 			}
 			else if (node.node->right && (!node.node->left
@@ -1376,7 +1347,7 @@ namespace ft
 				node.node->right->parent = node.node->parent;
 				if (!node.node->parent)
 					this->_root = node.node->right;
-				update_height_after_balance(node.node->right);
+				update_height(node.node->right, true);
 				this->balance_deletion(node.node->right);
 			}
 			else
@@ -1397,14 +1368,18 @@ namespace ft
 				if (node.node->right != next.node)
 				{
 					next.node->parent->left = next.node->right;
+					if (next.node->right)
+						next.node->right->parent = next.node->parent;
 					node.node->right->parent = next.node;
 					next.node->right = node.node->right;
 				}
 				next.node->parent = node.node->parent;
 				node.node->left->parent = next.node;
 				if (!node.node->parent)
+				{
 					this->_root = next.node;
-				update_height_after_balance(next.node);
+				}
+				update_height(next.node, true);
 				this->balance_deletion(next.node);
 			}
 			delete_node(node.node);
