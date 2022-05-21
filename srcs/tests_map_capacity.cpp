@@ -44,13 +44,10 @@ static void test_max_size(void)
 	std::cout << ">> test max_size function" << std::endl;
 	std::cout << std::endl;
 
-	LIB::map<int, std::string>		numbers;
 	LIB::map<char, char>		letters;
 
-	display_map("numbers", numbers);
 	display_map("letters", letters);
 
-	std::cout << "numbers.max_size() = " << numbers.max_size() << std::endl;
 	std::cout << "letters.max_size() = " << letters.max_size() << std::endl;
 	std::cout << std::endl;
 }
